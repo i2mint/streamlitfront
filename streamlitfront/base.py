@@ -155,6 +155,7 @@ def _get_dflt_element_factory_for_annot():
         # typing.Dict[str, bool]: (st.number_input, str, bool),
     }
 
+
 #
 # TODO: Too messy -- needs some design thinking
 # TODO: Basic: Add some more smart mapping
@@ -203,7 +204,7 @@ class BasePageFunc:
     def prepare_view(self, state):
         if self.view_title:
             st.markdown(f"""## **{self.view_title}**""")
-            
+
     def __call__(self, state):
         self.prepare_view(state)
         st.write(Sig(self.func))
@@ -282,7 +283,7 @@ def pages_app(funcs, configs):
 
     # Make page objects
     views = get_pages_specs(funcs, **configs)
-    state['views'] = views
+    state["views"] = views
 
     # TODO: The above is static: Should the above be done only once, and cached?
     #   Perhaps views should be cached in state?

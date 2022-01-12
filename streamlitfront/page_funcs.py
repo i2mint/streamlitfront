@@ -30,7 +30,7 @@ def get_func_elements_commands(
         element_factory_for_annot or _get_dflt_element_factory_for_annot()
     )
     sig = Sig(func)
-    NodeGetter(state['views'])
+    NodeGetter(state["views"])
 
     func_args_specs = {name: {} for name in sig.names}
     for name in sig.names:
@@ -199,7 +199,9 @@ class DataBindingExploPageFunc(DataAccessPageFunc):
                     else:
                         if "options" in args_specs[argname]["element_factory"][1]:
                             options = func_inputs[int_args[idx - 1]].split(", ")
-                            args_specs[argname]["element_factory"][1]["options"] = options
+                            args_specs[argname]["element_factory"][1][
+                                "options"
+                            ] = options
                         element_factory, kwargs = args_specs[argname]["element_factory"]
                         func_inputs[argname] = element_factory(**kwargs)
         submit = st.button("Submit")
