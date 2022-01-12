@@ -59,9 +59,12 @@ def func_name(func):
 
 class Objdict(dict):
     """A dict, whose keys can be access as if they were attributes.
+
     >>> s = Objdict()
+
     Write it as you do with attributes or dict keys,
     get it as an attribute and a dict keys.
+
     >>> s.foo = 'bar'
     >>> assert s.foo == 'bar'
     >>> assert s['foo'] == 'bar'
@@ -70,7 +73,9 @@ class Objdict(dict):
     >>> assert s['hello'] == 'world'
     >>> hasattr(s, 'hello')
     True
+
     And you can still do dict stuff with it...
+
     >>> list(s)
     ['foo', 'hello']
     >>> list(s.items())
@@ -79,12 +84,15 @@ class Objdict(dict):
     'nope'
     >>> s.clear()
     >>> assert len(s) == 0
+
     Note: You can use anything that's a valid dict key as a key
+
     >>> s['strings with space'] = 1
     >>> s[42] = 'meaning of life'
     >>> s[('tuples', 1, None)] = 'weird'
     >>> list(s)
     ['strings with space', 42, ('tuples', 1, None)]
+
     But obviously, the only ones you'll be able to access are those that are
     valid attribute names.
     """
