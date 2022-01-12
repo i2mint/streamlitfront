@@ -34,6 +34,7 @@ if __name__ == '__main__':
     # ... and you get a browser based app that exposes foo, bar, and confuser
 
 ```
+
 Execute `streamlit run simple.py` in terminal and ...
 
 ![image](https://user-images.githubusercontent.com/1906276/121604989-61874d80-ca00-11eb-9e1b-e3ac28e09418.png)
