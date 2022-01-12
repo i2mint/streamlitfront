@@ -68,54 +68,56 @@ class _SessionState:
 
         This says it all (sorta):
 
-        >>> s = State(a=0, b=False, c=None, d='', e=1, f=True, h='hi')
-        >>> list(filter(s.has_valid, list(s) + ['i', 'j']))
-        ['e', 'f', 'h']
+        # TODO: Review and remove if no longer relevant:
 
-        But here's the slower presentation:
-
-        >>> s = State(a=1)
-        >>> s.has_valid('a')
-        True
-        >>> s['a'] = 0
-        >>> s.has_valid('a')
-        False
-
-        'a' is 0, which evaluates to False,
-        (since the default is_valid function is `bool`).
-        But if we use another custom is_valid function, it becomes valid.
-
-        >>> s.has_valid('a', is_valid=lambda x: x is not None)
-        True
-
-        But what ever your is_valid function, if a key doesn't exist,
-        it won't be valid.
-
-        >>> just_care_about_key_existence = lambda x: True
-        >>> s.has_valid('b', is_valid=just_care_about_key_existence)
-        False
-
-        That's why the method is called HAS_valid.
-        It needs to HAVE the key, and the value needs to be valid.
-
-        You can also check the conjunctive validity of several keys.
-        Conjunctive is a pedantic way of saying "and".
-
-        >>> s = State(a=1, b=False, c=None)
-        >>> s.has_valid('a', 'b')
-        False
-        >>> s['b'] = 2
-        >>> s.has_valid('a', 'b')
-        True
-
-        Note that `is_valid` is a keyword-only argument.
-        If you don't specify it as a keyword argument, it will think it's a
-        key to validate. Silly it!
-
-        >>> s.has_valid('a', 'b', 'c', just_care_about_key_existence)
-        False
-        >>> s.has_valid('a', 'b', 'c', is_valid=just_care_about_key_existence)
-        True
+        # >>> s = State(a=0, b=False, c=None, d='', e=1, f=True, h='hi')
+        # >>> list(filter(s.has_valid, list(s) + ['i', 'j']))
+        # ['e', 'f', 'h']
+        #
+        # But here's the slower presentation:
+        #
+        # >>> s = State(a=1)
+        # >>> s.has_valid('a')
+        # True
+        # >>> s['a'] = 0
+        # >>> s.has_valid('a')
+        # False
+        #
+        # 'a' is 0, which evaluates to False,
+        # (since the default is_valid function is `bool`).
+        # But if we use another custom is_valid function, it becomes valid.
+        #
+        # >>> s.has_valid('a', is_valid=lambda x: x is not None)
+        # True
+        #
+        # But what ever your is_valid function, if a key doesn't exist,
+        # it won't be valid.
+        #
+        # >>> just_care_about_key_existence = lambda x: True
+        # >>> s.has_valid('b', is_valid=just_care_about_key_existence)
+        # False
+        #
+        # That's why the method is called HAS_valid.
+        # It needs to HAVE the key, and the value needs to be valid.
+        #
+        # You can also check the conjunctive validity of several keys.
+        # Conjunctive is a pedantic way of saying "and".
+        #
+        # >>> s = State(a=1, b=False, c=None)
+        # >>> s.has_valid('a', 'b')
+        # False
+        # >>> s['b'] = 2
+        # >>> s.has_valid('a', 'b')
+        # True
+        #
+        # Note that `is_valid` is a keyword-only argument.
+        # If you don't specify it as a keyword argument, it will think it's a
+        # key to validate. Silly it!
+        #
+        # >>> s.has_valid('a', 'b', 'c', just_care_about_key_existence)
+        # False
+        # >>> s.has_valid('a', 'b', 'c', is_valid=just_care_about_key_existence)
+        # True
 
         """
         # return all((key in self and is_valid(self[key])) for key in k)
