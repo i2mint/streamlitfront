@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>streamlitfront.session_state &mdash; streamlitfront 0.1.0 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/toggleprompt.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> streamlitfront
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront.html">streamlitfront</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/session_state.html">streamlitfront.session_state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">streamlitfront</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>streamlitfront.session_state</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for streamlitfront.session_state</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Session state management</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">from</span> <span class="nn">streamlit.legacy_caching.hashing</span> <span class="kn">import</span> <span class="n">_CodeHasher</span>
+
+<span class="kn">from</span> <span class="nn">streamlitfront.util</span> <span class="kn">import</span> <span class="n">Objdict</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Before Streamlit 0.65</span>
+    <span class="kn">from</span> <span class="nn">streamlit.ReportThread</span> <span class="kn">import</span> <span class="n">get_report_ctx</span>
+    <span class="kn">from</span> <span class="nn">streamlit.server.Server</span> <span class="kn">import</span> <span class="n">Server</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="c1"># After Streamlit 0.65</span>
+    <span class="kn">from</span> <span class="nn">streamlit.report_thread</span> <span class="kn">import</span> <span class="n">get_report_ctx</span>
+    <span class="kn">from</span> <span class="nn">streamlit.server.server</span> <span class="kn">import</span> <span class="n">Server</span>
+
+
+<span class="k">def</span> <span class="nf">display_state_values</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Current value of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">state</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+
+<div class="viewcode-block" id="PageState"><a class="viewcode-back" href="../../module_docs/streamlitfront/session_state.html#streamlitfront.session_state.PageState">[docs]</a><span class="k">class</span> <span class="nc">PageState</span><span class="p">(</span><span class="n">Objdict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;To hold page states&quot;&quot;&quot;</span></div>
+
+
+<span class="k">class</span> <span class="nc">_SessionState</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">hash_funcs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize SessionState instance.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;_state&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;hash&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;hasher&quot;</span><span class="p">:</span> <span class="n">_CodeHasher</span><span class="p">(</span><span class="n">hash_funcs</span><span class="p">),</span>
+            <span class="s2">&quot;is_rerun&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;session&quot;</span><span class="p">:</span> <span class="n">session</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize state data once.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">item</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a saved state value, None if item is undefined.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a saved state value, None if item is undefined.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set state value.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set state value.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Clear session state and request a rerun.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;session&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">request_rerun</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">has_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">is_valid</span><span class="o">=</span><span class="nb">bool</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks that k exists and is valid.</span>
+<span class="sd">        Validity can be specified by a function (default: bool).</span>
+
+<span class="sd">        This says it all (sorta):</span>
+
+<span class="sd">        # TODO: Review and remove if no longer relevant:</span>
+
+<span class="sd">        # &gt;&gt;&gt; s = State(a=0, b=False, c=None, d=&#39;&#39;, e=1, f=True, h=&#39;hi&#39;)</span>
+<span class="sd">        # &gt;&gt;&gt; list(filter(s.has_valid, list(s) + [&#39;i&#39;, &#39;j&#39;]))</span>
+<span class="sd">        # [&#39;e&#39;, &#39;f&#39;, &#39;h&#39;]</span>
+<span class="sd">        #</span>
+<span class="sd">        # But here&#39;s the slower presentation:</span>
+<span class="sd">        #</span>
+<span class="sd">        # &gt;&gt;&gt; s = State(a=1)</span>
+<span class="sd">        # &gt;&gt;&gt; s.has_valid(&#39;a&#39;)</span>
+<span class="sd">        # True</span>
+<span class="sd">        # &gt;&gt;&gt; s[&#39;a&#39;] = 0</span>
+<span class="sd">        # &gt;&gt;&gt; s.has_valid(&#39;a&#39;)</span>
+<span class="sd">        # False</span>
+<span class="sd">        #</span>
+<span class="sd">        # &#39;a&#39; is 0, which evaluates to False,</span>
+<span class="sd">        # (since the default is_valid function is `bool`).</span>
+<span class="sd">        # But if we use another custom is_valid function, it becomes valid.</span>
+<span class="sd">        #</span>
+<span class="sd">        # &gt;&gt;&gt; s.has_valid(&#39;a&#39;, is_valid=lambda x: x is not None)</span>
+<span class="sd">        # True</span>
+<span class="sd">        #</span>
+<span class="sd">        # But what ever your is_valid function, if a key doesn&#39;t exist,</span>
+<span class="sd">        # it won&#39;t be valid.</span>
+<span class="sd">        #</span>
+<span class="sd">        # &gt;&gt;&gt; just_care_about_key_existence = lambda x: True</span>
+<span class="sd">        # &gt;&gt;&gt; s.has_valid(&#39;b&#39;, is_valid=just_care_about_key_existence)</span>
+<span class="sd">        # False</span>
+<span class="sd">        #</span>
+<span class="sd">        # That&#39;s why the method is called HAS_valid.</span>
+<span class="sd">        # It needs to HAVE the key, and the value needs to be valid.</span>
+<span class="sd">        #</span>
+<span class="sd">        # You can also check the conjunctive validity of several keys.</span>
+<span class="sd">        # Conjunctive is a pedantic way of saying &quot;and&quot;.</span>
+<span class="sd">        #</span>
+<span class="sd">        # &gt;&gt;&gt; s = State(a=1, b=False, c=None)</span>
+<span class="sd">        # &gt;&gt;&gt; s.has_valid(&#39;a&#39;, &#39;b&#39;)</span>
+<span class="sd">        # False</span>
+<span class="sd">        # &gt;&gt;&gt; s[&#39;b&#39;] = 2</span>
+<span class="sd">        # &gt;&gt;&gt; s.has_valid(&#39;a&#39;, &#39;b&#39;)</span>
+<span class="sd">        # True</span>
+<span class="sd">        #</span>
+<span class="sd">        # Note that `is_valid` is a keyword-only argument.</span>
+<span class="sd">        # If you don&#39;t specify it as a keyword argument, it will think it&#39;s a</span>
+<span class="sd">        # key to validate. Silly it!</span>
+<span class="sd">        #</span>
+<span class="sd">        # &gt;&gt;&gt; s.has_valid(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, just_care_about_key_existence)</span>
+<span class="sd">        # False</span>
+<span class="sd">        # &gt;&gt;&gt; s.has_valid(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, is_valid=just_care_about_key_existence)</span>
+<span class="sd">        # True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># return all((key in self and is_valid(self[key])) for key in k)</span>
+        <span class="k">return</span> <span class="nb">all</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span> <span class="ow">and</span> <span class="n">is_valid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)))</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">k</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sync</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Rerun the app with all state values up to date from the beginning to fix rollbacks.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Ensure to rerun only once to avoid infinite loops</span>
+        <span class="c1"># caused by a constantly changing state value at each run.</span>
+        <span class="c1">#</span>
+        <span class="c1"># Example: state.value += 1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;is_rerun&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;is_rerun&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;hash&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;hash&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;hasher&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="kc">None</span>
+            <span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;is_rerun&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;session&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">request_rerun</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;hash&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;hasher&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="kc">None</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_get_session</span><span class="p">():</span>
+    <span class="n">session_id</span> <span class="o">=</span> <span class="n">get_report_ctx</span><span class="p">()</span><span class="o">.</span><span class="n">session_id</span>
+    <span class="n">session_info</span> <span class="o">=</span> <span class="n">Server</span><span class="o">.</span><span class="n">get_current</span><span class="p">()</span><span class="o">.</span><span class="n">_get_session_info</span><span class="p">(</span><span class="n">session_id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">session_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t get your Streamlit Session object.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">session_info</span><span class="o">.</span><span class="n">session</span>
+
+
+<span class="k">def</span> <span class="nf">_get_state</span><span class="p">(</span><span class="n">hash_funcs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">_get_session</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="s2">&quot;_custom_session_state&quot;</span><span class="p">):</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">_custom_session_state</span> <span class="o">=</span> <span class="n">_SessionState</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">hash_funcs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">_custom_session_state</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

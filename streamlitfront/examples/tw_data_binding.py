@@ -13,7 +13,12 @@ def bar(a: str = "boo"):
 
 funcs = [foo, bar]
 
-from streamlitfront.base import _get_state, _get_view_key, get_pages_specs, dflt_hash_funcs
+from streamlitfront.base import (
+    _get_state,
+    _get_view_key,
+    get_pages_specs,
+    dflt_hash_funcs,
+)
 
 import streamlit as st
 

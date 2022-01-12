@@ -1,0 +1,4 @@
+streamlitfront
+==============
+.. automodule:: streamlitfront
+   :members:
