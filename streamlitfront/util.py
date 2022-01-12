@@ -4,6 +4,7 @@ from typing import TypeVar, Iterable, Dict
 from i2.signatures import Sig, name_of_obj, Command as _Command
 
 
+# TODO: Consider using functools.partial (or subclass thereof) instead of Command
 class Command(_Command):
     def _caller(self):
         def exaecute_commands_in_args():
@@ -226,6 +227,8 @@ def build_factory(element_factory, kind, idx):
     return val
 
 
+# TODO: consider changing the following command factories to return
+#  partial(factory, **factory_kwargs) instead
 def build_element_commands(
     name, inferred_type, element_factory_for_annot, missing, dflt_element_factory
 ):
@@ -272,7 +275,9 @@ def build_element_factory(
     return element_factory, factory_kwargs
 
 
-def build_element_factory_helper(element_factory_for_annot, inferred_type, missing, args):
+def build_element_factory_helper(
+    element_factory_for_annot, inferred_type, missing, args
+):
     """
     Helper to build the element factory for VP and VK arguments
     """
