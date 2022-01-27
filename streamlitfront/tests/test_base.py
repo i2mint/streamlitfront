@@ -7,6 +7,6 @@ def double_func(x: int) -> int:
 
 
 def test_func_to_page_name():
-    result = func_to_page_name(double)
-    expected = "Double func"
+    result = func_to_page_name(double_func)
+    expected = "Double Func"
     assert result == expected
