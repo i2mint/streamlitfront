@@ -1,7 +1,5 @@
 """
-An example of how to transform (manually) a function that runs some data through a model
-(both too complex to enter directly and explicitly in forms) into a streamlit
-dispatchable function that uses a store (a Mapping) to manage complex data.
+Same as take_04_model_run, but where the dispatch is not as manual.
 """
 
 # This is what we want our "dispatchable" wrapper to look like
@@ -32,26 +30,19 @@ def apply_model(fitted_model: FittedModel, fvs: FVs, method="transform"):
 #   will generate the value for you (some say you should be obvious to that detail))
 # - client side RAM (when we figure that out)
 
-# really, should be a str from a list of options, given by list(fvs_store)
-FVsKey = str
-# really, should be a str from a list of options, given by list(fitted_model_store)
-FittedModelKey = str
-Result = Any
-ResultKey = str
-
 mall = dict(
-    fvs=dict(  # Mapping[FVsKey, FVs]
+    fvs=dict(
         train_fvs_1=np.array([[1], [2], [3], [5], [4], [2], [1], [4], [3]]),
         train_fvs_2=np.array([[1], [10], [5], [3], [4]]),
         test_fvs=np.array([[1], [5], [3], [10], [-5]]),
     ),
-    fitted_model=dict(  # Mapping[FittedModelKey, FittedModel]
+    fitted_model=dict(
         fitted_model_1=MinMaxScaler().fit(
             [[1], [2], [3], [5], [4], [2], [1], [4], [3]]
         ),
         fitted_model_2=MinMaxScaler().fit([[1], [10], [5], [3], [4]]),
     ),
-    model_results=dict(),  # Mapping[ResultKey, Result]
+    model_results=dict(),
 )
 
 # ---------------------------------------------------------------------------------------
@@ -60,7 +51,79 @@ mall = dict(
 from streamlitfront.examples.crude.crude_util import auto_key
 
 
-def prepare_for_dispatch(func):
+"""
+from i2 import Sig
+def kwargs_trans(outer_kw):
+    return dict(
+        w=outer_kw['w'] * 2,
+        x=outer_kw['w'] * 3,
+        # need to pop you (inner func has no you argument)
+        y=outer_kw['x'] + outer_kw.pop('you'),
+        # Note that no z is mentioned: This means we're just leaving it alone
+    )
+
+ingress = Ingress(
+    inner_sig=signature(f),
+    kwargs_trans=kwargs_trans,
+    outer_sig=Sig(f).ch_names(y='you')  # need to give the outer sig a you
+    # You could also express it this way (though you'd loose the annotations)
+    # outer_sig=lambda w, /, x, you=2, *, z=3: None
+)
+assert ingress(2, x=3, you=4) == ((4,), {'x': 6, 'y': 7, 'z': 3})
+
+wrapped_f = wrap(f, ingress)
+assert wrapped_f(2, x=3, you=4) == '(w:=4) + (x:=6) * (y:=7) ** (z:=3) == 2062'
+
+"""
+
+from i2 import Sig
+from i2.wrapper import Ingress, wrap
+from inspect import Parameter
+
+
+def prepare_for_crude_dispatch(func, store_for_param=None, output_store_name=None):
+    """Wrap func into something that is ready for CRUDE dispatch."""
+
+    ingress = None
+    if store_for_param is not None:
+        sig = Sig(func)
+        crude_params = [x for x in sig.names if x in store_for_param]
+
+        def kwargs_trans(outer_kw):
+            def gen():
+                for store_name in crude_params:
+                    store = store_for_param[store_name]
+                    store_key = outer_kw[store_name]
+                    yield store_name, store[store_key]
+
+            return dict(gen())
+
+        ingress = Ingress(
+            inner_sig=Sig(func),
+            kwargs_trans=kwargs_trans,
+            outer_sig=Sig(func).ch_annotations(**{name: str for name in crude_params})
+            # + [
+            #     Parameter(
+            #         name="save_name",
+            #         kind=Parameter.KEYWORD_ONLY,
+            #         default="",
+            #         annotation=str,
+            #     )
+            # ]
+            # You could also express it this way (though you'd loose the annotations)
+            # outer_sig=lambda w, /, x, you=2, *, z=3: None
+        )
+
+        # egress = None
+        # if output_store_name:
+        #     def egress(func_output):
+        #         store_for_param[output_store_name]
+    wrapped_f = wrap(func, ingress)
+
+    return wrapped_f
+
+
+def prepare_for_dispatch_00(func):
     """Wrap func into something that is ready for dispatch.
     In real live, apply_model_using_stores will be made automatically by wrapping
     apply_model.
@@ -71,8 +134,8 @@ def prepare_for_dispatch(func):
     if func.__name__ == "apply_model":
 
         def apply_model_using_stores(
-            fitted_model: FittedModelKey,
-            fvs: FVsKey,
+            fitted_model,
+            fvs,
             method: str = "transform",
             # TODO: Have streamlit populate automatically with auto_key:
             save_name: str = "",
@@ -107,5 +170,5 @@ def prepare_for_dispatch(func):
 if __name__ == "__main__":
     from streamlitfront.base import dispatch_funcs
 
-    app = dispatch_funcs([prepare_for_dispatch(apply_model)])
+    app = dispatch_funcs([prepare_for_crude_dispatch(apply_model)])
     app()
