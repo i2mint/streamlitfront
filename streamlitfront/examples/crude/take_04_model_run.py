@@ -19,7 +19,7 @@ FittedModel = Any
 # The function(ality) we want to dispatch:
 def apply_model(fitted_model: FittedModel, fvs: FVs, method="transform"):
     method_func = getattr(fitted_model, method)
-    return method_func(list(fvs))
+    return method_func(list(fvs)).tolist()
 
 
 # ---------------------------------------------------------------------------------------
@@ -71,8 +71,8 @@ def prepare_for_dispatch(func):
     if func.__name__ == "apply_model":
 
         def apply_model_using_stores(
-            fitted_model: FittedModelKey,
-            fvs: FVsKey,
+            fitted_model: str,
+            fvs: str,
             method: str = "transform",
             # TODO: Have streamlit populate automatically with auto_key:
             save_name: str = "",
@@ -89,7 +89,7 @@ def prepare_for_dispatch(func):
 
             return result  # or not
 
-        # # just a sanity check
+        # sanity check: test apply_model_using_stores
         assert list(mall["model_results"]) == []
         t = apply_model_using_stores(fitted_model="fitted_model_1", fvs="test_fvs")
         print(list(mall["model_results"]))
@@ -104,8 +104,10 @@ def prepare_for_dispatch(func):
         raise ValueError(f"Can't dispatch {func}")
 
 
-if __name__ == "__main__":
-    from streamlitfront.base import dispatch_funcs
-
-    app = dispatch_funcs([prepare_for_dispatch(apply_model)])
-    app()
+if __name__ == '__main__':
+    funcs = [prepare_for_dispatch(apply_model)]
+    import os
+    from py2dash.app_makers import dispatch_funcs
+    print('file: {}'.format(os.path.realpath(__file__)))
+    app = dispatch_funcs(funcs, {'style': {'root_dir': os.path.dirname(os.path.realpath(__file__))}})
+    app.run_server(debug=True)
