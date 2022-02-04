@@ -267,6 +267,11 @@ def _get_view_key(
 
 
 def pages_app(funcs, configs):
+    # Page setup
+
+    # Note: set_page_config at top: needs to be the first call after importing streamlit
+    st.set_page_config(layout="wide")
+
     state = _get_state(hash_funcs=dflt_hash_funcs)  # TODO: get from configs
 
     # # Experimentation -- to be reviewed if kept #############
@@ -276,10 +281,11 @@ def pages_app(funcs, configs):
     #         state['page_state'][func] = {}
     # full page layout style
     # st.set_page_config(**configs.get('page_config', {}))
-    # configs don't work here because the layout call has to be the first call after importing streamlit
+    # configs don't work here because the layout call has to be the first call after
+    # importing streamlit
 
-    # Page setup
-    st.set_page_config(layout="wide")
+    # # Page setup
+    # st.set_page_config(layout="wide")
 
     # Make page objects
     views = get_pages_specs(funcs, **configs)
