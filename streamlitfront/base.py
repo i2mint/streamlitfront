@@ -185,6 +185,9 @@ def get_func_args_specs(
             if dflt is not None:
                 # TODO: type-to-element conditions must be in configs
                 if isinstance(dflt, (list, tuple, set)):
+                    # TODO: This case seems false (maybe? don't want multiple choice
+                    #  when default is a list)
+                    # TODO: When we have list defaults, error occurs
                     factory_kwargs["options"] = dflt
                 else:
                     factory_kwargs["value"] = dflt
