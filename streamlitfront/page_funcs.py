@@ -269,3 +269,21 @@ class StatePageFunc(BasePageFunc):
                 "New value stored in state for this function is:",
                 state[self.view_title],
             )
+
+
+from i2 import name_of_obj
+import streamlit_pydantic as sp  # pip install streamlit-pydantic
+
+from front.py2pydantic import func_to_pyd_input_model_cls
+
+
+class SimplePageFuncPydanticWrite(BasePageFunc):
+    def __call__(self, state):
+        self.prepare_view(state)
+        mymodel = func_to_pyd_input_model_cls(self.func)
+        name = name_of_obj(self.func)
+        data = sp.pydantic_form(key=f"my_form_{name}", model=mymodel)
+        # data = sp.pydantic_input(key=f"my_form_{name}", model=mymodel)
+
+        if data:
+            st.write(self.func(**dict(data)))

@@ -1,5 +1,4 @@
 """Utils"""
-from functools import partial
 from typing import TypeVar, Iterable, Dict
 from i2.signatures import Sig, name_of_obj, Command as _Command
 
