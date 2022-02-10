@@ -210,7 +210,7 @@ class BasePageFunc:
 
     def __call__(self, state):
         self.prepare_view(state)
-        st.write(Sig(self.func))
+        st.write(self.sig)  # Was Sig(self.func)
 
 
 class SimplePageFunc(BasePageFunc):
