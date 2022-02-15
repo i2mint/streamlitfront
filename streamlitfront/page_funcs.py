@@ -311,4 +311,4 @@ class SimplePageFuncPydanticWithOutput(BasePageFunc):
             sp.pydantic_output(instance)
 
 
-DFLT_CONFIGS = {"page_factory": SimplePageFuncPydanticWrite}
+# DFLT_CONFIGS = {"page_factory": SimplePageFuncPydanticWrite}
