@@ -286,6 +286,9 @@ class SimplePageFuncPydanticWrite(BasePageFunc):
         # data = sp.pydantic_input(key=f"my_form_{name}", model=mymodel)
 
         if data:
+            # print(f"--------st.write(self.func(**dict(data)))")
+            # print(f"{Sig(self.func)}")
+            # print(f"{dict(data)}")
             st.write(self.func(**dict(data)))
 
 
