@@ -14,7 +14,7 @@ def bar(a: str = "boo"):
 funcs = [foo, bar]
 
 from streamlitfront.base import (
-    _get_state,
+    get_state,
     _get_view_key,
     get_pages_specs,
     dflt_hash_funcs,
@@ -24,7 +24,7 @@ import streamlit as st
 
 
 def pages_app(funcs, configs):
-    state = _get_state(hash_funcs=dflt_hash_funcs)  # TODO: get from configs
+    state = get_state(hash_funcs=dflt_hash_funcs)  # TODO: get from configs
 
     # Page setup
     st.set_page_config(layout="wide")

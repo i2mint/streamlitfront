@@ -3,7 +3,7 @@ import os
 from py2store import ZipReader, filt_iter
 import pandas as pd
 import streamlit as st
-from streamlitfront.session_state import _get_state
+from streamlitfront.session_state import get_state
 
 # store = state_dict[store_name]
 # option = st.selectbox(message, [extra] + list(store.keys()), index=dflt_index)
@@ -35,7 +35,7 @@ def dacc(zip_path: type(lambda a: a), file: str):  # file: list = []):
     return annots_df
 
 
-def foo(state: type(_get_state()), word: str):
+def foo(state: type(get_state()), word: str):
     return word
 
 

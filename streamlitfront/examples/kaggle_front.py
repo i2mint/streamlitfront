@@ -8,7 +8,7 @@ from slang.snippers import PcaChkToFv, LdaChkToFv
 from slang.util import mk_callable
 
 from odat.mdat.local_kgl import mk_dacc
-from streamlitfront.session_state import _get_state
+from streamlitfront.session_state import get_state
 
 # TODO: Replace omodel models with open source ones
 from omodel.outliers.outlier_model import OutlierModel as Stroll
@@ -37,7 +37,7 @@ def search_kaggle(
 
 
 def download_kaggle_dataset(
-    state: type(_get_state()), kaggle_path, preview: bool = False
+    state: type(get_state()), kaggle_path, preview: bool = False
 ):
     s = KaggleDatasets()
     v = s[kaggle_path]
@@ -64,7 +64,7 @@ def create_kaggle_dacc(
     )
 
 
-def build_and_run_model(tag: str, state: type(_get_state())):
+def build_and_run_model(tag: str, state: type(get_state())):
     dacc = state["Create Kaggle Dacc"]
     chks, tags = zip(*dacc.chk_tag_gen(tag))
     scores, fvs, featurizer, model = produce_results(chks, tags)

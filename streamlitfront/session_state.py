@@ -7,15 +7,6 @@ from streamlit.legacy_caching.hashing import _CodeHasher
 
 from streamlitfront.util import Objdict
 
-try:
-    # Before Streamlit 0.65
-    from streamlit.ReportThread import get_report_ctx
-    from streamlit.server.Server import Server
-except ModuleNotFoundError:
-    # After Streamlit 0.65
-    from streamlit.report_thread import get_report_ctx
-    from streamlit.server.server import Server
-
 
 def display_state_values(state, key):
     st.write("Current value of " + str(key) + ":", state[key])
@@ -26,14 +17,13 @@ class PageState(Objdict):
 
 
 class _SessionState:
-    def __init__(self, session, hash_funcs):
+    def __init__(self, hash_funcs):
         """Initialize SessionState instance."""
         self.__dict__["_state"] = {
             "data": {},
             "hash": None,
             "hasher": _CodeHasher(hash_funcs),
             "is_rerun": False,
-            "session": session,
         }
 
     def __call__(self, **kwargs):
@@ -61,7 +51,7 @@ class _SessionState:
     def clear(self):
         """Clear session state and request a rerun."""
         self._state["data"].clear()
-        self._state["session"].request_rerun()
+        st.experimental_rerun()
 
     def has_valid(self, *k, is_valid=bool):
         """Checks that k exists and is valid.
@@ -141,25 +131,16 @@ class _SessionState:
                 self._state["data"], None
             ):
                 self._state["is_rerun"] = True
-                self._state["session"].request_rerun()
+                st.experimental_rerun()
 
         self._state["hash"] = self._state["hasher"].to_bytes(self._state["data"], None)
 
 
-def _get_session():
-    session_id = get_report_ctx().session_id
-    session_info = Server.get_current()._get_session_info(session_id)
-
-    if session_info is None:
-        raise RuntimeError("Couldn't get your Streamlit Session object.")
-
-    return session_info.session
+_session_state = None
 
 
-def _get_state(hash_funcs=None):
-    session = _get_session()
-
-    if not hasattr(session, "_custom_session_state"):
-        session._custom_session_state = _SessionState(session, hash_funcs)
-
-    return session._custom_session_state
+def get_state(hash_funcs=None):
+    global _session_state
+    if not _session_state:
+        _session_state = _SessionState(hash_funcs)
+    return _session_state

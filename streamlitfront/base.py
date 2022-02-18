@@ -9,7 +9,7 @@ import typing
 import streamlit as st
 
 from i2 import Sig
-from streamlitfront.session_state import _get_state, _SessionState
+from streamlitfront.session_state import get_state, _SessionState
 from streamlitfront.util import func_name, build_element_factory
 
 # --------------------- types/protocols/interfaces --------------------------------------
@@ -275,7 +275,7 @@ def pages_app(funcs, configs):
     # Note: set_page_config at top: needs to be the first call after importing streamlit
     st.set_page_config(layout="wide")
 
-    state = _get_state(hash_funcs=dflt_hash_funcs)  # TODO: get from configs
+    state = get_state(hash_funcs=dflt_hash_funcs)  # TODO: get from configs
 
     # # Experimentation -- to be reviewed if kept #############
     # if 'page_state' not in state:
