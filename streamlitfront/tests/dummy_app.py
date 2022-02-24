@@ -42,5 +42,7 @@ class SimplePageFunc2(BasePageFunc):
 
 DFLT_PAGE_FACTORY = SimplePageFunc2
 
-app = get_pages_specs([multiple_input], page_factory=DFLT_PAGE_FACTORY)
-app["Multiple Input"](None)
+
+if __name__ == '__main__':
+    app = get_pages_specs([multiple_input], page_factory=DFLT_PAGE_FACTORY)
+    app["Multiple Input"](None)
