@@ -8,6 +8,7 @@ import pytest
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import Chrome, ChromeOptions
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from strand import run_process
 from streamlitfront.run_app import run_app
@@ -45,7 +46,7 @@ def dispatch_funcs(funcs, headless):
             options.add_argument('--headless')
         # options.add_argument('--disable-gpu')
         # options.add_argument('--allow-running-insecure-content')
-        dom = Chrome(chrome_options=options)
+        dom = Chrome(options=options)
         dom.get(STREAMLIT_APP_URL)
         try:
             yield dom
@@ -122,7 +123,7 @@ def test_dispatch_funcs(headless, spec: dict):
         @give_a_chance_to_render_element
         def find_element_by_css_selector(css_selector, parent=None):
             parent = parent or dom
-            return parent.find_element_by_css_selector(css_selector)
+            return parent.find_element(By.CSS_SELECTOR, css_selector)
 
         def select_func(idx):
             radio_button = find_element_by_css_selector(
@@ -149,16 +150,18 @@ def test_dispatch_funcs(headless, spec: dict):
 
             def compute_output(func):
                 nb_args = len(Sig(func))
-                submit_button = dom.find_element_by_css_selector(
+                submit_button = find_element_by_css_selector(
                     f'.element-container:nth-child({nb_args + 2}) button'
                 )
                 submit_button.click()
-                sleep(3)
+                # Wait for the output to be displayed because a previous output could
+                # still be there instead, which would invalidate the test.
+                sleep(1)
 
                 output_el = find_element_by_css_selector(
                     f'.element-container:nth-child({nb_args + 3}) .stMarkdown p'
                 )
-                if output_el.find_elements_by_css_selector('code'):
+                if output_el.find_elements(By.TAG_NAME, 'code'):
                     output_el = find_element_by_css_selector('code', output_el)
                 return output_el.text
 
