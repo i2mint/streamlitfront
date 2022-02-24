@@ -36,6 +36,9 @@ jobs:
       - name: Pylint Validation
         run: pylint ./$PROJECT_NAME --ignore=tests,examples,scrap --disable=all --enable=C0114,E0401 | mk_pylint_report
 
+      - name: Configure Streamlit
+        run: export STREAMLIT_SERVER_HEADLESS=true
+
       - name: Test
         run: pytest --ignore=$PROJECT_NAME/examples --ignore=$PROJECT_NAME/scrap --doctest-modules -v --headless $PROJECT_NAME
 
