@@ -149,21 +149,31 @@ def test_dispatch_funcs(headless, spec: dict):
                 input_el.send_keys(str(input_))
 
             def compute_output(func):
+                def get_output(previous_output=None, intent_nb=1):
+                    output_el = find_element_by_css_selector(
+                        f'.element-container:nth-child({nb_args + 3}) .stMarkdown p'
+                    )
+                    if output_el.find_elements(By.TAG_NAME, 'code'):
+                        output_el = find_element_by_css_selector('code', output_el)
+                    output = output_el.text
+                    if previous_output and output == previous_output and intent_nb < 3:
+                        sleep(1)
+                        return get_output(previous_output, intent_nb + 1)
+                    return output
+
+                def get_previous_output():
+                    if dom.find_elements(
+                        By.CSS_SELECTOR, f'.element-container:nth-child({nb_args + 3}) .stMarkdown p'
+                    ):
+                        return get_output()
+
                 nb_args = len(Sig(func))
+                previous_output = get_previous_output()
                 submit_button = find_element_by_css_selector(
                     f'.element-container:nth-child({nb_args + 2}) button'
                 )
                 submit_button.click()
-                # Wait for the output to be displayed because a previous output could
-                # still be there instead, which would invalidate the test.
-                sleep(1)
-
-                output_el = find_element_by_css_selector(
-                    f'.element-container:nth-child({nb_args + 3}) .stMarkdown p'
-                )
-                if output_el.find_elements(By.TAG_NAME, 'code'):
-                    output_el = find_element_by_css_selector('code', output_el)
-                return output_el.text
+                return get_output(previous_output)
 
             for input_idx, input_ in enumerate(inputs):
                 send_input(input_, input_idx)
