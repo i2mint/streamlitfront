@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.examples.tw_data_binding &mdash; streamlitfront 0.1.2 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.examples.various_input_kinds &mdash; streamlitfront 0.1.2 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -71,7 +71,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>streamlitfront.examples.tw_data_binding</li>
+      <li>streamlitfront.examples.various_input_kinds</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -80,65 +80,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for streamlitfront.examples.tw_data_binding</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
+  <h1>Source code for streamlitfront.examples.various_input_kinds</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;And example containing different kinds of inputs&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">MethodType</span>
 
 
-<div class="viewcode-block" id="foo"><a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/tw_data_binding.html#streamlitfront.examples.tw_data_binding.foo">[docs]</a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">integer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">floating</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;C&#39;est foo&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">text</span><span class="p">,</span> <span class="n">integer</span><span class="p">,</span> <span class="n">floating</span></div>
+<div class="viewcode-block" id="foo"><a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/various_input_kinds.html#streamlitfront.examples.various_input_kinds.foo">[docs]</a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This is foo. It computes something&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span></div>
 
 
-<div class="viewcode-block" id="bar"><a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/tw_data_binding.html#streamlitfront.examples.tw_data_binding.bar">[docs]</a><span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;boo&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;About bar&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">a</span></div>
+<span class="k">class</span> <span class="nc">Klass</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">greeting</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">confuser_x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">greeting</span> <span class="o">=</span> <span class="n">greeting</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">confuser_x</span> <span class="o">=</span> <span class="n">confuser_x</span>
+
+    <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;bar greets its input&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">greeting</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># def konfuser(self, a: int = 0):</span>
+    <span class="c1">#     return (a ** 2) * self.confuser_x</span>
 
 
-<span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">]</span>
-
-<span class="kn">from</span> <span class="nn">streamlitfront.base</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">get_state</span><span class="p">,</span>
-    <span class="n">_get_view_key</span><span class="p">,</span>
-    <span class="n">get_pages_specs</span><span class="p">,</span>
-    <span class="n">dflt_hash_funcs</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="k">def</span> <span class="nf">i_am_confused</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">confuser_x</span>
 
 
-<span class="k">def</span> <span class="nf">pages_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">configs</span><span class="p">):</span>
-    <span class="n">state</span> <span class="o">=</span> <span class="n">get_state</span><span class="p">(</span><span class="n">hash_funcs</span><span class="o">=</span><span class="n">dflt_hash_funcs</span><span class="p">)</span>  <span class="c1"># TODO: get from configs</span>
+<span class="n">klass_instance</span> <span class="o">=</span> <span class="n">Klass</span><span class="p">()</span>
 
-    <span class="c1"># Page setup</span>
-    <span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;wide&quot;</span><span class="p">)</span>
+<span class="c1"># inject_method(klass_instance, &#39;konfuser&#39;, confuser)</span>
+<span class="n">klass_instance</span><span class="o">.</span><span class="n">konfuser</span> <span class="o">=</span> <span class="n">MethodType</span><span class="p">(</span><span class="n">i_am_confused</span><span class="p">,</span> <span class="n">klass_instance</span><span class="p">)</span>
 
-    <span class="c1"># Make page objects</span>
-    <span class="n">views</span> <span class="o">=</span> <span class="n">get_pages_specs</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">)</span>
-    <span class="n">state</span><span class="p">[</span><span class="s2">&quot;views&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">views</span>
-
-    <span class="c1"># TODO: The above is static: Should the above be done only once, and cached?</span>
-    <span class="c1">#   Perhaps views should be cached in state?</span>
-
-    <span class="c1"># Setup navigation</span>
-    <span class="n">view_key</span> <span class="o">=</span> <span class="n">_get_view_key</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">views</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Select your view&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Display the selected page with the session state</span>
-    <span class="c1"># This is the part that actually runs the functionality that pages specifies</span>
-    <span class="n">view_runner</span> <span class="o">=</span> <span class="n">views</span><span class="p">[</span><span class="n">view_key</span><span class="p">]</span>  <span class="c1"># gets the page runner</span>
-    <span class="n">view_runner</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>  <span class="c1"># runs the page with the state</span>
-
-    <span class="c1"># Mandatory to avoid rollbacks with widgets, must be called at the end of your app</span>
-    <span class="n">state</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span>
+<span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">klass_instance</span><span class="o">.</span><span class="n">bar</span><span class="p">,</span> <span class="n">klass_instance</span><span class="o">.</span><span class="n">konfuser</span><span class="p">]</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">streamlitfront.base</span> <span class="kn">import</span> <span class="n">dispatch_funcs</span>
-    <span class="kn">from</span> <span class="nn">streamlitfront.page_funcs</span> <span class="kn">import</span> <span class="n">ExperimentalViewFunc</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;file: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
-
-    <span class="n">app</span> <span class="o">=</span> <span class="n">dispatch_funcs</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">configs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">page_factory</span><span class="o">=</span><span class="n">ExperimentalViewFunc</span><span class="p">))</span>
-
+    <span class="n">app</span> <span class="o">=</span> <span class="n">dispatch_funcs</span><span class="p">(</span><span class="n">funcs</span><span class="p">)</span>
     <span class="n">app</span><span class="p">()</span>
 </pre></div>
 

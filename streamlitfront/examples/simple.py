@@ -14,7 +14,7 @@ def bar(x, greeting="hello"):
 
 
 def confuser(a: int = 0, x: float = 3.14):
-    return (a ** 2) * x
+    return (a**2) * x
 
 
 funcs = [foo, bar, confuser]

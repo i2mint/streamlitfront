@@ -23,7 +23,7 @@ class Klass:
 
 
 def i_am_confused(self, a: int = 0):
-    return (a ** 2) * self.confuser_x
+    return (a**2) * self.confuser_x
 
 
 klass_instance = Klass()
