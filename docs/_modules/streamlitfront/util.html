@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.util &mdash; streamlitfront 0.1.2 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.util &mdash; streamlitfront 0.1.3 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -89,7 +89,7 @@
 <span class="kn">import</span> <span class="nn">streamlit.bootstrap</span>
 
 <span class="n">run_streamlit</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
-    <span class="n">streamlit</span><span class="o">.</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="n">command_line</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[],</span> <span class="n">flag_options</span><span class="o">=</span><span class="p">{}</span>
+    <span class="n">streamlit</span><span class="o">.</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="n">command_line</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[],</span> <span class="n">flag_options</span><span class="o">=</span><span class="p">{}</span>
 <span class="p">)</span>
 
 
@@ -109,20 +109,19 @@
                 <span class="k">yield</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span>
-            <span class="o">*</span><span class="n">exaecute_commands_in_args</span><span class="p">(),</span>
-            <span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">execute_commands_in_kwargs</span><span class="p">()),</span>
+            <span class="o">*</span><span class="n">exaecute_commands_in_args</span><span class="p">(),</span> <span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">execute_commands_in_kwargs</span><span class="p">()),</span>
         <span class="p">)</span></div>
 
 
 <span class="n">PositionalTypes</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span>
-    <span class="s2">&quot;PositionalTypes&quot;</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>
+    <span class="s1">&#39;PositionalTypes&#39;</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>
 <span class="p">)</span>
 <span class="n">KeywordTypes</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span>
-    <span class="s2">&quot;KeywordTypes&quot;</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span>
+    <span class="s1">&#39;KeywordTypes&#39;</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span>
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="incremental_str_maker"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.incremental_str_maker">[docs]</a><span class="k">def</span> <span class="nf">incremental_str_maker</span><span class="p">(</span><span class="n">str_format</span><span class="o">=</span><span class="s2">&quot;{:03.f}&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="incremental_str_maker"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.incremental_str_maker">[docs]</a><span class="k">def</span> <span class="nf">incremental_str_maker</span><span class="p">(</span><span class="n">str_format</span><span class="o">=</span><span class="s1">&#39;{:03.f}&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Make a function that will produce a (incrementally) new string at every call.&quot;&quot;&quot;</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -134,14 +133,14 @@
     <span class="k">return</span> <span class="n">mk_next_str</span></div>
 
 
-<span class="n">unnamed_page</span> <span class="o">=</span> <span class="n">incremental_str_maker</span><span class="p">(</span><span class="n">str_format</span><span class="o">=</span><span class="s2">&quot;UnnamedPage</span><span class="si">{:03.0f}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">unnamed_page</span> <span class="o">=</span> <span class="n">incremental_str_maker</span><span class="p">(</span><span class="n">str_format</span><span class="o">=</span><span class="s1">&#39;UnnamedPage</span><span class="si">{:03.0f}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="func_name"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.func_name">[docs]</a><span class="k">def</span> <span class="nf">func_name</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;The func.__name__ of a callable func, or makes and returns one if that fails.</span>
 <span class="sd">    To make one, it calls unamed_func_name which produces incremental names to reduce the chances of clashing&quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">name_of_obj</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;&lt;lambda&gt;&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;&lt;lambda&gt;&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">unnamed_page</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">name</span></div>
 
@@ -190,7 +189,7 @@
         <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;No such attribute: &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;No such attribute: &#39;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
@@ -199,7 +198,7 @@
         <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">del</span> <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;No such attribute: &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;No such attribute: &#39;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="attr_or_key"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.attr_or_key">[docs]</a><span class="k">def</span> <span class="nf">attr_or_key</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -234,7 +233,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">_obj</span> <span class="o">=</span> <span class="n">obj</span>
-        <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
             <span class="n">_obj</span> <span class="o">=</span> <span class="n">attr_or_key</span><span class="p">(</span><span class="n">_obj</span><span class="p">,</span> <span class="n">kk</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">_obj</span>
     <span class="k">else</span><span class="p">:</span>
@@ -286,7 +285,7 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">_src</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_getter</span><span class="p">(</span><span class="n">_src</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accessing </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> produced an error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accessing </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1"> produced an error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">_src</span></div>
 
 
@@ -316,10 +315,10 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Build the factory for user input for VP and VK inputs</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">factory</span> <span class="o">=</span> <span class="n">element_factory</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s2">_factory&quot;</span><span class="p">]</span>
-    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Enter </span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="n">idx</span><span class="p">}</span>
-    <span class="k">if</span> <span class="n">element_factory</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s2">_type&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">factory</span> <span class="o">=</span> <span class="n">element_factory</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s1">_factory&#39;</span><span class="p">]</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Enter </span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">idx</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">element_factory</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s1">_type&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">val</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">val</span></div>
 
@@ -334,18 +333,18 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">inferred_type</span> <span class="ow">in</span> <span class="n">PositionalTypes</span><span class="o">.</span><span class="n">__constraints__</span><span class="p">:</span>
         <span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="n">build_element_factory_helper</span><span class="p">(</span>
-            <span class="n">element_factory_for_annot</span><span class="p">,</span> <span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">,</span> <span class="s2">&quot;positional&quot;</span>
+            <span class="n">element_factory_for_annot</span><span class="p">,</span> <span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">,</span> <span class="s1">&#39;positional&#39;</span>
         <span class="p">)</span>
     <span class="k">elif</span> <span class="n">inferred_type</span> <span class="ow">in</span> <span class="n">KeywordTypes</span><span class="o">.</span><span class="n">__constraints__</span><span class="p">:</span>
         <span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="n">build_element_factory_helper</span><span class="p">(</span>
-            <span class="n">element_factory_for_annot</span><span class="p">,</span> <span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">,</span> <span class="s2">&quot;keyword&quot;</span>
+            <span class="n">element_factory_for_annot</span><span class="p">,</span> <span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">,</span> <span class="s1">&#39;keyword&#39;</span>
         <span class="p">)</span>
     <span class="k">elif</span> <span class="n">inferred_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">missing</span><span class="p">:</span>
         <span class="n">element_factory</span> <span class="o">=</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)</span>
-        <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
+        <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">element_factory</span> <span class="o">=</span> <span class="n">dflt_element_factory</span>
-        <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
+        <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
     <span class="k">return</span> <span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span></div>
 
 
@@ -357,18 +356,18 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">inferred_type</span> <span class="ow">in</span> <span class="n">PositionalTypes</span><span class="o">.</span><span class="n">__constraints__</span><span class="p">:</span>
         <span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="n">build_element_factory_helper</span><span class="p">(</span>
-            <span class="n">element_factory_for_annot</span><span class="p">,</span> <span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">,</span> <span class="s2">&quot;positional&quot;</span>
+            <span class="n">element_factory_for_annot</span><span class="p">,</span> <span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">,</span> <span class="s1">&#39;positional&#39;</span>
         <span class="p">)</span>
     <span class="k">elif</span> <span class="n">inferred_type</span> <span class="ow">in</span> <span class="n">KeywordTypes</span><span class="o">.</span><span class="n">__constraints__</span><span class="p">:</span>
         <span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="n">build_element_factory_helper</span><span class="p">(</span>
-            <span class="n">element_factory_for_annot</span><span class="p">,</span> <span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">,</span> <span class="s2">&quot;keyword&quot;</span>
+            <span class="n">element_factory_for_annot</span><span class="p">,</span> <span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">,</span> <span class="s1">&#39;keyword&#39;</span>
         <span class="p">)</span>
     <span class="k">elif</span> <span class="n">inferred_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">missing</span><span class="p">:</span>
         <span class="n">element_factory</span> <span class="o">=</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)</span>
-        <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
+        <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">element_factory</span> <span class="o">=</span> <span class="n">dflt_element_factory</span>
-        <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
+        <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
     <span class="k">return</span> <span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span></div>
 
 
@@ -378,29 +377,29 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper to build the element factory for VP and VK arguments</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">args</span> <span class="o">==</span> <span class="s2">&quot;positional&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">args</span> <span class="o">==</span> <span class="s1">&#39;positional&#39;</span><span class="p">:</span>
         <span class="n">element_factory</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;base&quot;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="s2">&quot;input_type&quot;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
-            <span class="s2">&quot;input_factory&quot;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s1">&#39;base&#39;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s1">&#39;input_type&#39;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s1">&#39;input_factory&#39;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
                 <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">missing</span>
             <span class="p">),</span>
         <span class="p">}</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">element_factory</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;base&quot;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="s2">&quot;key_type&quot;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
-            <span class="s2">&quot;key_factory&quot;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s1">&#39;base&#39;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s1">&#39;key_type&#39;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s1">&#39;key_factory&#39;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
                 <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">missing</span>
             <span class="p">),</span>
-            <span class="s2">&quot;value_type&quot;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">2</span><span class="p">],</span>
-            <span class="s2">&quot;value_factory&quot;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s1">&#39;value_type&#39;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="s1">&#39;value_factory&#39;</span><span class="p">:</span> <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
                 <span class="n">element_factory_for_annot</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">)[</span><span class="mi">2</span><span class="p">],</span> <span class="n">missing</span>
             <span class="p">),</span>
         <span class="p">}</span>
     <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Enter the number of positional arguments you would like to pass&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Enter the number of positional arguments you would like to pass&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span></div>
