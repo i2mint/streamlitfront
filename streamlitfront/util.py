@@ -1,7 +1,7 @@
 """Utils"""
 from functools import partial
 from typing import TypeVar, Iterable, Dict
-from i2.signatures import Sig, name_of_obj, Command as _Command
+from i2.signatures import Sig, name_of_obj
 
 import streamlit.bootstrap
 
@@ -9,6 +9,7 @@ run_streamlit = partial(
     streamlit.bootstrap.run, command_line="", args=[], flag_options={}
 )
 
+from i2._deprecated import Command as _Command
 
 # TODO: Consider using functools.partial (or subclass thereof) instead of Command
 class Command(_Command):
