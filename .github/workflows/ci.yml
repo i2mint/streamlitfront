@@ -23,6 +23,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip -q install axblack pytest pylint isee
+          pip -q install -r ./$PROJECT_NAME/tests/test_requirements.txt
           isee install-requires
 
       - name: Format source code
@@ -35,8 +36,11 @@ jobs:
       - name: Pylint Validation
         run: pylint ./$PROJECT_NAME --ignore=tests,examples,scrap --disable=all --enable=C0114,E0401 | mk_pylint_report
 
+      - name: Configure Streamlit
+        run: export STREAMLIT_SERVER_HEADLESS=true
+
       - name: Test
-        run: pytest --ignore=$PROJECT_NAME/examples --ignore=$PROJECT_NAME/scrap --doctest-modules -v $PROJECT_NAME
+        run: pytest --ignore=$PROJECT_NAME/examples --ignore=$PROJECT_NAME/scrap --doctest-modules -v --headless $PROJECT_NAME
 
   publish:
     name: Publish

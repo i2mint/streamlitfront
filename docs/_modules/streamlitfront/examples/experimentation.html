@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.examples.experimentation &mdash; streamlitfront 0.1.1 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.examples.experimentation &mdash; streamlitfront 0.1.3 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -49,7 +49,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/run_app.html">streamlitfront.run_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/session_state.html">streamlitfront.session_state</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
 </ul>
@@ -89,9 +91,9 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span></div>
 
 
-<div class="viewcode-block" id="bar"><a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/experimentation.html#streamlitfront.examples.experimentation.bar">[docs]</a><span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">greeting</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="bar"><a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/experimentation.html#streamlitfront.examples.experimentation.bar">[docs]</a><span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">greeting</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;bar greets its input&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">greeting</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span></div>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">greeting</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span></div>
 
 
 <span class="k">def</span> <span class="nf">confuser</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">):</span>
@@ -100,10 +102,10 @@
 
 <span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">confuser</span><span class="p">]</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">streamlitfront.base</span> <span class="kn">import</span> <span class="n">dispatch_funcs</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;file: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;file: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
     <span class="n">app</span> <span class="o">=</span> <span class="n">dispatch_funcs</span><span class="p">(</span><span class="n">funcs</span><span class="p">)</span>
     <span class="n">app</span><span class="p">()</span>
 </pre></div>

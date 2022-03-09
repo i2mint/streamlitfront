@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.examples.simple &mdash; streamlitfront 0.1.3 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.examples.various_input_kinds &mdash; streamlitfront 0.1.3 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -71,7 +71,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>streamlitfront.examples.simple</li>
+      <li>streamlitfront.examples.various_input_kinds</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -80,27 +80,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for streamlitfront.examples.simple</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Simple 3 page example with no complicated values&quot;&quot;&quot;</span>
+  <h1>Source code for streamlitfront.examples.various_input_kinds</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;And example containing different kinds of inputs&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">MethodType</span>
 
 
-<div class="viewcode-block" id="foo"><a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/simple.html#streamlitfront.examples.simple.foo">[docs]</a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="foo"><a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/various_input_kinds.html#streamlitfront.examples.various_input_kinds.foo">[docs]</a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This is foo. It computes something&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span></div>
 
 
-<div class="viewcode-block" id="bar"><a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/simple.html#streamlitfront.examples.simple.bar">[docs]</a><span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">greeting</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;bar greets its input&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">greeting</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span></div>
+<span class="k">class</span> <span class="nc">Klass</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">greeting</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">confuser_x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">greeting</span> <span class="o">=</span> <span class="n">greeting</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">confuser_x</span> <span class="o">=</span> <span class="n">confuser_x</span>
+
+    <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;bar greets its input&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">greeting</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span>
+
+    <span class="c1"># def konfuser(self, a: int = 0):</span>
+    <span class="c1">#     return (a ** 2) * self.confuser_x</span>
 
 
-<span class="k">def</span> <span class="nf">confuser</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+<span class="k">def</span> <span class="nf">i_am_confused</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">confuser_x</span>
 
 
-<span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">confuser</span><span class="p">]</span>
+<span class="n">klass_instance</span> <span class="o">=</span> <span class="n">Klass</span><span class="p">()</span>
+
+<span class="c1"># inject_method(klass_instance, &#39;konfuser&#39;, confuser)</span>
+<span class="n">klass_instance</span><span class="o">.</span><span class="n">konfuser</span> <span class="o">=</span> <span class="n">MethodType</span><span class="p">(</span><span class="n">i_am_confused</span><span class="p">,</span> <span class="n">klass_instance</span><span class="p">)</span>
+
+<span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">klass_instance</span><span class="o">.</span><span class="n">bar</span><span class="p">,</span> <span class="n">klass_instance</span><span class="o">.</span><span class="n">konfuser</span><span class="p">]</span>
+
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">streamlitfront.base</span> <span class="kn">import</span> <span class="n">dispatch_funcs</span>

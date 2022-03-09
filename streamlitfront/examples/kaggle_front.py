@@ -17,19 +17,19 @@ from omodel.ml.scent import CentroidSmoothing
 # TODO: Resolve the UnhashableTypeError: Cannot hash object of type _thread.Rlock, found in something.
 
 
-DFLT_FEATURIZER = {"supervised": LdaChkToFv, "unsupervised": PcaChkToFv}
+DFLT_FEATURIZER = {'supervised': LdaChkToFv, 'unsupervised': PcaChkToFv}
 
 
 def search_kaggle(
-    keyword_search: str = "", num_to_display: int = 10, metadata: bool = False
+    keyword_search: str = '', num_to_display: int = 10, metadata: bool = False
 ):
     s = KaggleDatasets()
     results = s.search(keyword_search)
     if metadata:
         df = pd.DataFrame(results.values())[
-            ["ref", "title", "subtitle", "downloadCount", "totalBytes"]
+            ['ref', 'title', 'subtitle', 'downloadCount', 'totalBytes']
         ]
-        df = df.set_index("ref").sort_values("downloadCount", ascending=False)
+        df = df.set_index('ref').sort_values('downloadCount', ascending=False)
         st.write(df.head(num_to_display))
     else:
         st.write(list(results)[:10])
@@ -51,34 +51,30 @@ def create_kaggle_dacc(
     zip_path: type(lambda a: a),
     annots_path: str,
     wrangle_func: type(lambda a: a),
-    extension: str = ".wav",
-    key_path: str = "",
+    extension: str = '.wav',
+    key_path: str = '',
 ):
     wrangle_func = dill.load(wrangle_func)
     return mk_dacc(
-        zip_path,
-        annots_path,
-        wrangle_func,
-        extension=extension,
-        key_path=key_path,
+        zip_path, annots_path, wrangle_func, extension=extension, key_path=key_path,
     )
 
 
 def build_and_run_model(tag: str, state: type(get_state())):
-    dacc = state["Create Kaggle Dacc"]
+    dacc = state['Create Kaggle Dacc']
     chks, tags = zip(*dacc.chk_tag_gen(tag))
     scores, fvs, featurizer, model = produce_results(chks, tags)
     return str(
-        "Percentage correct: "
+        'Percentage correct: '
         + str(sum(scores == tags) / len(tags))
-        + " vs. Random guessing: "
+        + ' vs. Random guessing: '
         + str(1 / len(set(tags)))
     )
 
 
 def get_featurizer(chks, tags=None, **kwargs):
-    proj_type = "unsupervised" if (tags is None) else "unsupervised"
-    featurizer = mk_callable("transform")(DFLT_FEATURIZER[proj_type])(**kwargs)
+    proj_type = 'unsupervised' if (tags is None) else 'unsupervised'
+    featurizer = mk_callable('transform')(DFLT_FEATURIZER[proj_type])(**kwargs)
     featurizer.fit(chks, tags)
     return featurizer
 
@@ -91,7 +87,7 @@ def get_outlier_model(fvs, **kwargs):
 
 
 def get_classification_model(fvs, tags, **kwargs):
-    CS = mk_callable("predict")(CentroidSmoothing)
+    CS = mk_callable('predict')(CentroidSmoothing)
     model = CentroidSmoothing(**kwargs)
     return model.fit(fvs, tags)
 
@@ -126,12 +122,12 @@ funcs = [
     build_and_run_model,
 ]
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     from streamlitfront.base import dispatch_funcs
     from streamlitfront.page_funcs import StatePageFunc
 
-    print("file: {}".format(os.path.realpath(__file__)))
+    print('file: {}'.format(os.path.realpath(__file__)))
 
-    app = dispatch_funcs(funcs, configs={"page_factory": StatePageFunc})
+    app = dispatch_funcs(funcs, configs={'page_factory': StatePageFunc})
 
     app()
