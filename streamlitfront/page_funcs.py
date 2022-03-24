@@ -38,7 +38,6 @@ def get_func_elements_commands(
         inferred_type = infer_type(sig, name)
         form_element = _get_dflt_element_factory_for_annot(inferred_type)
 
-
         element_factory, factory_kwargs = build_element_factory(
             name,
             inferred_type,
@@ -52,9 +51,9 @@ def get_func_elements_commands(
             if dflt is not None:
                 # TODO: type-to-element conditions must be in configs
                 if isinstance(dflt, (list, tuple, set)):
-                    factory_kwargs["options"] = dflt
+                    factory_kwargs['options'] = dflt
                 else:
-                    factory_kwargs["value"] = dflt
+                    factory_kwargs['value'] = dflt
 
         yield name, Command(element_factory, **factory_kwargs)
 
