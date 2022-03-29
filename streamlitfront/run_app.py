@@ -6,7 +6,9 @@ from streamlitfront.base import Map, dflt_convention, dispatch_funcs
 
 
 def run_app(
-    funcs: Union[Iterable[Callable], bytes], configs: Map = None, convention: Map = dflt_convention
+    funcs: Union[Iterable[Callable], bytes],
+    configs: Map = None,
+    convention: Map = dflt_convention,
 ):
     _funcs = dill.loads(funcs) if isinstance(funcs, bytes) else funcs
     kwargs = dict(configs=configs, convention=convention,)

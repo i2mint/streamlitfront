@@ -1,4 +1,3 @@
-
 from contextlib import contextmanager
 from functools import partial
 from inspect import Parameter
@@ -78,7 +77,7 @@ def find_element_by_css_selector(css_selector, root):
 def select_func(idx, root):
     radio_button = find_element_by_css_selector(
         f".block-container .stRadio div[role='radiogroup'] label:nth-child({idx + 1})",
-        root
+        root,
     )
     radio_button.click()
     sleep(0.5)
@@ -93,13 +92,10 @@ def send_input(input_, idx, root):
 
     input_type = get_input_type()
     input_el = find_element_by_css_selector(
-        f".element-container:nth-child({idx + 2}) input[type='{input_type}']",
-        root
+        f".element-container:nth-child({idx + 2}) input[type='{input_type}']", root
     )
     input_el.click()
-    select_all_first_key = (
-        Keys.COMMAND if platform == 'darwin' else Keys.CONTROL
-    )
+    select_all_first_key = Keys.COMMAND if platform == 'darwin' else Keys.CONTROL
     input_el.send_keys(select_all_first_key, 'a')
     input_el.send_keys(str(input_))
 
@@ -126,8 +122,7 @@ def compute_output(func, root):
     output_css_selector = f'.element-container:nth-child({nb_args + 3}) .stMarkdown p'
     previous_output = get_previous_output()
     submit_button = find_element_by_css_selector(
-        f'.element-container:nth-child({nb_args + 2}) button',
-        root
+        f'.element-container:nth-child({nb_args + 2}) button', root
     )
     submit_button.click()
     return get_output(previous_output)

@@ -1,11 +1,18 @@
 from functools import partial
 import pytest
 from i2 import Sig
-from front.tests.test_use_case import base_test_use_case, TEST_USE_CASE_PARAMETER_NAMES, TEST_USE_CASE_PARAMETERS
+from front.tests.test_use_case import (
+    base_test_use_case,
+    TEST_USE_CASE_PARAMETER_NAMES,
+    TEST_USE_CASE_PARAMETERS,
+)
 from streamlitfront.tests.common import (
-    compute_output, select_func, send_input,
+    compute_output,
+    select_func,
+    send_input,
     dispatch_funcs_with_selenium,
 )
+
 
 def mk_ui_func(func, funcs, dom):
     sig = Sig(func)
@@ -30,10 +37,7 @@ def mk_ui_func(func, funcs, dom):
     return ui_func
 
 
-@pytest.mark.parametrize(
-    TEST_USE_CASE_PARAMETER_NAMES,
-    TEST_USE_CASE_PARAMETERS
-)
+@pytest.mark.parametrize(TEST_USE_CASE_PARAMETER_NAMES, TEST_USE_CASE_PARAMETERS)
 def test_use_case(headless, use_case, func_src, kwargs):
     base_test_use_case(
         use_case=use_case,

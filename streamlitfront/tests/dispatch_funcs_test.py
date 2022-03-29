@@ -2,7 +2,9 @@ import pytest
 from front.tests.util import rdm_int, rdm_float, rdm_str
 
 from streamlitfront.tests.common import (
-    compute_output, select_func, send_input,
+    compute_output,
+    select_func,
+    send_input,
     dispatch_funcs_with_selenium,
 )
 
