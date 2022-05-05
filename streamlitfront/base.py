@@ -98,9 +98,19 @@ def dispatch_funcs(
     funcs: Iterable[Callable], configs: Map = None, convention: Map = dflt_convention,
 ) -> App:
     """Call this function with target funcs and get an app to run."""
+    # _get_configs is responsible for merging convention into configs.
+    # The easiest example of that is defaults: convention holding the defaults so
+    # configs doesn't have to express them.
+    # TODO: _get_configs should be expanded (or added as argument of dispatch_func
+    #  so that is can handle more kinds of configs/convention merging.
     configs = _get_configs(configs, convention)
+    # configs holds it's own interpreter: app_maker
     app_maker = configs['app_maker']
+    # ... which needs to be a callable
     assert isinstance(app_maker, Callable)
+    # The app we return the curry of app_maker with funcs and configs bindings.
+    # With that, we should be able to run the app by calling it: app()
+    # Note: We're still open to also specify further configs through app(...) arguments
     return partial(app_maker, funcs=funcs, configs=configs)
 
 
