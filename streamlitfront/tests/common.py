@@ -11,6 +11,8 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import Chrome, ChromeOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from strand import run_process
 from streamlitfront.run_app import run_app
 from time import sleep
@@ -40,7 +42,10 @@ def dispatch_funcs_with_selenium(funcs, headless=False):
             options.add_argument('--headless')
         # options.add_argument('--disable-gpu')
         # options.add_argument('--allow-running-insecure-content')
-        dom = Chrome(options=options)
+        dom = Chrome(
+            service=Service(ChromeDriverManager().install()),
+            options=options
+        )
         dom.get(STREAMLIT_APP_URL)
         try:
             yield dom

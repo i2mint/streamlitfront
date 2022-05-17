@@ -9,6 +9,7 @@ import typing
 import streamlit as st
 
 from i2 import Sig
+from streamlitfront.app_maker import AppMaker
 from streamlitfront.session_state import get_state, _SessionState
 from streamlitfront.util import func_name, build_element_factory
 
@@ -21,7 +22,7 @@ PageFunc = Callable[[_SessionState], Any]
 PageName = str
 PageSpec = Mapping[PageName, PageFunc]
 App = Callable
-AppMaker = Callable[[Iterable[Callable], Configuration], App]
+# AppMaker = Callable[[Iterable[Callable], Configuration], App]
 
 # ------- configuration/convention/default management -----------------------------------
 
@@ -322,3 +323,8 @@ def pages_app(funcs, configs):
 
     # Mandatory to avoid rollbacks with widgets, must be called at the end of your app
     state.sync()
+
+
+def mk_app(objs, config: Map = None, convention: Map = None):
+    app_maker = AppMaker()
+    return app_maker.mk_app(objs, config, convention)
