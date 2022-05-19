@@ -1,6 +1,5 @@
-from typing import Callable, Iterable
 import streamlit as st
-from front.elements import FuncViewBase, ParamInputBase, TextInputBase, NumberInputBase, FloatInputBase, AppBase
+from front.elements import FuncViewBase, TextInputBase, IntInputBase, FloatInputBase, AppBase
 
 from streamlitfront.session_state import get_state
 
@@ -85,11 +84,14 @@ class TextInput(TextInputBase):
         )
 
 
-class IntInput(NumberInputBase):
+class IntInput(IntInputBase):
     def render(self):
         return st.number_input(
             label=self.label,
             value=self.init_value,
+            min_value=self.min_value,
+            max_value=self.max_value,
+            format=self.format,
         )
 
 
@@ -98,8 +100,22 @@ class FloatInput(FloatInputBase):
         return st.number_input(
             label=self.label,
             value=self.init_value,
-            step=0.01,
-            format='%.2f',
+            min_value=self.min_value,
+            max_value=self.max_value,
+            format=self.format,
+            step=self.step,
+        )
+
+
+class FloatSliderInput(FloatInputBase):
+    def render(self):
+        return st.slider(
+            label=self.label,
+            value=self.init_value,
+            min_value=self.min_value,
+            max_value=self.max_value,
+            format=self.format,
+            step=self.step,
         )
 
 

@@ -1,7 +1,7 @@
 from typing import Mapping
 from front.elements import ElementTreeMakerBase, FrontElementBase, ContainerFlag, InputComponentFlag
 
-from streamlitfront.elements.elements import App, FloatInput, IntInput, TextInput, FuncView
+from streamlitfront.elements.elements import App, FloatInput, FloatSliderInput, IntInput, TextInput, FuncView
 
 
 class ElementTreeMaker(ElementTreeMakerBase):
@@ -11,6 +11,7 @@ class ElementTreeMaker(ElementTreeMakerBase):
             InputComponentFlag.TEXT: TextInput,
             InputComponentFlag.INT: IntInput,
             InputComponentFlag.FLOAT: FloatInput,
+            InputComponentFlag.FLOAT_SLIDER: FloatSliderInput,
         }
 
     @property
