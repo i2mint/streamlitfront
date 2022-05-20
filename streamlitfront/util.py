@@ -3,7 +3,16 @@ from functools import partial
 from typing import TypeVar, Iterable, Dict
 from i2.signatures import Sig, name_of_obj
 
+from importlib_resources import files  # importlib.resources once only 3.9+ maintained
 import streamlit.bootstrap
+
+
+data_files = files('streamlitfront').joinpath('data')
+
+streamlit_element_func_names = list(
+    filter(None, data_files.joinpath('streamlit_elements.txt').read_text().split('\n'))
+)
+
 
 run_streamlit = partial(
     streamlit.bootstrap.run, command_line='', args=[], flag_options={}
