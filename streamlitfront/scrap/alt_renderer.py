@@ -56,16 +56,7 @@ class Renderer:
         self.args = args
         self.kwargs = kwargs
 
-    # Since self.kwargs is (should) fixed, could curry it out and use curried in
-    # __call__ instead of calling _resolve_values_with_state directly (see (*))
-    #         self.resolve_inputs = partial(
-    #               _resolve_values_with_state, d=kwargs
-    #           )
-
     def render(self, state):
-        args, kwargs = _resolve_values_with_state(state, self.args, self.kwargs)
-        # (*) could be this instead:
-        # args, kwargs = self.resolve_inputs(state)
         return self.func(*args, **kwargs)
 
     __call__ = render
