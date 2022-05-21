@@ -17,7 +17,7 @@ def confuser(a: int, x: float = 3.14):
     return (a ** 2) * x
 
 
-def proportion(x: int, p: float = 1.0):
+def proportion(x: int = 100, p: float = 0.5):
     return x*p
 
 
@@ -27,10 +27,17 @@ app = mk_app(
         'app': {
             'title': 'My app'
         },
+        # 'obj': {
+        #     'bindings': {
+        #         'Foo.a': 'Proportion.x'
+        #     }
+        # }
         'rendering': {
             'Proportion': {
                 'inputs': {
-                    'p': InputComponentFlag.FLOAT_SLIDER
+                    'p': {
+                        'component': InputComponentFlag.FLOAT_SLIDER,
+                    }
                 },
             }
         }

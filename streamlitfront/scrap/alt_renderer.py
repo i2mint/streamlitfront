@@ -1,6 +1,5 @@
 """Alternative proposal for the way we do FrontElementBase now"""
 
-from functools import partial
 from streamlitfront.util import streamlit_element_func_names
 
 # for now, just itemgetter (or attrgetter?)
