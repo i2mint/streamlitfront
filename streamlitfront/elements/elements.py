@@ -1,3 +1,9 @@
+"""Here are implemented the elements for streamlitfront.
+
+Not the use of the ``implement_component`` function to create a class that implements a
+specific abstract elements class defined in front.
+"""
+
 from functools import partial
 import streamlit as st
 from front.elements import FuncViewBase, InputBase, TextInputBase, IntInputBase, FloatInputBase, AppBase, implement_component
@@ -6,6 +12,7 @@ from streamlitfront.session_state import _SessionState, get_state
 
 
 class App(AppBase):
+    """Implementation of ``AppBase`` for streamlitfront."""
     def render(self):
         # Page setup
         st.set_page_config(layout='wide')
@@ -32,8 +39,8 @@ class App(AppBase):
         view_runner()  # runs the page with the state
 
 
-
 class FuncView(FuncViewBase):
+    """Implementation of ``FuncViewBase`` for streamlitfront."""
     def render(self):
         st.markdown(f'''## **{self.name}**''')
         func_inputs = {}
@@ -49,48 +56,6 @@ class FuncView(FuncViewBase):
         # elif output_key in state:
         #     st.write(state[output_key])
 
-
-# class TextInput(TextInputBase):
-#     def render(self):
-#         return st.text_input(
-#             label=self.label,
-#             value=self.init_value,
-#         )
-
-
-# class IntInput(IntInputBase):
-#     def render(self):
-#         return st.number_input(
-#             label=self.label,
-#             value=self.init_value,
-#             min_value=self.min_value,
-#             max_value=self.max_value,
-#             format=self.format,
-#         )
-
-
-# class FloatInput(FloatInputBase):
-#     def render(self):
-#         return st.number_input(
-#             label=self.label,
-#             value=self.init_value,
-#             min_value=self.min_value,
-#             max_value=self.max_value,
-#             format=self.format,
-#             step=self.step,
-#         )
-
-
-# class FloatSliderInput(FloatInputBase):
-#     def render(self):
-#         return st.slider(
-#             label=self.label,
-#             value=self.init_value,
-#             min_value=self.min_value,
-#             max_value=self.max_value,
-#             format=self.format,
-#             step=self.step,
-#         )
 
 def store_input_value_in_state(input_value, component: InputBase):
     st.session_state[component.input_key] = input_value
@@ -113,12 +78,3 @@ TextInput = implement_component_with_init_value(TextInputBase, st.text_input)
 IntInput = implement_component_with_init_value(IntInputBase, st.number_input)
 FloatInput = implement_float_input_component(component_factory=st.number_input)
 FloatSliderInput = implement_float_input_component(component_factory=st.slider)
-
-# class TextOutput(FrontComponentBase):
-#     def render(self):
-#         pass
-
-
-# class NumberOutput(FrontComponentBase):
-#     def render(self):
-#         pass

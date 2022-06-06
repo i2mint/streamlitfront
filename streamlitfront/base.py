@@ -5,6 +5,7 @@ from collections import ChainMap
 from typing import Callable, Any, Union, Mapping, Iterable
 from functools import partial
 import typing
+from warnings import warn
 
 import streamlit as st
 
@@ -98,7 +99,9 @@ dflt_hash_funcs = DfltDict(
 def dispatch_funcs(
     funcs: Iterable[Callable], configs: Map = None, convention: Map = dflt_convention,
 ) -> App:
-    """Call this function with target funcs and get an app to run."""
+    """DEPRECATED!
+    Call this function with target funcs and get an app to run."""
+    warn('This function is deprecated, use "mk_app" instead.', DeprecationWarning, stacklevel=2)
     # _get_configs is responsible for merging convention into configs.
     # The easiest example of that is defaults: convention holding the defaults so
     # configs doesn't have to express them.
@@ -325,6 +328,118 @@ def pages_app(funcs, configs):
     state.sync()
 
 
-def mk_app(objs, config: Map = None, convention: Map = None):
+def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
+    """The entrypoint of streamlitfront.
+    Call this function with target objects and get an app to run.
+
+    Example: Render functions
+
+    First define a bunch of functions:
+    >>> def foo(a: int = 1, b: int = 2, c=3):
+    ...     return (a * b) + c
+    >>> def bar(x, greeting="hello"):
+    ...     return f"{greeting} {x}"
+    >>> def confuser(a: int, x: float = 3.14):
+    ...     return (a ** 2) * x
+    >>> funcs = [foo, bar, confuser]
+
+    Then make the app from these functions:
+    >>> app = mk_app(funcs)
+
+    The default configuration for the application is define by the convention object:
+    ``dflt_convention``. But you can overwrite parts or the entire configuration by
+    setting the ``config`` parameter. The configuration is composed of three parts:
+    app, obj and rendering.
+
+    The app configuration:
+    By default, the application name is "My Front Application", but you can set the
+    title of the application as follow:
+    >>> config = {
+    ...     'app': {
+    ...         'title': 'Another application name'
+    ...     }
+    ... }
+    >>> app = mk_app(funcs, config=config)
+
+    The obj configuration:
+    You can define a wrapper to transform the initial object into an ouput of your
+    choice to be rendered:
+    >>> def trans(objs: Iterable):
+    ...     return list(reversed(objs))
+    >>> config = {
+    ...     'obj': {
+    ...         'trans': trans
+    ...     }
+    ... }
+    >>> app = mk_app(funcs, config=config)
+
+    The redering configuration:
+    You can define the way elements are rendered in the GUI.
+    For instance, you can choose to render a text input instead of a number input for a
+    specific parameter of a specific function:
+    >>> from front.elements import InputComponentFlag 
+    >>> config = {
+    ...     'rendering': {
+    ...         'Foo': {
+    ...             'a': InputComponentFlag.TEXT
+    ...         }
+    ...     }
+    ... }
+    >>> app = mk_app(funcs, config=config)
+
+    Obviously, you can combine the three types of configuration:
+    >>> config = {
+    ...     'app': {
+    ...         'title': 'Another application name'
+    ...     },
+    ...     'obj': {
+    ...         'trans': trans
+    ...     },
+    ...     'rendering': {
+    ...         'foo': {
+    ...             'a': InputComponentFlag.TEXT
+    ...         }
+    ...     }
+    ... }
+    >>> app = mk_app(funcs, config=config)
+
+    You can also overwrite the whole configuration by setting the ``convention``
+    parameter. Be careful though, by overwritting the default convention, you have to
+    make sure that all configuations are defined. Otherwise, the application would
+    crash or behave unexpectedly.
+    >>> from front.elements import ContainerFlag
+    >>> convention = {
+    ...     'app': {
+    ...         'title': 'Another application name'
+    ...     },
+    ...     'obj': {
+    ...         'trans': trans
+    ...     },
+    ...     'rendering': {
+    ...         Callable: {
+    ...             'container': ContainerFlag.VIEW,
+    ...             'inputs': {
+    ...                 float: {
+    ...                     'component': InputComponentFlag.FLOAT_SLIDER,
+    ...                     'format': '%.2f',
+    ...                     'step': 0.01,
+    ...                 },
+    ...                 Any: InputComponentFlag.TEXT,
+    ...             },
+    ...         },
+    ...     },
+    ... }
+    >>> app = mk_app(funcs, convention=convention)
+
+    :param objs: The target objects to render in the streamlit application.
+    :type objs: Iterable
+    :param config: The configuration object for the application. Overwrites the
+    convention for every value present in the configuration object. See above for more
+    details.
+    :type objs: Map
+    :param config: The convention object for the application. Defines the default
+    configuration. See above for more details.
+    :type objs: Map
+    """
     app_maker = AppMaker()
     return app_maker.mk_app(objs, config, convention)

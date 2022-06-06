@@ -7,6 +7,9 @@ from streamlitfront.session_state import get_state
 
 
 class ElementTreeMaker(ElementTreeMakerBase):
+    """Tree maker class for streamlitfront. Defines the streamlitfront-speceific
+    element mapping and state management.
+    """
     @property
     def _component_mapping(cls) -> Mapping[InputComponentFlag, FrontElementBase]:
         return {
