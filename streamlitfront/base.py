@@ -32,14 +32,14 @@ App = Callable
 
 
 def func_to_page_name(func, **kwargs):
-    return func_name(func).replace("_", " ").title()
+    return func_name(func).replace('_', ' ').title()
 
 
 # TODO: Need to enforce SOME structure/content. Use a subclass of util.Objdict instead?
 def dflt_convention():
     return dict(
         app_maker=pages_app,
-        page_configs=dict(layout="wide"),
+        page_configs=dict(layout='wide'),
         func_to_page_name=func_to_page_name,
     )
 
@@ -72,11 +72,11 @@ class DfltDict(dict):
 #  If the key is not found, will return default_hash_func anyway.
 dflt_hash_funcs = DfltDict(
     {
-        "abc.WfStoreWrapped": default_hash_func,
-        "qcoto.dacc.Dacc": default_hash_func,
-        "abc.DfSimpleStoreWrapped": default_hash_func,
-        "builtins.dict": default_hash_func,
-        "haggle.dacc.KaggleDatasetInfoReader": default_hash_func,
+        'abc.WfStoreWrapped': default_hash_func,
+        'qcoto.dacc.Dacc': default_hash_func,
+        'abc.DfSimpleStoreWrapped': default_hash_func,
+        'builtins.dict': default_hash_func,
+        'haggle.dacc.KaggleDatasetInfoReader': default_hash_func,
     }
 )
 
@@ -97,9 +97,7 @@ dflt_hash_funcs = DfltDict(
 
 
 def dispatch_funcs(
-    funcs: Iterable[Callable],
-    configs: Map = None,
-    convention: Map = dflt_convention,
+    funcs: Iterable[Callable], configs: Map = None, convention: Map = dflt_convention,
 ) -> App:
     """DEPRECATED!
     Call this function with target funcs and get an app to run."""
@@ -115,7 +113,7 @@ def dispatch_funcs(
     #  so that is can handle more kinds of configs/convention merging.
     configs = _get_configs(configs, convention)
     # configs holds it's own interpreter: app_maker
-    app_maker = configs["app_maker"]
+    app_maker = configs['app_maker']
     # ... which needs to be a callable
     assert isinstance(app_maker, Callable)
     # The app we return the curry of app_maker with funcs and configs bindings.
@@ -126,7 +124,7 @@ def dispatch_funcs(
 
 # ---------------------------------------------------------------------------------------
 
-missing = type("Missing", (), {})()
+missing = type('Missing', (), {})()
 
 
 def infer_type(sig, name):
@@ -206,17 +204,17 @@ def get_func_args_specs(
                     # TODO: This case seems false (maybe? don't want multiple choice
                     #  when default is a list)
                     # TODO: When we have list defaults, error occurs
-                    factory_kwargs["options"] = dflt
+                    factory_kwargs['options'] = dflt
                 else:
-                    factory_kwargs["value"] = dflt
+                    factory_kwargs['value'] = dflt
 
-        d["element_factory"] = (element_factory, factory_kwargs)
+        d['element_factory'] = (element_factory, factory_kwargs)
 
     return func_args_specs
 
 
 class BasePageFunc:
-    def __init__(self, func: Callable, view_title: str = "", **configs):
+    def __init__(self, func: Callable, view_title: str = '', **configs):
         self.func = func
         self.view_title = view_title
         self.configs = configs
@@ -224,7 +222,7 @@ class BasePageFunc:
 
     def prepare_view(self, state):
         if self.view_title:
-            st.markdown(f"""## **{self.view_title}**""")
+            st.markdown(f'''## **{self.view_title}**''')
 
     def __call__(self, state):
         self.prepare_view(state)
@@ -238,9 +236,9 @@ class SimplePageFunc(BasePageFunc):
         # func_inputs = dict(self.sig.defaults, **state['page_state'][self.func])
         func_inputs = {}
         for argname, spec in args_specs.items():
-            element_factory, kwargs = spec["element_factory"]
+            element_factory, kwargs = spec['element_factory']
             func_inputs[argname] = element_factory(**kwargs)
-        submit = st.button("Submit")
+        submit = st.button('Submit')
         if submit:
             st.write(self.func(**func_inputs))
             # state['page_state'][self.func].clear()
@@ -276,8 +274,8 @@ def get_pages_specs(
 def _get_view_key(
     view_keys,
     container=st.sidebar,
-    title="Navigation",
-    chooser="radio",  # TODO: make into enum
+    title='Navigation',
+    chooser='radio',  # TODO: make into enum
     **chooser_kwargs,
 ):
     if title is not None:
@@ -291,7 +289,7 @@ def pages_app(funcs, configs):
     # Page setup
 
     # Note: set_page_config at top: needs to be the first call after importing streamlit
-    st.set_page_config(layout="wide")
+    st.set_page_config(layout='wide')
 
     state = get_state(hash_funcs=dflt_hash_funcs)  # TODO: get from configs
 
@@ -310,13 +308,13 @@ def pages_app(funcs, configs):
 
     # Make page objects
     views = get_pages_specs(funcs, **configs)
-    state["views"] = views
+    state['views'] = views
 
     # TODO: The above is static: Should the above be done only once, and cached?
     #   Perhaps views should be cached in state?
 
     # Setup navigation
-    view_key = _get_view_key(tuple(views.keys()), label="Select your view")
+    view_key = _get_view_key(tuple(views.keys()), label='Select your view')
 
     # navigation_container = st.sidebar  # container
     # navigation_container.title('Navigation')  # title

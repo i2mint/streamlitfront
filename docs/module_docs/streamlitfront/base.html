@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.base &mdash; streamlitfront 0.1.4 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.base &mdash; streamlitfront 0.1.6 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="streamlitfront.examples.data_binding" href="examples/data_binding.html" />
-    <link rel="prev" title="streamlitfront" href="../streamlitfront.html" /> 
+    <link rel="next" title="streamlitfront.elements.elements" href="elements/elements.html" />
+    <link rel="prev" title="streamlitfront.app_maker" href="app_maker.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,17 +44,22 @@
               <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../streamlitfront.html">streamlitfront</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app_maker.html">streamlitfront.app_maker</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/elements.html">streamlitfront.elements.elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/tree_maker.html">streamlitfront.elements.tree_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/issues.html">streamlitfront.examples.issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/simple.html">streamlitfront.examples.simple</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="page_funcs.html">streamlitfront.page_funcs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="run_app.html">streamlitfront.run_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="session_state.html">streamlitfront.session_state</a></li>
 <li class="toctree-l1"><a class="reference internal" href="util.html">streamlitfront.util</a></li>
 </ul>
@@ -94,7 +99,8 @@
 <dl class="py function">
 <dt id="streamlitfront.base.dispatch_funcs">
 <code class="sig-prename descclassname">streamlitfront.base.</code><code class="sig-name descname">dispatch_funcs</code><span class="sig-paren">(</span><em class="sig-param">funcs: Iterable[Callable], configs: Union[None, Mapping, Callable[[], Mapping]] = None, convention: Union[None, Mapping, Callable[[], Mapping]] = &lt;function dflt_convention&gt;</em><span class="sig-paren">)</span> &#x2192; Callable<a class="reference internal" href="../../_modules/streamlitfront/base.html#dispatch_funcs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#streamlitfront.base.dispatch_funcs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Call this function with target funcs and get an app to run.</p>
+<dd><p>DEPRECATED!
+Call this function with target funcs and get an app to run.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -103,14 +109,151 @@
 <dd><p>Get pages specification dict</p>
 </dd></dl>
 
+<dl class="py function">
+<dt id="streamlitfront.base.mk_app">
+<code class="sig-prename descclassname">streamlitfront.base.</code><code class="sig-name descname">mk_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span></em>, <em class="sig-param"><span class="n">config</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>None<span class="p">, </span>Mapping<span class="p">, </span>Callable<span class="p">[</span><span class="p">]</span><span class="p">, </span>Mapping<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">convention</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>None<span class="p">, </span>Mapping<span class="p">, </span>Callable<span class="p">[</span><span class="p">]</span><span class="p">, </span>Mapping<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/streamlitfront/base.html#mk_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#streamlitfront.base.mk_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>The entrypoint of streamlitfront.
+Call this function with target objects and get an app to run.</p>
+<p>Example: Render functions</p>
+<p>First define a bunch of functions:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">greeting</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">greeting</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">confuser</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">confuser</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Then make the app from these functions:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The default configuration for the application is define by the convention object:
+<code class="docutils literal notranslate"><span class="pre">dflt_convention</span></code>. But you can overwrite parts or the entire configuration by
+setting the <code class="docutils literal notranslate"><span class="pre">config</span></code> parameter. The configuration is composed of three parts:
+app, obj and rendering.</p>
+<p>The app configuration:
+By default, the application name is “My Front Application”, but you can set the
+title of the application as follow:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s1">&#39;app&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Another application name&#39;</span>
+<span class="gp">... </span>    <span class="p">}</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The obj configuration:
+You can define a wrapper to transform the initial object into an output of your
+choice to be rendered:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">trans</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">objs</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s1">&#39;obj&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s1">&#39;trans&#39;</span><span class="p">:</span> <span class="n">trans</span>
+<span class="gp">... </span>    <span class="p">}</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The rendering configuration:
+You can define the way elements are rendered in the GUI.
+For instance, you can choose to render a text input instead of a number input for a
+specific parameter of a specific function:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="n">COMPONENT_INT_SLIDER</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s1">&#39;rendering&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s1">&#39;Foo&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>            <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                    <span class="s1">&#39;component&#39;</span><span class="p">:</span> <span class="n">COMPONENT_INT_SLIDER</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="s1">&#39;max_value&#39;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="gp">... </span>                <span class="p">}</span>
+<span class="gp">... </span>            <span class="p">}</span>
+<span class="gp">... </span>        <span class="p">}</span>
+<span class="gp">... </span>    <span class="p">}</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Obviously, you can combine the three types of configuration:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s1">&#39;app&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Another application name&#39;</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span>    <span class="s1">&#39;obj&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s1">&#39;trans&#39;</span><span class="p">:</span> <span class="n">trans</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span>    <span class="s1">&#39;rendering&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s1">&#39;Foo&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>            <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                    <span class="s1">&#39;component&#39;</span><span class="p">:</span> <span class="n">COMPONENT_INT_SLIDER</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="s1">&#39;max_value&#39;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="gp">... </span>                <span class="p">}</span>
+<span class="gp">... </span>            <span class="p">}</span>
+<span class="gp">... </span>        <span class="p">}</span>
+<span class="gp">... </span>    <span class="p">}</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also overwrite the whole configuration by setting the <code class="docutils literal notranslate"><span class="pre">convention</span></code>
+parameter. Be careful though, by overwritting the default convention, you have to
+make sure that all configuations are defined. Otherwise, the application would
+crash or behave unexpectedly.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="n">CONTAINER_VIEW</span><span class="p">,</span> <span class="n">COMPONENT_FLOAT_SLIDER</span><span class="p">,</span> <span class="n">COMPONENT_TEXT</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">convention</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s1">&#39;app&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Another application name&#39;</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span>    <span class="s1">&#39;obj&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s1">&#39;trans&#39;</span><span class="p">:</span> <span class="n">trans</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span>    <span class="s1">&#39;rendering&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="n">Callable</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>            <span class="s1">&#39;container&#39;</span><span class="p">:</span> <span class="n">CONTAINER_VIEW</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                <span class="nb">float</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                    <span class="s1">&#39;component&#39;</span><span class="p">:</span> <span class="n">COMPONENT_FLOAT_SLIDER</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="p">},</span>
+<span class="gp">... </span>                <span class="n">Any</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                    <span class="s1">&#39;component&#39;</span><span class="p">:</span> <span class="n">COMPONENT_TEXT</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="p">},</span>
+<span class="gp">... </span>            <span class="p">},</span>
+<span class="gp">... </span>        <span class="p">},</span>
+<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="n">convention</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>objs</strong> (<em>Iterable</em>) – The target objects to render in the streamlit application.</p></li>
+<li><p><strong>config</strong> – The configuration object for the application. Overwrites the</p></li>
+</ul>
+</dd>
+</dl>
+<p>convention for every value present in the configuration object. See above for more
+details.
+:type objs: Map
+:param config: The convention object for the application. Defines the default
+configuration. See above for more details.
+:type objs: Map</p>
+</dd></dl>
+
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../streamlitfront.html" class="btn btn-neutral float-left" title="streamlitfront" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="examples/data_binding.html" class="btn btn-neutral float-right" title="streamlitfront.examples.data_binding" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="app_maker.html" class="btn btn-neutral float-left" title="streamlitfront.app_maker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="elements/elements.html" class="btn btn-neutral float-right" title="streamlitfront.elements.elements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

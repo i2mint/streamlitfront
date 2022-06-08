@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.base &mdash; streamlitfront 0.1.4 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.base &mdash; streamlitfront 0.1.6 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -41,17 +41,22 @@
               <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront.html">streamlitfront</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/app_maker.html">streamlitfront.app_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/tree_maker.html">streamlitfront.elements.tree_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/run_app.html">streamlitfront.run_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/session_state.html">streamlitfront.session_state</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
 </ul>
@@ -88,10 +93,12 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Iterable</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 <span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
 
 <span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 
 <span class="kn">from</span> <span class="nn">i2</span> <span class="kn">import</span> <span class="n">Sig</span>
+<span class="kn">from</span> <span class="nn">streamlitfront.app_maker</span> <span class="kn">import</span> <span class="n">AppMaker</span>
 <span class="kn">from</span> <span class="nn">streamlitfront.session_state</span> <span class="kn">import</span> <span class="n">get_state</span><span class="p">,</span> <span class="n">_SessionState</span>
 <span class="kn">from</span> <span class="nn">streamlitfront.util</span> <span class="kn">import</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">build_element_factory</span>
 
@@ -104,7 +111,7 @@
 <span class="n">PageName</span> <span class="o">=</span> <span class="nb">str</span>
 <span class="n">PageSpec</span> <span class="o">=</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">PageName</span><span class="p">,</span> <span class="n">PageFunc</span><span class="p">]</span>
 <span class="n">App</span> <span class="o">=</span> <span class="n">Callable</span>
-<span class="n">AppMaker</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Iterable</span><span class="p">[</span><span class="n">Callable</span><span class="p">],</span> <span class="n">Configuration</span><span class="p">],</span> <span class="n">App</span><span class="p">]</span>
+<span class="c1"># AppMaker = Callable[[Iterable[Callable], Configuration], App]</span>
 
 <span class="c1"># ------- configuration/convention/default management -----------------------------------</span>
 
@@ -180,10 +187,26 @@
 <div class="viewcode-block" id="dispatch_funcs"><a class="viewcode-back" href="../../module_docs/streamlitfront/base.html#streamlitfront.base.dispatch_funcs">[docs]</a><span class="k">def</span> <span class="nf">dispatch_funcs</span><span class="p">(</span>
     <span class="n">funcs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Callable</span><span class="p">],</span> <span class="n">configs</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="n">dflt_convention</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">App</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Call this function with target funcs and get an app to run.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;DEPRECATED!</span>
+<span class="sd">    Call this function with target funcs and get an app to run.&quot;&quot;&quot;</span>
+    <span class="n">warn</span><span class="p">(</span>
+        <span class="s1">&#39;This function is deprecated, use &quot;mk_app&quot; instead.&#39;</span><span class="p">,</span>
+        <span class="ne">DeprecationWarning</span><span class="p">,</span>
+        <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># _get_configs is responsible for merging convention into configs.</span>
+    <span class="c1"># The easiest example of that is defaults: convention holding the defaults so</span>
+    <span class="c1"># configs doesn&#39;t have to express them.</span>
+    <span class="c1"># TODO: _get_configs should be expanded (or added as argument of dispatch_func</span>
+    <span class="c1">#  so that is can handle more kinds of configs/convention merging.</span>
     <span class="n">configs</span> <span class="o">=</span> <span class="n">_get_configs</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">convention</span><span class="p">)</span>
+    <span class="c1"># configs holds it&#39;s own interpreter: app_maker</span>
     <span class="n">app_maker</span> <span class="o">=</span> <span class="n">configs</span><span class="p">[</span><span class="s1">&#39;app_maker&#39;</span><span class="p">]</span>
+    <span class="c1"># ... which needs to be a callable</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">app_maker</span><span class="p">,</span> <span class="n">Callable</span><span class="p">)</span>
+    <span class="c1"># The app we return the curry of app_maker with funcs and configs bindings.</span>
+    <span class="c1"># With that, we should be able to run the app by calling it: app()</span>
+    <span class="c1"># Note: We&#39;re still open to also specify further configs through app(...) arguments</span>
     <span class="k">return</span> <span class="n">partial</span><span class="p">(</span><span class="n">app_maker</span><span class="p">,</span> <span class="n">funcs</span><span class="o">=</span><span class="n">funcs</span><span class="p">,</span> <span class="n">configs</span><span class="o">=</span><span class="n">configs</span><span class="p">)</span></div>
 
 
@@ -395,6 +418,142 @@
 
     <span class="c1"># Mandatory to avoid rollbacks with widgets, must be called at the end of your app</span>
     <span class="n">state</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="mk_app"><a class="viewcode-back" href="../../module_docs/streamlitfront/base.html#streamlitfront.base.mk_app">[docs]</a><span class="k">def</span> <span class="nf">mk_app</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The entrypoint of streamlitfront.</span>
+<span class="sd">    Call this function with target objects and get an app to run.</span>
+
+<span class="sd">    Example: Render functions</span>
+
+<span class="sd">    First define a bunch of functions:</span>
+
+<span class="sd">    &gt;&gt;&gt; def foo(a: int = 1, b: int = 2, c=3):</span>
+<span class="sd">    ...     return (a * b) + c</span>
+<span class="sd">    &gt;&gt;&gt; def bar(x, greeting=&quot;hello&quot;):</span>
+<span class="sd">    ...     return f&quot;{greeting} {x}&quot;</span>
+<span class="sd">    &gt;&gt;&gt; def confuser(a: int, x: float = 3.14):</span>
+<span class="sd">    ...     return (a ** 2) * x</span>
+<span class="sd">    &gt;&gt;&gt; funcs = [foo, bar, confuser]</span>
+
+<span class="sd">    Then make the app from these functions:</span>
+
+<span class="sd">    &gt;&gt;&gt; app = mk_app(funcs)</span>
+
+<span class="sd">    The default configuration for the application is define by the convention object:</span>
+<span class="sd">    ``dflt_convention``. But you can overwrite parts or the entire configuration by</span>
+<span class="sd">    setting the ``config`` parameter. The configuration is composed of three parts:</span>
+<span class="sd">    app, obj and rendering.</span>
+
+<span class="sd">    The app configuration:</span>
+<span class="sd">    By default, the application name is &quot;My Front Application&quot;, but you can set the</span>
+<span class="sd">    title of the application as follow:</span>
+
+<span class="sd">    &gt;&gt;&gt; config = {</span>
+<span class="sd">    ...     &#39;app&#39;: {</span>
+<span class="sd">    ...         &#39;title&#39;: &#39;Another application name&#39;</span>
+<span class="sd">    ...     }</span>
+<span class="sd">    ... }</span>
+<span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, config=config)</span>
+
+<span class="sd">    The obj configuration:</span>
+<span class="sd">    You can define a wrapper to transform the initial object into an output of your</span>
+<span class="sd">    choice to be rendered:</span>
+
+<span class="sd">    &gt;&gt;&gt; def trans(objs: Iterable):</span>
+<span class="sd">    ...     return list(reversed(objs))</span>
+<span class="sd">    &gt;&gt;&gt; config = {</span>
+<span class="sd">    ...     &#39;obj&#39;: {</span>
+<span class="sd">    ...         &#39;trans&#39;: trans</span>
+<span class="sd">    ...     }</span>
+<span class="sd">    ... }</span>
+<span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, config=config)</span>
+
+<span class="sd">    The rendering configuration:</span>
+<span class="sd">    You can define the way elements are rendered in the GUI.</span>
+<span class="sd">    For instance, you can choose to render a text input instead of a number input for a</span>
+<span class="sd">    specific parameter of a specific function:</span>
+
+<span class="sd">    &gt;&gt;&gt; from front.elements import COMPONENT_INT_SLIDER</span>
+<span class="sd">    &gt;&gt;&gt; config = {</span>
+<span class="sd">    ...     &#39;rendering&#39;: {</span>
+<span class="sd">    ...         &#39;Foo&#39;: {</span>
+<span class="sd">    ...             &#39;inputs&#39;: {</span>
+<span class="sd">    ...                 &#39;a&#39;: {</span>
+<span class="sd">    ...                     &#39;component&#39;: COMPONENT_INT_SLIDER,</span>
+<span class="sd">    ...                     &#39;max_value&#39;: 10</span>
+<span class="sd">    ...                 }</span>
+<span class="sd">    ...             }</span>
+<span class="sd">    ...         }</span>
+<span class="sd">    ...     }</span>
+<span class="sd">    ... }</span>
+<span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, config=config)</span>
+
+<span class="sd">    Obviously, you can combine the three types of configuration:</span>
+
+<span class="sd">    &gt;&gt;&gt; config = {</span>
+<span class="sd">    ...     &#39;app&#39;: {</span>
+<span class="sd">    ...         &#39;title&#39;: &#39;Another application name&#39;</span>
+<span class="sd">    ...     },</span>
+<span class="sd">    ...     &#39;obj&#39;: {</span>
+<span class="sd">    ...         &#39;trans&#39;: trans</span>
+<span class="sd">    ...     },</span>
+<span class="sd">    ...     &#39;rendering&#39;: {</span>
+<span class="sd">    ...         &#39;Foo&#39;: {</span>
+<span class="sd">    ...             &#39;inputs&#39;: {</span>
+<span class="sd">    ...                 &#39;a&#39;: {</span>
+<span class="sd">    ...                     &#39;component&#39;: COMPONENT_INT_SLIDER,</span>
+<span class="sd">    ...                     &#39;max_value&#39;: 10</span>
+<span class="sd">    ...                 }</span>
+<span class="sd">    ...             }</span>
+<span class="sd">    ...         }</span>
+<span class="sd">    ...     }</span>
+<span class="sd">    ... }</span>
+<span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, config=config)</span>
+
+<span class="sd">    You can also overwrite the whole configuration by setting the ``convention``</span>
+<span class="sd">    parameter. Be careful though, by overwritting the default convention, you have to</span>
+<span class="sd">    make sure that all configuations are defined. Otherwise, the application would</span>
+<span class="sd">    crash or behave unexpectedly.</span>
+
+<span class="sd">    &gt;&gt;&gt; from front.elements import CONTAINER_VIEW, COMPONENT_FLOAT_SLIDER, COMPONENT_TEXT</span>
+<span class="sd">    &gt;&gt;&gt; convention = {</span>
+<span class="sd">    ...     &#39;app&#39;: {</span>
+<span class="sd">    ...         &#39;title&#39;: &#39;Another application name&#39;</span>
+<span class="sd">    ...     },</span>
+<span class="sd">    ...     &#39;obj&#39;: {</span>
+<span class="sd">    ...         &#39;trans&#39;: trans</span>
+<span class="sd">    ...     },</span>
+<span class="sd">    ...     &#39;rendering&#39;: {</span>
+<span class="sd">    ...         Callable: {</span>
+<span class="sd">    ...             &#39;container&#39;: CONTAINER_VIEW,</span>
+<span class="sd">    ...             &#39;inputs&#39;: {</span>
+<span class="sd">    ...                 float: {</span>
+<span class="sd">    ...                     &#39;component&#39;: COMPONENT_FLOAT_SLIDER,</span>
+<span class="sd">    ...                     &#39;format&#39;: &#39;%.2f&#39;,</span>
+<span class="sd">    ...                     &#39;step&#39;: 0.01,</span>
+<span class="sd">    ...                 },</span>
+<span class="sd">    ...                 Any: {</span>
+<span class="sd">    ...                     &#39;component&#39;: COMPONENT_TEXT,</span>
+<span class="sd">    ...                 },</span>
+<span class="sd">    ...             },</span>
+<span class="sd">    ...         },</span>
+<span class="sd">    ...     },</span>
+<span class="sd">    ... }</span>
+<span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, convention=convention)</span>
+
+<span class="sd">    :param objs: The target objects to render in the streamlit application.</span>
+<span class="sd">    :type objs: Iterable</span>
+<span class="sd">    :param config: The configuration object for the application. Overwrites the</span>
+<span class="sd">    convention for every value present in the configuration object. See above for more</span>
+<span class="sd">    details.</span>
+<span class="sd">    :type objs: Map</span>
+<span class="sd">    :param config: The convention object for the application. Defines the default</span>
+<span class="sd">    configuration. See above for more details.</span>
+<span class="sd">    :type objs: Map</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">app_maker</span> <span class="o">=</span> <span class="n">AppMaker</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">app_maker</span><span class="o">.</span><span class="n">mk_app</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">convention</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

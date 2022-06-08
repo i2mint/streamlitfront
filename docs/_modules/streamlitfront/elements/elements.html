@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.6 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/toggleprompt.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> streamlitfront
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront.html">streamlitfront</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/app_maker.html">streamlitfront.app_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements/tree_maker.html">streamlitfront.elements.tree_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/run_app.html">streamlitfront.run_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/session_state.html">streamlitfront.session_state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">streamlitfront</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>streamlitfront.elements.elements</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for streamlitfront.elements.elements</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Here are implemented the elements for streamlitfront.</span>
+
+<span class="sd">Not the use of the ``implement_component`` function to create a class that implements a</span>
+<span class="sd">specific abstract elements class defined in front.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">FuncViewBase</span><span class="p">,</span>
+    <span class="n">InputBase</span><span class="p">,</span>
+    <span class="n">TextInputBase</span><span class="p">,</span>
+    <span class="n">IntInputBase</span><span class="p">,</span>
+    <span class="n">FloatInputBase</span><span class="p">,</span>
+    <span class="n">AppBase</span><span class="p">,</span>
+    <span class="n">implement_component</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">streamlitfront.session_state</span> <span class="kn">import</span> <span class="n">_SessionState</span><span class="p">,</span> <span class="n">get_state</span>
+
+
+<div class="viewcode-block" id="App"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.App">[docs]</a><span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="n">AppBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of ``AppBase`` for streamlitfront.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Page setup</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s1">&#39;wide&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Make page objects</span>
+        <span class="n">views</span> <span class="o">=</span> <span class="p">{</span><span class="n">view</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">view</span><span class="o">.</span><span class="n">render</span> <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">}</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">views</span>
+
+        <span class="c1"># TODO: The above is static: Should the above be done only once, and cached?</span>
+        <span class="c1">#   Perhaps views should be cached in state?</span>
+
+        <span class="c1"># Setup navigation</span>
+        <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="p">:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+            <span class="n">view_key</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">radio</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">views</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Select your view&#39;</span><span class="p">)</span>
+        <span class="c1"># view_key = _get_view_key(tuple(views.keys()), label=&#39;Select your view&#39;)</span>
+
+        <span class="c1"># Display the selected page with the session state</span>
+        <span class="c1"># This is the part that actually runs the functionality that pages specifies</span>
+        <span class="n">view_runner</span> <span class="o">=</span> <span class="n">views</span><span class="p">[</span><span class="n">view_key</span><span class="p">]</span>  <span class="c1"># gets the page runner</span>
+        <span class="n">view_runner</span><span class="p">()</span>  <span class="c1"># runs the page with the state</span></div>
+
+
+<div class="viewcode-block" id="FuncView"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.FuncView">[docs]</a><span class="k">class</span> <span class="nc">FuncView</span><span class="p">(</span><span class="n">FuncViewBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of ``FuncViewBase`` for streamlitfront.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;&#39;## **</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">**&#39;&#39;&#39;</span><span class="p">)</span>
+        <span class="n">func_inputs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="n">func_inputs</span><span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+        <span class="n">submit</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">)</span>
+        <span class="c1"># output_key = f&#39;{self.func.__name__}_output&#39;</span>
+        <span class="k">if</span> <span class="n">submit</span><span class="p">:</span>
+            <span class="c1"># state = get_state_with_hash_funcs()</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">**</span><span class="n">func_inputs</span><span class="p">)</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">_output&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></div>
+        <span class="c1"># elif output_key in state:</span>
+        <span class="c1">#     st.write(state[output_key])</span>
+
+
+<span class="k">def</span> <span class="nf">store_input_value_in_state</span><span class="p">(</span><span class="n">input_value</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">InputBase</span><span class="p">):</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="n">component</span><span class="o">.</span><span class="n">input_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_value</span>
+
+
+<span class="n">implement_component_with_input_value_callback</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
+    <span class="n">implement_component</span><span class="p">,</span> <span class="n">input_value_callback</span><span class="o">=</span><span class="n">store_input_value_in_state</span>
+<span class="p">)</span>
+<span class="n">implement_component_with_init_value</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
+    <span class="n">implement_component_with_input_value_callback</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;init_value&#39;</span>
+<span class="p">)</span>
+<span class="n">implement_float_input_component</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
+    <span class="n">implement_component_with_init_value</span><span class="p">,</span> <span class="n">base_cls</span><span class="o">=</span><span class="n">FloatInputBase</span>
+<span class="p">)</span>
+
+<span class="n">TextInput</span> <span class="o">=</span> <span class="n">implement_component_with_init_value</span><span class="p">(</span><span class="n">TextInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">)</span>
+<span class="n">IntInput</span> <span class="o">=</span> <span class="n">implement_component_with_init_value</span><span class="p">(</span><span class="n">IntInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">)</span>
+<span class="n">IntSliderInput</span> <span class="o">=</span> <span class="n">implement_component_with_init_value</span><span class="p">(</span><span class="n">IntInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">)</span>
+<span class="n">FloatInput</span> <span class="o">=</span> <span class="n">implement_float_input_component</span><span class="p">(</span><span class="n">component_factory</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">)</span>
+<span class="n">FloatSliderInput</span> <span class="o">=</span> <span class="n">implement_float_input_component</span><span class="p">(</span><span class="n">component_factory</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

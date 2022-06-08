@@ -24,11 +24,11 @@ class App(AppBase):
 
     def render(self):
         # Page setup
-        st.set_page_config(layout="wide")
+        st.set_page_config(layout='wide')
 
         # Make page objects
         views = {view.name: view.render for view in self.children}
-        st.session_state["views"] = views
+        st.session_state['views'] = views
 
         # TODO: The above is static: Should the above be done only once, and cached?
         #   Perhaps views should be cached in state?
@@ -36,7 +36,7 @@ class App(AppBase):
         # Setup navigation
         with st.sidebar:
             st.title(self.title)
-            view_key = st.radio(options=tuple(views.keys()), label="Select your view")
+            view_key = st.radio(options=tuple(views.keys()), label='Select your view')
         # view_key = _get_view_key(tuple(views.keys()), label='Select your view')
 
         # Display the selected page with the session state
@@ -49,16 +49,16 @@ class FuncView(FuncViewBase):
     """Implementation of ``FuncViewBase`` for streamlitfront."""
 
     def render(self):
-        st.markdown(f"""## **{self.name}**""")
+        st.markdown(f'''## **{self.name}**''')
         func_inputs = {}
         for child in self.children:
             func_inputs[child.label] = child.render()
-        submit = st.button("Submit")
+        submit = st.button('Submit')
         # output_key = f'{self.func.__name__}_output'
         if submit:
             # state = get_state_with_hash_funcs()
             output = self.func(**func_inputs)
-            st.session_state[f"{self.func.__name__}_output"] = output
+            st.session_state[f'{self.func.__name__}_output'] = output
             st.write(output)
         # elif output_key in state:
         #     st.write(state[output_key])
@@ -72,7 +72,7 @@ implement_component_with_input_value_callback = partial(
     implement_component, input_value_callback=store_input_value_in_state
 )
 implement_component_with_init_value = partial(
-    implement_component_with_input_value_callback, value="init_value"
+    implement_component_with_input_value_callback, value='init_value'
 )
 implement_float_input_component = partial(
     implement_component_with_init_value, base_cls=FloatInputBase

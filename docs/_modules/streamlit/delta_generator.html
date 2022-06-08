@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>streamlit.delta_generator &mdash; streamlitfront 0.1.6 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/toggleprompt.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> streamlitfront
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront.html">streamlitfront</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/app_maker.html">streamlitfront.app_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/tree_maker.html">streamlitfront.elements.tree_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/run_app.html">streamlitfront.run_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/session_state.html">streamlitfront.session_state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">streamlitfront</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>streamlit.delta_generator</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for streamlit.delta_generator</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2018-2022 Streamlit Inc.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#    http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="sd">&quot;&quot;&quot;Allows us to create and absorb changes (aka Deltas) to elements.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Any</span><span class="p">,</span>
+    <span class="n">Callable</span><span class="p">,</span>
+    <span class="n">cast</span><span class="p">,</span>
+    <span class="n">Dict</span><span class="p">,</span>
+    <span class="n">Hashable</span><span class="p">,</span>
+    <span class="n">Optional</span><span class="p">,</span>
+    <span class="n">overload</span><span class="p">,</span>
+    <span class="n">Iterable</span><span class="p">,</span>
+    <span class="n">NoReturn</span><span class="p">,</span>
+    <span class="n">Tuple</span><span class="p">,</span>
+    <span class="n">Type</span><span class="p">,</span>
+    <span class="n">TypeVar</span><span class="p">,</span>
+    <span class="n">TYPE_CHECKING</span><span class="p">,</span>
+    <span class="n">Union</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Final</span><span class="p">,</span> <span class="n">Literal</span>
+
+<span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">from</span> <span class="nn">streamlit</span> <span class="kn">import</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">caching</span>
+<span class="kn">from</span> <span class="nn">streamlit</span> <span class="kn">import</span> <span class="n">legacy_caching</span>
+<span class="kn">from</span> <span class="nn">streamlit</span> <span class="kn">import</span> <span class="n">type_util</span>
+<span class="kn">from</span> <span class="nn">streamlit</span> <span class="kn">import</span> <span class="n">util</span>
+<span class="kn">from</span> <span class="nn">streamlit.cursor</span> <span class="kn">import</span> <span class="n">Cursor</span>
+<span class="kn">from</span> <span class="nn">streamlit.scriptrunner</span> <span class="kn">import</span> <span class="n">get_script_run_ctx</span>
+<span class="kn">from</span> <span class="nn">streamlit.errors</span> <span class="kn">import</span> <span class="n">StreamlitAPIException</span>
+<span class="kn">from</span> <span class="nn">streamlit.errors</span> <span class="kn">import</span> <span class="n">NoSessionContext</span>
+<span class="kn">from</span> <span class="nn">streamlit.proto</span> <span class="kn">import</span> <span class="n">Block_pb2</span>
+<span class="kn">from</span> <span class="nn">streamlit.proto</span> <span class="kn">import</span> <span class="n">ForwardMsg_pb2</span>
+<span class="kn">from</span> <span class="nn">streamlit.proto.RootContainer_pb2</span> <span class="kn">import</span> <span class="n">RootContainer</span>
+<span class="kn">from</span> <span class="nn">streamlit.logger</span> <span class="kn">import</span> <span class="n">get_logger</span>
+
+<span class="kn">from</span> <span class="nn">streamlit.elements.balloons</span> <span class="kn">import</span> <span class="n">BalloonsMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.button</span> <span class="kn">import</span> <span class="n">ButtonMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.markdown</span> <span class="kn">import</span> <span class="n">MarkdownMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.text</span> <span class="kn">import</span> <span class="n">TextMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.alert</span> <span class="kn">import</span> <span class="n">AlertMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.json</span> <span class="kn">import</span> <span class="n">JsonMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.doc_string</span> <span class="kn">import</span> <span class="n">HelpMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.exception</span> <span class="kn">import</span> <span class="n">ExceptionMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.bokeh_chart</span> <span class="kn">import</span> <span class="n">BokehMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.graphviz_chart</span> <span class="kn">import</span> <span class="n">GraphvizMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.plotly_chart</span> <span class="kn">import</span> <span class="n">PlotlyMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.deck_gl_json_chart</span> <span class="kn">import</span> <span class="n">PydeckMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.map</span> <span class="kn">import</span> <span class="n">MapMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.iframe</span> <span class="kn">import</span> <span class="n">IframeMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.media</span> <span class="kn">import</span> <span class="n">MediaMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.checkbox</span> <span class="kn">import</span> <span class="n">CheckboxMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.multiselect</span> <span class="kn">import</span> <span class="n">MultiSelectMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.metric</span> <span class="kn">import</span> <span class="n">MetricMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.radio</span> <span class="kn">import</span> <span class="n">RadioMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.selectbox</span> <span class="kn">import</span> <span class="n">SelectboxMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.text_widgets</span> <span class="kn">import</span> <span class="n">TextWidgetsMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.time_widgets</span> <span class="kn">import</span> <span class="n">TimeWidgetsMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.progress</span> <span class="kn">import</span> <span class="n">ProgressMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.empty</span> <span class="kn">import</span> <span class="n">EmptyMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.number_input</span> <span class="kn">import</span> <span class="n">NumberInputMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.camera_input</span> <span class="kn">import</span> <span class="n">CameraInputMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.color_picker</span> <span class="kn">import</span> <span class="n">ColorPickerMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.file_uploader</span> <span class="kn">import</span> <span class="n">FileUploaderMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.select_slider</span> <span class="kn">import</span> <span class="n">SelectSliderMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.slider</span> <span class="kn">import</span> <span class="n">SliderMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.snow</span> <span class="kn">import</span> <span class="n">SnowMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.image</span> <span class="kn">import</span> <span class="n">ImageMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.pyplot</span> <span class="kn">import</span> <span class="n">PyplotMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.write</span> <span class="kn">import</span> <span class="n">WriteMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.layouts</span> <span class="kn">import</span> <span class="n">LayoutsMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.form</span> <span class="kn">import</span> <span class="n">FormMixin</span><span class="p">,</span> <span class="n">FormData</span><span class="p">,</span> <span class="n">current_form_id</span>
+<span class="kn">from</span> <span class="nn">streamlit.state</span> <span class="kn">import</span> <span class="n">NoValue</span>
+
+<span class="c1"># DataFrame elements come in two flavors: &quot;Legacy&quot; and &quot;Arrow&quot;.</span>
+<span class="c1"># We select between them with the DataFrameElementSelectorMixin.</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.arrow</span> <span class="kn">import</span> <span class="n">ArrowMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.arrow_altair</span> <span class="kn">import</span> <span class="n">ArrowAltairMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.arrow_vega_lite</span> <span class="kn">import</span> <span class="n">ArrowVegaLiteMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.legacy_data_frame</span> <span class="kn">import</span> <span class="n">LegacyDataFrameMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.legacy_altair</span> <span class="kn">import</span> <span class="n">LegacyAltairMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.legacy_vega_lite</span> <span class="kn">import</span> <span class="n">LegacyVegaLiteMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.dataframe_selector</span> <span class="kn">import</span> <span class="n">DataFrameSelectorMixin</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">typing</span> <span class="k">as</span> <span class="n">npt</span>
+    <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span>
+    <span class="kn">from</span> <span class="nn">google.protobuf.message</span> <span class="kn">import</span> <span class="n">Message</span>
+    <span class="kn">from</span> <span class="nn">streamlit.type_util</span> <span class="kn">import</span> <span class="n">DataFrameCompatible</span>
+    <span class="kn">from</span> <span class="nn">streamlit.elements.arrow</span> <span class="kn">import</span> <span class="n">Data</span>
+
+
+<span class="n">LOGGER</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Save the type built-in for when we override the name &quot;type&quot;.</span>
+<span class="n">_type</span> <span class="o">=</span> <span class="nb">type</span>
+
+<span class="n">MAX_DELTA_BYTES</span><span class="p">:</span> <span class="n">Final</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>  <span class="c1"># 14MB</span>
+
+<span class="c1"># List of Streamlit commands that perform a Pandas &quot;melt&quot; operation on</span>
+<span class="c1"># input dataframes.</span>
+<span class="n">DELTA_TYPES_THAT_MELT_DATAFRAMES</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;line_chart&quot;</span><span class="p">,</span> <span class="s2">&quot;area_chart&quot;</span><span class="p">,</span> <span class="s2">&quot;bar_chart&quot;</span><span class="p">)</span>
+<span class="n">ARROW_DELTA_TYPES_THAT_MELT_DATAFRAMES</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;arrow_line_chart&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;arrow_area_chart&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;arrow_bar_chart&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">Value</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">)</span>
+<span class="n">DG</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;DG&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;DeltaGenerator&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">DeltaGenerator</span><span class="p">(</span>
+    <span class="n">AlertMixin</span><span class="p">,</span>
+    <span class="n">BalloonsMixin</span><span class="p">,</span>
+    <span class="n">BokehMixin</span><span class="p">,</span>
+    <span class="n">ButtonMixin</span><span class="p">,</span>
+    <span class="n">CameraInputMixin</span><span class="p">,</span>
+    <span class="n">CheckboxMixin</span><span class="p">,</span>
+    <span class="n">ColorPickerMixin</span><span class="p">,</span>
+    <span class="n">EmptyMixin</span><span class="p">,</span>
+    <span class="n">ExceptionMixin</span><span class="p">,</span>
+    <span class="n">FileUploaderMixin</span><span class="p">,</span>
+    <span class="n">FormMixin</span><span class="p">,</span>
+    <span class="n">GraphvizMixin</span><span class="p">,</span>
+    <span class="n">HelpMixin</span><span class="p">,</span>
+    <span class="n">IframeMixin</span><span class="p">,</span>
+    <span class="n">ImageMixin</span><span class="p">,</span>
+    <span class="n">LayoutsMixin</span><span class="p">,</span>
+    <span class="n">MarkdownMixin</span><span class="p">,</span>
+    <span class="n">MapMixin</span><span class="p">,</span>
+    <span class="n">MediaMixin</span><span class="p">,</span>
+    <span class="n">MetricMixin</span><span class="p">,</span>
+    <span class="n">MultiSelectMixin</span><span class="p">,</span>
+    <span class="n">NumberInputMixin</span><span class="p">,</span>
+    <span class="n">PlotlyMixin</span><span class="p">,</span>
+    <span class="n">ProgressMixin</span><span class="p">,</span>
+    <span class="n">PydeckMixin</span><span class="p">,</span>
+    <span class="n">PyplotMixin</span><span class="p">,</span>
+    <span class="n">RadioMixin</span><span class="p">,</span>
+    <span class="n">SelectboxMixin</span><span class="p">,</span>
+    <span class="n">SelectSliderMixin</span><span class="p">,</span>
+    <span class="n">SliderMixin</span><span class="p">,</span>
+    <span class="n">SnowMixin</span><span class="p">,</span>
+    <span class="n">JsonMixin</span><span class="p">,</span>
+    <span class="n">TextMixin</span><span class="p">,</span>
+    <span class="n">TextWidgetsMixin</span><span class="p">,</span>
+    <span class="n">TimeWidgetsMixin</span><span class="p">,</span>
+    <span class="n">WriteMixin</span><span class="p">,</span>
+    <span class="n">ArrowMixin</span><span class="p">,</span>
+    <span class="n">ArrowAltairMixin</span><span class="p">,</span>
+    <span class="n">ArrowVegaLiteMixin</span><span class="p">,</span>
+    <span class="n">LegacyDataFrameMixin</span><span class="p">,</span>
+    <span class="n">LegacyAltairMixin</span><span class="p">,</span>
+    <span class="n">LegacyVegaLiteMixin</span><span class="p">,</span>
+    <span class="n">DataFrameSelectorMixin</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creator of Delta protobuf messages.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    root_container: BlockPath_pb2.BlockPath.ContainerValue or None</span>
+<span class="sd">      The root container for this DeltaGenerator. If None, this is a null</span>
+<span class="sd">      DeltaGenerator which doesn&#39;t print to the app at all (useful for</span>
+<span class="sd">      testing).</span>
+
+<span class="sd">    cursor: cursor.Cursor or None</span>
+<span class="sd">      This is either:</span>
+<span class="sd">      - None: if this is the running DeltaGenerator for a top-level</span>
+<span class="sd">        container (MAIN or SIDEBAR)</span>
+<span class="sd">      - RunningCursor: if this is the running DeltaGenerator for a</span>
+<span class="sd">        non-top-level container (created with dg.container())</span>
+<span class="sd">      - LockedCursor: if this is a locked DeltaGenerator returned by some</span>
+<span class="sd">        other DeltaGenerator method. E.g. the dg returned in dg =</span>
+<span class="sd">        st.text(&quot;foo&quot;).</span>
+
+<span class="sd">    parent: DeltaGenerator</span>
+<span class="sd">      To support the `with dg` notation, DGs are arranged as a tree. Each DG</span>
+<span class="sd">      remembers its own parent, and the root of the tree is the main DG.</span>
+
+<span class="sd">    block_type: None or &quot;vertical&quot; or &quot;horizontal&quot; or &quot;column&quot; or &quot;expandable&quot;</span>
+<span class="sd">      If this is a block DG, we track its type to prevent nested columns/expanders</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># The pydoc below is for user consumption, so it doesn&#39;t talk about</span>
+    <span class="c1"># DeltaGenerator constructor parameters (which users should never use). For</span>
+    <span class="c1"># those, see above.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">root_container</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">RootContainer</span><span class="o">.</span><span class="n">MAIN</span><span class="p">,</span>
+        <span class="n">cursor</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Cursor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;DeltaGenerator&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">block_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Inserts or updates elements in Streamlit apps.</span>
+
+<span class="sd">        As a user, you should never initialize this object by hand. Instead,</span>
+<span class="sd">        DeltaGenerator objects are initialized for you in two places:</span>
+
+<span class="sd">        1) When you call `dg = st.foo()` for some method &quot;foo&quot;, sometimes `dg`</span>
+<span class="sd">        is a DeltaGenerator object. You can call methods on the `dg` object to</span>
+<span class="sd">        update the element `foo` that appears in the Streamlit app.</span>
+
+<span class="sd">        2) This is an internal detail, but `st.sidebar` itself is a</span>
+<span class="sd">        DeltaGenerator. That&#39;s why you can call `st.sidebar.foo()` to place</span>
+<span class="sd">        an element `foo` inside the sidebar.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Sanity check our Container + Cursor, to ensure that our Cursor</span>
+        <span class="c1"># is using the same Container that we are.</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">root_container</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">cursor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">root_container</span> <span class="o">!=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">root_container</span>
+        <span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">&quot;DeltaGenerator root_container and cursor.root_container must be the same&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Whether this DeltaGenerator is nested in the main area or sidebar.</span>
+        <span class="c1"># No relation to `st.container()`.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_root_container</span> <span class="o">=</span> <span class="n">root_container</span>
+
+        <span class="c1"># NOTE: You should never use this directly! Instead, use self._cursor,</span>
+        <span class="c1"># which is a computed property that fetches the right cursor.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_provided_cursor</span> <span class="o">=</span> <span class="n">cursor</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_block_type</span> <span class="o">=</span> <span class="n">block_type</span>
+
+        <span class="c1"># If this an `st.form` block, this will get filled in.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_form_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FormData</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Change the module of all mixin&#39;ed functions to be st.delta_generator,</span>
+        <span class="c1"># instead of the original module (e.g. st.elements.markdown)</span>
+        <span class="k">for</span> <span class="n">mixin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__bases__</span><span class="p">:</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span> <span class="ow">in</span> <span class="n">mixin</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+                    <span class="n">func</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__module__</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">repr_</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># with block started</span>
+        <span class="n">ctx</span> <span class="o">=</span> <span class="n">get_script_run_ctx</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">ctx</span><span class="p">:</span>
+            <span class="n">ctx</span><span class="o">.</span><span class="n">dg_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">traceback</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]:</span>
+        <span class="c1"># with block ended</span>
+        <span class="n">ctx</span> <span class="o">=</span> <span class="n">get_script_run_ctx</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">ctx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ctx</span><span class="o">.</span><span class="n">dg_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+        <span class="c1"># Re-raise any exceptions</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_active_dg</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DeltaGenerator&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Return the DeltaGenerator that&#39;s currently &#39;active&#39;.</span>
+<span class="sd">        If we are the main DeltaGenerator, and are inside a `with` block that</span>
+<span class="sd">        creates a container, our active_dg is that container. Otherwise,</span>
+<span class="sd">        our active_dg is self.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_main_dg</span><span class="p">:</span>
+            <span class="c1"># We&#39;re being invoked via an `st.foo` pattern - use the current</span>
+            <span class="c1"># `with` dg (aka the top of the stack).</span>
+            <span class="n">ctx</span> <span class="o">=</span> <span class="n">get_script_run_ctx</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">ctx</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">dg_stack</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">ctx</span><span class="o">.</span><span class="n">dg_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># We&#39;re being invoked via an `st.sidebar.foo` pattern - ignore the</span>
+        <span class="c1"># current `with` dg.</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_main_dg</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DeltaGenerator&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Return this DeltaGenerator&#39;s root - that is, the top-level ancestor</span>
+<span class="sd">        DeltaGenerator that we belong to (this generally means the st._main</span>
+<span class="sd">        DeltaGenerator).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_main_dg</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="k">else</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">NoReturn</span><span class="p">]:</span>
+        <span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+
+        <span class="n">streamlit_methods</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">method_name</span> <span class="k">for</span> <span class="n">method_name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">method_name</span><span class="p">))</span>
+        <span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">streamlit_methods</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_container</span> <span class="o">==</span> <span class="n">RootContainer</span><span class="o">.</span><span class="n">SIDEBAR</span><span class="p">:</span>
+                    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="s2">&quot;Method `</span><span class="si">%(name)s</span><span class="s2">()` does not exist for &quot;</span>
+                        <span class="s2">&quot;`st.sidebar`. Did you mean `st.</span><span class="si">%(name)s</span><span class="s2">()`?&quot;</span> <span class="o">%</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="s2">&quot;Method `</span><span class="si">%(name)s</span><span class="s2">()` does not exist for &quot;</span>
+                        <span class="s2">&quot;`DeltaGenerator` objects. Did you mean &quot;</span>
+                        <span class="s2">&quot;`st.</span><span class="si">%(name)s</span><span class="s2">()`?&quot;</span> <span class="o">%</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
+                    <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;`</span><span class="si">%(name)s</span><span class="s2">()` is not a valid Streamlit command.&quot;</span> <span class="o">%</span> <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span>
+                <span class="p">}</span>
+
+            <span class="k">raise</span> <span class="n">StreamlitAPIException</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">wrapper</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_parent_block_types</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Iterate all the block types used by this DeltaGenerator and all</span>
+<span class="sd">        its ancestor DeltaGenerators.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">current_dg</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DeltaGenerator</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">while</span> <span class="n">current_dg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current_dg</span><span class="o">.</span><span class="n">_block_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">current_dg</span><span class="o">.</span><span class="n">_block_type</span>
+            <span class="n">current_dg</span> <span class="o">=</span> <span class="n">current_dg</span><span class="o">.</span><span class="n">_parent</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_cursor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Cursor</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Return our Cursor. This will be None if we&#39;re not running in a</span>
+<span class="sd">        ScriptThread - e.g., if we&#39;re running a &quot;bare&quot; script outside of</span>
+<span class="sd">        Streamlit.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_provided_cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cursor</span><span class="o">.</span><span class="n">get_container_cursor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_root_container</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_provided_cursor</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_is_top_level</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_provided_cursor</span> <span class="ow">is</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_get_delta_path_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the element&#39;s delta path as a string like &quot;[0, 2, 3, 1]&quot;.</span>
+
+<span class="sd">        This uniquely identifies the element&#39;s position in the front-end,</span>
+<span class="sd">        which allows (among other potential uses) the InMemoryFileManager to maintain</span>
+<span class="sd">        session-specific maps of InMemoryFile objects placed with their &quot;coordinates&quot;.</span>
+
+<span class="sd">        This way, users can (say) use st.image with a stream of different images,</span>
+<span class="sd">        and Streamlit will expire the older images and replace them in place.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Operate on the active DeltaGenerator, in case we&#39;re in a `with` block.</span>
+        <span class="n">dg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active_dg</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">delta_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;[]&quot;</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">_enqueue</span><span class="p">(</span>  <span class="c1"># type: ignore[misc]</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">element_proto</span><span class="p">:</span> <span class="s2">&quot;Message&quot;</span><span class="p">,</span>
+        <span class="n">return_value</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">last_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hashable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">element_width</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">element_height</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DeltaGenerator&quot;</span><span class="p">:</span>
+        <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">_enqueue</span><span class="p">(</span>  <span class="c1"># type: ignore[misc]</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">element_proto</span><span class="p">:</span> <span class="s2">&quot;Message&quot;</span><span class="p">,</span>
+        <span class="n">return_value</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">NoValue</span><span class="p">],</span>
+        <span class="n">last_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hashable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">element_width</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">element_height</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">_enqueue</span><span class="p">(</span>  <span class="c1"># type: ignore[misc]</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">element_proto</span><span class="p">:</span> <span class="s2">&quot;Message&quot;</span><span class="p">,</span>
+        <span class="n">return_value</span><span class="p">:</span> <span class="n">Value</span><span class="p">,</span>
+        <span class="n">last_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hashable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">element_width</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">element_height</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Value</span><span class="p">:</span>
+        <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">_enqueue</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">element_proto</span><span class="p">:</span> <span class="s2">&quot;Message&quot;</span><span class="p">,</span>
+        <span class="n">return_value</span><span class="p">:</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">last_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hashable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">element_width</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">element_height</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DeltaGenerator&quot;</span><span class="p">:</span>
+        <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">_enqueue</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">element_proto</span><span class="p">:</span> <span class="s2">&quot;Message&quot;</span><span class="p">,</span>
+        <span class="n">return_value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">Type</span><span class="p">[</span><span class="n">NoValue</span><span class="p">],</span> <span class="n">Value</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">last_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hashable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">element_width</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">element_height</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;DeltaGenerator&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Value</span><span class="p">]:</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">_enqueue</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">element_proto</span><span class="p">:</span> <span class="s2">&quot;Message&quot;</span><span class="p">,</span>
+        <span class="n">return_value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">Type</span><span class="p">[</span><span class="n">NoValue</span><span class="p">],</span> <span class="n">Value</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">last_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hashable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">element_width</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">element_height</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;DeltaGenerator&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Value</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Create NewElement delta, fill it, and enqueue it.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        delta_type: string</span>
+<span class="sd">            The name of the streamlit method being called</span>
+<span class="sd">        element_proto: proto</span>
+<span class="sd">            The actual proto in the NewElement type e.g. Alert/Button/Slider</span>
+<span class="sd">        return_value: any or None</span>
+<span class="sd">            The value to return to the calling script (for widgets)</span>
+<span class="sd">        element_width : int or None</span>
+<span class="sd">            Desired width for the element</span>
+<span class="sd">        element_height : int or None</span>
+<span class="sd">            Desired height for the element</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        DeltaGenerator or any</span>
+<span class="sd">            If this element is NOT an interactive widget, return a</span>
+<span class="sd">            DeltaGenerator that can be used to modify the newly-created</span>
+<span class="sd">            element. Otherwise, if the element IS a widget, return the</span>
+<span class="sd">            `return_value` parameter.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Operate on the active DeltaGenerator, in case we&#39;re in a `with` block.</span>
+        <span class="n">dg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active_dg</span>
+        <span class="c1"># Warn if we&#39;re called from within a legacy @st.cache function</span>
+        <span class="n">legacy_caching</span><span class="o">.</span><span class="n">maybe_show_cached_st_function_warning</span><span class="p">(</span><span class="n">dg</span><span class="p">,</span> <span class="n">delta_type</span><span class="p">)</span>
+        <span class="c1"># Warn if we&#39;re called from within @st.memo or @st.singleton</span>
+        <span class="n">caching</span><span class="o">.</span><span class="n">maybe_show_cached_st_function_warning</span><span class="p">(</span><span class="n">dg</span><span class="p">,</span> <span class="n">delta_type</span><span class="p">)</span>
+
+        <span class="c1"># Warn if an element is being changed but the user isn&#39;t running the streamlit server.</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">_maybe_print_use_warning</span><span class="p">()</span>
+
+        <span class="c1"># Some elements have a method.__name__ != delta_type in proto.</span>
+        <span class="c1"># This really matters for line_chart, bar_chart &amp; area_chart,</span>
+        <span class="c1"># since add_rows() relies on method.__name__ == delta_type</span>
+        <span class="c1"># TODO: Fix for all elements (or the cache warning above will be wrong)</span>
+        <span class="n">proto_type</span> <span class="o">=</span> <span class="n">delta_type</span>
+        <span class="k">if</span> <span class="n">proto_type</span> <span class="ow">in</span> <span class="n">DELTA_TYPES_THAT_MELT_DATAFRAMES</span><span class="p">:</span>
+            <span class="n">proto_type</span> <span class="o">=</span> <span class="s2">&quot;vega_lite_chart&quot;</span>
+
+        <span class="c1"># Mirror the logic for arrow_ elements.</span>
+        <span class="k">if</span> <span class="n">proto_type</span> <span class="ow">in</span> <span class="n">ARROW_DELTA_TYPES_THAT_MELT_DATAFRAMES</span><span class="p">:</span>
+            <span class="n">proto_type</span> <span class="o">=</span> <span class="s2">&quot;arrow_vega_lite_chart&quot;</span>
+
+        <span class="c1"># Copy the marshalled proto into the overall msg proto</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">ForwardMsg_pb2</span><span class="o">.</span><span class="n">ForwardMsg</span><span class="p">()</span>
+        <span class="n">msg_el_proto</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">new_element</span><span class="p">,</span> <span class="n">proto_type</span><span class="p">)</span>
+        <span class="n">msg_el_proto</span><span class="o">.</span><span class="n">CopyFrom</span><span class="p">(</span><span class="n">element_proto</span><span class="p">)</span>
+
+        <span class="c1"># Only enqueue message and fill in metadata if there&#39;s a container.</span>
+        <span class="n">msg_was_enqueued</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">dg</span><span class="o">.</span><span class="n">_root_container</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">delta_path</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">delta_path</span>
+
+            <span class="k">if</span> <span class="n">element_width</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">element_dimension_spec</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">element_width</span>
+            <span class="k">if</span> <span class="n">element_height</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">element_dimension_spec</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">element_height</span>
+
+            <span class="n">_enqueue_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">msg_was_enqueued</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">msg_was_enqueued</span><span class="p">:</span>
+            <span class="c1"># Get a DeltaGenerator that is locked to the current element</span>
+            <span class="c1"># position.</span>
+            <span class="n">new_cursor</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">get_locked_cursor</span><span class="p">(</span>
+                    <span class="n">delta_type</span><span class="o">=</span><span class="n">delta_type</span><span class="p">,</span> <span class="n">last_index</span><span class="o">=</span><span class="n">last_index</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="kc">None</span>
+            <span class="p">)</span>
+
+            <span class="n">output_dg</span> <span class="o">=</span> <span class="n">DeltaGenerator</span><span class="p">(</span>
+                <span class="n">root_container</span><span class="o">=</span><span class="n">dg</span><span class="o">.</span><span class="n">_root_container</span><span class="p">,</span>
+                <span class="n">cursor</span><span class="o">=</span><span class="n">new_cursor</span><span class="p">,</span>
+                <span class="n">parent</span><span class="o">=</span><span class="n">dg</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If the message was not enqueued, just return self since it&#39;s a</span>
+            <span class="c1"># no-op from the point of view of the app.</span>
+            <span class="n">output_dg</span> <span class="o">=</span> <span class="n">dg</span>
+
+        <span class="k">return</span> <span class="n">_value_or_dg</span><span class="p">(</span><span class="n">return_value</span><span class="p">,</span> <span class="n">output_dg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_block</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">block_proto</span><span class="p">:</span> <span class="n">Block_pb2</span><span class="o">.</span><span class="n">Block</span> <span class="o">=</span> <span class="n">Block_pb2</span><span class="o">.</span><span class="n">Block</span><span class="p">(),</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DeltaGenerator&quot;</span><span class="p">:</span>
+        <span class="c1"># Operate on the active DeltaGenerator, in case we&#39;re in a `with` block.</span>
+        <span class="n">dg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active_dg</span>
+
+        <span class="c1"># Prevent nested columns &amp; expanders by checking all parents.</span>
+        <span class="n">block_type</span> <span class="o">=</span> <span class="n">block_proto</span><span class="o">.</span><span class="n">WhichOneof</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
+        <span class="c1"># Convert the generator to a list, so we can use it multiple times.</span>
+        <span class="n">parent_block_types</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(</span><span class="n">dg</span><span class="o">.</span><span class="n">_parent_block_types</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">block_type</span> <span class="o">==</span> <span class="s2">&quot;column&quot;</span> <span class="ow">and</span> <span class="n">block_type</span> <span class="ow">in</span> <span class="n">parent_block_types</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">StreamlitAPIException</span><span class="p">(</span>
+                <span class="s2">&quot;Columns may not be nested inside other columns.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">block_type</span> <span class="o">==</span> <span class="s2">&quot;expandable&quot;</span> <span class="ow">and</span> <span class="n">block_type</span> <span class="ow">in</span> <span class="n">parent_block_types</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">StreamlitAPIException</span><span class="p">(</span>
+                <span class="s2">&quot;Expanders may not be nested inside other expanders.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dg</span><span class="o">.</span><span class="n">_root_container</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">dg</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">ForwardMsg_pb2</span><span class="o">.</span><span class="n">ForwardMsg</span><span class="p">()</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">delta_path</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">delta_path</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">add_block</span><span class="o">.</span><span class="n">CopyFrom</span><span class="p">(</span><span class="n">block_proto</span><span class="p">)</span>
+
+        <span class="c1"># Normally we&#39;d return a new DeltaGenerator that uses the locked cursor</span>
+        <span class="c1"># below. But in this case we want to return a DeltaGenerator that uses</span>
+        <span class="c1"># a brand new cursor for this new block we&#39;re creating.</span>
+        <span class="n">block_cursor</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">RunningCursor</span><span class="p">(</span>
+            <span class="n">root_container</span><span class="o">=</span><span class="n">dg</span><span class="o">.</span><span class="n">_root_container</span><span class="p">,</span>
+            <span class="n">parent_path</span><span class="o">=</span><span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">parent_path</span> <span class="o">+</span> <span class="p">(</span><span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">index</span><span class="p">,),</span>
+        <span class="p">)</span>
+        <span class="n">block_dg</span> <span class="o">=</span> <span class="n">DeltaGenerator</span><span class="p">(</span>
+            <span class="n">root_container</span><span class="o">=</span><span class="n">dg</span><span class="o">.</span><span class="n">_root_container</span><span class="p">,</span>
+            <span class="n">cursor</span><span class="o">=</span><span class="n">block_cursor</span><span class="p">,</span>
+            <span class="n">parent</span><span class="o">=</span><span class="n">dg</span><span class="p">,</span>
+            <span class="n">block_type</span><span class="o">=</span><span class="n">block_type</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># Blocks inherit their parent form ids.</span>
+        <span class="c1"># NOTE: Container form ids aren&#39;t set in proto.</span>
+        <span class="n">block_dg</span><span class="o">.</span><span class="n">_form_data</span> <span class="o">=</span> <span class="n">FormData</span><span class="p">(</span><span class="n">current_form_id</span><span class="p">(</span><span class="n">dg</span><span class="p">))</span>
+
+        <span class="c1"># Must be called to increment this cursor&#39;s index.</span>
+        <span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">get_locked_cursor</span><span class="p">(</span><span class="n">last_index</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">_enqueue_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">block_dg</span>
+
+    <span class="k">def</span> <span class="nf">_legacy_add_rows</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">DG</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="s2">&quot;Data&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
+            <span class="s2">&quot;DataFrame&quot;</span><span class="p">,</span> <span class="s2">&quot;npt.NDArray[Any]&quot;</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="kc">None</span>
+        <span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DG</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Concatenate a dataframe to the bottom of the current one.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : pandas.DataFrame, pandas.Styler, numpy.ndarray, Iterable, dict,</span>
+<span class="sd">        or None</span>
+<span class="sd">            Table to concat. Optional.</span>
+
+<span class="sd">        **kwargs : pandas.DataFrame, numpy.ndarray, Iterable, dict, or None</span>
+<span class="sd">            The named dataset to concat. Optional. You can only pass in 1</span>
+<span class="sd">            dataset (including the one in the data parameter).</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; df1 = pd.DataFrame(</span>
+<span class="sd">        ...    np.random.randn(50, 20),</span>
+<span class="sd">        ...    columns=(&#39;col %d&#39; % i for i in range(20)))</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; my_table = st._legacy_table(df1)</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; df2 = pd.DataFrame(</span>
+<span class="sd">        ...    np.random.randn(50, 20),</span>
+<span class="sd">        ...    columns=(&#39;col %d&#39; % i for i in range(20)))</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; my_table._legacy_add_rows(df2)</span>
+<span class="sd">        &gt;&gt;&gt; # Now the table shown in the Streamlit app contains the data for</span>
+<span class="sd">        &gt;&gt;&gt; # df1 followed by the data for df2.</span>
+
+<span class="sd">        You can do the same thing with plots. For example, if you want to add</span>
+<span class="sd">        more data to a line chart:</span>
+
+<span class="sd">        &gt;&gt;&gt; # Assuming df1 and df2 from the example above still exist...</span>
+<span class="sd">        &gt;&gt;&gt; my_chart = st._legacy_line_chart(df1)</span>
+<span class="sd">        &gt;&gt;&gt; my_chart._legacy_add_rows(df2)</span>
+<span class="sd">        &gt;&gt;&gt; # Now the chart shown in the Streamlit app contains the data for</span>
+<span class="sd">        &gt;&gt;&gt; # df1 followed by the data for df2.</span>
+
+<span class="sd">        And for plots whose datasets are named, you can pass the data with a</span>
+<span class="sd">        keyword argument where the key is the name:</span>
+
+<span class="sd">        &gt;&gt;&gt; my_chart = st._legacy_vega_lite_chart({</span>
+<span class="sd">        ...     &#39;mark&#39;: &#39;line&#39;,</span>
+<span class="sd">        ...     &#39;encoding&#39;: {&#39;x&#39;: &#39;a&#39;, &#39;y&#39;: &#39;b&#39;},</span>
+<span class="sd">        ...     &#39;datasets&#39;: {</span>
+<span class="sd">        ...       &#39;some_fancy_name&#39;: df1,  # &lt;-- named dataset</span>
+<span class="sd">        ...      },</span>
+<span class="sd">        ...     &#39;data&#39;: {&#39;name&#39;: &#39;some_fancy_name&#39;},</span>
+<span class="sd">        ... }),</span>
+<span class="sd">        &gt;&gt;&gt; my_chart._legacy_add_rows(some_fancy_name=df2)  # &lt;-- name used as keyword</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_container</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">is_locked</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">StreamlitAPIException</span><span class="p">(</span><span class="s2">&quot;Only existing elements can `add_rows`.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Accept syntax st._legacy_add_rows(df).</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="c1"># Accept syntax st._legacy_add_rows(foo=df).</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">name</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>
+        <span class="c1"># Raise error otherwise.</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">StreamlitAPIException</span><span class="p">(</span>
+                <span class="s2">&quot;Wrong number of arguments to add_rows().&quot;</span>
+                <span class="s2">&quot;Command requires exactly one dataset&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># When doing _legacy_add_rows on an element that does not already have data</span>
+        <span class="c1"># (for example, st._legacy_line_chart() without any args), call the original</span>
+        <span class="c1"># st._legacy_foo() element with new data instead of doing a _legacy_add_rows().</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;delta_type&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">DELTA_TYPES_THAT_MELT_DATAFRAMES</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;last_index&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="p">):</span>
+            <span class="c1"># IMPORTANT: This assumes delta types and st method names always</span>
+            <span class="c1"># match!</span>
+            <span class="c1"># delta_type doesn&#39;t have any prefix, but st_method_name starts with &quot;_legacy_&quot;.</span>
+            <span class="n">st_method_name</span> <span class="o">=</span> <span class="s2">&quot;_legacy_&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;delta_type&quot;</span><span class="p">]</span>
+            <span class="n">st_method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">st_method_name</span><span class="p">)</span>
+            <span class="n">st_method</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;last_index&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_maybe_melt_data_for_add_rows</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;delta_type&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;last_index&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">ForwardMsg_pb2</span><span class="o">.</span><span class="n">ForwardMsg</span><span class="p">()</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">delta_path</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">delta_path</span>
+
+        <span class="kn">import</span> <span class="nn">streamlit.elements.legacy_data_frame</span> <span class="k">as</span> <span class="nn">data_frame</span>
+
+        <span class="n">data_frame</span><span class="o">.</span><span class="n">marshall_data_frame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">add_rows</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">add_rows</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">add_rows</span><span class="o">.</span><span class="n">has_name</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">_enqueue_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">_arrow_add_rows</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">DG</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="s2">&quot;Data&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
+            <span class="s2">&quot;DataFrame&quot;</span><span class="p">,</span> <span class="s2">&quot;npt.NDArray[Any]&quot;</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="kc">None</span>
+        <span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DG</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Concatenate a dataframe to the bottom of the current one.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : pandas.DataFrame, pandas.Styler, numpy.ndarray, Iterable, dict, or None</span>
+<span class="sd">            Table to concat. Optional.</span>
+
+<span class="sd">        **kwargs : pandas.DataFrame, numpy.ndarray, Iterable, dict, or None</span>
+<span class="sd">            The named dataset to concat. Optional. You can only pass in 1</span>
+<span class="sd">            dataset (including the one in the data parameter).</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        &gt;&gt;&gt; df1 = pd.DataFrame(</span>
+<span class="sd">        ...    np.random.randn(50, 20),</span>
+<span class="sd">        ...    columns=(&#39;col %d&#39; % i for i in range(20)))</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; my_table = st._arrow_table(df1)</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; df2 = pd.DataFrame(</span>
+<span class="sd">        ...    np.random.randn(50, 20),</span>
+<span class="sd">        ...    columns=(&#39;col %d&#39; % i for i in range(20)))</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; my_table._arrow_add_rows(df2)</span>
+<span class="sd">        &gt;&gt;&gt; # Now the table shown in the Streamlit app contains the data for</span>
+<span class="sd">        &gt;&gt;&gt; # df1 followed by the data for df2.</span>
+
+<span class="sd">        You can do the same thing with plots. For example, if you want to add</span>
+<span class="sd">        more data to a line chart:</span>
+
+<span class="sd">        &gt;&gt;&gt; # Assuming df1 and df2 from the example above still exist...</span>
+<span class="sd">        &gt;&gt;&gt; my_chart = st._arrow_line_chart(df1)</span>
+<span class="sd">        &gt;&gt;&gt; my_chart._arrow_add_rows(df2)</span>
+<span class="sd">        &gt;&gt;&gt; # Now the chart shown in the Streamlit app contains the data for</span>
+<span class="sd">        &gt;&gt;&gt; # df1 followed by the data for df2.</span>
+
+<span class="sd">        And for plots whose datasets are named, you can pass the data with a</span>
+<span class="sd">        keyword argument where the key is the name:</span>
+
+<span class="sd">        &gt;&gt;&gt; my_chart = st._arrow_vega_lite_chart({</span>
+<span class="sd">        ...     &#39;mark&#39;: &#39;line&#39;,</span>
+<span class="sd">        ...     &#39;encoding&#39;: {&#39;x&#39;: &#39;a&#39;, &#39;y&#39;: &#39;b&#39;},</span>
+<span class="sd">        ...     &#39;datasets&#39;: {</span>
+<span class="sd">        ...       &#39;some_fancy_name&#39;: df1,  # &lt;-- named dataset</span>
+<span class="sd">        ...      },</span>
+<span class="sd">        ...     &#39;data&#39;: {&#39;name&#39;: &#39;some_fancy_name&#39;},</span>
+<span class="sd">        ... }),</span>
+<span class="sd">        &gt;&gt;&gt; my_chart._arrow_add_rows(some_fancy_name=df2)  # &lt;-- name used as keyword</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root_container</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">is_locked</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">StreamlitAPIException</span><span class="p">(</span><span class="s2">&quot;Only existing elements can `add_rows`.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Accept syntax st._arrow_add_rows(df).</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="c1"># Accept syntax st._arrow_add_rows(foo=df).</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">name</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>
+        <span class="c1"># Raise error otherwise.</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">StreamlitAPIException</span><span class="p">(</span>
+                <span class="s2">&quot;Wrong number of arguments to add_rows().&quot;</span>
+                <span class="s2">&quot;Command requires exactly one dataset&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># When doing _arrow_add_rows on an element that does not already have data</span>
+        <span class="c1"># (for example, st._arrow_line_chart() without any args), call the original</span>
+        <span class="c1"># st._arrow_foo() element with new data instead of doing a _arrow_add_rows().</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;delta_type&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">ARROW_DELTA_TYPES_THAT_MELT_DATAFRAMES</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;last_index&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="p">):</span>
+            <span class="c1"># IMPORTANT: This assumes delta types and st method names always</span>
+            <span class="c1"># match!</span>
+            <span class="c1"># delta_type starts with &quot;arrow_&quot;, but st_method_name starts with &quot;_arrow_&quot;.</span>
+            <span class="n">st_method_name</span> <span class="o">=</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;delta_type&quot;</span><span class="p">]</span>
+            <span class="n">st_method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">st_method_name</span><span class="p">)</span>
+            <span class="n">st_method</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;last_index&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_maybe_melt_data_for_add_rows</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;delta_type&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;last_index&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">ForwardMsg_pb2</span><span class="o">.</span><span class="n">ForwardMsg</span><span class="p">()</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">delta_path</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">delta_path</span>
+
+        <span class="kn">import</span> <span class="nn">streamlit.elements.arrow</span> <span class="k">as</span> <span class="nn">arrow_proto</span>
+
+        <span class="n">default_uuid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_delta_path_str</span><span class="p">()))</span>
+        <span class="n">arrow_proto</span><span class="o">.</span><span class="n">marshall</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">arrow_add_rows</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">default_uuid</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">arrow_add_rows</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">arrow_add_rows</span><span class="o">.</span><span class="n">has_name</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">_enqueue_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+<span class="n">DFT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;DFT&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;DataFrameCompatible&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_maybe_melt_data_for_add_rows</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">DFT</span><span class="p">,</span>
+    <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">last_index</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">DFT</span><span class="p">,</span> <span class="s2">&quot;DataFrame&quot;</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+    <span class="k">def</span> <span class="nf">_melt_data</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">:</span> <span class="s2">&quot;DataFrame&quot;</span><span class="p">,</span> <span class="n">last_index</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;DataFrame&quot;</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">RangeIndex</span><span class="p">):</span>
+            <span class="n">old_step</span> <span class="o">=</span> <span class="n">_get_pandas_index_attr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;step&quot;</span><span class="p">)</span>
+
+            <span class="c1"># We have to drop the predefined index</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">old_stop</span> <span class="o">=</span> <span class="n">_get_pandas_index_attr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;stop&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">old_step</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">old_stop</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">StreamlitAPIException</span><span class="p">(</span>
+                    <span class="s2">&quot;&#39;RangeIndex&#39; object has no attribute &#39;step&#39;&quot;</span>
+                <span class="p">)</span>
+
+            <span class="n">start</span> <span class="o">=</span> <span class="n">last_index</span> <span class="o">+</span> <span class="n">old_step</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="n">last_index</span> <span class="o">+</span> <span class="n">old_step</span> <span class="o">+</span> <span class="n">old_stop</span>
+
+            <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">RangeIndex</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">old_step</span><span class="p">)</span>
+            <span class="n">last_index</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="n">index_name</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="n">index_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">index_name</span> <span class="o">=</span> <span class="s2">&quot;index&quot;</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="n">index_name</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">last_index</span>
+
+    <span class="c1"># For some delta types we have to reshape the data structure</span>
+    <span class="c1"># otherwise the input data and the actual data used</span>
+    <span class="c1"># by vega_lite will be different, and it will throw an error.</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">delta_type</span> <span class="ow">in</span> <span class="n">DELTA_TYPES_THAT_MELT_DATAFRAMES</span>
+        <span class="ow">or</span> <span class="n">delta_type</span> <span class="ow">in</span> <span class="n">ARROW_DELTA_TYPES_THAT_MELT_DATAFRAMES</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_melt_data</span><span class="p">(</span>
+                <span class="n">df</span><span class="o">=</span><span class="n">type_util</span><span class="o">.</span><span class="n">convert_anything_to_df</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
+                <span class="n">last_index</span><span class="o">=</span><span class="n">last_index</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_melt_data</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">last_index</span><span class="o">=</span><span class="n">last_index</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">last_index</span>
+
+
+<span class="k">def</span> <span class="nf">_get_pandas_index_attr</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="s2">&quot;Union[DataFrame, Series]&quot;</span><span class="p">,</span>
+    <span class="n">attr</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">_value_or_dg</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dg</span><span class="p">:</span> <span class="n">DG</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DG</span><span class="p">:</span>
+    <span class="o">...</span>
+
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">_value_or_dg</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">NoValue</span><span class="p">],</span> <span class="n">dg</span><span class="p">:</span> <span class="n">DG</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># type: ignore[misc]</span>
+    <span class="o">...</span>
+
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">_value_or_dg</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Value</span><span class="p">,</span> <span class="n">dg</span><span class="p">:</span> <span class="n">DG</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Value</span><span class="p">:</span>
+    <span class="c1"># This overload definition technically overlaps with the one above (Value</span>
+    <span class="c1"># contains Type[NoValue]), and since the return types are conflicting,</span>
+    <span class="c1"># mypy complains. Hence, the ignore-comment above. But, in practice, since</span>
+    <span class="c1"># the overload above is more specific, and is matched first, there is no</span>
+    <span class="c1"># actual overlap. The `Value` type here is thus narrowed to the cases</span>
+    <span class="c1"># where value is neither None nor NoValue.</span>
+
+    <span class="c1"># The ignore-comment should thus be fine.</span>
+    <span class="o">...</span>
+
+
+<span class="k">def</span> <span class="nf">_value_or_dg</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">Type</span><span class="p">[</span><span class="n">NoValue</span><span class="p">],</span> <span class="n">Value</span><span class="p">],</span>
+    <span class="n">dg</span><span class="p">:</span> <span class="n">DG</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">DG</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Value</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Return either value, or None, or dg.</span>
+
+<span class="sd">    This is needed because Widgets have meaningful return values. This is</span>
+<span class="sd">    unlike other elements, which always return None. Then we internally replace</span>
+<span class="sd">    that None with a DeltaGenerator instance.</span>
+
+<span class="sd">    However, sometimes a widget may want to return None, and in this case it</span>
+<span class="sd">    should not be replaced by a DeltaGenerator. So we have a special NoValue</span>
+<span class="sd">    object that gets replaced by None.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">NoValue</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dg</span>
+    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Value</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_enqueue_message</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">ForwardMsg_pb2</span><span class="o">.</span><span class="n">ForwardMsg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Enqueues a ForwardMsg proto to send to the app.&quot;&quot;&quot;</span>
+    <span class="n">ctx</span> <span class="o">=</span> <span class="n">get_script_run_ctx</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">ctx</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NoSessionContext</span><span class="p">()</span>
+
+    <span class="n">ctx</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
