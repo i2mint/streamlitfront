@@ -24,8 +24,8 @@ my_incrementer = c.increment
 
 
 def display_selectbox(store):
-    _keys = filt_iter(store, filt=lambda k: k.endswith('.csv'))
-    st.selectbox('Choose a file', list(_keys))
+    _keys = filt_iter(store, filt=lambda k: k.endswith(".csv"))
+    st.selectbox("Choose a file", list(_keys))
 
 
 def dacc(zip_path: type(lambda a: a), file: str):  # file: list = []):
@@ -41,10 +41,10 @@ def foo(state: type(get_state()), word: str):
 
 funcs = [my_incrementer, foo]
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from streamlitfront.base import dispatch_funcs
 
-    print('file: {}'.format(os.path.realpath(__file__)))
+    print("file: {}".format(os.path.realpath(__file__)))
 
     app = dispatch_funcs(funcs)
 

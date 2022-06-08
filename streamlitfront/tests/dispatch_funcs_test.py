@@ -14,13 +14,13 @@ def foo(a: int = 0, b: int = 0, c=0) -> int:
     return (a * b) + c
 
 
-def bar(x: str, greeting='hello') -> str:
+def bar(x: str, greeting="hello") -> str:
     """bar greets its input"""
-    return f'{greeting} {x}'
+    return f"{greeting} {x}"
 
 
 def confuser(a: int = 0, x: float = 3.14) -> float:
-    return (a ** 2) * x
+    return (a**2) * x
 
 
 # def wait_to_render(cls):
@@ -34,7 +34,7 @@ def confuser(a: int = 0, x: float = 3.14) -> float:
 
 
 @pytest.mark.parametrize(
-    'spec',
+    "spec",
     [
         (
             {
@@ -48,14 +48,20 @@ def confuser(a: int = 0, x: float = 3.14) -> float:
         (
             {
                 foo: [(rdm_int(), rdm_int(), rdm_int())],
-                bar: [(rdm_str(),), (rdm_str(), rdm_str()),],
+                bar: [
+                    (rdm_str(),),
+                    (rdm_str(), rdm_str()),
+                ],
             }
         ),
         (
             {
                 foo: [(rdm_int(), rdm_int(), rdm_int())],
                 bar: [(rdm_str(), rdm_str())],
-                confuser: [(rdm_int(),), (rdm_int(), rdm_float()),],
+                confuser: [
+                    (rdm_int(),),
+                    (rdm_int(), rdm_float()),
+                ],
             }
         ),
     ],

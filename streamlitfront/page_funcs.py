@@ -30,7 +30,7 @@ def get_func_elements_commands(
         element_factory_for_annot or _get_dflt_element_factory_for_annot()
     )
     sig = Sig(func)
-    NodeGetter(state['views'])
+    NodeGetter(state["views"])
 
     func_args_specs = {name: {} for name in sig.names}
     for name in sig.names:
@@ -51,9 +51,9 @@ def get_func_elements_commands(
             if dflt is not None:
                 # TODO: type-to-element conditions must be in configs
                 if isinstance(dflt, (list, tuple, set)):
-                    factory_kwargs['options'] = dflt
+                    factory_kwargs["options"] = dflt
                 else:
-                    factory_kwargs['value'] = dflt
+                    factory_kwargs["value"] = dflt
 
         yield name, Command(element_factory, **factory_kwargs)
 
@@ -84,11 +84,11 @@ def get_func_args_specs(
             if dflt is not None:
                 # TODO: type-to-element conditions must be in configs
                 if isinstance(dflt, (list, tuple, set)):
-                    factory_kwargs['options'] = dflt
+                    factory_kwargs["options"] = dflt
                 else:
-                    factory_kwargs['value'] = dflt
+                    factory_kwargs["value"] = dflt
 
-        d['element_factory'] = (element_factory, factory_kwargs)
+        d["element_factory"] = (element_factory, factory_kwargs)
 
     return func_args_specs
 
@@ -104,7 +104,7 @@ class ExperimentalViewFunc(BasePageFunc):
         for argname, command in commands:
             func_inputs[argname] = command()
 
-        submit = st.button('Submit')
+        submit = st.button("Submit")
         if submit:
             st.write(self.func(**func_inputs))
 
@@ -143,11 +143,11 @@ def special_get_func_args_specs(
             if dflt is not None:
                 # TODO: type-to-element conditions must be in configs
                 if isinstance(dflt, (list, tuple, set)):
-                    factory_kwargs['options'] = dflt
+                    factory_kwargs["options"] = dflt
                 else:
-                    factory_kwargs['value'] = dflt
+                    factory_kwargs["value"] = dflt
 
-        d['element_factory'] = (element_factory, factory_kwargs)
+        d["element_factory"] = (element_factory, factory_kwargs)
 
     return func_args_specs
 
@@ -155,9 +155,9 @@ def special_get_func_args_specs(
 class DataAccessPageFunc(BasePageFunc):
     def prepare_view(self, state):
         if self.view_title:
-            st.markdown(f'''## **{self.view_title}**''')
+            st.markdown(f"""## **{self.view_title}**""")
         st.write(
-            'Current value stored in state for this function is:',
+            "Current value stored in state for this function is:",
             state[self.view_title],
         )
 
@@ -166,14 +166,14 @@ class DataAccessPageFunc(BasePageFunc):
         args_specs = get_func_args_specs(self.func)
         func_inputs = {}
         for argname, spec in args_specs.items():
-            if spec['element_factory'][0] is None:
+            if spec["element_factory"][0] is None:
                 func_inputs[argname] = state
             else:
-                if 'options' in spec['element_factory'][1]:
+                if "options" in spec["element_factory"][1]:
                     pass  # TODO: find some way to access the data from another input we want
-                element_factory, kwargs = spec['element_factory']
+                element_factory, kwargs = spec["element_factory"]
                 func_inputs[argname] = element_factory(**kwargs)
-        submit = st.button('Submit')
+        submit = st.button("Submit")
         if submit:
             state[self.view_title] = self.func(**func_inputs)
             st.write(state[self.view_title])
@@ -193,21 +193,21 @@ class DataBindingExploPageFunc(DataAccessPageFunc):
                 func_inputs[argname] = state
             else:
                 if func_inputs[int_args[idx - 1]]:
-                    if args_specs[argname]['element_factory'][0] is None:
+                    if args_specs[argname]["element_factory"][0] is None:
                         func_inputs[argname] = state
                     else:
-                        if 'options' in args_specs[argname]['element_factory'][1]:
-                            options = func_inputs[int_args[idx - 1]].split(', ')
-                            args_specs[argname]['element_factory'][1][
-                                'options'
+                        if "options" in args_specs[argname]["element_factory"][1]:
+                            options = func_inputs[int_args[idx - 1]].split(", ")
+                            args_specs[argname]["element_factory"][1][
+                                "options"
                             ] = options
-                        element_factory, kwargs = args_specs[argname]['element_factory']
+                        element_factory, kwargs = args_specs[argname]["element_factory"]
                         func_inputs[argname] = element_factory(**kwargs)
-        submit = st.button('Submit')
+        submit = st.button("Submit")
         if submit:
             state[self.view_title] = self.func(**func_inputs)
             st.write(
-                'New value stored in state for this function is:',
+                "New value stored in state for this function is:",
                 state[self.view_title],
             )
 
@@ -220,25 +220,25 @@ class ArgsPageFunc(BasePageFunc):
         positional_inputs = []
         keyword_inputs = {}
         for argname, spec in args_specs.items():
-            element_factory, kwargs = spec['element_factory']
+            element_factory, kwargs = spec["element_factory"]
             if isinstance(element_factory, dict):
-                args = element_factory['base'](**kwargs)
+                args = element_factory["base"](**kwargs)
                 if args:
                     for idx in range(args):
                         if len(element_factory) == 3:
                             positional_inputs.append(
-                                build_factory(element_factory, 'input', idx)
+                                build_factory(element_factory, "input", idx)
                             )
                         else:
-                            key = build_factory(element_factory, 'key', idx)
-                            value = build_factory(element_factory, 'value', idx)
+                            key = build_factory(element_factory, "key", idx)
+                            value = build_factory(element_factory, "value", idx)
                             keyword_inputs[key] = value
             else:
                 keyword_inputs[argname] = element_factory(**kwargs)
-        submit = st.button('Submit')
+        submit = st.button("Submit")
         if submit:
             st.write(
-                f'positional inputs are {positional_inputs} and keyword inputs are {keyword_inputs}'
+                f"positional inputs are {positional_inputs} and keyword inputs are {keyword_inputs}"
             )
             # state[self.view_title] = self.func(*positional_inputs, **keyword_inputs)
             # st.write(state[self.view_title])
@@ -248,24 +248,24 @@ class ArgsPageFunc(BasePageFunc):
 class StatePageFunc(BasePageFunc):
     def __call__(self, state):
         if self.view_title:
-            st.markdown(f'''## **{self.view_title}**''')
+            st.markdown(f"""## **{self.view_title}**""")
         st.write(
-            'Current value stored in state for this function is:',
+            "Current value stored in state for this function is:",
             state[self.view_title],
         )
         args_specs = get_func_args_specs(self.func)
         func_inputs = {}
         for argname, spec in args_specs.items():
-            if spec['element_factory'][0] is None:
+            if spec["element_factory"][0] is None:
                 func_inputs[argname] = state
             else:
-                element_factory, kwargs = spec['element_factory']
+                element_factory, kwargs = spec["element_factory"]
                 func_inputs[argname] = element_factory(**kwargs)
-        submit = st.button('Submit')
+        submit = st.button("Submit")
         if submit:
             state[self.view_title] = self.func(**func_inputs)
             st.write(
-                'New value stored in state for this function is:',
+                "New value stored in state for this function is:",
                 state[self.view_title],
             )
 
@@ -281,7 +281,7 @@ class SimplePageFuncPydanticWrite(BasePageFunc):
         self.prepare_view(state)
         mymodel = func_to_pyd_input_model_cls(self.func)
         name = name_of_obj(self.func)
-        data = sp.pydantic_form(key=f'my_form_{name}', model=mymodel)
+        data = sp.pydantic_form(key=f"my_form_{name}", model=mymodel)
         # data = sp.pydantic_input(key=f"my_form_{name}", model=mymodel)
 
         if data:
@@ -295,14 +295,14 @@ class SimplePageFuncPydanticWithOutput(BasePageFunc):
     def __call__(self, state):
         self.prepare_view(state)
         mymodel = func_to_pyd_input_model_cls(self.func)
-        mytype = self.func.__annotations__['return']
+        mytype = self.func.__annotations__["return"]
         output_model = pydantic_model_from_type(mytype)
 
         name = (
             self.func.__name__
         )  # check in sig, dag, lined a better way, i2, may be displayed name: name_of_obj
 
-        data = sp.pydantic_input(key=f'my_form_{name}', model=mymodel)
+        data = sp.pydantic_input(key=f"my_form_{name}", model=mymodel)
 
         if data:
             func_result = self.func(**data)

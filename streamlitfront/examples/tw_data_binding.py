@@ -6,7 +6,7 @@ def foo(text: str, integer: int, floating: float = 1.0):
     return text, integer, floating
 
 
-def bar(a: str = 'boo'):
+def bar(a: str = "boo"):
     """About bar"""
     return a
 
@@ -27,17 +27,17 @@ def pages_app(funcs, configs):
     state = get_state(hash_funcs=dflt_hash_funcs)  # TODO: get from configs
 
     # Page setup
-    st.set_page_config(layout='wide')
+    st.set_page_config(layout="wide")
 
     # Make page objects
     views = get_pages_specs(funcs, **configs)
-    state['views'] = views
+    state["views"] = views
 
     # TODO: The above is static: Should the above be done only once, and cached?
     #   Perhaps views should be cached in state?
 
     # Setup navigation
-    view_key = _get_view_key(tuple(views.keys()), label='Select your view')
+    view_key = _get_view_key(tuple(views.keys()), label="Select your view")
 
     # Display the selected page with the session state
     # This is the part that actually runs the functionality that pages specifies
@@ -48,11 +48,11 @@ def pages_app(funcs, configs):
     state.sync()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from streamlitfront.base import dispatch_funcs
     from streamlitfront.page_funcs import ExperimentalViewFunc
 
-    print('file: {}'.format(os.path.realpath(__file__)))
+    print("file: {}".format(os.path.realpath(__file__)))
 
     app = dispatch_funcs(funcs, configs=dict(page_factory=ExperimentalViewFunc))
 

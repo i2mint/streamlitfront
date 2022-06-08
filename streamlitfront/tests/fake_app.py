@@ -1,3 +1,3 @@
 import streamlit as st
 
-st.write('fake app!')
+st.write("fake app!")

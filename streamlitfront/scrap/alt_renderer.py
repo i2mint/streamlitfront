@@ -89,5 +89,5 @@ for name in streamlit_element_func_names:
             StreamlitRenderers, name, staticmethod(mk_renderer_factory_for_func(func))
         )
     else:
-        print(f'Missing {name}')
+        print(f"Missing {name}")
     # TODO: Add warning if func missing?

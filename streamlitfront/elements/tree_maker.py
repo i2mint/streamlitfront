@@ -1,29 +1,43 @@
 from typing import Any, Mapping
-from front.elements import ElementTreeMakerBase, FrontElementBase, ContainerFlag, InputComponentFlag
+from front.elements import (
+    ElementTreeMakerBase,
+    FrontElementBase,
+    CONTAINER_APP,
+    CONTAINER_VIEW,
+    COMPONENT_TEXT,
+    COMPONENT_INT,
+    COMPONENT_INT_SLIDER,
+    COMPONENT_FLOAT,
+    COMPONENT_FLOAT_SLIDER,
+)
 import streamlit as st
 
-from streamlitfront.elements.elements import App, FloatInput, FloatSliderInput, IntInput, TextInput, FuncView
-from streamlitfront.session_state import get_state
+from streamlitfront.elements.elements import (
+    App,
+    FloatInput,
+    FloatSliderInput,
+    IntInput,
+    IntSliderInput,
+    TextInput,
+    FuncView,
+)
 
 
 class ElementTreeMaker(ElementTreeMakerBase):
     """Tree maker class for streamlitfront. Defines the streamlitfront-speceific
     element mapping and state management.
     """
-    @property
-    def _component_mapping(cls) -> Mapping[InputComponentFlag, FrontElementBase]:
-        return {
-            InputComponentFlag.TEXT: TextInput,
-            InputComponentFlag.INT: IntInput,
-            InputComponentFlag.FLOAT: FloatInput,
-            InputComponentFlag.FLOAT_SLIDER: FloatSliderInput,
-        }
 
     @property
-    def _container_mapping(cls) -> Mapping[ContainerFlag, FrontElementBase]:
+    def _element_mapping(cls) -> Mapping[int, FrontElementBase]:
         return {
-            ContainerFlag.APP: App,
-            ContainerFlag.VIEW: FuncView,
+            CONTAINER_APP: App,
+            CONTAINER_VIEW: FuncView,
+            COMPONENT_TEXT: TextInput,
+            COMPONENT_INT: IntInput,
+            COMPONENT_INT_SLIDER: IntSliderInput,
+            COMPONENT_FLOAT: FloatInput,
+            COMPONENT_FLOAT_SLIDER: FloatSliderInput,
         }
 
     def _get_stored_value(cls, key: str) -> Any:

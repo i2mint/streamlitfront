@@ -8,13 +8,9 @@ To install:	```pip install streamlitfront```
 
 # Example
 
-Write a module like this:
+Define functions in a file named ``render_functions.py``:
 
 ```python
-# render_functions.py
-
-from streamlitfront import mk_app
-
 def foo(a: int = 1, b: int = 2, c=3):
     """This is foo. It computes something"""
     return (a * b) + c
@@ -30,20 +26,27 @@ def confuser(a: int, x: float = 3.14):
 
 
 funcs = [foo, bar, confuser]
+```
+
+Then add the following to the file (we will be modifying this part):
+
+```python
+from streamlitfront import mk_app
 
 if __name__ == '__main__':
     app = mk_app(funcs)
     app()
-    
-    # ... and you get a browser based app that exposes foo, bar, and confuser
-
 ```
 
 Execute `streamlit run render_functions.py` in terminal and ...
 
-![image](https://user-images.githubusercontent.com/1906276/121604989-61874d80-ca00-11eb-9e1b-e3ac28e09418.png)
+![image](https://user-images.githubusercontent.com/63666082/172496315-86f65258-f59f-4e17-b9bc-c92c69884311.png)
 
-![image](https://user-images.githubusercontent.com/1906276/121605028-7f54b280-ca00-11eb-93f7-f4c936ae9d54.png)
+![image](https://user-images.githubusercontent.com/63666082/172496343-a0a876eb-6e6b-4e6b-a890-352c4a21664a.png)
+
+![image](https://user-images.githubusercontent.com/63666082/172496378-40efc696-05d6-4e4e-af9f-da94e0803927.png)
+
+... you can play with your functions!
 
 ## Configuration
 
@@ -56,6 +59,7 @@ The default configuration for the application is define by the convention object
     ```python
     from streamlitfront import mk_app
     
+
     if __name__ == '__main__':
         config = {
             'app': {
@@ -66,16 +70,25 @@ The default configuration for the application is define by the convention object
         app()
     ```
 
+    Execute `streamlit run render_functions.py` in terminal and ...
+
+    ![image](https://user-images.githubusercontent.com/63666082/172715999-6611d981-6e7c-4ea1-8d02-2ec449912bf2.png)
+
+    ... the application name changed!
+
 - obj
 
-    You can define a wrapper to transform the initial object into an ouput of your choice to be rendered:
+    You can define a wrapper to transform the initial object into an output of your choice to be rendered:
     
     ```python
+    from typing import Iterable
     from streamlitfront import mk_app
     
+
     def trans(objs: Iterable):
         return list(reversed(objs))
-        
+    
+
     if __name__ == '__main__':
         config = {
             'obj': {
@@ -86,6 +99,13 @@ The default configuration for the application is define by the convention object
         app()
     ```
 
+    Execute `streamlit run render_functions.py` in terminal and ...
+    
+    ![image](https://user-images.githubusercontent.com/63666082/172716258-3efcfa55-f25c-4ae2-a232-a788f62b541b.png)
+
+    ... the view order has changed !
+
+    Note that the capital letter at the beginning of the view names are gone, because the default transforming is no longer applied.
 
 - rendering
 
@@ -93,26 +113,44 @@ The default configuration for the application is define by the convention object
     For instance, you can choose to render a text input instead of a number input for a specific parameter of a specific function:
     
     ```python
-    from front.elements import InputComponentFlag
+    from front.elements import COMPONENT_INT_SLIDER
     from streamlitfront import mk_app
     
+
     if __name__ == '__main__':
         config = {
             'rendering': {
                 'Foo': {
-                    'a': InputComponentFlag.TEXT
+                    'inputs': {
+                        'a': {
+                            'component': COMPONENT_INT_SLIDER,
+                            'max_value': 10
+                        }
+                    }
                 }
             }
         }
         app = mk_app(funcs, config=config)
         app()
     ```
+
+    Execute `streamlit run render_functions.py` in terminal and ...
+
+    ![image](https://user-images.githubusercontent.com/63666082/172725124-2a88c95b-8c1f-423e-9e68-0c1b90a5e031.png)
+
+    ... the input ``a`` is a slider now !
     
 Obviously, you can combine the three types of configuration:
     
 ```python
-from front.elements import InputComponentFlag
+from typing import Iterable
+from front.elements import COMPONENT_INT_SLIDER
 from streamlitfront import mk_app
+    
+
+def trans(objs: Iterable):
+    return list(reversed(objs))
+
 
 if __name__ == '__main__':
     config = {
@@ -123,8 +161,13 @@ if __name__ == '__main__':
             'trans': trans
         },
         'rendering': {
-            'Foo': {
-                'a': InputComponentFlag.TEXT
+            'foo': {
+                'inputs': {
+                    'a': {
+                        'component': COMPONENT_INT_SLIDER,
+                        'max_value': 10
+                    }
+                }
             }
         }
     }
@@ -132,11 +175,23 @@ if __name__ == '__main__':
     app()
 ```
 
+Execute `streamlit run render_functions.py` in terminal and ...
+
+![image](https://user-images.githubusercontent.com/63666082/172725591-b3a60cf6-b497-4f4d-87d7-ce02ec90dbe4.png)
+
+... all three configurations are applied !
+
 You can also overwrite the whole configuration by setting the ``convention`` parameter. Be careful though, by overwritting the default convention, you have to make sure that all configuations are defined. Otherwise, the application would crash or behave unexpectedly.
     
 ```python
-from front.elements import InputComponentFlag, ContainerFlag
+from typing import Any, Callable, Iterable
+from front.elements import CONTAINER_VIEW, COMPONENT_FLOAT_SLIDER, COMPONENT_TEXT
 from streamlitfront import mk_app
+    
+
+def trans(objs: Iterable):
+    return list(reversed(objs))
+
 
 if __name__ == '__main__':
     convention = {
@@ -148,14 +203,17 @@ if __name__ == '__main__':
         },
         'rendering': {
             Callable: {
-                'container': ContainerFlag.VIEW,
+                'container': CONTAINER_VIEW,
                 'inputs': {
                     float: {
-                        'component': InputComponentFlag.FLOAT_SLIDER,
+                        'component': COMPONENT_FLOAT_SLIDER,
+                        'max_value': 10.0,
                         'format': '%.2f',
                         'step': 0.01,
                     },
-                    Any: InputComponentFlag.TEXT,
+                    Any: {
+                        'component': COMPONENT_TEXT,
+                    },
                 },
             },
         },
@@ -164,7 +222,13 @@ if __name__ == '__main__':
     app()
 ```
 
-# Old Example (using dispatch_funcs)
+Execute `streamlit run render_functions.py` in terminal and ...
+
+![image](https://user-images.githubusercontent.com/63666082/172726101-a596ea02-bf1c-4c66-b6b4-6569d1176b5c.png)
+
+... the convention is applied !
+
+# Old Example (using deprecated ``dispatch_funcs`` function)
 
 Write a module like this:
 
@@ -198,6 +262,3 @@ Execute `streamlit run simple.py` in terminal and ...
 ![image](https://user-images.githubusercontent.com/1906276/121604989-61874d80-ca00-11eb-9e1b-e3ac28e09418.png)
 
 ![image](https://user-images.githubusercontent.com/1906276/121605028-7f54b280-ca00-11eb-93f7-f4c936ae9d54.png)
-
-
-
