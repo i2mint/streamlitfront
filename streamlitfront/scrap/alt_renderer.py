@@ -92,3 +92,86 @@ for name in streamlit_element_func_names:
         print(f'Missing {name}')
     # TODO: Add warning if func missing?
 
+
+renderers = StreamlitRenderers()
+
+# ------------------
+from functools import partial
+from typing import Callable
+from types import MethodType
+
+from i2 import Sig, call_forgivingly, name_of_obj
+from front.elements import FrontComponentBase, implement_component
+
+
+# TODO: Add render type (protocol?)
+def _empty_render(self):
+    pass
+
+
+# TODO: Make this more robust -- scary as is.
+# TODO: Setup for pickability, but it's not yet
+def mk_component_base(
+    component_factory: Callable,
+    base_cls: type = FrontComponentBase,
+    render: Callable = _empty_render,
+    name: str = None,
+) -> type:
+    # TODO: could "camelize" name_of_obj output.
+    name = name or name_of_obj(component_factory) or 'ComponentBase'
+    component_sig = Sig(component_factory)
+    sig: Sig = 'self' + component_sig + Sig(base_cls)
+
+    @sig
+    def __init__(*args, **kwargs) -> None:
+        kw = sig.kwargs_from_args_and_kwargs(args, kwargs, apply_defaults=True)
+        self = kw.pop('self')
+        call_forgivingly(base_cls.__init__, self, **kw)
+        for name in component_sig:
+            if not hasattr(self, name):
+                setattr(self, name, kw[name])
+
+    return type(name, (base_cls,), {'__init__': __init__, 'render': render})
+
+
+def implement_component_from_factory(
+    component_factory: Callable,
+    base_cls: type = FrontComponentBase,
+    *,
+    input_value_callback: Callable = None,
+    render=_empty_render,
+    name=None,
+    **input_mapping,
+):
+    ComponentBaseClass = mk_component_base(
+        component_factory, base_cls, render=render, name=name
+    )
+    return implement_component(
+        ComponentBaseClass,
+        component_factory,
+        input_value_callback=input_value_callback,
+        **input_mapping,
+    )
+
+
+# test of mk_component_base
+def test_mk_component_base():
+    import streamlit as st
+    from front.elements import InputBase
+
+    C = mk_component_base(st.audio, InputBase)
+    assert str(Sig(C)) == (
+        "(data, label: str, format='audio/wav', start_time=0, "
+        'input_key: str = None, init_value: Any = None)'
+    )
+    c = C(1, 'tag')
+    assert (c.data, c.label) == (1, 'tag')
+
+
+def test_implement_component_from_factory():
+    from front.elements import InputBase
+    component = implement_component_from_factory(st.audio, InputBase)
+    assert str(Sig(component)) == (
+        "(data, label: str, format='audio/wav', start_time=0, "
+        'input_key: str = None, init_value: Any = None)'
+    )
