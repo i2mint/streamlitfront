@@ -56,7 +56,7 @@ class Renderer:
         self.kwargs = kwargs
 
     def render(self, state):
-        return self.func(*args, **kwargs)
+        return self.func(state)
 
     __call__ = render
 
@@ -91,3 +91,4 @@ for name in streamlit_element_func_names:
     else:
         print(f'Missing {name}')
     # TODO: Add warning if func missing?
+
