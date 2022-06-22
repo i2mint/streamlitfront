@@ -113,7 +113,7 @@ The default configuration for the application is define by the convention object
     For instance, you can choose to render a text input instead of a number input for a specific parameter of a specific function:
     
     ```python
-    from front.elements import COMPONENT_INT_SLIDER
+    from front.elements import INT_INPUT_SLIDER_COMPONENT
     from streamlitfront import mk_app
     
 
@@ -123,7 +123,7 @@ The default configuration for the application is define by the convention object
                 'Foo': {
                     'inputs': {
                         'a': {
-                            'component': COMPONENT_INT_SLIDER,
+                            'component': INT_INPUT_SLIDER_COMPONENT,
                             'max_value': 10
                         }
                     }
@@ -144,7 +144,7 @@ Obviously, you can combine the three types of configuration:
     
 ```python
 from typing import Iterable
-from front.elements import COMPONENT_INT_SLIDER
+from front.elements import INT_INPUT_SLIDER_COMPONENT
 from streamlitfront import mk_app
     
 
@@ -164,7 +164,7 @@ if __name__ == '__main__':
             'foo': {
                 'inputs': {
                     'a': {
-                        'component': COMPONENT_INT_SLIDER,
+                        'component': INT_INPUT_SLIDER_COMPONENT,
                         'max_value': 10
                     }
                 }
@@ -185,7 +185,7 @@ You can also overwrite the whole configuration by setting the ``convention`` par
     
 ```python
 from typing import Any, Callable, Iterable
-from front.elements import CONTAINER_VIEW, COMPONENT_FLOAT_SLIDER, COMPONENT_TEXT
+from front.elements import VIEW_CONTAINER, FLOAT_INPUT_SLIDER_COMPONENT, TEXT_INPUT_COMPONENT
 from streamlitfront import mk_app
     
 
@@ -203,16 +203,16 @@ if __name__ == '__main__':
         },
         'rendering': {
             Callable: {
-                'container': CONTAINER_VIEW,
+                'container': VIEW_CONTAINER,
                 'inputs': {
                     float: {
-                        'component': COMPONENT_FLOAT_SLIDER,
+                        'component': FLOAT_INPUT_SLIDER_COMPONENT,
                         'max_value': 10.0,
                         'format': '%.2f',
                         'step': 0.01,
                     },
                     Any: {
-                        'component': COMPONENT_TEXT,
+                        'component': TEXT_INPUT_COMPONENT,
                     },
                 },
             },

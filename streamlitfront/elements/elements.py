@@ -5,22 +5,24 @@ specific abstract elements class defined in front.
 """
 
 from functools import partial
+from numpy import isin
 import streamlit as st
 from front.elements import (
-    FuncViewBase,
+    DagContainerBase,
     InputBase,
     TextInputBase,
     IntInputBase,
     FloatInputBase,
-    AppBase,
+    NamedContainerBase,
+    GraphBase,
     implement_component,
 )
 
-from streamlitfront.session_state import _SessionState, get_state
+# from streamlitfront.session_state import get_state
 
 
-class App(AppBase):
-    """Implementation of ``AppBase`` for streamlitfront."""
+class App(NamedContainerBase):
+    """Implementation of the app root container for streamlitfront."""
 
     def render(self):
         # Page setup
@@ -35,8 +37,8 @@ class App(AppBase):
 
         # Setup navigation
         with st.sidebar:
-            st.title(self.title)
-            view_key = st.radio(options=tuple(views.keys()), label='Select your view')
+            st.title(self.name)
+            view_key = st.radio(options=tuple(views.keys()), label="Select your view")
         # view_key = _get_view_key(tuple(views.keys()), label='Select your view')
 
         # Display the selected page with the session state
@@ -45,23 +47,31 @@ class App(AppBase):
         view_runner()  # runs the page with the state
 
 
-class FuncView(FuncViewBase):
-    """Implementation of ``FuncViewBase`` for streamlitfront."""
-
+class View(NamedContainerBase):
     def render(self):
-        st.markdown(f'''## **{self.name}**''')
-        func_inputs = {}
-        for child in self.children:
-            func_inputs[child.label] = child.render()
-        submit = st.button('Submit')
-        # output_key = f'{self.func.__name__}_output'
-        if submit:
-            # state = get_state_with_hash_funcs()
-            output = self.func(**func_inputs)
-            st.session_state[f'{self.func.__name__}_output'] = output
-            st.write(output)
-        # elif output_key in state:
-        #     st.write(state[output_key])
+        st.markdown(f"""## **{self.name}**""")
+        self._render_children()
+
+
+class Section(NamedContainerBase):
+    def render(self):
+        with st.expander(self.name, True):
+            self._render_children()
+
+
+class DagExecSection(DagContainerBase):
+    def render(self):
+        with st.expander(self.name, True):
+            inputs = {}
+            for child in self.children:
+                inputs[child.label] = child.render()
+            submit = st.button("Submit")
+            # output_key = f'{self.dag.__name__}_output'
+            if submit:
+                # state = get_state_with_hash_funcs()
+                output = self.dag(**inputs)
+                st.session_state[f"{self.dag.__name__}_output"] = output
+                st.write(output)
 
 
 def store_input_value_in_state(input_value, component: InputBase):
@@ -79,7 +89,9 @@ implement_float_input_component = partial(
 )
 
 TextInput = implement_component_with_init_value(TextInputBase, st.text_input)
+# TextOutput = implement_component(TextOutputBase, st.write)
 IntInput = implement_component_with_init_value(IntInputBase, st.number_input)
 IntSliderInput = implement_component_with_init_value(IntInputBase, st.slider)
 FloatInput = implement_float_input_component(component_factory=st.number_input)
 FloatSliderInput = implement_float_input_component(component_factory=st.slider)
+Graph = implement_component(GraphBase, st.graphviz_chart)

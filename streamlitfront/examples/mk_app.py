@@ -1,7 +1,7 @@
 from distutils.command.config import config
 
 from streamlitfront.base import mk_app
-from front.elements import COMPONENT_FLOAT_SLIDER
+from front.elements import FLOAT_INPUT_SLIDER_COMPONENT
 
 
 def foo(a: int = 1, b: int = 2, c=3):
@@ -31,8 +31,14 @@ app = mk_app(
         #         'Foo.a': 'Proportion.x'
         #     }
         # }
-        'rendering': {
-            'Proportion': {'inputs': {'p': {'component': COMPONENT_FLOAT_SLIDER,}},}
+        "rendering": {
+            "Proportion": {
+                "inputs": {
+                    "p": {
+                        "component": FLOAT_INPUT_SLIDER_COMPONENT,
+                    }
+                },
+            }
         },
     },
 )

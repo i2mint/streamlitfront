@@ -386,13 +386,13 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     For instance, you can choose to render a text input instead of a number input for a
     specific parameter of a specific function:
 
-    >>> from front.elements import COMPONENT_INT_SLIDER
+    >>> from front.elements import INT_INPUT_SLIDER_COMPONENT
     >>> config = {
     ...     'rendering': {
     ...         'Foo': {
     ...             'inputs': {
     ...                 'a': {
-    ...                     'component': COMPONENT_INT_SLIDER,
+    ...                     'component': INT_INPUT_SLIDER_COMPONENT,
     ...                     'max_value': 10
     ...                 }
     ...             }
@@ -414,7 +414,7 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     ...         'Foo': {
     ...             'inputs': {
     ...                 'a': {
-    ...                     'component': COMPONENT_INT_SLIDER,
+    ...                     'component': INT_INPUT_SLIDER_COMPONENT,
     ...                     'max_value': 10
     ...                 }
     ...             }
@@ -428,7 +428,7 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     make sure that all configuations are defined. Otherwise, the application would
     crash or behave unexpectedly.
 
-    >>> from front.elements import CONTAINER_VIEW, COMPONENT_FLOAT_SLIDER, COMPONENT_TEXT
+    >>> from front.elements import VIEW_CONTAINER, FLOAT_INPUT_SLIDER_COMPONENT, TEXT_INPUT_COMPONENT
     >>> convention = {
     ...     'app': {
     ...         'title': 'Another application name'
@@ -438,15 +438,15 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     ...     },
     ...     'rendering': {
     ...         Callable: {
-    ...             'container': CONTAINER_VIEW,
+    ...             'container': VIEW_CONTAINER,
     ...             'inputs': {
     ...                 float: {
-    ...                     'component': COMPONENT_FLOAT_SLIDER,
+    ...                     'component': FLOAT_INPUT_SLIDER_COMPONENT,
     ...                     'format': '%.2f',
     ...                     'step': 0.01,
     ...                 },
     ...                 Any: {
-    ...                     'component': COMPONENT_TEXT,
+    ...                     'component': TEXT_INPUT_COMPONENT,
     ...                 },
     ...             },
     ...         },
