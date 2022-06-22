@@ -372,8 +372,9 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     You can define a wrapper to transform the initial object into an output of your
     choice to be rendered:
 
+    >>> from front.app_maker_base import dflt_trans
     >>> def trans(objs: Iterable):
-    ...     return list(reversed(objs))
+    ...     return dflt_trans(reversed(objs))
     >>> config = {
     ...     'obj': {
     ...         'trans': trans
@@ -428,7 +429,16 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     make sure that all configuations are defined. Otherwise, the application would
     crash or behave unexpectedly.
 
-    >>> from front.elements import VIEW_CONTAINER, FLOAT_INPUT_SLIDER_COMPONENT, TEXT_INPUT_COMPONENT
+    >>> from meshed import DAG
+    >>> from front.elements import (
+    ...     VIEW_CONTAINER,
+    ...     FLOAT_INPUT_SLIDER_COMPONENT,
+    ...     TEXT_INPUT_COMPONENT,
+    ...     EXEC_SECTION_CONTAINER,
+    ...     SECTION_CONTAINER,
+    ...     GRAPH_COMPONENT
+    ... )
+    >>> 
     >>> convention = {
     ...     'app': {
     ...         'title': 'Another application name'
@@ -437,18 +447,27 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     ...         'trans': trans
     ...     },
     ...     'rendering': {
-    ...         Callable: {
+    ...         DAG: {
     ...             'container': VIEW_CONTAINER,
-    ...             'inputs': {
-    ...                 float: {
-    ...                     'component': FLOAT_INPUT_SLIDER_COMPONENT,
-    ...                     'format': '%.2f',
-    ...                     'step': 0.01,
-    ...                 },
-    ...                 Any: {
-    ...                     'component': TEXT_INPUT_COMPONENT,
+    ...             'execution': {
+    ...                 'container': EXEC_SECTION_CONTAINER,
+    ...                 'name': 'Execution',
+    ...                 'inputs': {
+    ...                     float: {
+    ...                         'component': FLOAT_INPUT_SLIDER_COMPONENT,
+    ...                         'format': '%.2f',
+    ...                         'step': 0.01,
+    ...                     },
+    ...                     Any: {'component': TEXT_INPUT_COMPONENT,},
     ...                 },
     ...             },
+    ...             'graph': {
+    ...                 'container': SECTION_CONTAINER,
+    ...                 'name': 'Flow',
+    ...                 'component': GRAPH_COMPONENT,
+    ...                 'display': True,
+    ...                 'display_for_single_node': False,
+    ...             }
     ...         },
     ...     },
     ... }
