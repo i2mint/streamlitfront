@@ -23,7 +23,7 @@ dag = DAG((b, d, result))
 app = mk_app(
     [dag],
     config={
-        "app": {"title": "My app"},
+        'app': {'title': 'My app'},
         # "rendering": {
         #     "dag": {
         #         'execution': {

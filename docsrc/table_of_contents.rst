@@ -7,6 +7,7 @@
    module_docs/streamlitfront/base
    module_docs/streamlitfront/elements/elements
    module_docs/streamlitfront/elements/tree_maker
+   module_docs/streamlitfront/examples/dag_app
    module_docs/streamlitfront/examples/data_binding
    module_docs/streamlitfront/examples/experimentation
    module_docs/streamlitfront/examples/issues

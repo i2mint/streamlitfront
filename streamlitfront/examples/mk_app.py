@@ -31,13 +31,9 @@ app = mk_app(
         #         'Foo.a': 'Proportion.x'
         #     }
         # }
-        "rendering": {
-            "Proportion": {
-                "inputs": {
-                    "p": {
-                        "component": FLOAT_INPUT_SLIDER_COMPONENT,
-                    }
-                },
+        'rendering': {
+            'Proportion': {
+                'inputs': {'p': {'component': FLOAT_INPUT_SLIDER_COMPONENT,}},
             }
         },
     },

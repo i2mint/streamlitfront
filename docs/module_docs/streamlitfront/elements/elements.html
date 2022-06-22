@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.8 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.9 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -48,6 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../base.html">streamlitfront.base</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">streamlitfront.elements.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree_maker.html">streamlitfront.elements.tree_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/issues.html">streamlitfront.examples.issues</a></li>
@@ -95,15 +96,24 @@
 specific abstract elements class defined in front.</p>
 <dl class="py class">
 <dt id="streamlitfront.elements.elements.App">
-<em class="property">class </em><code class="sig-prename descclassname">streamlitfront.elements.elements.</code><code class="sig-name descname">App</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">children</span><span class="p">:</span> <span class="n">Iterable<span class="p">[</span>front.elements.elements.FrontElementBase<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/streamlitfront/elements/elements.html#App"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#streamlitfront.elements.elements.App" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implementation of <code class="docutils literal notranslate"><span class="pre">AppBase</span></code> for streamlitfront.</p>
+<em class="property">class </em><code class="sig-prename descclassname">streamlitfront.elements.elements.</code><code class="sig-name descname">App</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">children</span><span class="p">:</span> <span class="n">Iterable<span class="p">[</span>front.elements.elements.FrontElementBase<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/streamlitfront/elements/elements.html#App"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#streamlitfront.elements.elements.App" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of the app root container for streamlitfront.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="streamlitfront.elements.elements.FuncView">
-<em class="property">class </em><code class="sig-prename descclassname">streamlitfront.elements.elements.</code><code class="sig-name descname">FuncView</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span></em>, <em class="sig-param"><span class="n">children</span><span class="p">:</span> <span class="n">Iterable<span class="p">[</span>front.elements.elements.InputBase<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/streamlitfront/elements/elements.html#FuncView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#streamlitfront.elements.elements.FuncView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implementation of <code class="docutils literal notranslate"><span class="pre">FuncViewBase</span></code> for streamlitfront.</p>
-</dd></dl>
+<dt id="streamlitfront.elements.elements.DagExecSection">
+<em class="property">class </em><code class="sig-prename descclassname">streamlitfront.elements.elements.</code><code class="sig-name descname">DagExecSection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dag</span><span class="p">:</span> <span class="n">meshed.dag.DAG</span></em>, <em class="sig-param"><span class="n">children</span><span class="p">:</span> <span class="n">Iterable<span class="p">[</span>front.elements.elements.FrontElementBase<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/streamlitfront/elements/elements.html#DagExecSection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#streamlitfront.elements.elements.DagExecSection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="streamlitfront.elements.elements.Section">
+<em class="property">class </em><code class="sig-prename descclassname">streamlitfront.elements.elements.</code><code class="sig-name descname">Section</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">children</span><span class="p">:</span> <span class="n">Iterable<span class="p">[</span>front.elements.elements.FrontElementBase<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/streamlitfront/elements/elements.html#Section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#streamlitfront.elements.elements.Section" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="streamlitfront.elements.elements.View">
+<em class="property">class </em><code class="sig-prename descclassname">streamlitfront.elements.elements.</code><code class="sig-name descname">View</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">children</span><span class="p">:</span> <span class="n">Iterable<span class="p">[</span>front.elements.elements.FrontElementBase<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/streamlitfront/elements/elements.html#View"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#streamlitfront.elements.elements.View" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </section>
 

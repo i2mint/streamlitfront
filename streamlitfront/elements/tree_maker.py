@@ -11,7 +11,7 @@ from front.elements import (
     INT_INPUT_SLIDER_COMPONENT,
     FLOAT_INPUT_COMPONENT,
     FLOAT_INPUT_SLIDER_COMPONENT,
-    GRAPH_COMPONENT
+    GRAPH_COMPONENT,
 )
 import streamlit as st
 
@@ -25,7 +25,7 @@ from streamlitfront.elements.elements import (
     Section,
     TextInput,
     View,
-    Graph
+    Graph,
 )
 
 

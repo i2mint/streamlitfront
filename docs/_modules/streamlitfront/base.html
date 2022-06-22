@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.base &mdash; streamlitfront 0.1.8 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.base &mdash; streamlitfront 0.1.9 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -45,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/tree_maker.html">streamlitfront.elements.tree_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
@@ -460,8 +461,9 @@
 <span class="sd">    You can define a wrapper to transform the initial object into an output of your</span>
 <span class="sd">    choice to be rendered:</span>
 
+<span class="sd">    &gt;&gt;&gt; from front.app_maker_base import dflt_trans</span>
 <span class="sd">    &gt;&gt;&gt; def trans(objs: Iterable):</span>
-<span class="sd">    ...     return list(reversed(objs))</span>
+<span class="sd">    ...     return dflt_trans(reversed(objs))</span>
 <span class="sd">    &gt;&gt;&gt; config = {</span>
 <span class="sd">    ...     &#39;obj&#39;: {</span>
 <span class="sd">    ...         &#39;trans&#39;: trans</span>
@@ -474,13 +476,13 @@
 <span class="sd">    For instance, you can choose to render a text input instead of a number input for a</span>
 <span class="sd">    specific parameter of a specific function:</span>
 
-<span class="sd">    &gt;&gt;&gt; from front.elements import COMPONENT_INT_SLIDER</span>
+<span class="sd">    &gt;&gt;&gt; from front.elements import INT_INPUT_SLIDER_COMPONENT</span>
 <span class="sd">    &gt;&gt;&gt; config = {</span>
 <span class="sd">    ...     &#39;rendering&#39;: {</span>
 <span class="sd">    ...         &#39;Foo&#39;: {</span>
 <span class="sd">    ...             &#39;inputs&#39;: {</span>
 <span class="sd">    ...                 &#39;a&#39;: {</span>
-<span class="sd">    ...                     &#39;component&#39;: COMPONENT_INT_SLIDER,</span>
+<span class="sd">    ...                     &#39;component&#39;: INT_INPUT_SLIDER_COMPONENT,</span>
 <span class="sd">    ...                     &#39;max_value&#39;: 10</span>
 <span class="sd">    ...                 }</span>
 <span class="sd">    ...             }</span>
@@ -502,7 +504,7 @@
 <span class="sd">    ...         &#39;Foo&#39;: {</span>
 <span class="sd">    ...             &#39;inputs&#39;: {</span>
 <span class="sd">    ...                 &#39;a&#39;: {</span>
-<span class="sd">    ...                     &#39;component&#39;: COMPONENT_INT_SLIDER,</span>
+<span class="sd">    ...                     &#39;component&#39;: INT_INPUT_SLIDER_COMPONENT,</span>
 <span class="sd">    ...                     &#39;max_value&#39;: 10</span>
 <span class="sd">    ...                 }</span>
 <span class="sd">    ...             }</span>
@@ -516,7 +518,16 @@
 <span class="sd">    make sure that all configuations are defined. Otherwise, the application would</span>
 <span class="sd">    crash or behave unexpectedly.</span>
 
-<span class="sd">    &gt;&gt;&gt; from front.elements import CONTAINER_VIEW, COMPONENT_FLOAT_SLIDER, COMPONENT_TEXT</span>
+<span class="sd">    &gt;&gt;&gt; from meshed import DAG</span>
+<span class="sd">    &gt;&gt;&gt; from front.elements import (</span>
+<span class="sd">    ...     VIEW_CONTAINER,</span>
+<span class="sd">    ...     FLOAT_INPUT_SLIDER_COMPONENT,</span>
+<span class="sd">    ...     TEXT_INPUT_COMPONENT,</span>
+<span class="sd">    ...     EXEC_SECTION_CONTAINER,</span>
+<span class="sd">    ...     SECTION_CONTAINER,</span>
+<span class="sd">    ...     GRAPH_COMPONENT</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; </span>
 <span class="sd">    &gt;&gt;&gt; convention = {</span>
 <span class="sd">    ...     &#39;app&#39;: {</span>
 <span class="sd">    ...         &#39;title&#39;: &#39;Another application name&#39;</span>
@@ -525,18 +536,27 @@
 <span class="sd">    ...         &#39;trans&#39;: trans</span>
 <span class="sd">    ...     },</span>
 <span class="sd">    ...     &#39;rendering&#39;: {</span>
-<span class="sd">    ...         Callable: {</span>
-<span class="sd">    ...             &#39;container&#39;: CONTAINER_VIEW,</span>
-<span class="sd">    ...             &#39;inputs&#39;: {</span>
-<span class="sd">    ...                 float: {</span>
-<span class="sd">    ...                     &#39;component&#39;: COMPONENT_FLOAT_SLIDER,</span>
-<span class="sd">    ...                     &#39;format&#39;: &#39;%.2f&#39;,</span>
-<span class="sd">    ...                     &#39;step&#39;: 0.01,</span>
-<span class="sd">    ...                 },</span>
-<span class="sd">    ...                 Any: {</span>
-<span class="sd">    ...                     &#39;component&#39;: COMPONENT_TEXT,</span>
+<span class="sd">    ...         DAG: {</span>
+<span class="sd">    ...             &#39;container&#39;: VIEW_CONTAINER,</span>
+<span class="sd">    ...             &#39;execution&#39;: {</span>
+<span class="sd">    ...                 &#39;container&#39;: EXEC_SECTION_CONTAINER,</span>
+<span class="sd">    ...                 &#39;name&#39;: &#39;Execution&#39;,</span>
+<span class="sd">    ...                 &#39;inputs&#39;: {</span>
+<span class="sd">    ...                     float: {</span>
+<span class="sd">    ...                         &#39;component&#39;: FLOAT_INPUT_SLIDER_COMPONENT,</span>
+<span class="sd">    ...                         &#39;format&#39;: &#39;%.2f&#39;,</span>
+<span class="sd">    ...                         &#39;step&#39;: 0.01,</span>
+<span class="sd">    ...                     },</span>
+<span class="sd">    ...                     Any: {&#39;component&#39;: TEXT_INPUT_COMPONENT,},</span>
 <span class="sd">    ...                 },</span>
 <span class="sd">    ...             },</span>
+<span class="sd">    ...             &#39;graph&#39;: {</span>
+<span class="sd">    ...                 &#39;container&#39;: SECTION_CONTAINER,</span>
+<span class="sd">    ...                 &#39;name&#39;: &#39;Flow&#39;,</span>
+<span class="sd">    ...                 &#39;component&#39;: GRAPH_COMPONENT,</span>
+<span class="sd">    ...                 &#39;display&#39;: True,</span>
+<span class="sd">    ...                 &#39;display_for_single_node&#39;: False,</span>
+<span class="sd">    ...             }</span>
 <span class="sd">    ...         },</span>
 <span class="sd">    ...     },</span>
 <span class="sd">    ... }</span>
