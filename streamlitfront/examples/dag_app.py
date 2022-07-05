@@ -1,7 +1,4 @@
-from distutils.command.config import config
-
 from streamlitfront.base import mk_app
-from front.elements import INT_INPUT_SLIDER_COMPONENT
 from meshed.dag import DAG
 
 
@@ -24,17 +21,6 @@ app = mk_app(
     [dag],
     config={
         'app': {'title': 'My app'},
-        # "rendering": {
-        #     "dag": {
-        #         'execution': {
-        #             "inputs": {
-        #                 "c": {
-        #                     "component": INT_INPUT_SLIDER_COMPONENT,
-        #                 }
-        #             },
-        #         }
-        #     }
-        # },
     },
 )
 app()

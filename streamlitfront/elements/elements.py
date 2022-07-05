@@ -5,23 +5,27 @@ specific abstract elements class defined in front.
 """
 
 from functools import partial
-from numpy import isin
+import os
+from typing import Iterable
 import streamlit as st
+import streamlit.components.v1 as components
 from front.elements import (
-    DagContainerBase,
-    InputBase,
-    TextInputBase,
-    IntInputBase,
-    FloatInputBase,
-    NamedContainerBase,
-    GraphBase,
     implement_component,
+    DagContainerBase,
+    FileUploaderBase,
+    FloatInputBase,
+    FrontContainerBase,
+    GraphBase,
+    InputBase,
+    IntInputBase,
+    MultiSourceInputContainerBase,
+    TextInputBase,
 )
 
 # from streamlitfront.session_state import get_state
 
 
-class App(NamedContainerBase):
+class App(FrontContainerBase):
     """Implementation of the app root container for streamlitfront."""
 
     def render(self):
@@ -47,13 +51,13 @@ class App(NamedContainerBase):
         view_runner()  # runs the page with the state
 
 
-class View(NamedContainerBase):
+class View(FrontContainerBase):
     def render(self):
         st.markdown(f'''## **{self.name}**''')
         self._render_children()
 
 
-class Section(NamedContainerBase):
+class Section(FrontContainerBase):
     def render(self):
         with st.expander(self.name, True):
             self._render_children()
@@ -64,7 +68,7 @@ class DagExecSection(DagContainerBase):
         with st.expander(self.name, True):
             inputs = {}
             for child in self.children:
-                inputs[child.label] = child.render()
+                inputs[child.name] = child.render()
             submit = st.button('Submit')
             # output_key = f'{self.dag.__name__}_output'
             if submit:
@@ -74,24 +78,62 @@ class DagExecSection(DagContainerBase):
                 st.write(output)
 
 
+class MultiSourceInputContainer(MultiSourceInputContainerBase):
+    def render(self):
+        with st.container():
+            options = tuple(x.name for x in self.children)
+            # source = st.radio(self.name, options)
+            source = st.selectbox(self.name, options)
+            input_component = next(x for x in self.children if x.name == source)
+            return input_component.render()
+
+
 def store_input_value_in_state(input_value, component: InputBase):
     st.session_state[component.input_key] = input_value
 
 
-implement_component_with_input_value_callback = partial(
-    implement_component, input_value_callback=store_input_value_in_state
-)
-implement_component_with_init_value = partial(
-    implement_component_with_input_value_callback, value='init_value'
+implement_input_component = partial(
+    implement_component,
+    input_value_callback=store_input_value_in_state,
+    label='name',
+    value='init_value',
 )
 implement_float_input_component = partial(
-    implement_component_with_init_value, base_cls=FloatInputBase
+    implement_input_component, base_cls=FloatInputBase
 )
 
-TextInput = implement_component_with_init_value(TextInputBase, st.text_input)
+TextInput = implement_input_component(TextInputBase, st.text_input)
 # TextOutput = implement_component(TextOutputBase, st.write)
-IntInput = implement_component_with_init_value(IntInputBase, st.number_input)
-IntSliderInput = implement_component_with_init_value(IntInputBase, st.slider)
+IntInput = implement_input_component(IntInputBase, st.number_input)
+IntSliderInput = implement_input_component(IntInputBase, st.slider)
 FloatInput = implement_float_input_component(component_factory=st.number_input)
 FloatSliderInput = implement_float_input_component(component_factory=st.slider)
 Graph = implement_component(GraphBase, st.graphviz_chart)
+FileUploader = implement_input_component(FileUploaderBase, st.file_uploader)
+
+class AudioRecorder(InputBase):
+    def render(self):
+        # # Design move app further up and remove top padding
+        # st.markdown('''<style>.css-1egvi7u {margin-top: -3rem;}</style>''',
+        #     unsafe_allow_html=True)
+        # # Design change st.Audio to fixed height of 45 pixels
+        # st.markdown('''<style>.stAudio {height: 45px;}</style>''',
+        #     unsafe_allow_html=True)
+        # # Design change hyperlink href link color
+        # st.markdown('''<style>.css-v37k9u a {color: #ff4c4b;}</style>''',
+        #     unsafe_allow_html=True)  # darkmode
+        # st.markdown('''<style>.css-nlntq9 a {color: #ff4c4b;}</style>''',
+        #     unsafe_allow_html=True)  # lightmode
+        # st.caption(self.name)
+
+        # save_name = st.text_input(self.name, self.name)
+        # save_name = save_name or self.name
+        # if st.checkbox(f'Show audio recorder', True):
+
+        parent_dir = os.path.dirname(os.path.abspath(__file__))
+        build_dir = os.path.join(parent_dir, 'js', 'st_audiorec')
+        st_audiorec = components.declare_component("st_audiorec", path=build_dir)
+        audio_data_url = st_audiorec()
+        # if audio_data_url:
+        #     st.success(f'The audio has been successfully saved under "{save_name}"')
+        return audio_data_url

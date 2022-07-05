@@ -2,32 +2,13 @@ from typing import Any, Mapping
 from front.elements import (
     ElementTreeMakerBase,
     FrontElementBase,
-    APP_CONTAINER,
-    VIEW_CONTAINER,
-    SECTION_CONTAINER,
-    EXEC_SECTION_CONTAINER,
-    TEXT_INPUT_COMPONENT,
-    INT_INPUT_COMPONENT,
-    INT_INPUT_SLIDER_COMPONENT,
-    FLOAT_INPUT_COMPONENT,
-    FLOAT_INPUT_SLIDER_COMPONENT,
-    GRAPH_COMPONENT,
 )
+from front.elements.element_flags import *
 import streamlit as st
 
-from streamlitfront.elements.elements import (
-    App,
-    DagExecSection,
-    FloatInput,
-    FloatSliderInput,
-    IntInput,
-    IntSliderInput,
-    Section,
-    TextInput,
-    View,
-    Graph,
-)
+from streamlitfront.elements.elements import *
 
+MY_COMPONENT = 'MY_COMPONENT'
 
 class ElementTreeMaker(ElementTreeMakerBase):
     """Tree maker class for streamlitfront. Defines the streamlitfront-speceific
@@ -41,12 +22,16 @@ class ElementTreeMaker(ElementTreeMakerBase):
             VIEW_CONTAINER: View,
             SECTION_CONTAINER: Section,
             EXEC_SECTION_CONTAINER: DagExecSection,
+            MULTI_SOURCE_INPUT_CONTAINER: MultiSourceInputContainer,
+
             TEXT_INPUT_COMPONENT: TextInput,
             # TEXT_OUTPUT_COMPONENT: TextOutput,
             INT_INPUT_COMPONENT: IntInput,
             INT_INPUT_SLIDER_COMPONENT: IntSliderInput,
             FLOAT_INPUT_COMPONENT: FloatInput,
             FLOAT_INPUT_SLIDER_COMPONENT: FloatSliderInput,
+            FILE_UPLOADER_COMPONENT: FileUploader,
+            AUDIO_RECORDER_COMPONENT: AudioRecorder,
             GRAPH_COMPONENT: Graph,
         }
 
