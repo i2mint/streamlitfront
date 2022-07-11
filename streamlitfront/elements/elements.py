@@ -16,6 +16,7 @@ from front.elements import (
     FrontContainerBase,
     InputBase,
     IntInputBase,
+    MultiSourceInputContainerBase,
     TextInputBase,
 )
 
@@ -73,7 +74,7 @@ class ExecSection(ExecContainerBase):
                 st.write(output)
 
 
-class MultiSourceInputContainer(FrontContainerBase):
+class MultiSourceInputContainer(MultiSourceInputContainerBase):
     def render(self):
         with st.container():
             options = tuple(x.name for x in self.children)
