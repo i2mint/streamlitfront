@@ -3,10 +3,10 @@ from front.elements import (
     ElementTreeMakerBase,
     FrontElementBase,
 )
-from front.elements.element_flags import *
+from front.elements import *
 import streamlit as st
 
-from streamlitfront.elements.elements import *
+from streamlitfront.elements import *
 
 MY_COMPONENT = 'MY_COMPONENT'
 
@@ -21,18 +21,16 @@ class ElementTreeMaker(ElementTreeMakerBase):
             APP_CONTAINER: App,
             VIEW_CONTAINER: View,
             SECTION_CONTAINER: Section,
-            EXEC_SECTION_CONTAINER: DagExecSection,
+            EXEC_SECTION_CONTAINER: ExecSection,
             MULTI_SOURCE_INPUT_CONTAINER: MultiSourceInputContainer,
 
             TEXT_INPUT_COMPONENT: TextInput,
-            # TEXT_OUTPUT_COMPONENT: TextOutput,
             INT_INPUT_COMPONENT: IntInput,
             INT_INPUT_SLIDER_COMPONENT: IntSliderInput,
             FLOAT_INPUT_COMPONENT: FloatInput,
             FLOAT_INPUT_SLIDER_COMPONENT: FloatSliderInput,
             FILE_UPLOADER_COMPONENT: FileUploader,
             AUDIO_RECORDER_COMPONENT: AudioRecorder,
-            GRAPH_COMPONENT: Graph,
         }
 
     def _get_stored_value(cls, key: str) -> Any:

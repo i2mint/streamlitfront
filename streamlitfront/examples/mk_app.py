@@ -1,7 +1,7 @@
-from distutils.command.config import config
+from front.spec_maker import APP_KEY, RENDERING_KEY, ELEMENT_KEY
+from front.elements import FLOAT_INPUT_SLIDER_COMPONENT
 
 from streamlitfront.base import mk_app
-from front.elements import FLOAT_INPUT_SLIDER_COMPONENT
 
 
 def foo(a: int = 1, b: int = 2, c=3):
@@ -25,15 +25,12 @@ def proportion(x: int = 100, p: float = 0.5):
 app = mk_app(
     [foo, bar, confuser, proportion],
     config={
-        'app': {'title': 'My app'},
-        # 'obj': {
-        #     'bindings': {
-        #         'Foo.a': 'Proportion.x'
-        #     }
-        # }
-        'rendering': {
-            'Proportion': {
-                'inputs': {'p': {'component': FLOAT_INPUT_SLIDER_COMPONENT,}},
+        APP_KEY: {'title': 'My app'},
+        RENDERING_KEY: {
+            'proportion': {
+                'execution': {
+                    'inputs': {'p': {ELEMENT_KEY: FLOAT_INPUT_SLIDER_COMPONENT,}},
+                }
             }
         },
     },

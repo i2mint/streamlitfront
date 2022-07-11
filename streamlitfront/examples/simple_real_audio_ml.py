@@ -1,9 +1,10 @@
-from distutils.command.config import config
 from typing import Iterable
+from meshed import code_to_dag, DAG
+from front.elements import FILE_UPLOADER_COMPONENT, AUDIO_RECORDER_COMPONENT, MULTI_SOURCE_INPUT_CONTAINER, FrontComponentBase
+from front.spec_maker import APP_KEY, RENDERING_KEY, ELEMENT_KEY, NAME_KEY
 
 from streamlitfront.base import mk_app
-from front.elements import FILE_UPLOADER_COMPONENT, AUDIO_RECORDER_COMPONENT, INT_INPUT_SLIDER_COMPONENT
-from meshed import code_to_dag, DAG
+from streamlitfront.examples.graph_component import Graph
 
 
 WaveForm = Iterable[int]
@@ -14,36 +15,34 @@ def learn_model(train_audio: WaveForm, raw_audio_learner):
     model = learn_model(train_audio, raw_audio_learner)
 
 
+config_ = {
+    APP_KEY: {'title': 'Simple Real Audio ML'},
+    RENDERING_KEY: {
+        DAG: {
+            'execution': {
+                'inputs': {
+                    'train_audio': {
+                        ELEMENT_KEY: MULTI_SOURCE_INPUT_CONTAINER,
+                        'From a file':{
+                            ELEMENT_KEY: FILE_UPLOADER_COMPONENT,
+                            'type': 'wav'
+                        },
+                        'From the microphone':{
+                            ELEMENT_KEY: AUDIO_RECORDER_COMPONENT
+                        },
+                    }
+                },
+            },
+            'graph': {
+                ELEMENT_KEY: Graph,
+                NAME_KEY: 'Flow',
+            },
+        }
+    },
+}
+
 app = mk_app(
     [learn_model],
-    config={
-        'app': {'title': 'Simple Real Audio ML'},
-        'rendering': {
-            DAG: {
-                'execution': {
-                    'inputs': {
-                        'train_audio': {
-                            'From a file':{
-                                'component': FILE_UPLOADER_COMPONENT,
-                                'type': 'wav'
-                            },
-                            'From the microphone':{
-                                'component': AUDIO_RECORDER_COMPONENT
-                            },
-                        }
-                    },
-                },
-                # 'image': {
-                #     'container': SECTION_CONTAINER,
-                #     'name': 'Flow',
-                #     'component': GRAPH_COMPONENT,
-                #     'display': True,
-                #     'display_for_single_node': False,
-                #     # from operators import method
-                #     # 'image_render_callback': ,
-                # },
-            }
-        },
-    },
+    config=config_
 )
 app()

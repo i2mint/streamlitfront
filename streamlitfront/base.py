@@ -353,7 +353,7 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     >>> app = mk_app(funcs)
 
     The default configuration for the application is define by the convention object:
-    ``dflt_convention``. But you can overwrite parts or the entire configuration by
+    ``DFLT_CONVENTION``. But you can overwrite parts or the entire configuration by
     setting the ``config`` parameter. The configuration is composed of three parts:
     app, obj and rendering.
 
@@ -361,8 +361,9 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     By default, the application name is "My Front Application", but you can set the
     title of the application as follow:
 
+    >>> from front.spec_maker import APP_KEY
     >>> config = {
-    ...     'app': {
+    ...     APP_KEY: {
     ...         'title': 'Another application name'
     ...     }
     ... }
@@ -372,11 +373,12 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     You can define a wrapper to transform the initial object into an output of your
     choice to be rendered:
 
-    >>> from front.app_maker_base import dflt_trans
+    >>> from front.util import dflt_trans
+    >>> from front.spec_maker import OBJ_KEY
     >>> def trans(objs: Iterable):
     ...     return dflt_trans(reversed(objs))
     >>> config = {
-    ...     'obj': {
+    ...     OBJ_KEY: {
     ...         'trans': trans
     ...     }
     ... }
@@ -387,14 +389,17 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     For instance, you can choose to render a text input instead of a number input for a
     specific parameter of a specific function:
 
-    >>> from front.elements import INT_INPUT_SLIDER_COMPONENT
+    >>> from front.elements import INT_INPUT_SLIDER_COMPONENT, ELEMENT_KEY
+    >>> from front.spec_maker import RENDERING_KEY
     >>> config = {
-    ...     'rendering': {
-    ...         'Foo': {
-    ...             'inputs': {
-    ...                 'a': {
-    ...                     'component': INT_INPUT_SLIDER_COMPONENT,
-    ...                     'max_value': 10
+    ...     RENDERING_KEY: {
+    ...         'foo': {
+    ...             'execution': {
+    ...                 'inputs': {
+    ...                     'a': {
+    ...                         ELEMENT_KEY: INT_INPUT_SLIDER_COMPONENT,
+    ...                         'max_value': 10
+    ...                     }
     ...                 }
     ...             }
     ...         }
@@ -405,18 +410,20 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     Obviously, you can combine the three types of configuration:
 
     >>> config = {
-    ...     'app': {
+    ...     APP_KEY: {
     ...         'title': 'Another application name'
     ...     },
-    ...     'obj': {
+    ...     OBJ_KEY: {
     ...         'trans': trans
     ...     },
-    ...     'rendering': {
-    ...         'Foo': {
-    ...             'inputs': {
-    ...                 'a': {
-    ...                     'component': INT_INPUT_SLIDER_COMPONENT,
-    ...                     'max_value': 10
+    ...     RENDERING_KEY: {
+    ...         'foo': {
+    ...             'execution': {
+    ...                 'inputs': {
+    ...                     'a': {
+    ...                         ELEMENT_KEY: INT_INPUT_SLIDER_COMPONENT,
+    ...                         'max_value': 10
+    ...                     }
     ...                 }
     ...             }
     ...         }
@@ -429,49 +436,94 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     make sure that all configuations are defined. Otherwise, the application would
     crash or behave unexpectedly.
 
-    >>> from meshed import DAG
+    >>> from collections.abc import Callable
+    >>> from front.spec_maker import NAME_KEY, DEFAULT_INPUT_KEY
     >>> from front.elements import (
     ...     VIEW_CONTAINER,
     ...     FLOAT_INPUT_SLIDER_COMPONENT,
     ...     TEXT_INPUT_COMPONENT,
     ...     EXEC_SECTION_CONTAINER,
     ...     SECTION_CONTAINER,
-    ...     GRAPH_COMPONENT
+    ...     INT_INPUT_COMPONENT
     ... )
     >>> 
     >>> convention = {
-    ...     'app': {
+    ...     APP_KEY: {
     ...         'title': 'Another application name'
     ...     },
-    ...     'obj': {
+    ...     OBJ_KEY: {
     ...         'trans': trans
     ...     },
-    ...     'rendering': {
-    ...         DAG: {
-    ...             'container': VIEW_CONTAINER,
+    ...     RENDERING_KEY: {
+    ...         Callable: {
+    ...             ELEMENT_KEY: VIEW_CONTAINER,
     ...             'execution': {
-    ...                 'container': EXEC_SECTION_CONTAINER,
-    ...                 'name': 'Execution',
+    ...                 ELEMENT_KEY: EXEC_SECTION_CONTAINER,
+    ...                 NAME_KEY: 'Execution',
     ...                 'inputs': {
+    ...                     int: {ELEMENT_KEY: INT_INPUT_COMPONENT,},
     ...                     float: {
-    ...                         'component': FLOAT_INPUT_SLIDER_COMPONENT,
+    ...                         ELEMENT_KEY: FLOAT_INPUT_SLIDER_COMPONENT,
     ...                         'format': '%.2f',
     ...                         'step': 0.01,
     ...                     },
-    ...                     Any: {'component': TEXT_INPUT_COMPONENT,},
+    ...                     Any: {ELEMENT_KEY: TEXT_INPUT_COMPONENT,},
+    ...                     DEFAULT_INPUT_KEY: {NAME_KEY: lambda p: p.name}
     ...                 },
-    ...             },
-    ...             'graph': {
-    ...                 'container': SECTION_CONTAINER,
-    ...                 'name': 'Flow',
-    ...                 'component': GRAPH_COMPONENT,
-    ...                 'display': True,
-    ...                 'display_for_single_node': False,
     ...             }
-    ...         },
-    ...     },
+    ...         }
+    ...     }
     ... }
     >>> app = mk_app(funcs, convention=convention)
+
+    You can also add new elements to the GUI by defining it first then add it to the
+    configuration. In the following example, we display the dot graph of a DAG using
+    our own implementation of the component. It is then referenced in the configuration
+    with the parameters to intantiate it.
+
+    >>> from meshed import DAG
+    >>> from front.types import FrontElementName
+    >>> from front.elements import FrontComponentBase
+    >>> 
+    >>> def b(a: int):
+    ...     return 2 ** a
+    >>> def d(c: int):
+    ...     return 10 - (5 ** c)
+    >>> def result(b, d):
+    ...     return b * d
+    >>> dag = DAG((b, d, result))
+    >>> 
+    >>> class Graph(FrontComponentBase):
+    ...     def __init__(
+    ...         self,
+    ...         obj: DAG,
+    ...         name: FrontElementName = None,
+    ...         use_container_width: bool = False
+    ...     ):
+    ...         super().__init__(obj=obj, name=name)
+    ...         self.use_container_width = use_container_width
+    ... 
+    ...     def render(self):
+    ...         with st.expander(self.name, True):
+    ...             dag: DAG = self.obj
+    ...             st.graphviz_chart(
+    ...                 figure_or_dot=dag.dot_digraph(),
+    ...                 use_container_width=self.use_container_width
+    ...             )
+    >>> 
+    >>> config = {
+    ...     APP_KEY: {'title': 'DAG App'},
+    ...     RENDERING_KEY: {
+    ...         DAG: {
+    ...             'graph': {
+    ...                 ELEMENT_KEY: Graph,
+    ...                 NAME_KEY: 'Flow',
+    ...                 'use_container_width': True
+    ...             }
+    ...         }
+    ...     }
+    ... }
+    >>> app = mk_app([dag], config=config)
 
     :param objs: The target objects to render in the streamlit application.
     :type objs: Iterable

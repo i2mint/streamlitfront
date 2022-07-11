@@ -6,23 +6,18 @@ specific abstract elements class defined in front.
 
 from functools import partial
 import os
-from typing import Iterable
 import streamlit as st
 import streamlit.components.v1 as components
 from front.elements import (
     implement_component,
-    DagContainerBase,
+    ExecContainerBase,
     FileUploaderBase,
     FloatInputBase,
     FrontContainerBase,
-    GraphBase,
     InputBase,
     IntInputBase,
-    MultiSourceInputContainerBase,
     TextInputBase,
 )
-
-# from streamlitfront.session_state import get_state
 
 
 class App(FrontContainerBase):
@@ -63,22 +58,22 @@ class Section(FrontContainerBase):
             self._render_children()
 
 
-class DagExecSection(DagContainerBase):
+class ExecSection(ExecContainerBase):
     def render(self):
         with st.expander(self.name, True):
             inputs = {}
             for child in self.children:
-                inputs[child.name] = child.render()
+                inputs[child.obj.name] = child.render()
             submit = st.button('Submit')
             # output_key = f'{self.dag.__name__}_output'
             if submit:
                 # state = get_state_with_hash_funcs()
-                output = self.dag(**inputs)
-                st.session_state[f'{self.dag.__name__}_output'] = output
+                output = self.obj(**inputs)
+                st.session_state[f'{self.obj.__name__}_output'] = output
                 st.write(output)
 
 
-class MultiSourceInputContainer(MultiSourceInputContainerBase):
+class MultiSourceInputContainer(FrontContainerBase):
     def render(self):
         with st.container():
             options = tuple(x.name for x in self.children)
@@ -108,7 +103,6 @@ IntInput = implement_input_component(IntInputBase, st.number_input)
 IntSliderInput = implement_input_component(IntInputBase, st.slider)
 FloatInput = implement_float_input_component(component_factory=st.number_input)
 FloatSliderInput = implement_float_input_component(component_factory=st.slider)
-Graph = implement_component(GraphBase, st.graphviz_chart)
 FileUploader = implement_input_component(FileUploaderBase, st.file_uploader)
 
 class AudioRecorder(InputBase):
