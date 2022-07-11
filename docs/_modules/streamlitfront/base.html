@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.base &mdash; streamlitfront 0.1.9 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.base &mdash; streamlitfront 0.1.10 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -43,16 +43,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront.html">streamlitfront</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/app_maker.html">streamlitfront.app_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements.html">streamlitfront.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/tree_maker.html">streamlitfront.elements.tree_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/graph_component.html">streamlitfront.examples.graph_component</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
@@ -442,7 +445,7 @@
 <span class="sd">    &gt;&gt;&gt; app = mk_app(funcs)</span>
 
 <span class="sd">    The default configuration for the application is define by the convention object:</span>
-<span class="sd">    ``dflt_convention``. But you can overwrite parts or the entire configuration by</span>
+<span class="sd">    ``DFLT_CONVENTION``. But you can overwrite parts or the entire configuration by</span>
 <span class="sd">    setting the ``config`` parameter. The configuration is composed of three parts:</span>
 <span class="sd">    app, obj and rendering.</span>
 
@@ -450,8 +453,9 @@
 <span class="sd">    By default, the application name is &quot;My Front Application&quot;, but you can set the</span>
 <span class="sd">    title of the application as follow:</span>
 
+<span class="sd">    &gt;&gt;&gt; from front.spec_maker import APP_KEY</span>
 <span class="sd">    &gt;&gt;&gt; config = {</span>
-<span class="sd">    ...     &#39;app&#39;: {</span>
+<span class="sd">    ...     APP_KEY: {</span>
 <span class="sd">    ...         &#39;title&#39;: &#39;Another application name&#39;</span>
 <span class="sd">    ...     }</span>
 <span class="sd">    ... }</span>
@@ -461,11 +465,12 @@
 <span class="sd">    You can define a wrapper to transform the initial object into an output of your</span>
 <span class="sd">    choice to be rendered:</span>
 
-<span class="sd">    &gt;&gt;&gt; from front.app_maker_base import dflt_trans</span>
+<span class="sd">    &gt;&gt;&gt; from front.util import dflt_trans</span>
+<span class="sd">    &gt;&gt;&gt; from front.spec_maker import OBJ_KEY</span>
 <span class="sd">    &gt;&gt;&gt; def trans(objs: Iterable):</span>
 <span class="sd">    ...     return dflt_trans(reversed(objs))</span>
 <span class="sd">    &gt;&gt;&gt; config = {</span>
-<span class="sd">    ...     &#39;obj&#39;: {</span>
+<span class="sd">    ...     OBJ_KEY: {</span>
 <span class="sd">    ...         &#39;trans&#39;: trans</span>
 <span class="sd">    ...     }</span>
 <span class="sd">    ... }</span>
@@ -476,14 +481,17 @@
 <span class="sd">    For instance, you can choose to render a text input instead of a number input for a</span>
 <span class="sd">    specific parameter of a specific function:</span>
 
-<span class="sd">    &gt;&gt;&gt; from front.elements import INT_INPUT_SLIDER_COMPONENT</span>
+<span class="sd">    &gt;&gt;&gt; from front.elements import INT_INPUT_SLIDER_COMPONENT, ELEMENT_KEY</span>
+<span class="sd">    &gt;&gt;&gt; from front.spec_maker import RENDERING_KEY</span>
 <span class="sd">    &gt;&gt;&gt; config = {</span>
-<span class="sd">    ...     &#39;rendering&#39;: {</span>
-<span class="sd">    ...         &#39;Foo&#39;: {</span>
-<span class="sd">    ...             &#39;inputs&#39;: {</span>
-<span class="sd">    ...                 &#39;a&#39;: {</span>
-<span class="sd">    ...                     &#39;component&#39;: INT_INPUT_SLIDER_COMPONENT,</span>
-<span class="sd">    ...                     &#39;max_value&#39;: 10</span>
+<span class="sd">    ...     RENDERING_KEY: {</span>
+<span class="sd">    ...         &#39;foo&#39;: {</span>
+<span class="sd">    ...             &#39;execution&#39;: {</span>
+<span class="sd">    ...                 &#39;inputs&#39;: {</span>
+<span class="sd">    ...                     &#39;a&#39;: {</span>
+<span class="sd">    ...                         ELEMENT_KEY: INT_INPUT_SLIDER_COMPONENT,</span>
+<span class="sd">    ...                         &#39;max_value&#39;: 10</span>
+<span class="sd">    ...                     }</span>
 <span class="sd">    ...                 }</span>
 <span class="sd">    ...             }</span>
 <span class="sd">    ...         }</span>
@@ -494,18 +502,20 @@
 <span class="sd">    Obviously, you can combine the three types of configuration:</span>
 
 <span class="sd">    &gt;&gt;&gt; config = {</span>
-<span class="sd">    ...     &#39;app&#39;: {</span>
+<span class="sd">    ...     APP_KEY: {</span>
 <span class="sd">    ...         &#39;title&#39;: &#39;Another application name&#39;</span>
 <span class="sd">    ...     },</span>
-<span class="sd">    ...     &#39;obj&#39;: {</span>
+<span class="sd">    ...     OBJ_KEY: {</span>
 <span class="sd">    ...         &#39;trans&#39;: trans</span>
 <span class="sd">    ...     },</span>
-<span class="sd">    ...     &#39;rendering&#39;: {</span>
-<span class="sd">    ...         &#39;Foo&#39;: {</span>
-<span class="sd">    ...             &#39;inputs&#39;: {</span>
-<span class="sd">    ...                 &#39;a&#39;: {</span>
-<span class="sd">    ...                     &#39;component&#39;: INT_INPUT_SLIDER_COMPONENT,</span>
-<span class="sd">    ...                     &#39;max_value&#39;: 10</span>
+<span class="sd">    ...     RENDERING_KEY: {</span>
+<span class="sd">    ...         &#39;foo&#39;: {</span>
+<span class="sd">    ...             &#39;execution&#39;: {</span>
+<span class="sd">    ...                 &#39;inputs&#39;: {</span>
+<span class="sd">    ...                     &#39;a&#39;: {</span>
+<span class="sd">    ...                         ELEMENT_KEY: INT_INPUT_SLIDER_COMPONENT,</span>
+<span class="sd">    ...                         &#39;max_value&#39;: 10</span>
+<span class="sd">    ...                     }</span>
 <span class="sd">    ...                 }</span>
 <span class="sd">    ...             }</span>
 <span class="sd">    ...         }</span>
@@ -518,49 +528,94 @@
 <span class="sd">    make sure that all configuations are defined. Otherwise, the application would</span>
 <span class="sd">    crash or behave unexpectedly.</span>
 
-<span class="sd">    &gt;&gt;&gt; from meshed import DAG</span>
+<span class="sd">    &gt;&gt;&gt; from collections.abc import Callable</span>
+<span class="sd">    &gt;&gt;&gt; from front.spec_maker import NAME_KEY, DEFAULT_INPUT_KEY</span>
 <span class="sd">    &gt;&gt;&gt; from front.elements import (</span>
 <span class="sd">    ...     VIEW_CONTAINER,</span>
 <span class="sd">    ...     FLOAT_INPUT_SLIDER_COMPONENT,</span>
 <span class="sd">    ...     TEXT_INPUT_COMPONENT,</span>
 <span class="sd">    ...     EXEC_SECTION_CONTAINER,</span>
 <span class="sd">    ...     SECTION_CONTAINER,</span>
-<span class="sd">    ...     GRAPH_COMPONENT</span>
+<span class="sd">    ...     INT_INPUT_COMPONENT</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; </span>
 <span class="sd">    &gt;&gt;&gt; convention = {</span>
-<span class="sd">    ...     &#39;app&#39;: {</span>
+<span class="sd">    ...     APP_KEY: {</span>
 <span class="sd">    ...         &#39;title&#39;: &#39;Another application name&#39;</span>
 <span class="sd">    ...     },</span>
-<span class="sd">    ...     &#39;obj&#39;: {</span>
+<span class="sd">    ...     OBJ_KEY: {</span>
 <span class="sd">    ...         &#39;trans&#39;: trans</span>
 <span class="sd">    ...     },</span>
-<span class="sd">    ...     &#39;rendering&#39;: {</span>
-<span class="sd">    ...         DAG: {</span>
-<span class="sd">    ...             &#39;container&#39;: VIEW_CONTAINER,</span>
+<span class="sd">    ...     RENDERING_KEY: {</span>
+<span class="sd">    ...         Callable: {</span>
+<span class="sd">    ...             ELEMENT_KEY: VIEW_CONTAINER,</span>
 <span class="sd">    ...             &#39;execution&#39;: {</span>
-<span class="sd">    ...                 &#39;container&#39;: EXEC_SECTION_CONTAINER,</span>
-<span class="sd">    ...                 &#39;name&#39;: &#39;Execution&#39;,</span>
+<span class="sd">    ...                 ELEMENT_KEY: EXEC_SECTION_CONTAINER,</span>
+<span class="sd">    ...                 NAME_KEY: &#39;Execution&#39;,</span>
 <span class="sd">    ...                 &#39;inputs&#39;: {</span>
+<span class="sd">    ...                     int: {ELEMENT_KEY: INT_INPUT_COMPONENT,},</span>
 <span class="sd">    ...                     float: {</span>
-<span class="sd">    ...                         &#39;component&#39;: FLOAT_INPUT_SLIDER_COMPONENT,</span>
+<span class="sd">    ...                         ELEMENT_KEY: FLOAT_INPUT_SLIDER_COMPONENT,</span>
 <span class="sd">    ...                         &#39;format&#39;: &#39;%.2f&#39;,</span>
 <span class="sd">    ...                         &#39;step&#39;: 0.01,</span>
 <span class="sd">    ...                     },</span>
-<span class="sd">    ...                     Any: {&#39;component&#39;: TEXT_INPUT_COMPONENT,},</span>
+<span class="sd">    ...                     Any: {ELEMENT_KEY: TEXT_INPUT_COMPONENT,},</span>
+<span class="sd">    ...                     DEFAULT_INPUT_KEY: {NAME_KEY: lambda p: p.name}</span>
 <span class="sd">    ...                 },</span>
-<span class="sd">    ...             },</span>
-<span class="sd">    ...             &#39;graph&#39;: {</span>
-<span class="sd">    ...                 &#39;container&#39;: SECTION_CONTAINER,</span>
-<span class="sd">    ...                 &#39;name&#39;: &#39;Flow&#39;,</span>
-<span class="sd">    ...                 &#39;component&#39;: GRAPH_COMPONENT,</span>
-<span class="sd">    ...                 &#39;display&#39;: True,</span>
-<span class="sd">    ...                 &#39;display_for_single_node&#39;: False,</span>
 <span class="sd">    ...             }</span>
-<span class="sd">    ...         },</span>
-<span class="sd">    ...     },</span>
+<span class="sd">    ...         }</span>
+<span class="sd">    ...     }</span>
 <span class="sd">    ... }</span>
 <span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, convention=convention)</span>
+
+<span class="sd">    You can also add new elements to the GUI by defining it first then add it to the</span>
+<span class="sd">    configuration. In the following example, we display the dot graph of a DAG using</span>
+<span class="sd">    our own implementation of the component. It is then referenced in the configuration</span>
+<span class="sd">    with the parameters to intantiate it.</span>
+
+<span class="sd">    &gt;&gt;&gt; from meshed import DAG</span>
+<span class="sd">    &gt;&gt;&gt; from front.types import FrontElementName</span>
+<span class="sd">    &gt;&gt;&gt; from front.elements import FrontComponentBase</span>
+<span class="sd">    &gt;&gt;&gt; </span>
+<span class="sd">    &gt;&gt;&gt; def b(a: int):</span>
+<span class="sd">    ...     return 2 ** a</span>
+<span class="sd">    &gt;&gt;&gt; def d(c: int):</span>
+<span class="sd">    ...     return 10 - (5 ** c)</span>
+<span class="sd">    &gt;&gt;&gt; def result(b, d):</span>
+<span class="sd">    ...     return b * d</span>
+<span class="sd">    &gt;&gt;&gt; dag = DAG((b, d, result))</span>
+<span class="sd">    &gt;&gt;&gt; </span>
+<span class="sd">    &gt;&gt;&gt; class Graph(FrontComponentBase):</span>
+<span class="sd">    ...     def __init__(</span>
+<span class="sd">    ...         self,</span>
+<span class="sd">    ...         obj: DAG,</span>
+<span class="sd">    ...         name: FrontElementName = None,</span>
+<span class="sd">    ...         use_container_width: bool = False</span>
+<span class="sd">    ...     ):</span>
+<span class="sd">    ...         super().__init__(obj=obj, name=name)</span>
+<span class="sd">    ...         self.use_container_width = use_container_width</span>
+<span class="sd">    ... </span>
+<span class="sd">    ...     def render(self):</span>
+<span class="sd">    ...         with st.expander(self.name, True):</span>
+<span class="sd">    ...             dag: DAG = self.obj</span>
+<span class="sd">    ...             st.graphviz_chart(</span>
+<span class="sd">    ...                 figure_or_dot=dag.dot_digraph(),</span>
+<span class="sd">    ...                 use_container_width=self.use_container_width</span>
+<span class="sd">    ...             )</span>
+<span class="sd">    &gt;&gt;&gt; </span>
+<span class="sd">    &gt;&gt;&gt; config = {</span>
+<span class="sd">    ...     APP_KEY: {&#39;title&#39;: &#39;DAG App&#39;},</span>
+<span class="sd">    ...     RENDERING_KEY: {</span>
+<span class="sd">    ...         DAG: {</span>
+<span class="sd">    ...             &#39;graph&#39;: {</span>
+<span class="sd">    ...                 ELEMENT_KEY: Graph,</span>
+<span class="sd">    ...                 NAME_KEY: &#39;Flow&#39;,</span>
+<span class="sd">    ...                 &#39;use_container_width&#39;: True</span>
+<span class="sd">    ...             }</span>
+<span class="sd">    ...         }</span>
+<span class="sd">    ...     }</span>
+<span class="sd">    ... }</span>
+<span class="sd">    &gt;&gt;&gt; app = mk_app([dag], config=config)</span>
 
 <span class="sd">    :param objs: The target objects to render in the streamlit application.</span>
 <span class="sd">    :type objs: Iterable</span>

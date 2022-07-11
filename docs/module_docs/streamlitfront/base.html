@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.base &mdash; streamlitfront 0.1.9 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.base &mdash; streamlitfront 0.1.10 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -22,7 +22,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="streamlitfront.elements.elements" href="elements/elements.html" />
+    <link rel="next" title="streamlitfront.elements" href="elements.html" />
     <link rel="prev" title="streamlitfront.app_maker" href="app_maker.html" /> 
 </head>
 
@@ -46,16 +46,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../streamlitfront.html">streamlitfront</a></li>
 <li class="toctree-l1"><a class="reference internal" href="app_maker.html">streamlitfront.app_maker</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements.html">streamlitfront.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements/elements.html">streamlitfront.elements.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements/tree_maker.html">streamlitfront.elements.tree_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/graph_component.html">streamlitfront.examples.graph_component</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/issues.html">streamlitfront.examples.issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/simple.html">streamlitfront.examples.simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="page_funcs.html">streamlitfront.page_funcs</a></li>
@@ -131,14 +134,15 @@ Call this function with target objects and get an app to run.</p>
 </pre></div>
 </div>
 <p>The default configuration for the application is define by the convention object:
-<code class="docutils literal notranslate"><span class="pre">dflt_convention</span></code>. But you can overwrite parts or the entire configuration by
+<code class="docutils literal notranslate"><span class="pre">DFLT_CONVENTION</span></code>. But you can overwrite parts or the entire configuration by
 setting the <code class="docutils literal notranslate"><span class="pre">config</span></code> parameter. The configuration is composed of three parts:
 app, obj and rendering.</p>
 <p>The app configuration:
 By default, the application name is “My Front Application”, but you can set the
 title of the application as follow:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
-<span class="gp">... </span>    <span class="s1">&#39;app&#39;</span><span class="p">:</span> <span class="p">{</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.spec_maker</span> <span class="kn">import</span> <span class="n">APP_KEY</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="n">APP_KEY</span><span class="p">:</span> <span class="p">{</span>
 <span class="gp">... </span>        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Another application name&#39;</span>
 <span class="gp">... </span>    <span class="p">}</span>
 <span class="gp">... </span><span class="p">}</span>
@@ -148,11 +152,12 @@ title of the application as follow:</p>
 <p>The obj configuration:
 You can define a wrapper to transform the initial object into an output of your
 choice to be rendered:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.app_maker_base</span> <span class="kn">import</span> <span class="n">dflt_trans</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.util</span> <span class="kn">import</span> <span class="n">dflt_trans</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.spec_maker</span> <span class="kn">import</span> <span class="n">OBJ_KEY</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">trans</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">dflt_trans</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">objs</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
-<span class="gp">... </span>    <span class="s1">&#39;obj&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="n">OBJ_KEY</span><span class="p">:</span> <span class="p">{</span>
 <span class="gp">... </span>        <span class="s1">&#39;trans&#39;</span><span class="p">:</span> <span class="n">trans</span>
 <span class="gp">... </span>    <span class="p">}</span>
 <span class="gp">... </span><span class="p">}</span>
@@ -163,14 +168,17 @@ choice to be rendered:</p>
 You can define the way elements are rendered in the GUI.
 For instance, you can choose to render a text input instead of a number input for a
 specific parameter of a specific function:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="n">INT_INPUT_SLIDER_COMPONENT</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="n">INT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span> <span class="n">ELEMENT_KEY</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.spec_maker</span> <span class="kn">import</span> <span class="n">RENDERING_KEY</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
-<span class="gp">... </span>    <span class="s1">&#39;rendering&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>        <span class="s1">&#39;Foo&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>            <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>                <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>                    <span class="s1">&#39;component&#39;</span><span class="p">:</span> <span class="n">INT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span>
-<span class="gp">... </span>                    <span class="s1">&#39;max_value&#39;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="gp">... </span>    <span class="n">RENDERING_KEY</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>            <span class="s1">&#39;execution&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                    <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                        <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">INT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="s1">&#39;max_value&#39;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="gp">... </span>                    <span class="p">}</span>
 <span class="gp">... </span>                <span class="p">}</span>
 <span class="gp">... </span>            <span class="p">}</span>
 <span class="gp">... </span>        <span class="p">}</span>
@@ -181,18 +189,20 @@ specific parameter of a specific function:</p>
 </div>
 <p>Obviously, you can combine the three types of configuration:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
-<span class="gp">... </span>    <span class="s1">&#39;app&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="n">APP_KEY</span><span class="p">:</span> <span class="p">{</span>
 <span class="gp">... </span>        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Another application name&#39;</span>
 <span class="gp">... </span>    <span class="p">},</span>
-<span class="gp">... </span>    <span class="s1">&#39;obj&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="n">OBJ_KEY</span><span class="p">:</span> <span class="p">{</span>
 <span class="gp">... </span>        <span class="s1">&#39;trans&#39;</span><span class="p">:</span> <span class="n">trans</span>
 <span class="gp">... </span>    <span class="p">},</span>
-<span class="gp">... </span>    <span class="s1">&#39;rendering&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>        <span class="s1">&#39;Foo&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>            <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>                <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>                    <span class="s1">&#39;component&#39;</span><span class="p">:</span> <span class="n">INT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span>
-<span class="gp">... </span>                    <span class="s1">&#39;max_value&#39;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="gp">... </span>    <span class="n">RENDERING_KEY</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>            <span class="s1">&#39;execution&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                    <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                        <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">INT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="s1">&#39;max_value&#39;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="gp">... </span>                    <span class="p">}</span>
 <span class="gp">... </span>                <span class="p">}</span>
 <span class="gp">... </span>            <span class="p">}</span>
 <span class="gp">... </span>        <span class="p">}</span>
@@ -205,49 +215,94 @@ specific parameter of a specific function:</p>
 parameter. Be careful though, by overwritting the default convention, you have to
 make sure that all configuations are defined. Otherwise, the application would
 crash or behave unexpectedly.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">meshed</span> <span class="kn">import</span> <span class="n">DAG</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.spec_maker</span> <span class="kn">import</span> <span class="n">NAME_KEY</span><span class="p">,</span> <span class="n">DEFAULT_INPUT_KEY</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="p">(</span>
 <span class="gp">... </span>    <span class="n">VIEW_CONTAINER</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">FLOAT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">TEXT_INPUT_COMPONENT</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">EXEC_SECTION_CONTAINER</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">SECTION_CONTAINER</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">GRAPH_COMPONENT</span>
+<span class="gp">... </span>    <span class="n">INT_INPUT_COMPONENT</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">convention</span> <span class="o">=</span> <span class="p">{</span>
-<span class="gp">... </span>    <span class="s1">&#39;app&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="n">APP_KEY</span><span class="p">:</span> <span class="p">{</span>
 <span class="gp">... </span>        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Another application name&#39;</span>
 <span class="gp">... </span>    <span class="p">},</span>
-<span class="gp">... </span>    <span class="s1">&#39;obj&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="n">OBJ_KEY</span><span class="p">:</span> <span class="p">{</span>
 <span class="gp">... </span>        <span class="s1">&#39;trans&#39;</span><span class="p">:</span> <span class="n">trans</span>
 <span class="gp">... </span>    <span class="p">},</span>
-<span class="gp">... </span>    <span class="s1">&#39;rendering&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>        <span class="n">DAG</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>            <span class="s1">&#39;container&#39;</span><span class="p">:</span> <span class="n">VIEW_CONTAINER</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">RENDERING_KEY</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="n">Callable</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">VIEW_CONTAINER</span><span class="p">,</span>
 <span class="gp">... </span>            <span class="s1">&#39;execution&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>                <span class="s1">&#39;container&#39;</span><span class="p">:</span> <span class="n">EXEC_SECTION_CONTAINER</span><span class="p">,</span>
-<span class="gp">... </span>                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Execution&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">EXEC_SECTION_CONTAINER</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="n">NAME_KEY</span><span class="p">:</span> <span class="s1">&#39;Execution&#39;</span><span class="p">,</span>
 <span class="gp">... </span>                <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                    <span class="nb">int</span><span class="p">:</span> <span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">INT_INPUT_COMPONENT</span><span class="p">,},</span>
 <span class="gp">... </span>                    <span class="nb">float</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>                        <span class="s1">&#39;component&#39;</span><span class="p">:</span> <span class="n">FLOAT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span>
+<span class="gp">... </span>                        <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">FLOAT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span>
 <span class="gp">... </span>                        <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1">&#39;</span><span class="p">,</span>
 <span class="gp">... </span>                        <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
 <span class="gp">... </span>                    <span class="p">},</span>
-<span class="gp">... </span>                    <span class="n">Any</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;component&#39;</span><span class="p">:</span> <span class="n">TEXT_INPUT_COMPONENT</span><span class="p">,},</span>
+<span class="gp">... </span>                    <span class="n">Any</span><span class="p">:</span> <span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TEXT_INPUT_COMPONENT</span><span class="p">,},</span>
+<span class="gp">... </span>                    <span class="n">DEFAULT_INPUT_KEY</span><span class="p">:</span> <span class="p">{</span><span class="n">NAME_KEY</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
 <span class="gp">... </span>                <span class="p">},</span>
-<span class="gp">... </span>            <span class="p">},</span>
-<span class="gp">... </span>            <span class="s1">&#39;graph&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="gp">... </span>                <span class="s1">&#39;container&#39;</span><span class="p">:</span> <span class="n">SECTION_CONTAINER</span><span class="p">,</span>
-<span class="gp">... </span>                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Flow&#39;</span><span class="p">,</span>
-<span class="gp">... </span>                <span class="s1">&#39;component&#39;</span><span class="p">:</span> <span class="n">GRAPH_COMPONENT</span><span class="p">,</span>
-<span class="gp">... </span>                <span class="s1">&#39;display&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-<span class="gp">... </span>                <span class="s1">&#39;display_for_single_node&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
 <span class="gp">... </span>            <span class="p">}</span>
-<span class="gp">... </span>        <span class="p">},</span>
-<span class="gp">... </span>    <span class="p">},</span>
+<span class="gp">... </span>        <span class="p">}</span>
+<span class="gp">... </span>    <span class="p">}</span>
 <span class="gp">... </span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="n">convention</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also add new elements to the GUI by defining it first then add it to the
+configuration. In the following example, we display the dot graph of a DAG using
+our own implementation of the component. It is then referenced in the configuration
+with the parameters to intantiate it.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">meshed</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.types</span> <span class="kn">import</span> <span class="n">FrontElementName</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="n">FrontComponentBase</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">b</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">a</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">d</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="mi">10</span> <span class="o">-</span> <span class="p">(</span><span class="mi">5</span> <span class="o">**</span> <span class="n">c</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">result</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">b</span> <span class="o">*</span> <span class="n">d</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dag</span> <span class="o">=</span> <span class="n">DAG</span><span class="p">((</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Graph</span><span class="p">(</span><span class="n">FrontComponentBase</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">obj</span><span class="p">:</span> <span class="n">DAG</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">name</span><span class="p">:</span> <span class="n">FrontElementName</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">use_container_width</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">... </span>    <span class="p">):</span>
+<span class="gp">... </span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">use_container_width</span> <span class="o">=</span> <span class="n">use_container_width</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">expander</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+<span class="gp">... </span>            <span class="n">dag</span><span class="p">:</span> <span class="n">DAG</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span>
+<span class="gp">... </span>            <span class="n">st</span><span class="o">.</span><span class="n">graphviz_chart</span><span class="p">(</span>
+<span class="gp">... </span>                <span class="n">figure_or_dot</span><span class="o">=</span><span class="n">dag</span><span class="o">.</span><span class="n">dot_digraph</span><span class="p">(),</span>
+<span class="gp">... </span>                <span class="n">use_container_width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">use_container_width</span>
+<span class="gp">... </span>            <span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="n">APP_KEY</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;DAG App&#39;</span><span class="p">},</span>
+<span class="gp">... </span>    <span class="n">RENDERING_KEY</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>        <span class="n">DAG</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>            <span class="s1">&#39;graph&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>                <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">Graph</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="n">NAME_KEY</span><span class="p">:</span> <span class="s1">&#39;Flow&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="s1">&#39;use_container_width&#39;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="gp">... </span>            <span class="p">}</span>
+<span class="gp">... </span>        <span class="p">}</span>
+<span class="gp">... </span>    <span class="p">}</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">([</span><span class="n">dag</span><span class="p">],</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -273,7 +328,7 @@ configuration. See above for more details.
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="app_maker.html" class="btn btn-neutral float-left" title="streamlitfront.app_maker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="elements/elements.html" class="btn btn-neutral float-right" title="streamlitfront.elements.elements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="elements.html" class="btn btn-neutral float-right" title="streamlitfront.elements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

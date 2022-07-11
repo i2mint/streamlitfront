@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.examples.tw_data_binding &mdash; streamlitfront 0.1.10 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.examples.graph_component &mdash; streamlitfront 0.1.10 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -80,7 +80,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>streamlitfront.examples.tw_data_binding</li>
+      <li>streamlitfront.examples.graph_component</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -89,66 +89,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for streamlitfront.examples.tw_data_binding</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
+  <h1>Source code for streamlitfront.examples.graph_component</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">from</span> <span class="nn">meshed</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">front.types</span> <span class="kn">import</span> <span class="n">FrontElementName</span>
+<span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="n">FrontComponentBase</span>
 
 
-<div class="viewcode-block" id="foo"><a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/tw_data_binding.html#streamlitfront.examples.tw_data_binding.foo">[docs]</a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">integer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">floating</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;C&#39;est foo&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">text</span><span class="p">,</span> <span class="n">integer</span><span class="p">,</span> <span class="n">floating</span></div>
+<div class="viewcode-block" id="Graph"><a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/graph_component.html#streamlitfront.examples.graph_component.Graph">[docs]</a><span class="k">class</span> <span class="nc">Graph</span><span class="p">(</span><span class="n">FrontComponentBase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">DAG</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">FrontElementName</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_container_width</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_container_width</span> <span class="o">=</span> <span class="n">use_container_width</span>
 
-
-<div class="viewcode-block" id="bar"><a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/tw_data_binding.html#streamlitfront.examples.tw_data_binding.bar">[docs]</a><span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;boo&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;About bar&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">a</span></div>
-
-
-<span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">]</span>
-
-<span class="kn">from</span> <span class="nn">streamlitfront.base</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">get_state</span><span class="p">,</span>
-    <span class="n">_get_view_key</span><span class="p">,</span>
-    <span class="n">get_pages_specs</span><span class="p">,</span>
-    <span class="n">dflt_hash_funcs</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-
-
-<span class="k">def</span> <span class="nf">pages_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">configs</span><span class="p">):</span>
-    <span class="n">state</span> <span class="o">=</span> <span class="n">get_state</span><span class="p">(</span><span class="n">hash_funcs</span><span class="o">=</span><span class="n">dflt_hash_funcs</span><span class="p">)</span>  <span class="c1"># TODO: get from configs</span>
-
-    <span class="c1"># Page setup</span>
-    <span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s1">&#39;wide&#39;</span><span class="p">)</span>
-
-    <span class="c1"># Make page objects</span>
-    <span class="n">views</span> <span class="o">=</span> <span class="n">get_pages_specs</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">)</span>
-    <span class="n">state</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">views</span>
-
-    <span class="c1"># TODO: The above is static: Should the above be done only once, and cached?</span>
-    <span class="c1">#   Perhaps views should be cached in state?</span>
-
-    <span class="c1"># Setup navigation</span>
-    <span class="n">view_key</span> <span class="o">=</span> <span class="n">_get_view_key</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">views</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Select your view&#39;</span><span class="p">)</span>
-
-    <span class="c1"># Display the selected page with the session state</span>
-    <span class="c1"># This is the part that actually runs the functionality that pages specifies</span>
-    <span class="n">view_runner</span> <span class="o">=</span> <span class="n">views</span><span class="p">[</span><span class="n">view_key</span><span class="p">]</span>  <span class="c1"># gets the page runner</span>
-    <span class="n">view_runner</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>  <span class="c1"># runs the page with the state</span>
-
-    <span class="c1"># Mandatory to avoid rollbacks with widgets, must be called at the end of your app</span>
-    <span class="n">state</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">streamlitfront.base</span> <span class="kn">import</span> <span class="n">dispatch_funcs</span>
-    <span class="kn">from</span> <span class="nn">streamlitfront.page_funcs</span> <span class="kn">import</span> <span class="n">ExperimentalViewFunc</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;file: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
-
-    <span class="n">app</span> <span class="o">=</span> <span class="n">dispatch_funcs</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">configs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">page_factory</span><span class="o">=</span><span class="n">ExperimentalViewFunc</span><span class="p">))</span>
-
-    <span class="n">app</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">expander</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+            <span class="n">dag</span><span class="p">:</span> <span class="n">DAG</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">graphviz_chart</span><span class="p">(</span>
+                <span class="n">figure_or_dot</span><span class="o">=</span><span class="n">dag</span><span class="o">.</span><span class="n">dot_digraph</span><span class="p">(),</span>
+                <span class="n">use_container_width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">use_container_width</span><span class="p">,</span>
+            <span class="p">)</span></div>
 </pre></div>
 
            </div>

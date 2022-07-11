@@ -4,6 +4,7 @@ from front.spec_maker import APP_KEY, RENDERING_KEY, ELEMENT_KEY, NAME_KEY
 
 from streamlitfront.examples.graph_component import Graph
 
+
 def b(a: int):
     return 2 ** a
 
@@ -34,7 +35,7 @@ app = mk_app(
                 'graph': {
                     ELEMENT_KEY: Graph,
                     NAME_KEY: 'Flow',
-                    'use_container_width': True
+                    'use_container_width': True,
                 },
             }
         },

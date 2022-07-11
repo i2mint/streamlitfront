@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; streamlitfront 0.1.9 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>Index &mdash; streamlitfront 0.1.10 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -43,16 +43,19 @@
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront.html">streamlitfront</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/app_maker.html">streamlitfront.app_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/elements.html">streamlitfront.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/elements/tree_maker.html">streamlitfront.elements.tree_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/graph_component.html">streamlitfront.examples.graph_component</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
@@ -120,15 +123,17 @@
 </li>
       <li><a href="module_docs/streamlitfront/app_maker.html#streamlitfront.app_maker.AppMaker">AppMaker (class in streamlitfront.app_maker)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="module_docs/streamlitfront/scrap/alt_renderer.html#streamlitfront.scrap.alt_renderer.StreamlitRenderers.area_chart">area_chart() (streamlitfront.scrap.alt_renderer.StreamlitRenderers static method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="module_docs/streamlitfront/util.html#streamlitfront.util.attr_or_key">attr_or_key() (in module streamlitfront.util)</a>
 </li>
       <li><a href="module_docs/streamlitfront/util.html#streamlitfront.util.attr_or_key_with_dotpaths">attr_or_key_with_dotpaths() (in module streamlitfront.util)</a>
 </li>
       <li><a href="module_docs/streamlitfront/scrap/alt_renderer.html#streamlitfront.scrap.alt_renderer.StreamlitRenderers.audio">audio() (streamlitfront.scrap.alt_renderer.StreamlitRenderers static method)</a>
+</li>
+      <li><a href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.AudioRecorder">AudioRecorder (class in streamlitfront.elements.elements)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -194,8 +199,6 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.DagExecSection">DagExecSection (class in streamlitfront.elements.elements)</a>
-</li>
       <li><a href="module_docs/streamlitfront/scrap/alt_renderer.html#streamlitfront.scrap.alt_renderer.StreamlitRenderers.dataframe">dataframe() (streamlitfront.scrap.alt_renderer.StreamlitRenderers static method)</a>
 </li>
       <li><a href="module_docs/streamlitfront/scrap/alt_renderer.html#streamlitfront.scrap.alt_renderer.StreamlitRenderers.date_input">date_input() (streamlitfront.scrap.alt_renderer.StreamlitRenderers static method)</a>
@@ -218,11 +221,13 @@
 </li>
       <li><a href="module_docs/streamlitfront/scrap/alt_renderer.html#streamlitfront.scrap.alt_renderer.StreamlitRenderers.empty">empty() (streamlitfront.scrap.alt_renderer.StreamlitRenderers static method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="module_docs/streamlitfront/scrap/alt_renderer.html#streamlitfront.scrap.alt_renderer.StreamlitRenderers.error">error() (streamlitfront.scrap.alt_renderer.StreamlitRenderers static method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="module_docs/streamlitfront/scrap/alt_renderer.html#streamlitfront.scrap.alt_renderer.StreamlitRenderers.exception">exception() (streamlitfront.scrap.alt_renderer.StreamlitRenderers static method)</a>
+</li>
+      <li><a href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.ExecSection">ExecSection (class in streamlitfront.elements.elements)</a>
 </li>
       <li><a href="module_docs/streamlitfront/scrap/alt_renderer.html#streamlitfront.scrap.alt_renderer.StreamlitRenderers.expander">expander() (streamlitfront.scrap.alt_renderer.StreamlitRenderers static method)</a>
 </li>
@@ -264,6 +269,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="module_docs/streamlitfront/examples/graph_component.html#streamlitfront.examples.graph_component.Graph">Graph (class in streamlitfront.examples.graph_component)</a>
+</li>
       <li><a href="module_docs/streamlitfront/scrap/alt_renderer.html#streamlitfront.scrap.alt_renderer.StreamlitRenderers.graphviz_chart">graphviz_chart() (streamlitfront.scrap.alt_renderer.StreamlitRenderers static method)</a>
 </li>
   </ul></td>
@@ -336,6 +343,8 @@
 </li>
         <li><a href="module_docs/streamlitfront/base.html#module-streamlitfront.base">streamlitfront.base</a>
 </li>
+        <li><a href="module_docs/streamlitfront/elements.html#module-streamlitfront.elements">streamlitfront.elements</a>
+</li>
         <li><a href="module_docs/streamlitfront/elements/elements.html#module-streamlitfront.elements.elements">streamlitfront.elements.elements</a>
 </li>
         <li><a href="module_docs/streamlitfront/elements/tree_maker.html#module-streamlitfront.elements.tree_maker">streamlitfront.elements.tree_maker</a>
@@ -345,6 +354,8 @@
         <li><a href="module_docs/streamlitfront/examples/data_binding.html#module-streamlitfront.examples.data_binding">streamlitfront.examples.data_binding</a>
 </li>
         <li><a href="module_docs/streamlitfront/examples/experimentation.html#module-streamlitfront.examples.experimentation">streamlitfront.examples.experimentation</a>
+</li>
+        <li><a href="module_docs/streamlitfront/examples/graph_component.html#module-streamlitfront.examples.graph_component">streamlitfront.examples.graph_component</a>
 </li>
         <li><a href="module_docs/streamlitfront/examples/issues.html#module-streamlitfront.examples.issues">streamlitfront.examples.issues</a>
 </li>
@@ -372,6 +383,8 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="module_docs/streamlitfront/scrap/alt_renderer.html#streamlitfront.scrap.alt_renderer.StreamlitRenderers.multiselect">multiselect() (streamlitfront.scrap.alt_renderer.StreamlitRenderers static method)</a>
+</li>
+      <li><a href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.MultiSourceInputContainer">MultiSourceInputContainer (class in streamlitfront.elements.elements)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -459,6 +472,13 @@
 </li>
       </ul></li>
       <li>
+    streamlitfront.elements
+
+      <ul>
+        <li><a href="module_docs/streamlitfront/elements.html#module-streamlitfront.elements">module</a>
+</li>
+      </ul></li>
+      <li>
     streamlitfront.elements.elements
 
       <ul>
@@ -494,14 +514,21 @@
 </li>
       </ul></li>
       <li>
+    streamlitfront.examples.graph_component
+
+      <ul>
+        <li><a href="module_docs/streamlitfront/examples/graph_component.html#module-streamlitfront.examples.graph_component">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
     streamlitfront.examples.issues
 
       <ul>
         <li><a href="module_docs/streamlitfront/examples/issues.html#module-streamlitfront.examples.issues">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     streamlitfront.examples.mk_app
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.elements.tree_maker &mdash; streamlitfront 0.1.9 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.elements.tree_maker &mdash; streamlitfront 0.1.10 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -43,16 +43,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront.html">streamlitfront</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/app_maker.html">streamlitfront.app_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements.html">streamlitfront.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements/tree_maker.html">streamlitfront.elements.tree_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/graph_component.html">streamlitfront.examples.graph_component</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
@@ -91,31 +94,13 @@
 <span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">ElementTreeMakerBase</span><span class="p">,</span>
     <span class="n">FrontElementBase</span><span class="p">,</span>
-    <span class="n">APP_CONTAINER</span><span class="p">,</span>
-    <span class="n">VIEW_CONTAINER</span><span class="p">,</span>
-    <span class="n">SECTION_CONTAINER</span><span class="p">,</span>
-    <span class="n">EXEC_SECTION_CONTAINER</span><span class="p">,</span>
-    <span class="n">TEXT_INPUT_COMPONENT</span><span class="p">,</span>
-    <span class="n">INT_INPUT_COMPONENT</span><span class="p">,</span>
-    <span class="n">INT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span>
-    <span class="n">FLOAT_INPUT_COMPONENT</span><span class="p">,</span>
-    <span class="n">FLOAT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span>
-    <span class="n">GRAPH_COMPONENT</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 
-<span class="kn">from</span> <span class="nn">streamlitfront.elements.elements</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">App</span><span class="p">,</span>
-    <span class="n">DagExecSection</span><span class="p">,</span>
-    <span class="n">FloatInput</span><span class="p">,</span>
-    <span class="n">FloatSliderInput</span><span class="p">,</span>
-    <span class="n">IntInput</span><span class="p">,</span>
-    <span class="n">IntSliderInput</span><span class="p">,</span>
-    <span class="n">Section</span><span class="p">,</span>
-    <span class="n">TextInput</span><span class="p">,</span>
-    <span class="n">View</span><span class="p">,</span>
-    <span class="n">Graph</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">streamlitfront.elements</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">MY_COMPONENT</span> <span class="o">=</span> <span class="s1">&#39;MY_COMPONENT&#39;</span>
 
 
 <div class="viewcode-block" id="ElementTreeMaker"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/tree_maker.html#streamlitfront.elements.tree_maker.ElementTreeMaker">[docs]</a><span class="k">class</span> <span class="nc">ElementTreeMaker</span><span class="p">(</span><span class="n">ElementTreeMakerBase</span><span class="p">):</span>
@@ -129,14 +114,15 @@
             <span class="n">APP_CONTAINER</span><span class="p">:</span> <span class="n">App</span><span class="p">,</span>
             <span class="n">VIEW_CONTAINER</span><span class="p">:</span> <span class="n">View</span><span class="p">,</span>
             <span class="n">SECTION_CONTAINER</span><span class="p">:</span> <span class="n">Section</span><span class="p">,</span>
-            <span class="n">EXEC_SECTION_CONTAINER</span><span class="p">:</span> <span class="n">DagExecSection</span><span class="p">,</span>
+            <span class="n">EXEC_SECTION_CONTAINER</span><span class="p">:</span> <span class="n">ExecSection</span><span class="p">,</span>
+            <span class="n">MULTI_SOURCE_INPUT_CONTAINER</span><span class="p">:</span> <span class="n">MultiSourceInputContainer</span><span class="p">,</span>
             <span class="n">TEXT_INPUT_COMPONENT</span><span class="p">:</span> <span class="n">TextInput</span><span class="p">,</span>
-            <span class="c1"># TEXT_OUTPUT_COMPONENT: TextOutput,</span>
             <span class="n">INT_INPUT_COMPONENT</span><span class="p">:</span> <span class="n">IntInput</span><span class="p">,</span>
             <span class="n">INT_INPUT_SLIDER_COMPONENT</span><span class="p">:</span> <span class="n">IntSliderInput</span><span class="p">,</span>
             <span class="n">FLOAT_INPUT_COMPONENT</span><span class="p">:</span> <span class="n">FloatInput</span><span class="p">,</span>
             <span class="n">FLOAT_INPUT_SLIDER_COMPONENT</span><span class="p">:</span> <span class="n">FloatSliderInput</span><span class="p">,</span>
-            <span class="n">GRAPH_COMPONENT</span><span class="p">:</span> <span class="n">Graph</span><span class="p">,</span>
+            <span class="n">FILE_UPLOADER_COMPONENT</span><span class="p">:</span> <span class="n">FileUploader</span><span class="p">,</span>
+            <span class="n">AUDIO_RECORDER_COMPONENT</span><span class="p">:</span> <span class="n">AudioRecorder</span><span class="p">,</span>
         <span class="p">}</span>
 
     <span class="k">def</span> <span class="nf">_get_stored_value</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.examples.mk_app &mdash; streamlitfront 0.1.9 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.examples.mk_app &mdash; streamlitfront 0.1.10 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -43,16 +43,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront.html">streamlitfront</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/app_maker.html">streamlitfront.app_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements.html">streamlitfront.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements/tree_maker.html">streamlitfront.elements.tree_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/graph_component.html">streamlitfront.examples.graph_component</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
@@ -87,10 +90,10 @@
            <div itemprop="articleBody">
              
   <h1>Source code for streamlitfront.examples.mk_app</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">distutils.command.config</span> <span class="kn">import</span> <span class="n">config</span>
+<span></span><span class="kn">from</span> <span class="nn">front.spec_maker</span> <span class="kn">import</span> <span class="n">APP_KEY</span><span class="p">,</span> <span class="n">RENDERING_KEY</span><span class="p">,</span> <span class="n">ELEMENT_KEY</span>
+<span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="n">FLOAT_INPUT_SLIDER_COMPONENT</span>
 
 <span class="kn">from</span> <span class="nn">streamlitfront.base</span> <span class="kn">import</span> <span class="n">mk_app</span>
-<span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="n">FLOAT_INPUT_SLIDER_COMPONENT</span>
 
 
 <div class="viewcode-block" id="foo"><a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/mk_app.html#streamlitfront.examples.mk_app.foo">[docs]</a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
@@ -114,15 +117,12 @@
 <span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span>
     <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">confuser</span><span class="p">,</span> <span class="n">proportion</span><span class="p">],</span>
     <span class="n">config</span><span class="o">=</span><span class="p">{</span>
-        <span class="s1">&#39;app&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;My app&#39;</span><span class="p">},</span>
-        <span class="c1"># &#39;obj&#39;: {</span>
-        <span class="c1">#     &#39;bindings&#39;: {</span>
-        <span class="c1">#         &#39;Foo.a&#39;: &#39;Proportion.x&#39;</span>
-        <span class="c1">#     }</span>
-        <span class="c1"># }</span>
-        <span class="s1">&#39;rendering&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;Proportion&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;component&#39;</span><span class="p">:</span> <span class="n">FLOAT_INPUT_SLIDER_COMPONENT</span><span class="p">,}},</span>
+        <span class="n">APP_KEY</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;My app&#39;</span><span class="p">},</span>
+        <span class="n">RENDERING_KEY</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;proportion&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;execution&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">FLOAT_INPUT_SLIDER_COMPONENT</span><span class="p">,}},</span>
+                <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">},</span>
     <span class="p">},</span>

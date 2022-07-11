@@ -105,6 +105,7 @@ FloatInput = implement_float_input_component(component_factory=st.number_input)
 FloatSliderInput = implement_float_input_component(component_factory=st.slider)
 FileUploader = implement_input_component(FileUploaderBase, st.file_uploader)
 
+
 class AudioRecorder(InputBase):
     def render(self):
         # # Design move app further up and remove top padding
@@ -126,7 +127,7 @@ class AudioRecorder(InputBase):
 
         parent_dir = os.path.dirname(os.path.abspath(__file__))
         build_dir = os.path.join(parent_dir, 'js', 'st_audiorec')
-        st_audiorec = components.declare_component("st_audiorec", path=build_dir)
+        st_audiorec = components.declare_component('st_audiorec', path=build_dir)
         audio_data_url = st_audiorec()
         # if audio_data_url:
         #     st.success(f'The audio has been successfully saved under "{save_name}"')

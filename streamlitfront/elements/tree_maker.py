@@ -10,6 +10,7 @@ from streamlitfront.elements import *
 
 MY_COMPONENT = 'MY_COMPONENT'
 
+
 class ElementTreeMaker(ElementTreeMakerBase):
     """Tree maker class for streamlitfront. Defines the streamlitfront-speceific
     element mapping and state management.
@@ -23,7 +24,6 @@ class ElementTreeMaker(ElementTreeMakerBase):
             SECTION_CONTAINER: Section,
             EXEC_SECTION_CONTAINER: ExecSection,
             MULTI_SOURCE_INPUT_CONTAINER: MultiSourceInputContainer,
-
             TEXT_INPUT_COMPONENT: TextInput,
             INT_INPUT_COMPONENT: IntInput,
             INT_INPUT_SLIDER_COMPONENT: IntSliderInput,

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.9 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.10 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -43,16 +43,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront.html">streamlitfront</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/app_maker.html">streamlitfront.app_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements.html">streamlitfront.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements/tree_maker.html">streamlitfront.elements.tree_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/graph_component.html">streamlitfront.examples.graph_component</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
@@ -94,23 +97,22 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">isin</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">import</span> <span class="nn">streamlit.components.v1</span> <span class="k">as</span> <span class="nn">components</span>
 <span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">DagContainerBase</span><span class="p">,</span>
-    <span class="n">InputBase</span><span class="p">,</span>
-    <span class="n">TextInputBase</span><span class="p">,</span>
-    <span class="n">IntInputBase</span><span class="p">,</span>
-    <span class="n">FloatInputBase</span><span class="p">,</span>
-    <span class="n">NamedContainerBase</span><span class="p">,</span>
-    <span class="n">GraphBase</span><span class="p">,</span>
     <span class="n">implement_component</span><span class="p">,</span>
+    <span class="n">ExecContainerBase</span><span class="p">,</span>
+    <span class="n">FileUploaderBase</span><span class="p">,</span>
+    <span class="n">FloatInputBase</span><span class="p">,</span>
+    <span class="n">FrontContainerBase</span><span class="p">,</span>
+    <span class="n">InputBase</span><span class="p">,</span>
+    <span class="n">IntInputBase</span><span class="p">,</span>
+    <span class="n">TextInputBase</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># from streamlitfront.session_state import get_state</span>
 
-
-<div class="viewcode-block" id="App"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.App">[docs]</a><span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="n">NamedContainerBase</span><span class="p">):</span>
+<div class="viewcode-block" id="App"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.App">[docs]</a><span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="n">FrontContainerBase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implementation of the app root container for streamlitfront.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -136,54 +138,92 @@
         <span class="n">view_runner</span><span class="p">()</span>  <span class="c1"># runs the page with the state</span></div>
 
 
-<div class="viewcode-block" id="View"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.View">[docs]</a><span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="n">NamedContainerBase</span><span class="p">):</span>
+<div class="viewcode-block" id="View"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.View">[docs]</a><span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="n">FrontContainerBase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;&#39;## **</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">**&#39;&#39;&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_render_children</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="Section"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.Section">[docs]</a><span class="k">class</span> <span class="nc">Section</span><span class="p">(</span><span class="n">NamedContainerBase</span><span class="p">):</span>
+<div class="viewcode-block" id="Section"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.Section">[docs]</a><span class="k">class</span> <span class="nc">Section</span><span class="p">(</span><span class="n">FrontContainerBase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">expander</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_render_children</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="DagExecSection"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.DagExecSection">[docs]</a><span class="k">class</span> <span class="nc">DagExecSection</span><span class="p">(</span><span class="n">DagContainerBase</span><span class="p">):</span>
+<div class="viewcode-block" id="ExecSection"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.ExecSection">[docs]</a><span class="k">class</span> <span class="nc">ExecSection</span><span class="p">(</span><span class="n">ExecContainerBase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">expander</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
             <span class="n">inputs</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
-                <span class="n">inputs</span><span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+                <span class="n">inputs</span><span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
             <span class="n">submit</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">)</span>
             <span class="c1"># output_key = f&#39;{self.dag.__name__}_output&#39;</span>
             <span class="k">if</span> <span class="n">submit</span><span class="p">:</span>
                 <span class="c1"># state = get_state_with_hash_funcs()</span>
-                <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dag</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
-                <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dag</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">_output&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span>
+                <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">_output&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span>
                 <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MultiSourceInputContainer"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.MultiSourceInputContainer">[docs]</a><span class="k">class</span> <span class="nc">MultiSourceInputContainer</span><span class="p">(</span><span class="n">FrontContainerBase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">container</span><span class="p">():</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+            <span class="c1"># source = st.radio(self.name, options)</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+            <span class="n">input_component</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">source</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">input_component</span><span class="o">.</span><span class="n">render</span><span class="p">()</span></div>
 
 
 <span class="k">def</span> <span class="nf">store_input_value_in_state</span><span class="p">(</span><span class="n">input_value</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">InputBase</span><span class="p">):</span>
     <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="n">component</span><span class="o">.</span><span class="n">input_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_value</span>
 
 
-<span class="n">implement_component_with_input_value_callback</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
-    <span class="n">implement_component</span><span class="p">,</span> <span class="n">input_value_callback</span><span class="o">=</span><span class="n">store_input_value_in_state</span>
-<span class="p">)</span>
-<span class="n">implement_component_with_init_value</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
-    <span class="n">implement_component_with_input_value_callback</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;init_value&#39;</span>
+<span class="n">implement_input_component</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
+    <span class="n">implement_component</span><span class="p">,</span>
+    <span class="n">input_value_callback</span><span class="o">=</span><span class="n">store_input_value_in_state</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s1">&#39;init_value&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">implement_float_input_component</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
-    <span class="n">implement_component_with_init_value</span><span class="p">,</span> <span class="n">base_cls</span><span class="o">=</span><span class="n">FloatInputBase</span>
+    <span class="n">implement_input_component</span><span class="p">,</span> <span class="n">base_cls</span><span class="o">=</span><span class="n">FloatInputBase</span>
 <span class="p">)</span>
 
-<span class="n">TextInput</span> <span class="o">=</span> <span class="n">implement_component_with_init_value</span><span class="p">(</span><span class="n">TextInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">)</span>
+<span class="n">TextInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">TextInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">)</span>
 <span class="c1"># TextOutput = implement_component(TextOutputBase, st.write)</span>
-<span class="n">IntInput</span> <span class="o">=</span> <span class="n">implement_component_with_init_value</span><span class="p">(</span><span class="n">IntInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">)</span>
-<span class="n">IntSliderInput</span> <span class="o">=</span> <span class="n">implement_component_with_init_value</span><span class="p">(</span><span class="n">IntInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">)</span>
+<span class="n">IntInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">IntInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">)</span>
+<span class="n">IntSliderInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">IntInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">)</span>
 <span class="n">FloatInput</span> <span class="o">=</span> <span class="n">implement_float_input_component</span><span class="p">(</span><span class="n">component_factory</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">)</span>
 <span class="n">FloatSliderInput</span> <span class="o">=</span> <span class="n">implement_float_input_component</span><span class="p">(</span><span class="n">component_factory</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">)</span>
-<span class="n">Graph</span> <span class="o">=</span> <span class="n">implement_component</span><span class="p">(</span><span class="n">GraphBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">graphviz_chart</span><span class="p">)</span>
+<span class="n">FileUploader</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">FileUploaderBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="AudioRecorder"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.AudioRecorder">[docs]</a><span class="k">class</span> <span class="nc">AudioRecorder</span><span class="p">(</span><span class="n">InputBase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># # Design move app further up and remove top padding</span>
+        <span class="c1"># st.markdown(&#39;&#39;&#39;&lt;style&gt;.css-1egvi7u {margin-top: -3rem;}&lt;/style&gt;&#39;&#39;&#39;,</span>
+        <span class="c1">#     unsafe_allow_html=True)</span>
+        <span class="c1"># # Design change st.Audio to fixed height of 45 pixels</span>
+        <span class="c1"># st.markdown(&#39;&#39;&#39;&lt;style&gt;.stAudio {height: 45px;}&lt;/style&gt;&#39;&#39;&#39;,</span>
+        <span class="c1">#     unsafe_allow_html=True)</span>
+        <span class="c1"># # Design change hyperlink href link color</span>
+        <span class="c1"># st.markdown(&#39;&#39;&#39;&lt;style&gt;.css-v37k9u a {color: #ff4c4b;}&lt;/style&gt;&#39;&#39;&#39;,</span>
+        <span class="c1">#     unsafe_allow_html=True)  # darkmode</span>
+        <span class="c1"># st.markdown(&#39;&#39;&#39;&lt;style&gt;.css-nlntq9 a {color: #ff4c4b;}&lt;/style&gt;&#39;&#39;&#39;,</span>
+        <span class="c1">#     unsafe_allow_html=True)  # lightmode</span>
+        <span class="c1"># st.caption(self.name)</span>
+
+        <span class="c1"># save_name = st.text_input(self.name, self.name)</span>
+        <span class="c1"># save_name = save_name or self.name</span>
+        <span class="c1"># if st.checkbox(f&#39;Show audio recorder&#39;, True):</span>
+
+        <span class="n">parent_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+        <span class="n">build_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parent_dir</span><span class="p">,</span> <span class="s1">&#39;js&#39;</span><span class="p">,</span> <span class="s1">&#39;st_audiorec&#39;</span><span class="p">)</span>
+        <span class="n">st_audiorec</span> <span class="o">=</span> <span class="n">components</span><span class="o">.</span><span class="n">declare_component</span><span class="p">(</span><span class="s1">&#39;st_audiorec&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">build_dir</span><span class="p">)</span>
+        <span class="n">audio_data_url</span> <span class="o">=</span> <span class="n">st_audiorec</span><span class="p">()</span>
+        <span class="c1"># if audio_data_url:</span>
+        <span class="c1">#     st.success(f&#39;The audio has been successfully saved under &quot;{save_name}&quot;&#39;)</span>
+        <span class="k">return</span> <span class="n">audio_data_url</span></div>
 </pre></div>
 
            </div>
