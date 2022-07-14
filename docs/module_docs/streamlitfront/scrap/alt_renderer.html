@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.scrap.alt_renderer &mdash; streamlitfront 0.1.10 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.scrap.alt_renderer &mdash; streamlitfront 0.1.11 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -264,7 +264,7 @@ precedence over the width argument.</p></li>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.bokeh_chart">
-<em class="property">static </em><code class="sig-name descname">bokeh_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.bokeh_chart" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">bokeh_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.bokeh_chart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display an interactive Bokeh chart.</p>
 <p>Bokeh is a charting library for Python. The arguments to this function
 closely follow the ones for Bokeh’s <cite>show</cite> function. You can find
@@ -526,7 +526,8 @@ examples below.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>spec</strong> (<em>int</em><em> or </em><em>list of numbers</em>) – <dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spec</strong> (<em>int</em><em> or </em><em>list of numbers</em>) – <dl>
 <dt>If an int</dt><dd><p>Specifies the number of columns to insert, and all columns
 have equal width.</p>
 </dd>
@@ -538,7 +539,11 @@ the first column is 3 times the width of the second, and the last
 column is 2 times that width.</p>
 </dd>
 </dl>
-</p>
+</p></li>
+<li><p><strong>gap</strong> (<em>string</em><em> (</em><em>&quot;small&quot;</em><em>, </em><em>&quot;medium&quot;</em><em>, or </em><em>&quot;large&quot;</em><em>)</em>) – An optional string, which indicates the size of the gap between each column.
+The default is a small gap between columns. This argument can only be supplied by
+keyword.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A list of container objects.</p>
@@ -1432,6 +1437,7 @@ above. If “inverse”, it is red when positive and green when
 negative. This is useful when a negative change is considered
 good, e.g. if cost decreased. If “off”, delta is  shown in gray
 regardless of its value.</p></li>
+<li><p><strong>help</strong> (<em>str</em>) – An optional tooltip that gets displayed next to the metric label.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1500,14 +1506,6 @@ by keyword.</p></li>
 <span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;You selected:&#39;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 </pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>User experience can be degraded for large lists of <cite>options</cite> (100+), as this widget
-is not designed to handle arbitrary text search efficiently. See this
-<a class="reference external" href="https://discuss.streamlit.io/t/streamlit-loading-column-data-takes-too-much-time/1791">thread</a>
-on the Streamlit community forum for more information and
-<a class="reference external" href="https://github.com/streamlit/streamlit/issues/1059">GitHub issue #1059</a> for updates on the issue.</p>
 </div>
 </dd></dl>
 
