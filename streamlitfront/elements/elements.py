@@ -6,6 +6,7 @@ specific abstract elements class defined in front.
 
 from functools import partial
 import os
+from typing import Any
 import streamlit as st
 import streamlit.components.v1 as components
 from front.elements import (
@@ -17,8 +18,11 @@ from front.elements import (
     InputBase,
     IntInputBase,
     MultiSourceInputContainerBase,
+    OutputBase,
     TextInputBase,
+    TextSectionBase,
 )
+from front.util import get_value
 
 
 class App(FrontContainerBase):
@@ -59,19 +63,41 @@ class Section(FrontContainerBase):
             self._render_children()
 
 
+class TextSection(TextSectionBase):
+    def __init__(self, content: str, kind: str = 'text', obj: Any = None, name = None, **kwargs):
+        super().__init__(content, kind, obj, name, **kwargs)
+        self.kind = self.kind if self.kind in ['markdown', 'code', 'latex'] else 'text'
+    # def __post_init__(self):
+    #     super().__post_init__()
+    #     self.kind = self.kind if self.kind in ['markdown', 'code', 'latex'] else 'text'
+
+    def render(self):
+        with st.expander(self.name, True):
+
+            if self.kind == 'code':
+                st_element_factory = st.code
+            getattr(st, self.kind)(self.content, **self.kwargs)
+
+
 class ExecSection(ExecContainerBase):
     def render(self):
         with st.expander(self.name, True):
             inputs = {}
-            for child in self.children:
-                inputs[child.obj.name] = child.render()
+            for input_component in self.input_components:
+                inputs[input_component.obj.name] = input_component.render()
             submit = st.button('Submit')
             # output_key = f'{self.dag.__name__}_output'
             if submit:
                 # state = get_state_with_hash_funcs()
                 output = self.obj(**inputs)
                 st.session_state[f'{self.obj.__name__}_output'] = output
-                st.write(output)
+                self.output_component.render_output(output)
+
+
+class TextOutput(OutputBase):
+    def render(self):
+        st.caption(self.name)
+        st.write(self.output)
 
 
 class MultiSourceInputContainer(MultiSourceInputContainerBase):
@@ -99,7 +125,7 @@ implement_float_input_component = partial(
 )
 
 TextInput = implement_input_component(TextInputBase, st.text_input)
-# TextOutput = implement_component(TextOutputBase, st.write)
+# TextOutput = implement_component(OutputBase, st.write)
 IntInput = implement_input_component(IntInputBase, st.number_input)
 IntSliderInput = implement_input_component(IntInputBase, st.slider)
 FloatInput = implement_float_input_component(component_factory=st.number_input)

@@ -1,16 +1,16 @@
 """
 Base for UI generation
 """
+import streamlit as st
 from collections import ChainMap
 from typing import Callable, Any, Union, Mapping, Iterable
 from functools import partial
 import typing
 from warnings import warn
-
-import streamlit as st
-
 from i2 import Sig
-from streamlitfront.app_maker import AppMaker
+from front import AppMaker
+
+from streamlitfront.spec_maker import SpecMaker
 from streamlitfront.session_state import get_state, _SessionState
 from streamlitfront.util import func_name, build_element_factory
 
@@ -352,16 +352,16 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
 
     >>> app = mk_app(funcs)
 
-    The default configuration for the application is define by the convention object:
-    ``DFLT_CONVENTION``. But you can overwrite parts or the entire configuration by
-    setting the ``config`` parameter. The configuration is composed of three parts:
-    app, obj and rendering.
+    The default configuration for the application is defined in
+    ``streamlitfront/spec_maker.py`` and ``front/spec_maker_base.py``. But you can
+    overwrite parts or the entire configuration by setting the ``config`` parameter.
+    The configuration is composed of three parts: app, obj and rendering.
 
     The app configuration:
     By default, the application name is "My Front Application", but you can set the
     title of the application as follow:
 
-    >>> from front.spec_maker import APP_KEY
+    >>> from front import APP_KEY
     >>> config = {
     ...     APP_KEY: {
     ...         'title': 'Another application name'
@@ -374,7 +374,7 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     choice to be rendered:
 
     >>> from front.util import dflt_trans
-    >>> from front.spec_maker import OBJ_KEY
+    >>> from front import OBJ_KEY
     >>> def trans(objs: Iterable):
     ...     return dflt_trans(reversed(objs))
     >>> config = {
@@ -389,15 +389,15 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     For instance, you can choose to render a text input instead of a number input for a
     specific parameter of a specific function:
 
-    >>> from front.elements import INT_INPUT_SLIDER_COMPONENT, ELEMENT_KEY
-    >>> from front.spec_maker import RENDERING_KEY
+    >>> from front import ELEMENT_KEY, RENDERING_KEY
+    >>> from streamlitfront.elements import IntSliderInput
     >>> config = {
     ...     RENDERING_KEY: {
     ...         'foo': {
     ...             'execution': {
     ...                 'inputs': {
     ...                     'a': {
-    ...                         ELEMENT_KEY: INT_INPUT_SLIDER_COMPONENT,
+    ...                         ELEMENT_KEY: IntSliderInput,
     ...                         'max_value': 10
     ...                     }
     ...                 }
@@ -421,7 +421,7 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     ...             'execution': {
     ...                 'inputs': {
     ...                     'a': {
-    ...                         ELEMENT_KEY: INT_INPUT_SLIDER_COMPONENT,
+    ...                         ELEMENT_KEY: IntSliderInput,
     ...                         'max_value': 10
     ...                     }
     ...                 }
@@ -437,15 +437,18 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     crash or behave unexpectedly.
 
     >>> from collections.abc import Callable
-    >>> from front.spec_maker import NAME_KEY, DEFAULT_INPUT_KEY
-    >>> from front.elements import (
-    ...     VIEW_CONTAINER,
-    ...     FLOAT_INPUT_SLIDER_COMPONENT,
-    ...     TEXT_INPUT_COMPONENT,
-    ...     EXEC_SECTION_CONTAINER,
-    ...     SECTION_CONTAINER,
-    ...     INT_INPUT_COMPONENT
+    >>> from front import NAME_KEY, DEFAULT_INPUT_KEY
+    >>> from streamlitfront.elements import (
+    ...     App,
+    ...     ExecSection,
+    ...     FloatSliderInput,
+    ...     IntInput,
+    ...     TextInput,
+    ...     TextOutput,
+    ...     TextSection,
+    ...     View,
     ... )
+    >>> from streamlitfront.spec_maker import get_stored_value
     >>> 
     >>> convention = {
     ...     APP_KEY: {
@@ -455,21 +458,32 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     ...         'trans': trans
     ...     },
     ...     RENDERING_KEY: {
+    ...         ELEMENT_KEY: App,
     ...         Callable: {
-    ...             ELEMENT_KEY: VIEW_CONTAINER,
+    ...             ELEMENT_KEY: View,
+    ...             'description': {
+    ...                 ELEMENT_KEY: TextSection,
+    ...                 NAME_KEY: 'Description',
+    ...                 'content': lambda o: o.__doc__,
+    ...             },
     ...             'execution': {
-    ...                 ELEMENT_KEY: EXEC_SECTION_CONTAINER,
+    ...                 ELEMENT_KEY: ExecSection,
     ...                 NAME_KEY: 'Execution',
+    ...                 'stored_value_getter': get_stored_value,
     ...                 'inputs': {
-    ...                     int: {ELEMENT_KEY: INT_INPUT_COMPONENT,},
+    ...                     int: {ELEMENT_KEY: IntInput,},
     ...                     float: {
-    ...                         ELEMENT_KEY: FLOAT_INPUT_SLIDER_COMPONENT,
+    ...                         ELEMENT_KEY: FloatSliderInput,
     ...                         'format': '%.2f',
     ...                         'step': 0.01,
     ...                     },
-    ...                     Any: {ELEMENT_KEY: TEXT_INPUT_COMPONENT,},
+    ...                     Any: {ELEMENT_KEY: TextInput,},
     ...                     DEFAULT_INPUT_KEY: {NAME_KEY: lambda p: p.name}
     ...                 },
+    ...                 'output': {
+    ...                     ELEMENT_KEY: TextOutput,
+    ...                     NAME_KEY: 'Output',
+    ...                 }
     ...             }
     ...         }
     ...     }
@@ -525,7 +539,7 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     ... }
     >>> app = mk_app([dag], config=config)
 
-    :param objs: The target objects to render in the streamlit application.
+    :param objs: The target objects to crender in the streamlit application.
     :type objs: Iterable
     :param config: The configuration object for the application. Overwrites the
     convention for every value present in the configuration object. See above for more
@@ -535,5 +549,5 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     configuration. See above for more details.
     :type objs: Map
     """
-    app_maker = AppMaker()
+    app_maker = AppMaker(spec_maker_factory=SpecMaker)
     return app_maker.mk_app(objs, config, convention)
