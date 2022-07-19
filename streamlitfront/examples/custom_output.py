@@ -12,6 +12,7 @@ def foo(a: int = 1, b: int = 2, c=3):
     """This is foo. It computes something"""
     return (a * b) + c
 
+
 @dataclass
 class HitTheOutputValue(OutputBase):
     value_to_hit: int = 100
@@ -27,10 +28,12 @@ class HitTheOutputValue(OutputBase):
         else:
             st.info(template.format("It's freezing here."))
             st.snow()
-        
+
+
 def get_code_of_current_file():
     with open(__file__, 'r') as f:
         return f.read()
+
 
 app = mk_app(
     [foo],
@@ -58,9 +61,9 @@ app = mk_app(
                     'kind': 'code',
                     'language': 'python',
                     'content': get_code_of_current_file(),
-                }
+                },
             }
-        }
-    }
+        },
+    },
 )
 app()

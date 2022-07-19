@@ -3,11 +3,10 @@
    :caption: Contents:
 
    module_docs/streamlitfront
-   module_docs/streamlitfront/app_maker
    module_docs/streamlitfront/base
    module_docs/streamlitfront/elements
    module_docs/streamlitfront/elements/elements
-   module_docs/streamlitfront/elements/tree_maker
+   module_docs/streamlitfront/examples/custom_output
    module_docs/streamlitfront/examples/dag_app
    module_docs/streamlitfront/examples/data_binding
    module_docs/streamlitfront/examples/experimentation
@@ -24,4 +23,5 @@
    module_docs/streamlitfront/run_app
    module_docs/streamlitfront/scrap/alt_renderer
    module_docs/streamlitfront/session_state
+   module_docs/streamlitfront/spec_maker
    module_docs/streamlitfront/util

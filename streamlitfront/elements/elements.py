@@ -64,9 +64,12 @@ class Section(FrontContainerBase):
 
 
 class TextSection(TextSectionBase):
-    def __init__(self, content: str, kind: str = 'text', obj: Any = None, name = None, **kwargs):
+    def __init__(
+        self, content: str, kind: str = 'text', obj: Any = None, name=None, **kwargs
+    ):
         super().__init__(content, kind, obj, name, **kwargs)
         self.kind = self.kind if self.kind in ['markdown', 'code', 'latex'] else 'text'
+
     # def __post_init__(self):
     #     super().__post_init__()
     #     self.kind = self.kind if self.kind in ['markdown', 'code', 'latex'] else 'text'

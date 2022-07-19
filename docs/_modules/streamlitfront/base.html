@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.base &mdash; streamlitfront 0.1.11 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.base &mdash; streamlitfront 0.1.12 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -41,11 +41,10 @@
               <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront.html">streamlitfront</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/app_maker.html">streamlitfront.app_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements.html">streamlitfront.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/tree_maker.html">streamlitfront.elements.tree_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/custom_output.html">streamlitfront.examples.custom_output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
@@ -62,6 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/run_app.html">streamlitfront.run_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/session_state.html">streamlitfront.session_state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/spec_maker.html">streamlitfront.spec_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
 </ul>
 
@@ -93,16 +93,16 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Base for UI generation</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">ChainMap</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Iterable</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 <span class="kn">import</span> <span class="nn">typing</span>
 <span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
-
-<span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-
 <span class="kn">from</span> <span class="nn">i2</span> <span class="kn">import</span> <span class="n">Sig</span>
-<span class="kn">from</span> <span class="nn">streamlitfront.app_maker</span> <span class="kn">import</span> <span class="n">AppMaker</span>
+<span class="kn">from</span> <span class="nn">front</span> <span class="kn">import</span> <span class="n">AppMaker</span>
+
+<span class="kn">from</span> <span class="nn">streamlitfront.spec_maker</span> <span class="kn">import</span> <span class="n">SpecMaker</span>
 <span class="kn">from</span> <span class="nn">streamlitfront.session_state</span> <span class="kn">import</span> <span class="n">get_state</span><span class="p">,</span> <span class="n">_SessionState</span>
 <span class="kn">from</span> <span class="nn">streamlitfront.util</span> <span class="kn">import</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">build_element_factory</span>
 
@@ -444,16 +444,16 @@
 
 <span class="sd">    &gt;&gt;&gt; app = mk_app(funcs)</span>
 
-<span class="sd">    The default configuration for the application is define by the convention object:</span>
-<span class="sd">    ``DFLT_CONVENTION``. But you can overwrite parts or the entire configuration by</span>
-<span class="sd">    setting the ``config`` parameter. The configuration is composed of three parts:</span>
-<span class="sd">    app, obj and rendering.</span>
+<span class="sd">    The default configuration for the application is defined in</span>
+<span class="sd">    ``streamlitfront/spec_maker.py`` and ``front/spec_maker_base.py``. But you can</span>
+<span class="sd">    overwrite parts or the entire configuration by setting the ``config`` parameter.</span>
+<span class="sd">    The configuration is composed of three parts: app, obj and rendering.</span>
 
 <span class="sd">    The app configuration:</span>
 <span class="sd">    By default, the application name is &quot;My Front Application&quot;, but you can set the</span>
 <span class="sd">    title of the application as follow:</span>
 
-<span class="sd">    &gt;&gt;&gt; from front.spec_maker import APP_KEY</span>
+<span class="sd">    &gt;&gt;&gt; from front import APP_KEY</span>
 <span class="sd">    &gt;&gt;&gt; config = {</span>
 <span class="sd">    ...     APP_KEY: {</span>
 <span class="sd">    ...         &#39;title&#39;: &#39;Another application name&#39;</span>
@@ -466,7 +466,7 @@
 <span class="sd">    choice to be rendered:</span>
 
 <span class="sd">    &gt;&gt;&gt; from front.util import dflt_trans</span>
-<span class="sd">    &gt;&gt;&gt; from front.spec_maker import OBJ_KEY</span>
+<span class="sd">    &gt;&gt;&gt; from front import OBJ_KEY</span>
 <span class="sd">    &gt;&gt;&gt; def trans(objs: Iterable):</span>
 <span class="sd">    ...     return dflt_trans(reversed(objs))</span>
 <span class="sd">    &gt;&gt;&gt; config = {</span>
@@ -481,15 +481,15 @@
 <span class="sd">    For instance, you can choose to render a text input instead of a number input for a</span>
 <span class="sd">    specific parameter of a specific function:</span>
 
-<span class="sd">    &gt;&gt;&gt; from front.elements import INT_INPUT_SLIDER_COMPONENT, ELEMENT_KEY</span>
-<span class="sd">    &gt;&gt;&gt; from front.spec_maker import RENDERING_KEY</span>
+<span class="sd">    &gt;&gt;&gt; from front import ELEMENT_KEY, RENDERING_KEY</span>
+<span class="sd">    &gt;&gt;&gt; from streamlitfront.elements import IntSliderInput</span>
 <span class="sd">    &gt;&gt;&gt; config = {</span>
 <span class="sd">    ...     RENDERING_KEY: {</span>
 <span class="sd">    ...         &#39;foo&#39;: {</span>
 <span class="sd">    ...             &#39;execution&#39;: {</span>
 <span class="sd">    ...                 &#39;inputs&#39;: {</span>
 <span class="sd">    ...                     &#39;a&#39;: {</span>
-<span class="sd">    ...                         ELEMENT_KEY: INT_INPUT_SLIDER_COMPONENT,</span>
+<span class="sd">    ...                         ELEMENT_KEY: IntSliderInput,</span>
 <span class="sd">    ...                         &#39;max_value&#39;: 10</span>
 <span class="sd">    ...                     }</span>
 <span class="sd">    ...                 }</span>
@@ -513,7 +513,7 @@
 <span class="sd">    ...             &#39;execution&#39;: {</span>
 <span class="sd">    ...                 &#39;inputs&#39;: {</span>
 <span class="sd">    ...                     &#39;a&#39;: {</span>
-<span class="sd">    ...                         ELEMENT_KEY: INT_INPUT_SLIDER_COMPONENT,</span>
+<span class="sd">    ...                         ELEMENT_KEY: IntSliderInput,</span>
 <span class="sd">    ...                         &#39;max_value&#39;: 10</span>
 <span class="sd">    ...                     }</span>
 <span class="sd">    ...                 }</span>
@@ -529,15 +529,18 @@
 <span class="sd">    crash or behave unexpectedly.</span>
 
 <span class="sd">    &gt;&gt;&gt; from collections.abc import Callable</span>
-<span class="sd">    &gt;&gt;&gt; from front.spec_maker import NAME_KEY, DEFAULT_INPUT_KEY</span>
-<span class="sd">    &gt;&gt;&gt; from front.elements import (</span>
-<span class="sd">    ...     VIEW_CONTAINER,</span>
-<span class="sd">    ...     FLOAT_INPUT_SLIDER_COMPONENT,</span>
-<span class="sd">    ...     TEXT_INPUT_COMPONENT,</span>
-<span class="sd">    ...     EXEC_SECTION_CONTAINER,</span>
-<span class="sd">    ...     SECTION_CONTAINER,</span>
-<span class="sd">    ...     INT_INPUT_COMPONENT</span>
+<span class="sd">    &gt;&gt;&gt; from front import NAME_KEY, DEFAULT_INPUT_KEY</span>
+<span class="sd">    &gt;&gt;&gt; from streamlitfront.elements import (</span>
+<span class="sd">    ...     App,</span>
+<span class="sd">    ...     ExecSection,</span>
+<span class="sd">    ...     FloatSliderInput,</span>
+<span class="sd">    ...     IntInput,</span>
+<span class="sd">    ...     TextInput,</span>
+<span class="sd">    ...     TextOutput,</span>
+<span class="sd">    ...     TextSection,</span>
+<span class="sd">    ...     View,</span>
 <span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; from streamlitfront.spec_maker import get_stored_value</span>
 <span class="sd">    &gt;&gt;&gt; </span>
 <span class="sd">    &gt;&gt;&gt; convention = {</span>
 <span class="sd">    ...     APP_KEY: {</span>
@@ -547,21 +550,32 @@
 <span class="sd">    ...         &#39;trans&#39;: trans</span>
 <span class="sd">    ...     },</span>
 <span class="sd">    ...     RENDERING_KEY: {</span>
+<span class="sd">    ...         ELEMENT_KEY: App,</span>
 <span class="sd">    ...         Callable: {</span>
-<span class="sd">    ...             ELEMENT_KEY: VIEW_CONTAINER,</span>
+<span class="sd">    ...             ELEMENT_KEY: View,</span>
+<span class="sd">    ...             &#39;description&#39;: {</span>
+<span class="sd">    ...                 ELEMENT_KEY: TextSection,</span>
+<span class="sd">    ...                 NAME_KEY: &#39;Description&#39;,</span>
+<span class="sd">    ...                 &#39;content&#39;: lambda o: o.__doc__,</span>
+<span class="sd">    ...             },</span>
 <span class="sd">    ...             &#39;execution&#39;: {</span>
-<span class="sd">    ...                 ELEMENT_KEY: EXEC_SECTION_CONTAINER,</span>
+<span class="sd">    ...                 ELEMENT_KEY: ExecSection,</span>
 <span class="sd">    ...                 NAME_KEY: &#39;Execution&#39;,</span>
+<span class="sd">    ...                 &#39;stored_value_getter&#39;: get_stored_value,</span>
 <span class="sd">    ...                 &#39;inputs&#39;: {</span>
-<span class="sd">    ...                     int: {ELEMENT_KEY: INT_INPUT_COMPONENT,},</span>
+<span class="sd">    ...                     int: {ELEMENT_KEY: IntInput,},</span>
 <span class="sd">    ...                     float: {</span>
-<span class="sd">    ...                         ELEMENT_KEY: FLOAT_INPUT_SLIDER_COMPONENT,</span>
+<span class="sd">    ...                         ELEMENT_KEY: FloatSliderInput,</span>
 <span class="sd">    ...                         &#39;format&#39;: &#39;%.2f&#39;,</span>
 <span class="sd">    ...                         &#39;step&#39;: 0.01,</span>
 <span class="sd">    ...                     },</span>
-<span class="sd">    ...                     Any: {ELEMENT_KEY: TEXT_INPUT_COMPONENT,},</span>
+<span class="sd">    ...                     Any: {ELEMENT_KEY: TextInput,},</span>
 <span class="sd">    ...                     DEFAULT_INPUT_KEY: {NAME_KEY: lambda p: p.name}</span>
 <span class="sd">    ...                 },</span>
+<span class="sd">    ...                 &#39;output&#39;: {</span>
+<span class="sd">    ...                     ELEMENT_KEY: TextOutput,</span>
+<span class="sd">    ...                     NAME_KEY: &#39;Output&#39;,</span>
+<span class="sd">    ...                 }</span>
 <span class="sd">    ...             }</span>
 <span class="sd">    ...         }</span>
 <span class="sd">    ...     }</span>
@@ -617,7 +631,7 @@
 <span class="sd">    ... }</span>
 <span class="sd">    &gt;&gt;&gt; app = mk_app([dag], config=config)</span>
 
-<span class="sd">    :param objs: The target objects to render in the streamlit application.</span>
+<span class="sd">    :param objs: The target objects to crender in the streamlit application.</span>
 <span class="sd">    :type objs: Iterable</span>
 <span class="sd">    :param config: The configuration object for the application. Overwrites the</span>
 <span class="sd">    convention for every value present in the configuration object. See above for more</span>
@@ -627,7 +641,7 @@
 <span class="sd">    configuration. See above for more details.</span>
 <span class="sd">    :type objs: Map</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">app_maker</span> <span class="o">=</span> <span class="n">AppMaker</span><span class="p">()</span>
+    <span class="n">app_maker</span> <span class="o">=</span> <span class="n">AppMaker</span><span class="p">(</span><span class="n">spec_maker_factory</span><span class="o">=</span><span class="n">SpecMaker</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">app_maker</span><span class="o">.</span><span class="n">mk_app</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">convention</span><span class="p">)</span></div>
 </pre></div>
 
