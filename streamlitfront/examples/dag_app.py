@@ -1,6 +1,6 @@
 from streamlitfront.base import mk_app
 from meshed.dag import DAG
-from front.spec_maker import APP_KEY, RENDERING_KEY, ELEMENT_KEY, NAME_KEY
+from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY, NAME_KEY
 
 from streamlitfront.examples.graph_component import Graph
 
@@ -19,6 +19,7 @@ def result(b, d):
 
 dag = DAG((b, d, result))
 
+# Have special element to indicate removal of field in recursive mapping merge
 
 app = mk_app(
     [dag],
@@ -37,8 +38,13 @@ app = mk_app(
                     NAME_KEY: 'Flow',
                     'use_container_width': True,
                 },
+                'description': {
+                    'content': ''
+                }
             }
         },
     },
 )
 app()
+
+

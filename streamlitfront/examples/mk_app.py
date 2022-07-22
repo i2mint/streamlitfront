@@ -1,6 +1,6 @@
-from front.spec_maker import APP_KEY, RENDERING_KEY, ELEMENT_KEY
-from front.elements import FLOAT_INPUT_SLIDER_COMPONENT
+from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY
 
+from streamlitfront.elements import FloatSliderInput
 from streamlitfront.base import mk_app
 
 
@@ -29,7 +29,7 @@ app = mk_app(
         RENDERING_KEY: {
             'proportion': {
                 'execution': {
-                    'inputs': {'p': {ELEMENT_KEY: FLOAT_INPUT_SLIDER_COMPONENT,}},
+                    'inputs': {'p': {ELEMENT_KEY: FloatSliderInput,}},
                 }
             }
         },
