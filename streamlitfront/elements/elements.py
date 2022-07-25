@@ -5,10 +5,9 @@ specific abstract elements class defined in front.
 """
 
 from functools import partial
-import os
 from typing import Any
 import streamlit as st
-import streamlit.components.v1 as components
+from streamlit.components.v1 import html
 from front.elements import (
     implement_component,
     ExecContainerBase,
@@ -19,10 +18,13 @@ from front.elements import (
     IntInputBase,
     MultiSourceInputContainerBase,
     OutputBase,
+    SelectBoxBase,
     TextInputBase,
     TextSectionBase,
 )
 from front.util import get_value
+
+from streamlitfront.elements.js import mk_element_factory
 
 
 class App(FrontContainerBase):
@@ -31,6 +33,17 @@ class App(FrontContainerBase):
     def render(self):
         # Page setup
         st.set_page_config(layout='wide')
+        # html('''
+        #     <script type="text/javascript">
+        #         function iframeLoaded() {
+        #             var iframes = document.querySelectorAll('iframe');
+        #             for (const iframe of iframes) {
+        #                 iframe.height = "";
+        #                 iframe.height = iframe.contentWindow.document.body.scrollHeight + "px";
+        #             }
+        #         }
+        #     </script>
+        # ''')
 
         # Make page objects
         views = {view.name: view.render for view in self.children}
@@ -75,11 +88,9 @@ class TextSection(TextSectionBase):
     #     self.kind = self.kind if self.kind in ['markdown', 'code', 'latex'] else 'text'
 
     def render(self):
-        with st.expander(self.name, True):
-
-            if self.kind == 'code':
-                st_element_factory = st.code
-            getattr(st, self.kind)(self.content, **self.kwargs)
+        if self.content:
+            with st.expander(self.name, True):
+                getattr(st, self.kind)(self.content, **self.kwargs)
 
 
 class ExecSection(ExecContainerBase):
@@ -123,17 +134,15 @@ implement_input_component = partial(
     label='name',
     value='init_value',
 )
-implement_float_input_component = partial(
-    implement_input_component, base_cls=FloatInputBase
-)
 
 TextInput = implement_input_component(TextInputBase, st.text_input)
 # TextOutput = implement_component(OutputBase, st.write)
 IntInput = implement_input_component(IntInputBase, st.number_input)
 IntSliderInput = implement_input_component(IntInputBase, st.slider)
-FloatInput = implement_float_input_component(component_factory=st.number_input)
-FloatSliderInput = implement_float_input_component(component_factory=st.slider)
+FloatInput = implement_input_component(FloatInputBase, st.number_input)
+FloatSliderInput = implement_input_component(FloatInputBase, st.slider)
 FileUploader = implement_input_component(FileUploaderBase, st.file_uploader)
+SelectBox = implement_input_component(SelectBoxBase, st.selectbox)
 
 
 class AudioRecorder(InputBase):
@@ -155,10 +164,9 @@ class AudioRecorder(InputBase):
         # save_name = save_name or self.name
         # if st.checkbox(f'Show audio recorder', True):
 
-        parent_dir = os.path.dirname(os.path.abspath(__file__))
-        build_dir = os.path.join(parent_dir, 'js', 'st_audiorec')
-        st_audiorec = components.declare_component('st_audiorec', path=build_dir)
+        st_audiorec = mk_element_factory('st_audiorec')
         audio_data_url = st_audiorec()
         # if audio_data_url:
         #     st.success(f'The audio has been successfully saved under "{save_name}"')
+
         return audio_data_url

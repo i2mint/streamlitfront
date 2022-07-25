@@ -5,7 +5,7 @@ from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY, NAME_KEY
 from front.elements import OutputBase
 
 from streamlitfront.base import mk_app
-from streamlitfront.elements.elements import TextSection
+from streamlitfront.examples.util import SourceCodeSection
 
 
 def foo(a: int = 1, b: int = 2, c=3):
@@ -30,11 +30,6 @@ class HitTheOutputValue(OutputBase):
             st.snow()
 
 
-def get_code_of_current_file():
-    with open(__file__, 'r') as f:
-        return f.read()
-
-
 app = mk_app(
     [foo],
     config={
@@ -56,11 +51,7 @@ app = mk_app(
                     },
                 },
                 'code': {
-                    ELEMENT_KEY: TextSection,
-                    NAME_KEY: 'Source Code',
-                    'kind': 'code',
-                    'language': 'python',
-                    'content': get_code_of_current_file(),
+                    ELEMENT_KEY: SourceCodeSection,
                 },
             }
         },

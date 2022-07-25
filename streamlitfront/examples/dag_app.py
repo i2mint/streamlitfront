@@ -1,8 +1,8 @@
-from streamlitfront.base import mk_app
 from meshed.dag import DAG
 from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY, NAME_KEY
 
-from streamlitfront.examples.graph_component import Graph
+from streamlitfront.examples.util import Graph
+from streamlitfront.base import mk_app
 
 
 def b(a: int):
