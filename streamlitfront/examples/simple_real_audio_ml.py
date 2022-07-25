@@ -4,7 +4,11 @@ from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY, NAME_KEY
 
 from streamlitfront.base import mk_app
 from streamlitfront.examples.util import Graph
-from streamlitfront.elements import AudioRecorder, FileUploader, MultiSourceInputContainer
+from streamlitfront.elements import (
+    AudioRecorder,
+    FileUploader,
+    MultiSourceInputContainer,
+)
 
 
 WaveForm = Iterable[int]
@@ -24,10 +28,7 @@ config_ = {
                 'inputs': {
                     'train_audio': {
                         ELEMENT_KEY: MultiSourceInputContainer,
-                        'From a file': {
-                            ELEMENT_KEY: FileUploader,
-                            'type': 'wav',
-                        },
+                        'From a file': {ELEMENT_KEY: FileUploader, 'type': 'wav',},
                         'From the microphone': {ELEMENT_KEY: AudioRecorder},
                     }
                 },
