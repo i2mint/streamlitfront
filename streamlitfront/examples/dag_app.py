@@ -38,13 +38,9 @@ app = mk_app(
                     NAME_KEY: 'Flow',
                     'use_container_width': True,
                 },
-                'description': {
-                    'content': ''
-                }
+                'description': {'content': ''},
             }
         },
     },
 )
 app()
-
-

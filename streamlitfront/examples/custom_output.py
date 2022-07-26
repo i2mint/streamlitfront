@@ -50,9 +50,7 @@ app = mk_app(
                         'margin': 10,
                     },
                 },
-                'code': {
-                    ELEMENT_KEY: SourceCodeSection,
-                },
+                'code': {ELEMENT_KEY: SourceCodeSection,},
             }
         },
     },

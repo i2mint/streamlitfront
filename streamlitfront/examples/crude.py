@@ -16,16 +16,14 @@ param_to_mall_map = dict(a='a', b='b_store')
 mall = dict(
     a={'one': 1, 'two': 2},
     b_store={'three': 3, 'four': 4},
-    unused_store={'to': 'illustrate'}
+    unused_store={'to': 'illustrate'},
 )
 
 
 def crudify(funcs):
     for func in funcs:
         yield prepare_for_crude_dispatch(
-            func,
-            param_to_mall_map=param_to_mall_map,
-            mall=mall
+            func, param_to_mall_map=param_to_mall_map, mall=mall
         )
 
 
@@ -38,15 +36,9 @@ app = mk_app(
             'foo': {
                 'execution': {
                     'inputs': {
-                        'a': {
-                            'options': mall['a'],
-                        },
-                        'b': {
-                            'options': mall['b_store'],
-                        },
-                        str: {
-                            ELEMENT_KEY: SelectBox,
-                        }
+                        'a': {'options': mall['a'],},
+                        'b': {'options': mall['b_store'],},
+                        str: {ELEMENT_KEY: SelectBox,},
                     }
                 },
                 'code': {
@@ -57,7 +49,7 @@ app = mk_app(
                     'content': get_code_of_current_file(),
                 },
             }
-        }
-    }
+        },
+    },
 )
 app()

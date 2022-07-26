@@ -16,7 +16,9 @@ from streamlitfront.elements.js import mk_element_factory
 def execute_pipe(pipe):
     pass
 
+
 ItemTemplate = Union[Map, Path]
+
 
 @dataclass
 class MultiSelect(InputBase):
@@ -30,7 +32,6 @@ class MultiSelect(InputBase):
         if isinstance(self.item_template, Path):
             with self.item_template.open() as f:
                 self.item_template = f.read()
-            
 
     def render(self):
         st_multiselect = mk_element_factory('st_multiselect')
@@ -51,18 +52,18 @@ app = mk_app(
                             'options': [
                                 {'value': 'blue', 'name': 'Blue'},
                                 {'value': 'white', 'name': 'White'},
-                                {'value': 'red', 'name': 'Red'}
+                                {'value': 'red', 'name': 'Red'},
                             ],
                             'item_template': '''
                                 <div>
                                     <strong>{name} &#128512;</strong>
                                 </div>
-                            '''
+                            ''',
                         }
                     }
                 }
             }
-        }
-    }
+        },
+    },
 )
 app()

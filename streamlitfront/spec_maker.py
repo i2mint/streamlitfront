@@ -42,6 +42,7 @@ DFLT_CONVENTION_DICT = {
 
 from dol.sources import AttrContainer
 
+
 class SpecMaker(SpecMakerBase):
     @property
     def _dflt_convention(cls) -> Mapping:

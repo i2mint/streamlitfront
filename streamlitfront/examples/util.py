@@ -31,5 +31,5 @@ SourceCodeSection = partial(
     name='Source Code',
     kind='code',
     language='python',
-    content=get_code_of_current_file()
+    content=get_code_of_current_file(),
 )

@@ -28,9 +28,7 @@ app = mk_app(
         APP_KEY: {'title': 'My app'},
         RENDERING_KEY: {
             'proportion': {
-                'execution': {
-                    'inputs': {'p': {ELEMENT_KEY: FloatSliderInput,}},
-                }
+                'execution': {'inputs': {'p': {ELEMENT_KEY: FloatSliderInput,}},}
             }
         },
     },
