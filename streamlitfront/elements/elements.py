@@ -4,6 +4,7 @@ Not the use of the ``implement_component`` function to create a class that imple
 specific abstract elements class defined in front.
 """
 
+from dataclasses import dataclass
 from functools import partial
 from typing import Any
 import streamlit as st
@@ -22,7 +23,6 @@ from front.elements import (
     TextInputBase,
     TextSectionBase,
 )
-from front.util import get_value
 
 from streamlitfront.elements.js import mk_element_factory
 
@@ -55,8 +55,7 @@ class App(FrontContainerBase):
         # Setup navigation
         with st.sidebar:
             st.title(self.name)
-            view_key = st.radio(options=tuple(views.keys()), label='Select your view')
-        # view_key = _get_view_key(tuple(views.keys()), label='Select your view')
+            view_key = st.radio(options=tuple(views.keys()), label='Select a view')
 
         # Display the selected page with the session state
         # This is the part that actually runs the functionality that pages specifies
@@ -136,14 +135,20 @@ implement_input_component = partial(
 )
 
 TextInput = implement_input_component(TextInputBase, st.text_input)
-# TextOutput = implement_component(OutputBase, st.write)
 IntInput = implement_input_component(IntInputBase, st.number_input)
 IntSliderInput = implement_input_component(IntInputBase, st.slider)
 FloatInput = implement_input_component(FloatInputBase, st.number_input)
 FloatSliderInput = implement_input_component(FloatInputBase, st.slider)
-FileUploader = implement_input_component(FileUploaderBase, st.file_uploader)
 SelectBox = implement_input_component(SelectBoxBase, st.selectbox)
 
+
+@dataclass
+class FileUploader(FileUploaderBase):
+    display_label: bool = True
+
+    def render(self):
+        label = self.name if self.display_label else ''
+        return st.file_uploader(label=label, type=self.type)
 
 class AudioRecorder(InputBase):
     def render(self):
@@ -160,13 +165,9 @@ class AudioRecorder(InputBase):
         #     unsafe_allow_html=True)  # lightmode
         # st.caption(self.name)
 
-        # save_name = st.text_input(self.name, self.name)
-        # save_name = save_name or self.name
-        # if st.checkbox(f'Show audio recorder', True):
-
         st_audiorec = mk_element_factory('st_audiorec')
-        audio_data_url = st_audiorec()
-        # if audio_data_url:
-        #     st.success(f'The audio has been successfully saved under "{save_name}"')
-
-        return audio_data_url
+        audio_data = st_audiorec()
+        # print(audio_data)
+        # audio_data = bytes(audio_data, 'utf-8') if audio_data else None
+        # st.audio(audio_data)
+        return audio_data

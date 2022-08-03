@@ -1,3 +1,5 @@
+from front.spec_maker_base import BASE_DFLT_CONVENTION
+from front.util import deep_merge
 import streamlit as st
 from typing import Any, Mapping
 from collections.abc import Callable
@@ -19,7 +21,7 @@ def get_stored_value(key: str) -> Any:
     return st.session_state[key] if key in st.session_state else None
 
 
-DFLT_CONVENTION_DICT = {
+DFLT_CONVENTION_DICT = deep_merge(BASE_DFLT_CONVENTION, {
     APP_KEY: {'title': 'My Streamlit Front Application'},
     RENDERING_KEY: {
         ELEMENT_KEY: App,
@@ -38,12 +40,22 @@ DFLT_CONVENTION_DICT = {
             },
         },
     },
-}
-
-from dol.sources import AttrContainer
+})
 
 
 class SpecMaker(SpecMakerBase):
+    """Concrete implementation of front.spec_maker_base.SpecMakerBase for
+    streamlitfront.
+
+    >>> spec_maker = SpecMaker()
+    >>> spec = spec_maker.mk_spec({})
+    >>>
+    >>> spec.app_spec
+    {'title': 'My Streamlit Front Application'}
+    >>> assert spec.obj_spec
+    >>> assert spec.rendering_spec
+    """
+
     @property
     def _dflt_convention(cls) -> Mapping:
         return DFLT_CONVENTION_DICT

@@ -7,6 +7,7 @@ Importing examples to make sure that the elements they use still exist
 ...     mk_app,
 ...     custom_output,
 ...     dag_app,
-...     simple_real_audio_ml
+...     simple_real_audio_ml,
+...     crude
 ... )
 """
