@@ -94,17 +94,19 @@ class TextSection(TextSectionBase):
 
 class ExecSection(ExecContainerBase):
     def render(self):
+        def submit():
+            # state = get_state_with_hash_funcs()
+            output = self.obj(**inputs)
+            st.session_state[f'{self.obj.__name__}_output'] = output
+            self.output_component.render_output(output)
+
         with st.expander(self.name, True):
             inputs = {}
             for input_component in self.input_components:
                 inputs[input_component.obj.name] = input_component.render()
-            submit = st.button('Submit')
             # output_key = f'{self.dag.__name__}_output'
-            if submit:
-                # state = get_state_with_hash_funcs()
-                output = self.obj(**inputs)
-                st.session_state[f'{self.obj.__name__}_output'] = output
-                self.output_component.render_output(output)
+            if self.auto_submit or st.button('Submit'):
+                submit()
 
 
 class TextOutput(OutputBase):

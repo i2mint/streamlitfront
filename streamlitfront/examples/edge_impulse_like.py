@@ -89,12 +89,13 @@ class AudioPersister(AudioRecorder):
 
 class TaggedAudioPlayer(OutputBase):
     def render(self):
-        sound, tag = self.output
-        if isinstance(sound, str):
-            with open(sound, 'rb') as f:
-                st.audio(f)
-        else:
-            st.audio(sound)
+        if self.output:
+            sound, tag = self.output
+            if isinstance(sound, str):
+                with open(sound, 'rb') as f:
+                    st.audio(f)
+            else:
+                st.audio(sound)
 
 
 get_data_description = '''
@@ -143,6 +144,7 @@ config_ = {
                 'output': {
                     ELEMENT_KEY: TaggedAudioPlayer,
                 },
+                'auto_submit': True
             }
         },
         DAG: {
