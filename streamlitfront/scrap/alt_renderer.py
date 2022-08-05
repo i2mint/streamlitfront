@@ -160,19 +160,18 @@ def test_mk_component_base():
     from front.elements import InputBase
 
     C = mk_component_base(st.audio, InputBase)
-    assert str(Sig(C)) == (
-        "(data, label: str, format='audio/wav', start_time=0, "
-        'input_key: str = None, init_value: Any = None)'
-    )
-    c = C(1, 'tag')
-    assert (c.data, c.label) == (1, 'tag')
+
+    # verify that the arguments of C is the aggregation of the arguments of audio and
+    # InputBase:
+    assert sorted(Sig(C).names) == sorted((Sig(st.audio) + Sig(InputBase)).names)
+
+    c = C(1, name='tag')
+    assert (c.data, c.name) == (1, 'tag')
 
 
 def test_implement_component_from_factory():
     from front.elements import InputBase
 
     component = implement_component_from_factory(st.audio, InputBase)
-    assert str(Sig(component)) == (
-        "(data, label: str, format='audio/wav', start_time=0, "
-        'input_key: str = None, init_value: Any = None)'
-    )
+    assert sorted(Sig(component).names) == sorted((Sig(st.audio) + Sig(InputBase)).names)
+
