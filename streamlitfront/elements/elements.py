@@ -6,7 +6,8 @@ specific abstract elements class defined in front.
 
 from dataclasses import dataclass
 from functools import partial
-from typing import Any
+from typing import Any, Iterable
+from i2.signatures import call_forgivingly
 import streamlit as st
 from streamlit.components.v1 import html
 from front.elements import (
@@ -25,6 +26,7 @@ from front.elements import (
 )
 
 from streamlitfront.elements.js import mk_element_factory
+from streamlitfront.types import BoundData
 
 
 class App(FrontContainerBase):
@@ -99,6 +101,8 @@ class ExecSection(ExecContainerBase):
             output = self.obj(**inputs)
             st.session_state[f'{self.obj.__name__}_output'] = output
             self.output_component.render_output(output)
+            if self.on_submit:
+                self.on_submit(output)
 
         with st.expander(self.name, True):
             inputs = {}
@@ -141,7 +145,23 @@ IntInput = implement_input_component(IntInputBase, st.number_input)
 IntSliderInput = implement_input_component(IntInputBase, st.slider)
 FloatInput = implement_input_component(FloatInputBase, st.number_input)
 FloatSliderInput = implement_input_component(FloatInputBase, st.slider)
-SelectBox = implement_input_component(SelectBoxBase, st.selectbox)
+# SelectBox = implement_input_component(SelectBoxBase, st.selectbox)
+
+
+class SelectBox(SelectBoxBase):
+    def render(self):
+        options = list(getattr(self.options, 'value', self.options))
+        preselected_index = options.index(self.value.value) if self.value and self.value.value in options else 0
+        value = st.selectbox(
+            label=self.name,
+            options=options,
+            index=preselected_index
+        )
+        # if self.value:
+        #     self.value.value = value
+        if self.on_value_change:
+            call_forgivingly(self.on_value_change, value)
+        return value
 
 
 @dataclass
