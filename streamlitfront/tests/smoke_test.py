@@ -8,6 +8,7 @@ Importing examples to make sure that the elements they use still exist
 ...     custom_output,
 ...     dag_app,
 ...     simple_real_audio_ml,
-...     crude
+...     crude,
+...     data_binding
 ... )
 """

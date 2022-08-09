@@ -165,8 +165,9 @@ config_ = {
         }
     }
 }
-
-app = mk_app([tag_wf, get_tagged_wf], config=config_)
-app()
-st.write(mall)
 # ============ END FRONTEND ============
+
+if __name__ == '__main__':
+    app = mk_app([tag_wf, get_tagged_wf], config=config_)
+    app()
+    st.write(mall)

@@ -21,16 +21,16 @@ def confuser(a: int, x: float = 3.14):
 def proportion(x: int = 100, p: float = 0.5):
     return x * p
 
-
-app = mk_app(
-    [foo, bar, confuser, proportion],
-    config={
-        APP_KEY: {'title': 'My app'},
-        RENDERING_KEY: {
-            'proportion': {
-                'execution': {'inputs': {'p': {ELEMENT_KEY: FloatSliderInput,}},}
-            }
+if __name__ == '__main__':
+    app = mk_app(
+        [foo, bar, confuser, proportion],
+        config={
+            APP_KEY: {'title': 'My app'},
+            RENDERING_KEY: {
+                'proportion': {
+                    'execution': {'inputs': {'p': {ELEMENT_KEY: FloatSliderInput,}},}
+                }
+            },
         },
-    },
-)
-app()
+    )
+    app()

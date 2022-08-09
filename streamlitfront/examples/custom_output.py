@@ -30,29 +30,30 @@ class HitTheOutputValue(OutputBase):
             st.snow()
 
 
-app = mk_app(
-    [foo],
-    config={
-        APP_KEY: {'title': 'My Custom Output'},
-        RENDERING_KEY: {
-            'foo': {
-                NAME_KEY: 'Hit the value',
-                'description': {
-                    'content': '''
-                        Try to hit the secret output value by playing with the inputs. \n 
-                        Hint: It is the answer to the ultimate question of life, the universe, and everything.
-                    ''',
-                },
-                'execution': {
-                    'output': {
-                        ELEMENT_KEY: HitTheOutputValue,
-                        'value_to_hit': 42,
-                        'margin': 10,
+if __name__ == '__main__':
+    app = mk_app(
+        [foo],
+        config={
+            APP_KEY: {'title': 'My Custom Output'},
+            RENDERING_KEY: {
+                'foo': {
+                    NAME_KEY: 'Hit the value',
+                    'description': {
+                        'content': '''
+                            Try to hit the secret output value by playing with the inputs. \n 
+                            Hint: It is the answer to the ultimate question of life, the universe, and everything.
+                        ''',
                     },
-                },
-                'code': {ELEMENT_KEY: SourceCodeSection,},
-            }
+                    'execution': {
+                        'output': {
+                            ELEMENT_KEY: HitTheOutputValue,
+                            'value_to_hit': 42,
+                            'margin': 10,
+                        },
+                    },
+                    'code': {ELEMENT_KEY: SourceCodeSection,},
+                }
+            },
         },
-    },
-)
-app()
+    )
+    app()

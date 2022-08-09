@@ -38,5 +38,6 @@ config_ = {
     },
 }
 
-app = mk_app([learn_model], config=config_)
-app()
+if __name__ == '__main__':
+    app = mk_app([learn_model], config=config_)
+    app()
