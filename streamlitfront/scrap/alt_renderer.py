@@ -173,5 +173,6 @@ def test_implement_component_from_factory():
     from front.elements import InputBase
 
     component = implement_component_from_factory(st.audio, InputBase)
-    assert sorted(Sig(component).names) == sorted((Sig(st.audio) + Sig(InputBase)).names)
-
+    assert sorted(Sig(component).names) == sorted(
+        (Sig(st.audio) + Sig(InputBase)).names
+    )

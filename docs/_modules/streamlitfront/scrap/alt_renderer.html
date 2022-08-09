@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.scrap.alt_renderer &mdash; streamlitfront 0.1.13 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.scrap.alt_renderer &mdash; streamlitfront 0.1.14 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/custom_output.html">streamlitfront.examples.custom_output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/edge_impulse_like.html">streamlitfront.examples.edge_impulse_like</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
@@ -74,6 +75,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/test_app.html">streamlitfront.tests.test_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/test_base.html">streamlitfront.tests.test_base</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/use_case_test.html">streamlitfront.tests.use_case_test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/types.html">streamlitfront.types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
 </ul>
 
@@ -264,21 +266,21 @@
     <span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="n">InputBase</span>
 
     <span class="n">C</span> <span class="o">=</span> <span class="n">mk_component_base</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">audio</span><span class="p">,</span> <span class="n">InputBase</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">Sig</span><span class="p">(</span><span class="n">C</span><span class="p">))</span> <span class="o">==</span> <span class="p">(</span>
-        <span class="s2">&quot;(data, label: str, format=&#39;audio/wav&#39;, start_time=0, &quot;</span>
-        <span class="s1">&#39;input_key: str = None, init_value: Any = None)&#39;</span>
-    <span class="p">)</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;tag&#39;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">label</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;tag&#39;</span><span class="p">)</span>
+
+    <span class="c1"># verify that the arguments of C is the aggregation of the arguments of audio and</span>
+    <span class="c1"># InputBase:</span>
+    <span class="k">assert</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">Sig</span><span class="p">(</span><span class="n">C</span><span class="p">)</span><span class="o">.</span><span class="n">names</span><span class="p">)</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">((</span><span class="n">Sig</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">audio</span><span class="p">)</span> <span class="o">+</span> <span class="n">Sig</span><span class="p">(</span><span class="n">InputBase</span><span class="p">))</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;tag&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;tag&#39;</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">test_implement_component_from_factory</span><span class="p">():</span>
     <span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="n">InputBase</span>
 
     <span class="n">component</span> <span class="o">=</span> <span class="n">implement_component_from_factory</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">audio</span><span class="p">,</span> <span class="n">InputBase</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">Sig</span><span class="p">(</span><span class="n">component</span><span class="p">))</span> <span class="o">==</span> <span class="p">(</span>
-        <span class="s2">&quot;(data, label: str, format=&#39;audio/wav&#39;, start_time=0, &quot;</span>
-        <span class="s1">&#39;input_key: str = None, init_value: Any = None)&#39;</span>
+    <span class="k">assert</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">Sig</span><span class="p">(</span><span class="n">component</span><span class="p">)</span><span class="o">.</span><span class="n">names</span><span class="p">)</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">Sig</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">audio</span><span class="p">)</span> <span class="o">+</span> <span class="n">Sig</span><span class="p">(</span><span class="n">InputBase</span><span class="p">))</span><span class="o">.</span><span class="n">names</span>
     <span class="p">)</span>
 </pre></div>
 

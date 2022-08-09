@@ -151,12 +151,12 @@ FloatSliderInput = implement_input_component(FloatInputBase, st.slider)
 class SelectBox(SelectBoxBase):
     def render(self):
         options = list(getattr(self.options, 'value', self.options))
-        preselected_index = options.index(self.value.value) if self.value and self.value.value in options else 0
-        value = st.selectbox(
-            label=self.name,
-            options=options,
-            index=preselected_index
+        preselected_index = (
+            options.index(self.value.value)
+            if self.value and self.value.value in options
+            else 0
         )
+        value = st.selectbox(label=self.name, options=options, index=preselected_index)
         # if self.value:
         #     self.value.value = value
         if self.on_value_change:
@@ -171,6 +171,7 @@ class FileUploader(FileUploaderBase):
     def render(self):
         label = self.name if self.display_label else ''
         return st.file_uploader(label=label, type=self.type)
+
 
 class AudioRecorder(InputBase):
     def render(self):

@@ -37,9 +37,7 @@ WaveForm = Iterable[int]
 
 # tagged_wf_store = appendable(Files, item2kv=tagged_timestamped_kv)
 if 'mall' not in st.session_state:
-    st.session_state['mall'] = dict(
-        tagged_wf=dict()
-    )
+    st.session_state['mall'] = dict(tagged_wf=dict())
 mall = st.session_state['mall']
 crudify = partial(prepare_for_crude_dispatch, mall=mall)
 
@@ -67,6 +65,7 @@ def timestamped_kv(value):
 AppendableFiles = appendable(Files, item2kv=timestamped_kv, return_keys=True)
 
 rootdir = os.path.join(Path('~').expanduser(), '.front', 'edge_impluse_like')
+
 
 @dataclass
 class AudioPersister(AudioRecorder):
@@ -108,9 +107,7 @@ config_ = {
     RENDERING_KEY: {
         'tag_wf': {
             NAME_KEY: 'Get Data',
-            'description': {
-                'content': get_data_description
-            },
+            'description': {'content': get_data_description},
             'execution': {
                 'inputs': {
                     'wf': {
@@ -119,15 +116,15 @@ config_ = {
                         'From a file': {
                             ELEMENT_KEY: FileUploader,
                             'type': 'wav',
-                            'display_label': False
+                            'display_label': False,
                         },
                         'From the microphone': {
                             ELEMENT_KEY: AudioPersister,
-                            'save_dir': rootdir
+                            'save_dir': rootdir,
                         },
                     }
                 }
-            }
+            },
         },
         'get_tagged_wf': {
             NAME_KEY: 'Data Explorer',
@@ -136,34 +133,21 @@ config_ = {
             },
             'execution': {
                 'inputs': {
-                    'x': {
-                        ELEMENT_KEY: SelectBox,
-                        'options': mall['tagged_wf'],
-                    }
+                    'x': {ELEMENT_KEY: SelectBox, 'options': mall['tagged_wf'],}
                 },
-                'output': {
-                    ELEMENT_KEY: TaggedAudioPlayer,
-                },
-                'auto_submit': True
-            }
+                'output': {ELEMENT_KEY: TaggedAudioPlayer,},
+                'auto_submit': True,
+            },
         },
-        DAG: {
-            'graph': {
-                ELEMENT_KEY: Graph,
-                NAME_KEY: 'Flow',
-            }
-        },
+        DAG: {'graph': {ELEMENT_KEY: Graph, NAME_KEY: 'Flow',}},
         Callable: {
             'execution': {
                 'inputs': {
-                    'save_name': {
-                        ELEMENT_KEY: TextInput,
-                        NAME_KEY: 'Save output as',
-                    }
+                    'save_name': {ELEMENT_KEY: TextInput, NAME_KEY: 'Save output as',}
                 }
             }
-        }
-    }
+        },
+    },
 }
 # ============ END FRONTEND ============
 

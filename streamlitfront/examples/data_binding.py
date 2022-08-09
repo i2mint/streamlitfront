@@ -70,7 +70,10 @@ def get_instrument_from_member_only(member: str):
 
 def get_members_from_instrument(instrument: str):
     return [
-        f'{m} ({band})' for band, members in data.items() for m, i in members.items() if i == instrument
+        f'{m} ({band})'
+        for band, members in data.items()
+        for m, i in members.items()
+        if i == instrument
     ]
 
 
@@ -94,7 +97,7 @@ if __name__ == '__main__':
         [
             get_instrument_from_band_and_member,
             get_instrument_from_member_only,
-            get_members_from_instrument
+            get_members_from_instrument,
         ],
         config={
             APP_KEY: {'title': 'Data Binding'},
@@ -105,47 +108,39 @@ if __name__ == '__main__':
                     'description': {
                         'content': 'Select a band and see how the list of members is updated.'
                     },
-                    'execution': {
-                        'on_submit': set_output_instrument
-                    }
+                    'execution': {'on_submit': set_output_instrument},
                 },
                 'get_instrument_from_member_only': {
                     NAME_KEY: 'From a screen to another',
                     'description': {
                         'content': 'Select a band from the previous page ("From an input to another") and see how the list of members (of this page) is updated.'
                     },
-                    'execution': {
-                        'on_submit': set_output_instrument
-                    }
+                    'execution': {'on_submit': set_output_instrument},
                 },
                 'get_members_from_instrument': {
                     NAME_KEY: 'From an output to an input',
                     'description': {
                         'content': 'Submit any other screen and see that the output is automatically selected from the "Instrument" select box.'
-                    }
+                    },
                 },
                 Callable: {
                     'execution': {
                         'inputs': {
-                            str: {
-                                ELEMENT_KEY: SelectBox,
-                            },
+                            str: {ELEMENT_KEY: SelectBox,},
                             'band': {
                                 'options': list(data),
                                 # 'value': selected_band,
-                                'on_value_change': on_select_band
+                                'on_value_change': on_select_band,
                             },
-                            'member': {
-                                'options': members_of_selected_band
-                            },
+                            'member': {'options': members_of_selected_band},
                             'instrument': {
                                 'options': intruments,
-                                'value': output_instrument
+                                'value': output_instrument,
                             },
                         }
                     }
-                }
-            }
-        }
+                },
+            },
+        },
     )
     app()

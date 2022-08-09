@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.13 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.14 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/custom_output.html">streamlitfront.examples.custom_output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/edge_impulse_like.html">streamlitfront.examples.edge_impulse_like</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
@@ -74,6 +75,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/test_app.html">streamlitfront.tests.test_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/test_base.html">streamlitfront.tests.test_base</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/use_case_test.html">streamlitfront.tests.use_case_test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/types.html">streamlitfront.types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
 </ul>
 
@@ -108,8 +110,10 @@
 <span class="sd">specific abstract elements class defined in front.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">i2.signatures</span> <span class="kn">import</span> <span class="n">call_forgivingly</span>
 <span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="kn">from</span> <span class="nn">streamlit.components.v1</span> <span class="kn">import</span> <span class="n">html</span>
 <span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="p">(</span>
@@ -126,9 +130,9 @@
     <span class="n">TextInputBase</span><span class="p">,</span>
     <span class="n">TextSectionBase</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">front.util</span> <span class="kn">import</span> <span class="n">get_value</span>
 
 <span class="kn">from</span> <span class="nn">streamlitfront.elements.js</span> <span class="kn">import</span> <span class="n">mk_element_factory</span>
+<span class="kn">from</span> <span class="nn">streamlitfront.types</span> <span class="kn">import</span> <span class="n">BoundData</span>
 
 
 <div class="viewcode-block" id="App"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.App">[docs]</a><span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="n">FrontContainerBase</span><span class="p">):</span>
@@ -159,8 +163,7 @@
         <span class="c1"># Setup navigation</span>
         <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="p">:</span>
             <span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-            <span class="n">view_key</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">radio</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">views</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Select your view&#39;</span><span class="p">)</span>
-        <span class="c1"># view_key = _get_view_key(tuple(views.keys()), label=&#39;Select your view&#39;)</span>
+            <span class="n">view_key</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">radio</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">views</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Select a view&#39;</span><span class="p">)</span>
 
         <span class="c1"># Display the selected page with the session state</span>
         <span class="c1"># This is the part that actually runs the functionality that pages specifies</span>
@@ -199,17 +202,21 @@
 
 <div class="viewcode-block" id="ExecSection"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.ExecSection">[docs]</a><span class="k">class</span> <span class="nc">ExecSection</span><span class="p">(</span><span class="n">ExecContainerBase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">submit</span><span class="p">():</span>
+            <span class="c1"># state = get_state_with_hash_funcs()</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">_output&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output_component</span><span class="o">.</span><span class="n">render_output</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_submit</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">on_submit</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
         <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">expander</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
             <span class="n">inputs</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">input_component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_components</span><span class="p">:</span>
                 <span class="n">inputs</span><span class="p">[</span><span class="n">input_component</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_component</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
-            <span class="n">submit</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">)</span>
             <span class="c1"># output_key = f&#39;{self.dag.__name__}_output&#39;</span>
-            <span class="k">if</span> <span class="n">submit</span><span class="p">:</span>
-                <span class="c1"># state = get_state_with_hash_funcs()</span>
-                <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
-                <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">_output&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">output_component</span><span class="o">.</span><span class="n">render_output</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></div>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_submit</span> <span class="ow">or</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Submit&#39;</span><span class="p">):</span>
+                <span class="n">submit</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="TextOutput"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.TextOutput">[docs]</a><span class="k">class</span> <span class="nc">TextOutput</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
@@ -240,13 +247,36 @@
 <span class="p">)</span>
 
 <span class="n">TextInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">TextInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">)</span>
-<span class="c1"># TextOutput = implement_component(OutputBase, st.write)</span>
 <span class="n">IntInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">IntInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">)</span>
 <span class="n">IntSliderInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">IntInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">)</span>
 <span class="n">FloatInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">FloatInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">)</span>
 <span class="n">FloatSliderInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">FloatInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">)</span>
-<span class="n">FileUploader</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">FileUploaderBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">)</span>
-<span class="n">SelectBox</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">SelectBoxBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">)</span>
+<span class="c1"># SelectBox = implement_input_component(SelectBoxBase, st.selectbox)</span>
+
+
+<div class="viewcode-block" id="SelectBox"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.SelectBox">[docs]</a><span class="k">class</span> <span class="nc">SelectBox</span><span class="p">(</span><span class="n">SelectBoxBase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">))</span>
+        <span class="n">preselected_index</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="n">options</span>
+            <span class="k">else</span> <span class="mi">0</span>
+        <span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">preselected_index</span><span class="p">)</span>
+        <span class="c1"># if self.value:</span>
+        <span class="c1">#     self.value.value = value</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_value_change</span><span class="p">:</span>
+            <span class="n">call_forgivingly</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_value_change</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="FileUploader"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.FileUploader">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">FileUploader</span><span class="p">(</span><span class="n">FileUploaderBase</span><span class="p">):</span>
+    <span class="n">display_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">display_label</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AudioRecorder"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.AudioRecorder">[docs]</a><span class="k">class</span> <span class="nc">AudioRecorder</span><span class="p">(</span><span class="n">InputBase</span><span class="p">):</span>
@@ -264,16 +294,12 @@
         <span class="c1">#     unsafe_allow_html=True)  # lightmode</span>
         <span class="c1"># st.caption(self.name)</span>
 
-        <span class="c1"># save_name = st.text_input(self.name, self.name)</span>
-        <span class="c1"># save_name = save_name or self.name</span>
-        <span class="c1"># if st.checkbox(f&#39;Show audio recorder&#39;, True):</span>
-
         <span class="n">st_audiorec</span> <span class="o">=</span> <span class="n">mk_element_factory</span><span class="p">(</span><span class="s1">&#39;st_audiorec&#39;</span><span class="p">)</span>
-        <span class="n">audio_data_url</span> <span class="o">=</span> <span class="n">st_audiorec</span><span class="p">()</span>
-        <span class="c1"># if audio_data_url:</span>
-        <span class="c1">#     st.success(f&#39;The audio has been successfully saved under &quot;{save_name}&quot;&#39;)</span>
-
-        <span class="k">return</span> <span class="n">audio_data_url</span></div>
+        <span class="n">audio_data</span> <span class="o">=</span> <span class="n">st_audiorec</span><span class="p">()</span>
+        <span class="c1"># print(audio_data)</span>
+        <span class="c1"># audio_data = bytes(audio_data, &#39;utf-8&#39;) if audio_data else None</span>
+        <span class="c1"># st.audio(audio_data)</span>
+        <span class="k">return</span> <span class="n">audio_data</span></div>
 </pre></div>
 
            </div>

@@ -11,6 +11,7 @@
    module_docs/streamlitfront/examples/custom_output
    module_docs/streamlitfront/examples/dag_app
    module_docs/streamlitfront/examples/data_binding
+   module_docs/streamlitfront/examples/edge_impulse_like
    module_docs/streamlitfront/examples/experimentation
    module_docs/streamlitfront/examples/issues
    module_docs/streamlitfront/examples/kaggle_front
@@ -36,4 +37,5 @@
    module_docs/streamlitfront/tests/test_app
    module_docs/streamlitfront/tests/test_base
    module_docs/streamlitfront/tests/use_case_test
+   module_docs/streamlitfront/types
    module_docs/streamlitfront/util

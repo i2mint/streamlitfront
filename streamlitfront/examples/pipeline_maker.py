@@ -38,6 +38,7 @@ class MultiSelect(InputBase):
         value = st_multiselect(options=self.options, item_template=self.item_template)
         return value
 
+
 if __name__ == '__main__':
     app = mk_app(
         [execute_pipe],
