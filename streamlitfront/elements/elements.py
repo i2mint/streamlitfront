@@ -7,9 +7,10 @@ specific abstract elements class defined in front.
 from dataclasses import dataclass
 from functools import partial
 from typing import Any, Iterable
-from i2.signatures import call_forgivingly
+from i2.signatures import Sig, call_forgivingly
 import streamlit as st
 from streamlit.components.v1 import html
+from pydantic import ValidationError
 from front.elements import (
     implement_component,
     ExecContainerBase,
@@ -96,21 +97,13 @@ class TextSection(TextSectionBase):
 
 class ExecSection(ExecContainerBase):
     def render(self):
-        def submit():
-            # state = get_state_with_hash_funcs()
-            output = self.obj(**inputs)
-            st.session_state[f'{self.obj.__name__}_output'] = output
-            self.output_component.render_output(output)
-            if self.on_submit:
-                self.on_submit(output)
-
         with st.expander(self.name, True):
-            inputs = {}
-            for input_component in self.input_components:
-                inputs[input_component.obj.name] = input_component.render()
-            # output_key = f'{self.dag.__name__}_output'
+            inputs = self._render_inputs()
             if self.auto_submit or st.button('Submit'):
-                submit()
+                try:
+                    self._submit(inputs)
+                except ValidationError as e:
+                    st.error(e)
 
 
 class TextOutput(OutputBase):

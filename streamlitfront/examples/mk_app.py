@@ -2,6 +2,7 @@ from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY
 
 from streamlitfront.elements import FloatSliderInput
 from streamlitfront.base import mk_app
+from streamlitfront.elements.elements import TextInput
 
 
 def foo(a: int = 1, b: int = 2, c=3):
@@ -28,6 +29,9 @@ if __name__ == '__main__':
         config={
             APP_KEY: {'title': 'My app'},
             RENDERING_KEY: {
+                'foo': {
+                    'execution': {'inputs': {'a': {ELEMENT_KEY: TextInput,}},}
+                },
                 'proportion': {
                     'execution': {'inputs': {'p': {ELEMENT_KEY: FloatSliderInput,}},}
                 }
