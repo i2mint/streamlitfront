@@ -469,7 +469,6 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     ...             'execution': {
     ...                 ELEMENT_KEY: ExecSection,
     ...                 NAME_KEY: 'Execution',
-    ...                 'stored_value_getter': get_stored_value,
     ...                 'inputs': {
     ...                     int: {ELEMENT_KEY: IntInput,},
     ...                     float: {

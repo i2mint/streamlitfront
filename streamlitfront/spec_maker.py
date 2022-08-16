@@ -3,7 +3,7 @@ from front.util import deep_merge
 import streamlit as st
 from typing import Any, Mapping
 from collections.abc import Callable
-from front import SpecMakerBase, APP_KEY, RENDERING_KEY, ELEMENT_KEY
+from front import SpecMakerBase, APP_KEY, RENDERING_KEY, ELEMENT_KEY, DEFAULT_INPUT_KEY
 
 from streamlitfront.elements import (
     App,
@@ -15,6 +15,7 @@ from streamlitfront.elements import (
     TextSection,
     View,
 )
+from streamlitfront.types import BoundData
 
 
 def get_stored_value(key: str) -> Any:
@@ -32,11 +33,13 @@ DFLT_CONVENTION_DICT = deep_merge(
                 'description': {ELEMENT_KEY: TextSection,},
                 'execution': {
                     ELEMENT_KEY: ExecSection,
-                    'stored_value_getter': get_stored_value,
                     'inputs': {
                         int: {ELEMENT_KEY: IntInput,},
                         float: {ELEMENT_KEY: FloatInput,},
                         Any: {ELEMENT_KEY: TextInput,},
+                        DEFAULT_INPUT_KEY: {
+                            'bound_data_factory': BoundData
+                        },
                     },
                     'output': {ELEMENT_KEY: TextOutput,},
                 },

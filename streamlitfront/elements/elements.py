@@ -6,10 +6,8 @@ specific abstract elements class defined in front.
 
 from dataclasses import dataclass
 from functools import partial
-from typing import Any, Iterable
-from i2.signatures import Sig, call_forgivingly
+from typing import Any
 import streamlit as st
-from streamlit.components.v1 import html
 from pydantic import ValidationError
 from front.elements import (
     implement_component,
@@ -27,7 +25,6 @@ from front.elements import (
 )
 
 from streamlitfront.elements.js import mk_element_factory
-from streamlitfront.types import BoundData
 
 
 class App(FrontContainerBase):
@@ -49,7 +46,7 @@ class App(FrontContainerBase):
         # ''')
 
         # Make page objects
-        views = {view.name: view.render for view in self.children}
+        views = {view.name: view for view in self.children}
         st.session_state['views'] = views
 
         # TODO: The above is static: Should the above be done only once, and cached?
@@ -119,7 +116,7 @@ class MultiSourceInputContainer(MultiSourceInputContainerBase):
             # source = st.radio(self.name, options)
             source = st.selectbox(self.name, options)
             input_component = next(x for x in self.children if x.name == source)
-            return input_component.render()
+            return input_component()
 
 
 def store_input_value_in_state(input_value, component: InputBase):
@@ -128,9 +125,8 @@ def store_input_value_in_state(input_value, component: InputBase):
 
 implement_input_component = partial(
     implement_component,
-    input_value_callback=store_input_value_in_state,
+    # input_value_callback=store_input_value_in_state,
     label='name',
-    value='init_value',
 )
 
 TextInput = implement_input_component(TextInputBase, st.text_input)
@@ -138,23 +134,12 @@ IntInput = implement_input_component(IntInputBase, st.number_input)
 IntSliderInput = implement_input_component(IntInputBase, st.slider)
 FloatInput = implement_input_component(FloatInputBase, st.number_input)
 FloatSliderInput = implement_input_component(FloatInputBase, st.slider)
-# SelectBox = implement_input_component(SelectBoxBase, st.selectbox)
-
-
-class SelectBox(SelectBoxBase):
-    def render(self):
-        options = list(getattr(self.options, 'value', self.options))
-        preselected_index = (
-            options.index(self.value.value)
-            if self.value and self.value.value in options
-            else 0
-        )
-        value = st.selectbox(label=self.name, options=options, index=preselected_index)
-        # if self.value:
-        #     self.value.value = value
-        if self.on_value_change:
-            call_forgivingly(self.on_value_change, value)
-        return value
+SelectBox = implement_input_component(
+    SelectBoxBase,
+    st.selectbox,
+    options='_options',
+    index='_preselected_index'
+) 
 
 
 @dataclass

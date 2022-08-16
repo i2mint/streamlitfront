@@ -85,11 +85,11 @@ output_instrument = BoundData(id='output_instrument')
 
 def on_select_band(band):
     # selected_band.value = band
-    members_of_selected_band.value = list(data[band])
+    members_of_selected_band.set(list(data[band]))
 
 
 def set_output_instrument(output):
-    output_instrument.value = output
+    output_instrument.set(output)
 
 
 if __name__ == '__main__':
