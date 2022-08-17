@@ -15,7 +15,7 @@ from streamlitfront.elements import (
     TextSection,
     View,
 )
-from streamlitfront.types import BoundData
+from streamlitfront.data_binding import BoundData
 
 
 def get_stored_value(key: str) -> Any:

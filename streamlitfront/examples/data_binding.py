@@ -21,14 +21,11 @@
 
 #     app()
 
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
-from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY, OBJ_KEY, NAME_KEY
+from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY, NAME_KEY
 from collections.abc import Callable
 
-from streamlitfront.base import mk_app
-from streamlitfront.types import BoundData
-from streamlitfront.elements.elements import SelectBox, TextInput, TextSection
+from streamlitfront import mk_app, BoundData
+from streamlitfront.elements import SelectBox
 
 
 data = {
@@ -81,6 +78,7 @@ def get_members_from_instrument(instrument: str):
 # selected_band = BoundData(id='selected_band')
 members_of_selected_band = BoundData(id='members_of_selected_band')
 output_instrument = BoundData(id='output_instrument')
+# create_bound_data('members_of_selected_band', 'output_instrument')
 
 
 def on_select_band(band):
@@ -121,7 +119,7 @@ if __name__ == '__main__':
                     NAME_KEY: 'From an output to an input',
                     'description': {
                         'content': 'Submit any other screen and see that the output is automatically selected from the "Instrument" select box.'
-                    },
+                    }
                 },
                 Callable: {
                     'execution': {
@@ -136,11 +134,11 @@ if __name__ == '__main__':
                             'instrument': {
                                 'options': intruments,
                                 'value': output_instrument,
-                            },
+                            }
                         }
                     }
-                },
-            },
-        },
+                }
+            }
+        }
     )
     app()
