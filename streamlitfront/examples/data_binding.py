@@ -75,15 +75,14 @@ def get_members_from_instrument(instrument: str):
 
 
 # TODO: Discuss about the underlying functionnal generality of BoundData
-# selected_band = BoundData(id='selected_band')
+selected_band = BoundData(id='selected_band')
 members_of_selected_band = BoundData(id='members_of_selected_band')
 output_instrument = BoundData(id='output_instrument')
 # create_bound_data('members_of_selected_band', 'output_instrument')
 
 
-def on_select_band(band):
-    # selected_band.value = band
-    members_of_selected_band.set(list(data[band]))
+def on_select_band():
+    members_of_selected_band.set(list(data[selected_band()]))
 
 
 def set_output_instrument(output):
@@ -127,7 +126,7 @@ if __name__ == '__main__':
                             str: {ELEMENT_KEY: SelectBox,},
                             'band': {
                                 'options': list(data),
-                                # 'value': selected_band,
+                                'value': selected_band,
                                 'on_value_change': on_select_band,
                             },
                             'member': {'options': members_of_selected_band},

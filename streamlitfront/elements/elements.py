@@ -127,6 +127,7 @@ implement_input_component = partial(
     implement_component,
     # input_value_callback=store_input_value_in_state,
     label='name',
+    key='input_key'
 )
 
 TextInput = implement_input_component(TextInputBase, st.text_input)
@@ -140,6 +141,15 @@ SelectBox = implement_input_component(
     options='_options',
     index='_preselected_index'
 ) 
+
+
+# class SelectBox(SelectBoxBase):
+#     def render(self):
+#         return st.selectbox(
+#             label=self.name,
+#             options=self._options,
+#             index=self._preselected_index,
+#         )
 
 
 @dataclass
