@@ -33,4 +33,4 @@ The ellipses (`...`) are there to indicate that we may want to specify particula
 
 from .base import dispatch_funcs, mk_app
 from .util import run_streamlit, data_files
-from .data_binding import BoundData
+from .data_binding import BoundData, binder

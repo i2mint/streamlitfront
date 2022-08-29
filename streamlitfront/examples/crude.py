@@ -4,7 +4,7 @@ from collections.abc import Callable
 from i2 import Sig
 import streamlit as st
 
-from streamlitfront.base import mk_app
+from streamlitfront import mk_app, binder as b
 from streamlitfront.elements.elements import SelectBox, TextInput, TextSection
 from streamlitfront.examples.util import get_code_of_current_file
 from streamlitfront.spec_maker import get_stored_value
@@ -22,15 +22,15 @@ def bar(foo_output: float):
 if __name__ == '__main__':
     # param_to_mall_map = dict(a='a', b='b_store')
 
-    if 'mall' not in st.session_state:
-        st.session_state['mall'] = dict(
+    if not b.mall():
+        b.mall = st.session_state['mall'] = dict(
             a=dict(one=1, two=2),
             b=dict(three=3, four=4),
             foo_output=dict(),
             bar_output=dict(),
         )
 
-    mall = st.session_state['mall']
+    mall = b.mall()
 
     def crudify(funcs):
         for func in funcs:
@@ -84,3 +84,4 @@ if __name__ == '__main__':
         },
     )
     app()
+    st.write(mall)

@@ -24,7 +24,7 @@
 from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY, NAME_KEY
 from collections.abc import Callable
 
-from streamlitfront import mk_app, BoundData
+from streamlitfront import mk_app, binder as b
 from streamlitfront.elements import SelectBox
 
 
@@ -75,18 +75,18 @@ def get_members_from_instrument(instrument: str):
 
 
 # TODO: Discuss about the underlying functionnal generality of BoundData
-selected_band = BoundData(id='selected_band')
-members_of_selected_band = BoundData(id='members_of_selected_band')
-output_instrument = BoundData(id='output_instrument')
+# selected_band = BoundData(id='selected_band')
+# members_of_selected_band = BoundData(id='members_of_selected_band')
+# output_instrument = BoundData(id='output_instrument')
 # create_bound_data('members_of_selected_band', 'output_instrument')
 
 
 def on_select_band():
-    members_of_selected_band.set(list(data[selected_band()]))
+    b.members_of_selected_band.set(list(data[b.selected_band()]))
 
 
 def set_output_instrument(output):
-    output_instrument.set(output)
+    b.output_instrument.set(output)
 
 
 if __name__ == '__main__':
@@ -94,7 +94,7 @@ if __name__ == '__main__':
         [
             get_instrument_from_band_and_member,
             get_instrument_from_member_only,
-            get_members_from_instrument,
+            get_members_from_instrument
         ],
         config={
             APP_KEY: {'title': 'Data Binding'},
@@ -126,13 +126,13 @@ if __name__ == '__main__':
                             str: {ELEMENT_KEY: SelectBox,},
                             'band': {
                                 'options': list(data),
-                                'value': selected_band,
+                                'value': b.selected_band,
                                 'on_value_change': on_select_band,
                             },
-                            'member': {'options': members_of_selected_band},
+                            'member': {'options': b.members_of_selected_band},
                             'instrument': {
                                 'options': intruments,
-                                'value': output_instrument,
+                                'value': b.output_instrument,
                             }
                         }
                     }
