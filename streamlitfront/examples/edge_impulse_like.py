@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from functools import partial
+from io import BytesIO
 import os
 from pathlib import Path
 import time
@@ -9,16 +10,18 @@ from front.elements import DEFAULT_INPUT_KEY, OutputBase
 from meshed import code_to_dag, DAG
 from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY, NAME_KEY, OBJ_KEY
 from collections.abc import Callable
-from front.crude import prepare_for_crude_dispatch
+from front.crude import Crudifier, prepare_for_crude_dispatch
 from streamlitfront.elements import TextInput, SelectBox
 from dol.appendable import appendable
+import soundfile as sf
+import matplotlib.pyplot as plt
 
-from streamlitfront.base import mk_app
+from streamlitfront import mk_app, binder as b
 from streamlitfront.examples.util import Graph
 from streamlitfront.elements import (
     AudioRecorder,
     FileUploader,
-    MultiSourceInputContainer,
+    MultiSourceInput,
 )
 import streamlit as st
 
@@ -36,23 +39,27 @@ WaveForm = Iterable[int]
 #     return key, val
 
 # tagged_wf_store = appendable(Files, item2kv=tagged_timestamped_kv)
-if 'mall' not in st.session_state:
-    st.session_state['mall'] = dict(tagged_wf=dict())
-mall = st.session_state['mall']
-crudify = partial(prepare_for_crude_dispatch, mall=mall)
+if not b.mall():
+    b.mall = dict(
+        tagged_wf=dict(),
+        dummy_store=dict(),
+    )
+mall = b.mall()
+crudifier = partial(Crudifier, mall=mall)
 
 
-def identity(x):
-    return x
+def auto_namer(*, arguments):
+    return '_'.join(map(str, arguments.values()))
 
 
-@crudify(output_store='tagged_wf')
+@crudifier(output_store='tagged_wf', auto_namer=auto_namer)
 def tag_wf(wf: WaveForm, tag: str):
     return (wf, tag)
 
 
-get_tagged_wf = crudify(identity, param_to_mall_map=dict(x='tagged_wf'))
-get_tagged_wf.__name__ = 'get_tagged_wf'
+@crudifier(param_to_mall_map=dict(x='tagged_wf'), output_store='dummy_store', auto_namer=auto_namer)
+def get_tagged_wf(x):
+    return x
 # ============ END BACKEND ============
 
 
@@ -88,13 +95,20 @@ class AudioPersister(AudioRecorder):
 
 class TaggedAudioPlayer(OutputBase):
     def render(self):
-        if self.output:
-            sound, tag = self.output
-            if isinstance(sound, str):
-                with open(sound, 'rb') as f:
-                    st.audio(f)
-            else:
-                st.audio(sound)
+        sound, tag = self.output
+        if not isinstance(sound, str):
+            sound = sound.getvalue()
+
+        arr = sf.read(BytesIO(sound), dtype="int16")[0]
+        tab1, tab2 = st.tabs(["Audio Player", "Waveform"])
+        with tab1:
+            st.audio(sound)
+        with tab2:
+            fig, ax = plt.subplots(figsize=(15, 5))
+            ax.plot(arr, label=f"Tag={tag}")
+            ax.legend()
+            st.pyplot(fig)
+            # st.write(arr[:10])
 
 
 get_data_description = '''
@@ -111,7 +125,7 @@ config_ = {
             'execution': {
                 'inputs': {
                     'wf': {
-                        ELEMENT_KEY: MultiSourceInputContainer,
+                        ELEMENT_KEY: MultiSourceInput,
                         NAME_KEY: 'Wave Form',
                         'From a file': {
                             ELEMENT_KEY: FileUploader,
@@ -154,4 +168,3 @@ config_ = {
 if __name__ == '__main__':
     app = mk_app([tag_wf, get_tagged_wf], config=config_)
     app()
-    st.write(mall)

@@ -17,7 +17,7 @@ from front.elements import (
     FrontContainerBase,
     InputBase,
     IntInputBase,
-    MultiSourceInputContainerBase,
+    MultiSourceInputBase,
     OutputBase,
     SelectBoxBase,
     TextInputBase,
@@ -109,13 +109,16 @@ class TextOutput(OutputBase):
         st.write(self.output)
 
 
-class MultiSourceInputContainer(MultiSourceInputContainerBase):
+class MultiSourceInput(MultiSourceInputBase):
     def render(self):
         with st.container():
-            options = tuple(x.name for x in self.children)
+            options = tuple(x.name for x in self.input_components)
             # source = st.radio(self.name, options)
             source = st.selectbox(self.name, options)
-            input_component = next(x for x in self.children if x.name == source)
+            input_component = next(
+                x for x in self.input_components 
+                if x.name == source
+            )
             return input_component()
 
 

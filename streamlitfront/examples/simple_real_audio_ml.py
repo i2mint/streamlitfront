@@ -7,7 +7,7 @@ from streamlitfront.examples.util import Graph
 from streamlitfront.elements import (
     AudioRecorder,
     FileUploader,
-    MultiSourceInputContainer,
+    MultiSourceInput,
 )
 
 
@@ -27,7 +27,7 @@ config_ = {
             'execution': {
                 'inputs': {
                     'train_audio': {
-                        ELEMENT_KEY: MultiSourceInputContainer,
+                        ELEMENT_KEY: MultiSourceInput,
                         'From a file': {ELEMENT_KEY: FileUploader, 'type': 'wav',},
                         'From the microphone': {ELEMENT_KEY: AudioRecorder},
                     }

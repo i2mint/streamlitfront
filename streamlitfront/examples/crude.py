@@ -23,7 +23,7 @@ if __name__ == '__main__':
     # param_to_mall_map = dict(a='a', b='b_store')
 
     if not b.mall():
-        b.mall = st.session_state['mall'] = dict(
+        b.mall = dict(
             a=dict(one=1, two=2),
             b=dict(three=3, four=4),
             foo_output=dict(),
@@ -32,22 +32,36 @@ if __name__ == '__main__':
 
     mall = b.mall()
 
-    def crudify(funcs):
-        for func in funcs:
-            param_to_mall_map = list(Sig(func))
-            output_store = f'{func.__name__}_output'
-            yield prepare_for_crude_dispatch(
-                func,
-                param_to_mall_map=param_to_mall_map,
-                mall=mall,
-                output_store=output_store,
-            )
+
+    foo = prepare_for_crude_dispatch(
+        foo,
+        mall=mall,
+        param_to_mall_map = list(Sig(foo)),
+        # output_store = f'{foo.__name__}_output'
+    )
+    bar = prepare_for_crude_dispatch(
+        bar,
+        mall=mall,
+        param_to_mall_map = list(Sig(bar)),
+        # output_store = f'{bar.__name__}_output'
+    )
+
+    # def crudify(funcs):
+    #     for func in funcs:
+    #         param_to_mall_map = list(Sig(func))
+    #         output_store = f'{func.__name__}_output'
+    #         yield prepare_for_crude_dispatch(
+    #             func,
+    #             param_to_mall_map=param_to_mall_map,
+    #             mall=mall,
+    #             output_store=output_store,
+    #         )
 
     app = mk_app(
         [foo, bar],
         config={
             APP_KEY: {'title': 'Crude App'},
-            OBJ_KEY: {'trans': crudify},
+            # OBJ_KEY: {'trans': crudify},
             RENDERING_KEY: {
                 'foo': {
                     'execution': {
