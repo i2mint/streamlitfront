@@ -49,17 +49,23 @@ crudifier = partial(Crudifier, mall=mall)
 
 
 def auto_namer(*, arguments):
-    return '_'.join(map(str, arguments.values()))
+    return "_".join(map(str, arguments.values()))
 
 
-@crudifier(output_store='tagged_wf', auto_namer=auto_namer)
+@crudifier(output_store="tagged_wf", auto_namer=auto_namer)
 def tag_wf(wf: WaveForm, tag: str):
     return (wf, tag)
 
 
-@crudifier(param_to_mall_map=dict(x='tagged_wf'), output_store='dummy_store', auto_namer=auto_namer)
+@crudifier(
+    param_to_mall_map=dict(x="tagged_wf"),
+    output_store="dummy_store",
+    auto_namer=auto_namer,
+)
 def get_tagged_wf(x):
     return x
+
+
 # ============ END BACKEND ============
 
 
@@ -71,7 +77,8 @@ def timestamped_kv(value):
 
 AppendableFiles = appendable(Files, item2kv=timestamped_kv, return_keys=True)
 
-rootdir = os.path.join(Path('~').expanduser(), '.front', 'edge_impluse_like')
+rootdir = os.path.join(Path("~").expanduser(), ".front", "edge_impulse_like")
+Path(rootdir).mkdir(parents=True, exist_ok=True)
 
 
 @dataclass
@@ -86,7 +93,7 @@ class AudioPersister(AudioRecorder):
     def render(self):
         audio_data = super().render()
         if audio_data and self.store is not None:
-            print('YEAH')
+            print("YEAH")
             key = self.store.append(audio_data)
             return os.path.join(self.save_dir, key)
             # self.store.append(audio_data)
@@ -111,53 +118,66 @@ class TaggedAudioPlayer(OutputBase):
             # st.write(arr[:10])
 
 
-get_data_description = '''
+get_data_description = """
 Feed the system with wave forms from wav files or directly \
 from your microphone, and tag them.
-'''
+"""
 
 config_ = {
-    APP_KEY: {'title': 'Edge-Impulse-like App'},
+    APP_KEY: {"title": "Edge-Impulse-like App"},
     RENDERING_KEY: {
-        'tag_wf': {
-            NAME_KEY: 'Get Data',
-            'description': {'content': get_data_description},
-            'execution': {
-                'inputs': {
-                    'wf': {
+        "tag_wf": {
+            NAME_KEY: "Get Data",
+            "description": {"content": get_data_description},
+            "execution": {
+                "inputs": {
+                    "wf": {
                         ELEMENT_KEY: MultiSourceInput,
-                        NAME_KEY: 'Wave Form',
-                        'From a file': {
+                        NAME_KEY: "Wave Form",
+                        "From a file": {
                             ELEMENT_KEY: FileUploader,
-                            'type': 'wav',
-                            'display_label': False,
+                            "type": "wav",
+                            "display_label": False,
                         },
-                        'From the microphone': {
+                        "From the microphone": {
                             ELEMENT_KEY: AudioPersister,
-                            'save_dir': rootdir,
+                            "save_dir": rootdir,
                         },
                     }
                 }
             },
         },
-        'get_tagged_wf': {
-            NAME_KEY: 'Data Explorer',
-            'description': {
-                'content': '''Explore the existing tagged wave forms and play them.'''
+        "get_tagged_wf": {
+            NAME_KEY: "Data Explorer",
+            "description": {
+                "content": """Explore the existing tagged wave forms and play them."""
             },
-            'execution': {
-                'inputs': {
-                    'x': {ELEMENT_KEY: SelectBox, 'options': mall['tagged_wf'],}
+            "execution": {
+                "inputs": {
+                    "x": {
+                        ELEMENT_KEY: SelectBox,
+                        "options": mall["tagged_wf"],
+                    }
                 },
-                'output': {ELEMENT_KEY: TaggedAudioPlayer,},
-                'auto_submit': True,
+                "output": {
+                    ELEMENT_KEY: TaggedAudioPlayer,
+                },
+                "auto_submit": True,
             },
         },
-        DAG: {'graph': {ELEMENT_KEY: Graph, NAME_KEY: 'Flow',}},
+        DAG: {
+            "graph": {
+                ELEMENT_KEY: Graph,
+                NAME_KEY: "Flow",
+            }
+        },
         Callable: {
-            'execution': {
-                'inputs': {
-                    'save_name': {ELEMENT_KEY: TextInput, NAME_KEY: 'Save output as',}
+            "execution": {
+                "inputs": {
+                    "save_name": {
+                        ELEMENT_KEY: TextInput,
+                        NAME_KEY: "Save output as",
+                    }
                 }
             }
         },
@@ -165,6 +185,6 @@ config_ = {
 }
 # ============ END FRONTEND ============
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = mk_app([tag_wf, get_tagged_wf], config=config_)
     app()
