@@ -4,7 +4,7 @@ from io import BytesIO
 import os
 from pathlib import Path
 import time
-from typing import Iterable
+from typing import Any, Iterable, Union
 from dol import Files
 from front.elements import DEFAULT_INPUT_KEY, OutputBase
 from meshed import code_to_dag, DAG
@@ -15,6 +15,7 @@ from streamlitfront.elements import TextInput, SelectBox
 from dol.appendable import appendable
 import soundfile as sf
 import matplotlib.pyplot as plt
+from streamlit.uploaded_file_manager import UploadedFile
 
 from streamlitfront import mk_app, binder as b
 from streamlitfront.examples.util import Graph
@@ -26,7 +27,7 @@ from streamlitfront.elements import (
 import streamlit as st
 
 # ============ BACKEND ============
-WaveForm = Iterable[int]
+WaveForm = Any
 
 # rootdir = os.path.join(Path('~').expanduser(), '.front', 'edge_impluse_like')
 # os.makedirs(rootdir, exist_ok=True)
@@ -58,11 +59,9 @@ def tag_wf(wf: WaveForm, tag: str):
 
 
 @crudifier(
-    param_to_mall_map=dict(x="tagged_wf"),
-    output_store="dummy_store",
-    auto_namer=auto_namer,
+    param_to_mall_map=dict(x="tagged_wf")
 )
-def get_tagged_wf(x):
+def get_tagged_wf(x: Any):
     return x
 
 
@@ -70,52 +69,64 @@ def get_tagged_wf(x):
 
 
 # ============ FRONTEND ============
-def timestamped_kv(value):
-    utc_seconds_timestamp = str(int(time.time() * 1000))
-    return utc_seconds_timestamp, value
+# def timestamped_kv(value):
+#     utc_seconds_timestamp = str(int(time.time() * 1000))
+#     return utc_seconds_timestamp, value
 
 
-AppendableFiles = appendable(Files, item2kv=timestamped_kv, return_keys=True)
+# AppendableFiles = appendable(Files, item2kv=timestamped_kv, return_keys=True)
 
-rootdir = os.path.join(Path("~").expanduser(), ".front", "edge_impulse_like")
-Path(rootdir).mkdir(parents=True, exist_ok=True)
+# rootdir = os.path.join(Path("~").expanduser(), ".front", "edge_impulse_like")
+# Path(rootdir).mkdir(parents=True, exist_ok=True)
+
+
+# @dataclass
+# class AudioPersister(AudioRecorder):
+#     save_dir: str = None
+
+#     def __post_init__(self):
+#         super().__post_init__()
+#         self.store = AppendableFiles(self.save_dir)
+#         # self.store = Files(self.save_dir) if self.save_dir else None
+
+#     def render(self):
+#         audio_data = super().render()
+#         if audio_data and self.store is not None:
+#             key = self.store.append(audio_data)
+#             return os.path.join(self.save_dir, key)
+#             # self.store.append(audio_data)
+#         return audio_data
+
+
+class FileReader(FileUploader):
+    def render(self):
+        uploaded_file = super().render()
+        if uploaded_file:
+            return uploaded_file.getvalue()
 
 
 @dataclass
-class AudioPersister(AudioRecorder):
-    save_dir: str = None
-
-    def __post_init__(self):
-        super().__post_init__()
-        self.store = AppendableFiles(self.save_dir)
-        # self.store = Files(self.save_dir) if self.save_dir else None
+class SuccessNotification(OutputBase):
+    message: str = 'Success!'
 
     def render(self):
-        audio_data = super().render()
-        if audio_data and self.store is not None:
-            print("YEAH")
-            key = self.store.append(audio_data)
-            return os.path.join(self.save_dir, key)
-            # self.store.append(audio_data)
-        return audio_data
+        return st.success(self.message)
 
 
 class TaggedAudioPlayer(OutputBase):
     def render(self):
-        sound, tag = self.output
-        if not isinstance(sound, str):
-            sound = sound.getvalue()
-
-        arr = sf.read(BytesIO(sound), dtype="int16")[0]
-        tab1, tab2 = st.tabs(["Audio Player", "Waveform"])
-        with tab1:
-            st.audio(sound)
-        with tab2:
-            fig, ax = plt.subplots(figsize=(15, 5))
-            ax.plot(arr, label=f"Tag={tag}")
-            ax.legend()
-            st.pyplot(fig)
-            # st.write(arr[:10])
+        if self.output:
+            sound, tag = self.output
+            arr = sf.read(BytesIO(sound), dtype="int16")[0]
+            tab1, tab2 = st.tabs(["Audio Player", "Waveform"])
+            with tab1:
+                st.audio(sound)
+            with tab2:
+                fig, ax = plt.subplots(figsize=(15, 5))
+                ax.plot(arr, label=f"Tag={tag}")
+                ax.legend()
+                st.pyplot(fig)
+                # st.write(arr[:10])
 
 
 get_data_description = """
@@ -135,15 +146,19 @@ config_ = {
                         ELEMENT_KEY: MultiSourceInput,
                         NAME_KEY: "Wave Form",
                         "From a file": {
-                            ELEMENT_KEY: FileUploader,
+                            ELEMENT_KEY: FileReader,
                             "type": "wav",
                             "display_label": False,
                         },
                         "From the microphone": {
-                            ELEMENT_KEY: AudioPersister,
-                            "save_dir": rootdir,
+                            ELEMENT_KEY: AudioRecorder,
+                            # "save_dir": rootdir,
                         },
                     }
+                },
+                'output': {
+                    ELEMENT_KEY: SuccessNotification,
+                    'message': 'The wave form has been tagged successfully.'
                 }
             },
         },

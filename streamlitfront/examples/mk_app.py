@@ -4,7 +4,7 @@ from streamlitfront.elements import FloatSliderInput
 from streamlitfront.base import mk_app
 from streamlitfront.elements.elements import TextInput
 
-
+# BACKEND
 def foo(a: int = 1, b: int = 2, c=3):
     """This is foo. It computes something"""
     return (a * b) + c
@@ -21,7 +21,7 @@ def confuser(a: int, x: float = 3.14):
 
 def proportion(x: int = 100, p: float = 0.5):
     return x * p
-
+# ======
 
 if __name__ == '__main__':
     app = mk_app(
