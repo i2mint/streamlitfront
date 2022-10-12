@@ -6,7 +6,7 @@ specific abstract elements class defined in front.
 
 from dataclasses import dataclass
 from functools import partial
-from typing import Any
+from typing import Any, Callable
 import streamlit as st
 from pydantic import ValidationError
 from front.elements import (
@@ -23,6 +23,7 @@ from front.elements import (
     TextInputBase,
     TextSectionBase,
 )
+from front.types import FrontElementName
 
 from streamlitfront.elements.js import mk_element_factory
 
@@ -32,7 +33,7 @@ class App(FrontContainerBase):
 
     def render(self):
         # Page setup
-        st.set_page_config(layout='wide')
+        st.set_page_config(layout="wide")
         # html('''
         #     <script type="text/javascript">
         #         function iframeLoaded() {
@@ -47,7 +48,7 @@ class App(FrontContainerBase):
 
         # Make page objects
         views = {view.name: view for view in self.children}
-        st.session_state['views'] = views
+        st.session_state["views"] = views
 
         # TODO: The above is static: Should the above be done only once, and cached?
         #   Perhaps views should be cached in state?
@@ -55,7 +56,7 @@ class App(FrontContainerBase):
         # Setup navigation
         with st.sidebar:
             st.title(self.name)
-            view_key = st.radio(options=tuple(views.keys()), label='Select a view')
+            view_key = st.radio(options=tuple(views.keys()), label="Select a view")
 
         # Display the selected page with the session state
         # This is the part that actually runs the functionality that pages specifies
@@ -65,7 +66,7 @@ class App(FrontContainerBase):
 
 class View(FrontContainerBase):
     def render(self):
-        st.markdown(f'''## **{self.name}**''')
+        st.markdown(f"""## **{self.name}**""")
         self._render_children()
 
 
@@ -77,10 +78,10 @@ class Section(FrontContainerBase):
 
 class TextSection(TextSectionBase):
     def __init__(
-        self, content: str, kind: str = 'text', obj: Any = None, name=None, **kwargs
+        self, content: str, kind: str = "text", obj: Any = None, name=None, **kwargs
     ):
         super().__init__(content, kind, obj, name, **kwargs)
-        self.kind = self.kind if self.kind in ['markdown', 'code', 'latex'] else 'text'
+        self.kind = self.kind if self.kind in ["markdown", "code", "latex"] else "text"
 
     # def __post_init__(self):
     #     super().__post_init__()
@@ -93,14 +94,40 @@ class TextSection(TextSectionBase):
 
 
 class ExecSection(ExecContainerBase):
+    def __init__(
+        self,
+        obj: Callable,
+        inputs: dict,
+        output: dict,
+        name: FrontElementName = None,
+        auto_submit: bool = False,
+        on_submit: Callable[[Any], None] = None,
+        use_expander: bool = True,
+    ):
+        super().__init__(
+            obj=obj,
+            inputs=inputs,
+            output=output,
+            name=name,
+            auto_submit=auto_submit,
+            on_submit=on_submit,
+        )
+        self.use_expander = use_expander
+
     def render(self):
-        with st.expander(self.name, True):
-            inputs = self._render_inputs()
-            if self.auto_submit or st.button('Submit'):
-                try:
-                    self._submit(inputs)
-                except ValidationError as e:
-                    st.error(e)
+        if self.use_expander:
+            with st.expander(self.name, True):
+                self._render_section_content()
+        else:
+            self._render_section_content()
+
+    def _render_section_content(self):
+        inputs = self._render_inputs()
+        if self.auto_submit or st.button("Submit"):
+            try:
+                self._submit(inputs)
+            except ValidationError as e:
+                st.error(e)
 
 
 class TextOutput(OutputBase):
@@ -115,10 +142,7 @@ class MultiSourceInput(MultiSourceInputBase):
             options = tuple(x.name for x in self.input_components)
             # source = st.radio(self.name, options)
             source = st.selectbox(self.name, options)
-            input_component = next(
-                x for x in self.input_components 
-                if x.name == source
-            )
+            input_component = next(x for x in self.input_components if x.name == source)
             return input_component()
 
 
@@ -129,8 +153,8 @@ def store_input_value_in_state(input_value, component: InputBase):
 implement_input_component = partial(
     implement_component,
     # input_value_callback=store_input_value_in_state,
-    label='name',
-    key='input_key'
+    label="name",
+    key="input_key",
 )
 
 TextInput = implement_input_component(TextInputBase, st.text_input)
@@ -139,11 +163,8 @@ IntSliderInput = implement_input_component(IntInputBase, st.slider)
 FloatInput = implement_input_component(FloatInputBase, st.number_input)
 FloatSliderInput = implement_input_component(FloatInputBase, st.slider)
 SelectBox = implement_input_component(
-    SelectBoxBase,
-    st.selectbox,
-    options='_options',
-    index='_preselected_index'
-) 
+    SelectBoxBase, st.selectbox, options="_options", index="_preselected_index"
+)
 
 
 # class SelectBox(SelectBoxBase):
@@ -160,7 +181,7 @@ class FileUploader(FileUploaderBase):
     display_label: bool = True
 
     def render(self):
-        label = self.name if self.display_label else ''
+        label = self.name if self.display_label else ""
         return st.file_uploader(label=label, type=self.type)
 
 
@@ -179,7 +200,7 @@ class AudioRecorder(InputBase):
         #     unsafe_allow_html=True)  # lightmode
         # st.caption(self.name)
 
-        st_audiorec = mk_element_factory('st_audiorec')
+        st_audiorec = mk_element_factory("st_audiorec")
         audio_data = st_audiorec()
         # print(audio_data)
         # audio_data = bytes(audio_data, 'utf-8') if audio_data else None
