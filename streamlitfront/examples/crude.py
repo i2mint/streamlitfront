@@ -63,19 +63,6 @@ if __name__ == '__main__':
             APP_KEY: {'title': 'Crude App'},
             # OBJ_KEY: {'trans': crudify},
             RENDERING_KEY: {
-                'foo': {
-                    'execution': {
-                        'inputs': {
-                            'a': {'options': mall['a'],},
-                            'b': {'options': mall['b'],},
-                        }
-                    },
-                },
-                'bar': {
-                    'execution': {
-                        'inputs': {'foo_output': {'options': mall['foo_output'],},}
-                    },
-                },
                 Callable: {
                     'execution': {
                         'inputs': {
