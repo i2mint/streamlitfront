@@ -23,6 +23,7 @@ from streamlitfront.elements import (
     AudioRecorder,
     FileUploader,
     MultiSourceInput,
+    SuccessNotification
 )
 import streamlit as st
 
@@ -103,14 +104,6 @@ class FileReader(FileUploader):
         uploaded_file = super().render()
         if uploaded_file:
             return uploaded_file.getvalue()
-
-
-@dataclass
-class SuccessNotification(OutputBase):
-    message: str = 'Success!'
-
-    def render(self):
-        return st.success(self.message)
 
 
 class TaggedAudioPlayer(OutputBase):

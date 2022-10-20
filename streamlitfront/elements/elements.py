@@ -6,7 +6,7 @@ specific abstract elements class defined in front.
 
 from dataclasses import dataclass
 from functools import partial
-from typing import Any, Callable
+from typing import Any, Callable, Iterable
 import streamlit as st
 from pydantic import ValidationError
 from front.elements import (
@@ -22,10 +22,14 @@ from front.elements import (
     SelectBoxBase,
     TextInputBase,
     TextSectionBase,
+    ELEMENT_KEY
 )
 from front.types import FrontElementName
+from i2 import Sig
+from stogui import pipeline_maker
 
 from streamlitfront.elements.js import mk_element_factory
+from streamlitfront.data_binding import BoundData
 
 
 class App(FrontContainerBase):
@@ -206,3 +210,69 @@ class AudioRecorder(InputBase):
         # audio_data = bytes(audio_data, 'utf-8') if audio_data else None
         # st.audio(audio_data)
         return audio_data
+
+
+@dataclass
+class SuccessNotification(OutputBase):
+    message: str = 'Success!'
+
+    def render(self):
+        return st.success(self.message)
+
+
+class HiddenOutput(OutputBase):
+    def render(self):
+        pass
+
+
+@dataclass
+class KwargsInput(InputBase):
+    func_sig: Sig = None
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        @self.func_sig
+        def get_kwargs(**kwargs):
+            return kwargs
+
+        self.get_kwargs = get_kwargs
+        self.inputs = self._build_inputs_from_sig()
+
+    def render(self):
+        exec_section = ExecSection(
+            obj=self.get_kwargs,
+            inputs=self.inputs,
+            output={ELEMENT_KEY: HiddenOutput},
+            auto_submit=True,
+            on_submit=self._return_kwargs,
+            use_expander=False,
+        )
+        exec_section()
+        return self.value()
+
+    def _build_inputs_from_sig(self):
+        return {
+            name: {ELEMENT_KEY: TextInput, 'bound_data_factory': BoundData}
+            for name in self.func_sig
+        }
+
+    def _get_kwargs(self, **kwargs):
+        return kwargs
+
+    def _return_kwargs(self, output):
+        self.value.set(output)
+
+
+@dataclass
+class PipelineMaker(InputBase):
+    items: Iterable = None
+    steps: Iterable = None
+    serializer: Callable = None
+
+    def render(self):
+        return pipeline_maker(
+            items=self.items,
+            steps=self.steps,
+            serializer=self.serializer,
+        )
