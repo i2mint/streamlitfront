@@ -7,16 +7,18 @@ from front import SpecMakerBase, APP_KEY, RENDERING_KEY, ELEMENT_KEY, DEFAULT_IN
 
 from streamlitfront.elements import (
     App,
+    BooleanInput,
     ExecSection,
     FloatInput,
     IntInput,
+    KwargsInput,
+    SelectBox,
     TextInput,
     TextOutput,
     TextSection,
     View,
 )
 from streamlitfront.data_binding import BoundData
-from streamlitfront.elements.elements import SelectBox
 
 
 def get_stored_value(key: str) -> Any:
@@ -35,9 +37,13 @@ DFLT_CONVENTION_DICT = deep_merge(
                 'execution': {
                     ELEMENT_KEY: ExecSection,
                     'inputs': {
+                        bool: {ELEMENT_KEY: BooleanInput,},
                         int: {ELEMENT_KEY: IntInput,},
                         float: {ELEMENT_KEY: FloatInput,},
                         Literal: {ELEMENT_KEY: SelectBox,},
+                        'kwargs': {
+                            ELEMENT_KEY: KwargsInput,
+                        },
                         Any: {ELEMENT_KEY: TextInput,},
                         DEFAULT_INPUT_KEY: {
                             'bound_data_factory': BoundData

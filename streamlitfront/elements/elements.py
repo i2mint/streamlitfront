@@ -11,12 +11,14 @@ import streamlit as st
 from pydantic import ValidationError
 from front.elements import (
     implement_component,
+    BooleanInputBase,
     ExecContainerBase,
     FileUploaderBase,
     FloatInputBase,
     FrontContainerBase,
     InputBase,
     IntInputBase,
+    KwargsInputBase,
     MultiSourceInputBase,
     OutputBase,
     SelectBoxBase,
@@ -162,6 +164,7 @@ implement_input_component = partial(
 )
 
 TextInput = implement_input_component(TextInputBase, st.text_input)
+BooleanInput = implement_input_component(BooleanInputBase, st.checkbox)
 IntInput = implement_input_component(IntInputBase, st.number_input)
 IntSliderInput = implement_input_component(IntInputBase, st.slider)
 FloatInput = implement_input_component(FloatInputBase, st.number_input)
@@ -226,19 +229,7 @@ class HiddenOutput(OutputBase):
 
 
 @dataclass
-class KwargsInput(InputBase):
-    func_sig: Sig = None
-
-    def __post_init__(self):
-        super().__post_init__()
-
-        @self.func_sig
-        def get_kwargs(**kwargs):
-            return kwargs
-
-        self.get_kwargs = get_kwargs
-        self.inputs = self._build_inputs_from_sig()
-
+class KwargsInput(KwargsInputBase):
     def render(self):
         exec_section = ExecSection(
             obj=self.get_kwargs,
@@ -250,18 +241,6 @@ class KwargsInput(InputBase):
         )
         exec_section()
         return self.value()
-
-    def _build_inputs_from_sig(self):
-        return {
-            name: {ELEMENT_KEY: TextInput, 'bound_data_factory': BoundData}
-            for name in self.func_sig
-        }
-
-    def _get_kwargs(self, **kwargs):
-        return kwargs
-
-    def _return_kwargs(self, output):
-        self.value.set(output)
 
 
 @dataclass
