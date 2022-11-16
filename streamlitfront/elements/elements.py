@@ -135,6 +135,27 @@ class ExecSection(ExecContainerBase):
             except ValidationError as e:
                 st.error(e)
 
+    def _noneable(self, input_instance: InputBase) -> InputBase:
+        # input_render = input_instance.render
+        input_render = getattr(input_instance, 'render')
+
+        def noneable_render():
+            none_value = input_instance.none_value.get()
+            input_instance.disabled = none_value
+            if none_value:
+                input_instance.view_value.set(input_instance._dflt_view_value)
+            result = input_render()
+            is_none = st.checkbox(
+                label='None',
+                key=input_instance.none_key,
+                value=none_value
+            )
+            return None if is_none else result
+
+        # input.render = noneable_render
+        setattr(input_instance, 'render', noneable_render)
+        return input_instance
+
 
 class TextOutput(OutputBase):
     def render(self):
@@ -152,15 +173,16 @@ class MultiSourceInput(MultiSourceInputBase):
             return input_component()
 
 
-def store_input_value_in_state(input_value, component: InputBase):
-    st.session_state[component.input_key] = input_value
+# def store_input_value_in_state(input_value, component: InputBase):
+#     st.session_state[component.input_key] = input_value
 
 
 implement_input_component = partial(
     implement_component,
     # input_value_callback=store_input_value_in_state,
     label="name",
-    key="input_key",
+    key="view_key",
+    value="view_value"
 )
 
 TextInput = implement_input_component(TextInputBase, st.text_input)
