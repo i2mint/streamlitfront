@@ -449,6 +449,7 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     ...     View,
     ... )
     >>> from streamlitfront.spec_maker import get_stored_value
+    >>> from streamlitfront.data_binding import BoundData
     >>> 
     >>> convention = {
     ...     APP_KEY: {
@@ -477,7 +478,10 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     ...                         'step': 0.01,
     ...                     },
     ...                     Any: {ELEMENT_KEY: TextInput,},
-    ...                     DEFAULT_INPUT_KEY: {NAME_KEY: lambda p: p.name}
+    ...                     DEFAULT_INPUT_KEY: {
+    ...                         NAME_KEY: lambda p: p.name,
+    ...                         'bound_data_factory': BoundData
+    ...                     }
     ...                 },
     ...                 'output': {
     ...                     ELEMENT_KEY: TextOutput,
