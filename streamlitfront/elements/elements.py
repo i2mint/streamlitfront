@@ -24,7 +24,7 @@ from front.elements import (
     SelectBoxBase,
     TextInputBase,
     TextSectionBase,
-    ELEMENT_KEY
+    ELEMENT_KEY,
 )
 from front.types import FrontElementName
 from i2 import Sig
@@ -137,7 +137,7 @@ class ExecSection(ExecContainerBase):
 
     def _noneable(self, input_instance: InputBase) -> InputBase:
         # input_render = input_instance.render
-        input_render = getattr(input_instance, 'render')
+        input_render = getattr(input_instance, "render")
 
         def noneable_render():
             none_value = input_instance.none_value.get()
@@ -146,14 +146,12 @@ class ExecSection(ExecContainerBase):
                 input_instance.view_value.set(input_instance._dflt_view_value)
             result = input_render()
             is_none = st.checkbox(
-                label='None',
-                key=input_instance.none_key,
-                value=none_value
+                label="None", key=input_instance.none_key, value=none_value
             )
             return None if is_none else result
 
         # input.render = noneable_render
-        setattr(input_instance, 'render', noneable_render)
+        setattr(input_instance, "render", noneable_render)
         return input_instance
 
 
@@ -182,7 +180,7 @@ implement_input_component = partial(
     # input_value_callback=store_input_value_in_state,
     label="name",
     key="view_key",
-    value="view_value"
+    value="view_value",
 )
 
 TextInput = implement_input_component(TextInputBase, st.text_input)
@@ -239,7 +237,7 @@ class AudioRecorder(InputBase):
 
 @dataclass
 class SuccessNotification(OutputBase):
-    message: str = 'Success!'
+    message: str = "Success!"
 
     def render(self):
         return st.success(self.message)
