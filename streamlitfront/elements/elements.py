@@ -211,7 +211,12 @@ class FileUploader(FileUploaderBase):
 
     def render(self):
         label = self.name if self.display_label else ""
-        return st.file_uploader(label=label, type=self.type)
+        return st.file_uploader(
+            label=label,
+            type=self.type,
+            accept_multiple_files=self.accept_multiple_files,
+            # key=self.view_key
+        )
 
 
 class AudioRecorder(InputBase):
