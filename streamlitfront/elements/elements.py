@@ -39,7 +39,7 @@ class App(FrontContainerBase):
 
     def render(self):
         # Page setup
-        # st.set_page_config(layout="wide")
+        st.set_page_config(layout="wide")
         # html('''
         #     <script type="text/javascript">
         #         function iframeLoaded() {
