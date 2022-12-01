@@ -448,7 +448,6 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     ...     TextSection,
     ...     View,
     ... )
-    >>> from streamlitfront.spec_maker import get_stored_value
     >>> from streamlitfront.data_binding import BoundData
     >>> 
     >>> convention = {

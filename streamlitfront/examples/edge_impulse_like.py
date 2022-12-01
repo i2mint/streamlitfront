@@ -65,6 +65,7 @@ def tag_wf(wf: WaveForm, tag: str):
 def get_tagged_wf(x: Any):
     return x
 
+funcs = [tag_wf, get_tagged_wf]
 
 # ============ END BACKEND ============
 
@@ -161,12 +162,6 @@ config_ = {
                 "content": """Explore the existing tagged wave forms and play them."""
             },
             "execution": {
-                "inputs": {
-                    "x": {
-                        ELEMENT_KEY: SelectBox,
-                        "options": mall["tagged_wf"],
-                    }
-                },
                 "output": {
                     ELEMENT_KEY: TaggedAudioPlayer,
                 },
@@ -194,5 +189,5 @@ config_ = {
 # ============ END FRONTEND ============
 
 if __name__ == "__main__":
-    app = mk_app([tag_wf, get_tagged_wf], config=config_)
+    app = mk_app(funcs, config=config_)
     app()
