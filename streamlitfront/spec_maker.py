@@ -21,10 +21,6 @@ from streamlitfront.elements import (
 from streamlitfront.data_binding import BoundData
 
 
-def get_stored_value(key: str) -> Any:
-    return st.session_state[key] if key in st.session_state else None
-
-
 DFLT_CONVENTION_DICT = deep_merge(
     BASE_DFLT_CONVENTION,
     {

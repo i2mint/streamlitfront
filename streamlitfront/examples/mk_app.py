@@ -1,3 +1,4 @@
+from typing import Literal, Optional
 from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY
 
 from streamlitfront.elements import FloatSliderInput
@@ -23,11 +24,23 @@ def proportion(x: int = 100, p: float = 0.5):
     return x * p
 
 
+def test_int(some_int: Optional[int] = None):
+    some_int = some_int or 0
+    return some_int * 2
+
+
+def test_str(some_str: Literal['hi', 'hola', 'coucou'] = None):
+    some_str = some_str or ''
+    return some_str * 2
+
+
 # ======
 
 if __name__ == "__main__":
+
     app = mk_app(
-        [foo, bar, confuser, proportion],
+        # [foo, bar, confuser, proportion],
+        [test_int, test_str],
         config={
             APP_KEY: {"title": "My app"},
             RENDERING_KEY: {

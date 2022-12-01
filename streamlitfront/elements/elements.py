@@ -54,7 +54,7 @@ class App(FrontContainerBase):
 
         # Make page objects
         views = {view.name: view for view in self.children}
-        st.session_state["views"] = views
+        # st.session_state["views"] = views
 
         # TODO: The above is static: Should the above be done only once, and cached?
         #   Perhaps views should be cached in state?
@@ -140,10 +140,10 @@ class ExecSection(ExecContainerBase):
         input_render = getattr(input_instance, "render")
 
         def noneable_render():
-            none_value = input_instance.none_value.get()
+            none_value = input_instance.none_value
             input_instance.disabled = none_value
-            if none_value:
-                input_instance.view_value.set(input_instance._dflt_view_value)
+            # if none_value:
+            #     input_instance.view_value = input_instance._dflt_view_value
             result = input_render()
             is_none = st.checkbox(
                 label="None", key=input_instance.none_key, value=none_value

@@ -7,7 +7,6 @@ import streamlit as st
 from streamlitfront import mk_app, binder as b
 from streamlitfront.elements.elements import SelectBox, TextInput, TextSection
 from streamlitfront.examples.util import get_code_of_current_file
-from streamlitfront.spec_maker import get_stored_value
 
 
 def foo(a, b: float):
