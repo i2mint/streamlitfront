@@ -21,13 +21,14 @@ def filter_store(store: str, filt: str, flags: int = 0):
         store_url = store
         store = grab(store_url)
     else:
-        raise TypeError(f"store can only be str at this point: {store}")
+        raise TypeError(f'store can only be str at this point: {store}')
     if isinstance(filt, str):
         filt = re.compile(filt, flags).search
     else:
-        raise TypeError(f"filt can only be str at this point: {filt}")
+        raise TypeError(f'filt can only be str at this point: {filt}')
 
     return filt_iter(store, filt=filt)
+
 
 # filter_store(
 #     '/Users/thorwhalen/Dropbox/_odata/sound/guns', filt='machine'
@@ -38,7 +39,7 @@ def filter_store(store: str, filt: str, flags: int = 0):
 from i2 import wrap
 from i2.deco import postprocess
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = mk_app(
         # [filter_store],
         [wrap(filter_store, egress=list)],

@@ -94,7 +94,7 @@ if __name__ == '__main__':
         [
             get_instrument_from_band_and_member,
             get_instrument_from_member_only,
-            get_members_from_instrument
+            get_members_from_instrument,
         ],
         config={
             APP_KEY: {'title': 'Data Binding'},
@@ -118,7 +118,7 @@ if __name__ == '__main__':
                     NAME_KEY: 'From an output to an input',
                     'description': {
                         'content': 'Submit any other screen and see that the output is automatically selected from the "Instrument" select box.'
-                    }
+                    },
                 },
                 Callable: {
                     'execution': {
@@ -133,11 +133,11 @@ if __name__ == '__main__':
                             'instrument': {
                                 'options': intruments,
                                 'value': b.output_instrument,
-                            }
+                            },
                         }
                     }
-                }
-            }
-        }
+                },
+            },
+        },
     )
     app()

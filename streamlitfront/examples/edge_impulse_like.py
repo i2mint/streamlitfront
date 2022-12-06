@@ -23,7 +23,7 @@ from streamlitfront.elements import (
     AudioRecorder,
     FileUploader,
     MultiSourceInput,
-    SuccessNotification
+    SuccessNotification,
 )
 import streamlit as st
 
@@ -42,28 +42,24 @@ WaveForm = Any
 
 # tagged_wf_store = appendable(Files, item2kv=tagged_timestamped_kv)
 if not b.mall():
-    b.mall = dict(
-        tagged_wf=dict(),
-        dummy_store=dict(),
-    )
+    b.mall = dict(tagged_wf=dict(), dummy_store=dict(),)
 mall = b.mall()
 crudifier = partial(Crudifier, mall=mall)
 
 
 def auto_namer(*, arguments):
-    return "_".join(map(str, arguments.values()))
+    return '_'.join(map(str, arguments.values()))
 
 
-@crudifier(output_store="tagged_wf", auto_namer=auto_namer)
+@crudifier(output_store='tagged_wf', auto_namer=auto_namer)
 def tag_wf(wf: WaveForm, tag: str):
     return (wf, tag)
 
 
-@crudifier(
-    param_to_mall_map=dict(x="tagged_wf")
-)
+@crudifier(param_to_mall_map=dict(x='tagged_wf'))
 def get_tagged_wf(x: Any):
     return x
+
 
 funcs = [tag_wf, get_tagged_wf]
 
@@ -111,40 +107,40 @@ class TaggedAudioPlayer(OutputBase):
     def render(self):
         if self.output:
             sound, tag = self.output
-            arr = sf.read(BytesIO(sound), dtype="int16")[0]
-            tab1, tab2 = st.tabs(["Audio Player", "Waveform"])
+            arr = sf.read(BytesIO(sound), dtype='int16')[0]
+            tab1, tab2 = st.tabs(['Audio Player', 'Waveform'])
             with tab1:
                 st.audio(sound)
             with tab2:
                 fig, ax = plt.subplots(figsize=(15, 5))
-                ax.plot(arr, label=f"Tag={tag}")
+                ax.plot(arr, label=f'Tag={tag}')
                 ax.legend()
                 st.pyplot(fig)
                 # st.write(arr[:10])
 
 
-get_data_description = """
+get_data_description = '''
 Feed the system with wave forms from wav files or directly \
 from your microphone, and tag them.
-"""
+'''
 
 config_ = {
-    APP_KEY: {"title": "Edge-Impulse-like App"},
+    APP_KEY: {'title': 'Edge-Impulse-like App'},
     RENDERING_KEY: {
-        "tag_wf": {
-            NAME_KEY: "Get Data",
-            "description": {"content": get_data_description},
-            "execution": {
-                "inputs": {
-                    "wf": {
+        'tag_wf': {
+            NAME_KEY: 'Get Data',
+            'description': {'content': get_data_description},
+            'execution': {
+                'inputs': {
+                    'wf': {
                         ELEMENT_KEY: MultiSourceInput,
-                        NAME_KEY: "Wave Form",
-                        "From a file": {
+                        NAME_KEY: 'Wave Form',
+                        'From a file': {
                             ELEMENT_KEY: FileReader,
-                            "type": "wav",
-                            "display_label": False,
+                            'type': 'wav',
+                            'display_label': False,
                         },
-                        "From the microphone": {
+                        'From the microphone': {
                             ELEMENT_KEY: AudioRecorder,
                             # "save_dir": rootdir,
                         },
@@ -152,35 +148,25 @@ config_ = {
                 },
                 'output': {
                     ELEMENT_KEY: SuccessNotification,
-                    'message': 'The wave form has been tagged successfully.'
-                }
-            },
-        },
-        "get_tagged_wf": {
-            NAME_KEY: "Data Explorer",
-            "description": {
-                "content": """Explore the existing tagged wave forms and play them."""
-            },
-            "execution": {
-                "output": {
-                    ELEMENT_KEY: TaggedAudioPlayer,
+                    'message': 'The wave form has been tagged successfully.',
                 },
-                "auto_submit": True,
             },
         },
-        DAG: {
-            "graph": {
-                ELEMENT_KEY: Graph,
-                NAME_KEY: "Flow",
-            }
+        'get_tagged_wf': {
+            NAME_KEY: 'Data Explorer',
+            'description': {
+                'content': '''Explore the existing tagged wave forms and play them.'''
+            },
+            'execution': {
+                'output': {ELEMENT_KEY: TaggedAudioPlayer,},
+                'auto_submit': True,
+            },
         },
+        DAG: {'graph': {ELEMENT_KEY: Graph, NAME_KEY: 'Flow',}},
         Callable: {
-            "execution": {
-                "inputs": {
-                    "save_name": {
-                        ELEMENT_KEY: TextInput,
-                        NAME_KEY: "Save output as",
-                    }
+            'execution': {
+                'inputs': {
+                    'save_name': {ELEMENT_KEY: TextInput, NAME_KEY: 'Save output as',}
                 }
             }
         },
@@ -188,6 +174,6 @@ config_ = {
 }
 # ============ END FRONTEND ============
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = mk_app(funcs, config=config_)
     app()

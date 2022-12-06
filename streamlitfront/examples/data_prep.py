@@ -1,4 +1,3 @@
-
 from know.boxes import *
 from functools import partial
 from typing import Callable, Iterable
@@ -42,17 +41,12 @@ if not b.selected_step_factory():
 crudifier = partial(Crudifier, mall=mall)
 
 
-@crudifier(
-    param_to_mall_map=dict(step_factory='step_factories'),
-    output_store='steps'
-)
+@crudifier(param_to_mall_map=dict(step_factory='step_factories'), output_store='steps')
 def mk_step(step_factory: Callable, kwargs: dict):
     return partial(step_factory, **kwargs)
 
 
-@crudifier(
-    output_store='pipelines'
-)
+@crudifier(output_store='pipelines')
 def mk_pipeline(steps: Iterable[Callable]):
     return Pipe(*steps)
 
@@ -76,9 +70,7 @@ def get_selected_pipeline_sig():
 
 
 config = {
-    APP_KEY: {
-        'title': 'Data Preparation'
-    },
+    APP_KEY: {'title': 'Data Preparation'},
     RENDERING_KEY: {
         'mk_step': {
             NAME_KEY: 'Pipeline Step Maker',
@@ -91,14 +83,16 @@ config = {
                     },
                     'kwargs': {
                         ELEMENT_KEY: KwargsInput,
-                        'func_sig': Sig(mall['step_factories'][b.selected_step_factory()]),
+                        'func_sig': Sig(
+                            mall['step_factories'][b.selected_step_factory()]
+                        ),
                     },
                 },
                 'output': {
                     ELEMENT_KEY: SuccessNotification,
-                    'message': 'The step has been created successfully.'
-                }
-            }
+                    'message': 'The step has been created successfully.',
+                },
+            },
         },
         'mk_pipeline': {
             NAME_KEY: 'Pipeline Maker',
@@ -112,9 +106,9 @@ config = {
                 },
                 'output': {
                     ELEMENT_KEY: SuccessNotification,
-                    'message': 'The pipeline has been created successfully.'
-                }
-            }
+                    'message': 'The pipeline has been created successfully.',
+                },
+            },
         },
         'exec_pipeline': {
             NAME_KEY: 'Pipeline Executor',
@@ -130,16 +124,12 @@ config = {
                         'func_sig': get_selected_pipeline_sig(),
                     },
                 }
-            }
-        }
-    }
+            },
+        },
+    },
 }
 
 if __name__ == '__main__':
-    funcs = [
-        mk_step,
-        mk_pipeline,
-        exec_pipeline
-    ]
+    funcs = [mk_step, mk_pipeline, exec_pipeline]
     app = mk_app(funcs, config=config)
     app()

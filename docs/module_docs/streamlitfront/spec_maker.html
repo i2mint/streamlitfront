@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.spec_maker &mdash; streamlitfront 0.1.14 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.spec_maker &mdash; streamlitfront 0.1.15 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -45,6 +45,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../streamlitfront.html">streamlitfront</a></li>
 <li class="toctree-l1"><a class="reference internal" href="base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_binding.html">streamlitfront.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements.html">streamlitfront.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements/elements.html">streamlitfront.elements.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements/js.html">streamlitfront.elements.js</a></li>
@@ -52,21 +53,26 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/custom_output.html">streamlitfront.examples.custom_output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/data_prep.html">streamlitfront.examples.data_prep</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/edge_impulse_like.html">streamlitfront.examples.edge_impulse_like</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/handle_none_params.html">streamlitfront.examples.handle_none_params</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/issues.html">streamlitfront.examples.issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/pipeline_maker.html">streamlitfront.examples.pipeline_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/pipeline_maker_2.html">streamlitfront.examples.pipeline_maker_2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/simple.html">streamlitfront.examples.simple</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/store_filtering.html">streamlitfront.examples.store_filtering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/util.html">streamlitfront.examples.util</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="page_funcs.html">streamlitfront.page_funcs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="run_app.html">streamlitfront.run_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scrap/nested_select.html">streamlitfront.scrap.nested_select</a></li>
 <li class="toctree-l1"><a class="reference internal" href="session_state.html">streamlitfront.session_state</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">streamlitfront.spec_maker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests/common.html">streamlitfront.tests.common</a></li>
@@ -78,7 +84,6 @@
 <li class="toctree-l1"><a class="reference internal" href="tests/test_app.html">streamlitfront.tests.test_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests/test_base.html">streamlitfront.tests.test_base</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests/use_case_test.html">streamlitfront.tests.use_case_test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="types.html">streamlitfront.types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="util.html">streamlitfront.util</a></li>
 </ul>
 
@@ -95,8 +100,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>streamlitfront.spec_maker</li>
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">streamlitfront.spec_maker</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/module_docs/streamlitfront/spec_maker.rst.txt" rel="nofollow"> View page source</a>
       </li>

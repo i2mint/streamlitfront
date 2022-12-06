@@ -31,17 +31,16 @@ if __name__ == '__main__':
 
     mall = b.mall()
 
-
     foo = prepare_for_crude_dispatch(
         foo,
         mall=mall,
-        param_to_mall_map = list(Sig(foo)),
+        param_to_mall_map=list(Sig(foo)),
         # output_store = f'{foo.__name__}_output'
     )
     bar = prepare_for_crude_dispatch(
         bar,
         mall=mall,
-        param_to_mall_map = list(Sig(bar)),
+        param_to_mall_map=list(Sig(bar)),
         # output_store = f'{bar.__name__}_output'
     )
 

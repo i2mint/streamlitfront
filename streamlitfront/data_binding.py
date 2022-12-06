@@ -1,6 +1,7 @@
 from functools import partial
 from front import BoundData as BoundDataBase, Binder
 import streamlit as st
+
 # from i2.util import insert_name_based_objects_in_scope
 
 BoundData = partial(BoundDataBase, state=st.session_state)

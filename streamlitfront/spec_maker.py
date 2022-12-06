@@ -37,13 +37,9 @@ DFLT_CONVENTION_DICT = deep_merge(
                         int: {ELEMENT_KEY: IntInput,},
                         float: {ELEMENT_KEY: FloatInput,},
                         Literal: {ELEMENT_KEY: SelectBox,},
-                        'kwargs': {
-                            ELEMENT_KEY: KwargsInput,
-                        },
+                        'kwargs': {ELEMENT_KEY: KwargsInput,},
                         Any: {ELEMENT_KEY: TextInput,},
-                        DEFAULT_INPUT_KEY: {
-                            'bound_data_factory': BoundData
-                        },
+                        DEFAULT_INPUT_KEY: {'bound_data_factory': BoundData},
                     },
                     'output': {ELEMENT_KEY: TextOutput,},
                 },

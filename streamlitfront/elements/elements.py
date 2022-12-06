@@ -39,7 +39,7 @@ class App(FrontContainerBase):
 
     def render(self):
         # Page setup
-        st.set_page_config(layout="wide")
+        st.set_page_config(layout='wide')
         # html('''
         #     <script type="text/javascript">
         #         function iframeLoaded() {
@@ -62,7 +62,7 @@ class App(FrontContainerBase):
         # Setup navigation
         with st.sidebar:
             st.title(self.name)
-            view_key = st.radio(options=tuple(views.keys()), label="Select a view")
+            view_key = st.radio(options=tuple(views.keys()), label='Select a view')
 
         # Display the selected page with the session state
         # This is the part that actually runs the functionality that pages specifies
@@ -72,7 +72,7 @@ class App(FrontContainerBase):
 
 class View(FrontContainerBase):
     def render(self):
-        st.markdown(f"""## **{self.name}**""")
+        st.markdown(f'''## **{self.name}**''')
         self._render_children()
 
 
@@ -84,10 +84,10 @@ class Section(FrontContainerBase):
 
 class TextSection(TextSectionBase):
     def __init__(
-        self, content: str, kind: str = "text", obj: Any = None, name=None, **kwargs
+        self, content: str, kind: str = 'text', obj: Any = None, name=None, **kwargs
     ):
         super().__init__(content, kind, obj, name, **kwargs)
-        self.kind = self.kind if self.kind in ["markdown", "code", "latex"] else "text"
+        self.kind = self.kind if self.kind in ['markdown', 'code', 'latex'] else 'text'
 
     # def __post_init__(self):
     #     super().__post_init__()
@@ -129,7 +129,7 @@ class ExecSection(ExecContainerBase):
 
     def _render_section_content(self):
         inputs = self._render_inputs()
-        if self.auto_submit or st.button("Submit"):
+        if self.auto_submit or st.button('Submit'):
             try:
                 self._submit(inputs)
             except ValidationError as e:
@@ -137,7 +137,7 @@ class ExecSection(ExecContainerBase):
 
     def _noneable(self, input_instance: InputBase) -> InputBase:
         # input_render = input_instance.render
-        input_render = getattr(input_instance, "render")
+        input_render = getattr(input_instance, 'render')
 
         def noneable_render():
             none_value = input_instance.none_value
@@ -146,12 +146,12 @@ class ExecSection(ExecContainerBase):
             #     input_instance.view_value = input_instance._dflt_view_value
             result = input_render()
             is_none = st.checkbox(
-                label="None", key=input_instance.none_key, value=none_value
+                label='None', key=input_instance.none_key, value=none_value
             )
             return None if is_none else result
 
         # input.render = noneable_render
-        setattr(input_instance, "render", noneable_render)
+        setattr(input_instance, 'render', noneable_render)
         return input_instance
 
 
@@ -178,9 +178,9 @@ class MultiSourceInput(MultiSourceInputBase):
 implement_input_component = partial(
     implement_component,
     # input_value_callback=store_input_value_in_state,
-    label="name",
-    key="view_key",
-    value="view_value",
+    label='name',
+    key='view_key',
+    value='view_value',
 )
 
 TextInput = implement_input_component(TextInputBase, st.text_input)
@@ -190,7 +190,7 @@ IntSliderInput = implement_input_component(IntInputBase, st.slider)
 FloatInput = implement_input_component(FloatInputBase, st.number_input)
 FloatSliderInput = implement_input_component(FloatInputBase, st.slider)
 SelectBox = implement_input_component(
-    SelectBoxBase, st.selectbox, options="_options", index="_preselected_index"
+    SelectBoxBase, st.selectbox, options='_options', index='_preselected_index'
 )
 
 
@@ -208,7 +208,7 @@ class FileUploader(FileUploaderBase):
     display_label: bool = True
 
     def render(self):
-        label = self.name if self.display_label else ""
+        label = self.name if self.display_label else ''
         return st.file_uploader(
             label=label,
             type=self.type,
@@ -232,7 +232,7 @@ class AudioRecorder(InputBase):
         #     unsafe_allow_html=True)  # lightmode
         # st.caption(self.name)
 
-        st_audiorec = mk_element_factory("st_audiorec")
+        st_audiorec = mk_element_factory('st_audiorec')
         audio_data = st_audiorec()
         # print(audio_data)
         # audio_data = bytes(audio_data, 'utf-8') if audio_data else None
@@ -242,7 +242,7 @@ class AudioRecorder(InputBase):
 
 @dataclass
 class SuccessNotification(OutputBase):
-    message: str = "Success!"
+    message: str = 'Success!'
 
     def render(self):
         return st.success(self.message)
@@ -276,7 +276,5 @@ class PipelineMaker(InputBase):
 
     def render(self):
         return pipeline_maker(
-            items=self.items,
-            steps=self.steps,
-            serializer=self.serializer,
+            items=self.items, steps=self.steps, serializer=self.serializer,
         )
