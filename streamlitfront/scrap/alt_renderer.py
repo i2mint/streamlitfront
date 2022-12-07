@@ -1,6 +1,5 @@
 """Alternative proposal for the way we do FrontElementBase now"""
 
-from streamlitfront.util import streamlit_element_func_names
 
 # for now, just itemgetter (or attrgetter?)
 class StateGet:
@@ -80,6 +79,15 @@ class StreamlitRenderers:
 
 
 import streamlit as st
+from importlib_resources import files  # importlib.resources once only 3.9+ maintained
+
+
+data_files = files('streamlitfront').joinpath('data')
+
+
+streamlit_element_func_names = list(
+    filter(None, data_files.joinpath('streamlit_elements.txt').read_text().split('\n'))
+)
 
 
 for name in streamlit_element_func_names:
