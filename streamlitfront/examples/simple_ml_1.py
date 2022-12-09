@@ -51,7 +51,7 @@ def mk_wf_to_fvs(
     return list(map(featurizer, chunker(wf)))
 
 
-mk_wf_to_fvs = FuncFactory(mk_wf_to_fvs, exclude="wf")
+mk_wf_to_fvs = FuncFactory(mk_wf_to_fvs, exclude='wf')
 
 
 # TODO: Make with meshed:
@@ -95,7 +95,7 @@ from pathlib import Path
 from operator import methodcaller, itemgetter
 import numpy as np
 
-file_to_bytes = Pipe(Path, methodcaller("read_bytes"))
+file_to_bytes = Pipe(Path, methodcaller('read_bytes'))
 wav_file_to_array = Pipe(
     file_to_bytes,
     decode_wav_bytes,
