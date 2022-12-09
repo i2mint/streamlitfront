@@ -8,6 +8,7 @@
    module_docs/streamlitfront/elements
    module_docs/streamlitfront/elements/elements
    module_docs/streamlitfront/elements/js
+   module_docs/streamlitfront/examples/costing_inflexibility
    module_docs/streamlitfront/examples/crude
    module_docs/streamlitfront/examples/custom_output
    module_docs/streamlitfront/examples/dag_app
@@ -23,6 +24,7 @@
    module_docs/streamlitfront/examples/pipeline_maker_2
    module_docs/streamlitfront/examples/pos_key_args
    module_docs/streamlitfront/examples/simple
+   module_docs/streamlitfront/examples/simple_ml_1
    module_docs/streamlitfront/examples/simple_real_audio_ml
    module_docs/streamlitfront/examples/store_filtering
    module_docs/streamlitfront/examples/tw_data_binding

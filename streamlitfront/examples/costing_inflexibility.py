@@ -62,5 +62,3 @@ def costing_inflexibility():
 #             success_effort_amount * success_effort_cost
 #             + failure_effort_amount * failure_effort_cost
 #     )
-
-
