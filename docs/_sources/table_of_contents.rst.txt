@@ -45,4 +45,5 @@
    module_docs/streamlitfront/tests/test_app
    module_docs/streamlitfront/tests/test_base
    module_docs/streamlitfront/tests/use_case_test
+   module_docs/streamlitfront/tools
    module_docs/streamlitfront/util

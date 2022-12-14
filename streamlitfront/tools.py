@@ -61,17 +61,18 @@ def _find_render_keys(objs, render_keys: dict):
             yield OBJECT, (obj, render_keys[obj])
         elif name_of_obj(obj) in render_keys:
             yield NAME_OF_OBJ, (name_of_obj(obj), render_keys[name_of_obj(obj)])
-        elif (type_ := first_element_matching_type(
+        elif (
+            type_ := first_element_matching_type(
                 SUBTYPE, (obj, filter(lambda x: isinstance(x, type), render_keys))
-        )) is not None:
+            )
+        ) is not None:
             yield type_, name_of_obj(type_)
         else:
             # TODO: More significant error (perhaps list ALL the objects that are not
             #  mapped and suggest what to do about it (given the specific objects and
             #  render keys).
-            raise ValueError(
-                f"Object couldn't be mapped to a render_keys key: {obj}"
-            )
+            raise ValueError(f"Object couldn't be mapped to a render_keys key: {obj}")
+
 
 
 
@@ -93,8 +94,11 @@ def mk_specs(objs, configs, convention):
 
 
 def app_maker(
-        objs: Iterable, config: Map = None, convention: Map = None,
-        static_config=True, allow_config_excess=False
+    objs: Iterable,
+    config: Map = None,
+    convention: Map = None,
+    static_config=True,
+    allow_config_excess=False,
 ):
     specs = mk_specs(config, convention)
     return mk_app(objs, specs, convention)
