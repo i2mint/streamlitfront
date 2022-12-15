@@ -28,27 +28,32 @@ NAME_OF_OBJ = 'NAME_OF_OBJ'
 SUBTYPE = 'SUBTYPE'
 
 
-def _find_val(val, render_keys: dict):
-    """Make a static configs that has a one to one relationship with objects"""
-    # TODO: raise specific error with more info instead of assert:
-    assert set(objs) == set(objs), f"Some of your objects weren't unique"
-
-    for obj in objs:
-        if obj in render_keys:
-            yield OBJECT, (obj, render_keys[obj])
-        elif name_of_obj(obj) in render_keys:
-            yield NAME_OF_OBJ, (name_of_obj(obj), render_keys[name_of_obj(obj)])
-        elif (type_ := first_element_matching_type(
-                SUBTYPE, (obj, filter(lambda x: isinstance(x, type), render_keys))
-        )) is not None:
-            yield type_, name_of_obj(type_)
-        else:
-            # TODO: More significant error (perhaps list ALL the objects that are not
-            #  mapped and suggest what to do about it (given the specific objects and
-            #  render keys).
-            raise ValueError(
-                f"Object couldn't be mapped to a render_keys key: {obj}"
-            )
+# TODO: Finish. Intened to be used with _find_render_keys function that handles a
+#  single obj (do we need global view?)
+# TODO: Replace if/elif statement by parametrized function + factory that produces
+#  this function based on rules. (Routing, once again).
+# def _find_val(objs, render_keys: dict):
+#     """Generates render config items for each object"""
+#     # TODO: raise specific error with more info instead of assert:
+#     objs = list(objs)
+#     assert len(set(objs)) == objs, f"Some of your objects weren't unique"
+#
+#     for obj in objs:
+#         if obj in render_keys:
+#             yield OBJECT, (obj, render_keys[obj])
+#         elif name_of_obj(obj) in render_keys:
+#             yield NAME_OF_OBJ, (name_of_obj(obj), render_keys[name_of_obj(obj)])
+#         elif (type_ := first_element_matching_type(
+#                 SUBTYPE, (obj, filter(lambda x: isinstance(x, type), render_keys))
+#         )) is not None:
+#             yield type_, name_of_obj(type_)
+#         else:
+#             # TODO: More significant error (perhaps list ALL the objects that are not
+#             #  mapped and suggest what to do about it (given the specific objects and
+#             #  render keys).
+#             raise ValueError(
+#                 f"Object couldn't be mapped to a render_keys key: {obj}"
+#             )
 
 # TODO: Extract routing logic (the if/elifs) and expose control to interface
 def _find_render_keys(objs, render_keys: dict):
