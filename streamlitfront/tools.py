@@ -79,8 +79,6 @@ def _find_render_keys(objs, render_keys: dict):
             raise ValueError(f"Object couldn't be mapped to a render_keys key: {obj}")
 
 
-
-
 def _map_render_keys(objs, render_keys: Iterable[KV]):
     """Translate render_keys to render_keys that can be handled by front"""
     for kind, (key, rendering_specs) in render_keys:
