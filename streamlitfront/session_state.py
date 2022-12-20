@@ -3,7 +3,11 @@ Session state management
 """
 
 import streamlit as st
-from streamlit.legacy_caching.hashing import _CodeHasher
+try:
+    from streamlit.legacy_caching.hashing import _CodeHasher
+except ModuleNotFoundError:
+    from warnings import warn
+    warn('Use streamlit 1.11.1 if you want to use the old and deprecated dispatch_funcs function.')
 
 from streamlitfront.util import Objdict
 
