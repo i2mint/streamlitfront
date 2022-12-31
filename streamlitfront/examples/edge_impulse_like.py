@@ -15,7 +15,6 @@ from streamlitfront.elements import TextInput, SelectBox
 from dol.appendable import appendable
 import soundfile as sf
 import matplotlib.pyplot as plt
-from streamlit.uploaded_file_manager import UploadedFile
 
 from streamlitfront import mk_app, binder as b
 from streamlitfront.examples.util import Graph
