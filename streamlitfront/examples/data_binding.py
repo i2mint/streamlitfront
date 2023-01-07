@@ -83,17 +83,23 @@ def get_members_from_instrument(instrument: str):
 # create_bound_data('members_of_selected_band', 'output_instrument')
 
 
-def on_select_band():
-    b.members_of_selected_band.set(list(data[b.selected_band()]))
+def on_select_band(band):
+    b.members_of_selected_band.set(list(data[band]))
 
 
 def set_output_instrument(output):
     b.output_instrument.set(output)
 
 
-if __name__ == '__main__':
+def init_selected():
     if b.members_of_selected_band() is ValueNotSet:
-        b.members_of_selected_band.set([])
+        band = list(data)[0]
+        b.selected_band.set(band)
+        on_select_band(band)
+
+
+if __name__ == '__main__':
+    init_selected()
 
     app = mk_app(
         [
