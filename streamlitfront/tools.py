@@ -104,4 +104,6 @@ def app_maker(
     allow_config_excess=False,
 ):
     specs = mk_specs(config, convention)
-    return mk_app(objs, specs, convention)
+    app = mk_app(objs, specs, convention)
+    app.config, app.convention, app.specs = config, convention, specs
+    return app
