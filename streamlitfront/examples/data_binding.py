@@ -24,6 +24,8 @@
 from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY, NAME_KEY
 from collections.abc import Callable
 
+from front.data_binding import ValueNotSet
+
 from streamlitfront import mk_app, binder as b
 from streamlitfront.elements import SelectBox
 
@@ -54,7 +56,7 @@ data_with_no_band = dict(
     member_item for members in data.values() for member_item in members.items()
 )
 
-intruments = {instrument for instrument in data_with_no_band.values()}
+instruments = list({instrument for instrument in data_with_no_band.values()})
 
 
 def get_instrument_from_band_and_member(band: str, member: str):
@@ -81,15 +83,24 @@ def get_members_from_instrument(instrument: str):
 # create_bound_data('members_of_selected_band', 'output_instrument')
 
 
-def on_select_band():
-    b.members_of_selected_band.set(list(data[b.selected_band()]))
+def on_select_band(band):
+    b.members_of_selected_band.set(list(data[band]))
 
 
 def set_output_instrument(output):
     b.output_instrument.set(output)
 
 
+def init_selected():
+    if b.members_of_selected_band() is ValueNotSet:
+        band = list(data)[0]
+        b.selected_band.set(band)
+        on_select_band(band)
+
+
 if __name__ == '__main__':
+    init_selected()
+
     app = mk_app(
         [
             get_instrument_from_band_and_member,
@@ -123,7 +134,7 @@ if __name__ == '__main__':
                 Callable: {
                     'execution': {
                         'inputs': {
-                            str: {ELEMENT_KEY: SelectBox,},
+                            str: {ELEMENT_KEY: SelectBox},
                             'band': {
                                 'options': list(data),
                                 'value': b.selected_band,
@@ -131,7 +142,7 @@ if __name__ == '__main__':
                             },
                             'member': {'options': b.members_of_selected_band},
                             'instrument': {
-                                'options': intruments,
+                                'options': instruments,
                                 'value': b.output_instrument,
                             },
                         }
