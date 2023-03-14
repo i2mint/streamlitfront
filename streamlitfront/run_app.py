@@ -1,7 +1,7 @@
 import dill
 from sys import argv
 from typing import Callable, Iterable, Union
-import streamlit.bootstrap
+import streamlit.web.bootstrap
 from streamlitfront.base import Map, dflt_convention, dispatch_funcs
 
 
