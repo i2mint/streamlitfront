@@ -1,4 +1,3 @@
-from typing import Literal, Optional
 from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY
 
 from streamlitfront.elements import FloatSliderInput
