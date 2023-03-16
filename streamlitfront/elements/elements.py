@@ -28,7 +28,7 @@ from front.elements import (
 )
 from front.types import FrontElementName
 from i2 import Sig
-from stogui import pipeline_maker
+from stogui import pipeline_maker, session_table
 
 from streamlitfront.elements.js import mk_element_factory
 from streamlitfront.data_binding import BoundData
@@ -278,3 +278,11 @@ class PipelineMaker(InputBase):
         return pipeline_maker(
             items=self.items, steps=self.steps, serializer=self.serializer,
         )
+
+
+@dataclass
+class SessionTable(InputBase):
+    list_session: Callable = None
+
+    def render(self):
+        return session_table(list_session=list_session)
