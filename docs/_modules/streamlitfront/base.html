@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.base &mdash; streamlitfront 0.1.20 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.base &mdash; streamlitfront 0.1.21 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> streamlitfront
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            streamlitfront
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -71,6 +75,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/run_app.html">streamlitfront.run_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/scrap/front_routing_proposals.html">streamlitfront.scrap.front_routing_proposals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/scrap/nested_select.html">streamlitfront.scrap.nested_select</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/session_state.html">streamlitfront.session_state</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/spec_maker.html">streamlitfront.spec_maker</a></li>
@@ -82,7 +87,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/smoke_test.html">streamlitfront.tests.smoke_test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/test_app.html">streamlitfront.tests.test_app</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/test_base.html">streamlitfront.tests.test_base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/use_case_test.html">streamlitfront.tests.use_case_test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/use_case_test_old.html">streamlitfront.tests.use_case_test_old</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tools.html">streamlitfront.tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
 </ul>
@@ -100,7 +105,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
       <li class="breadcrumb-item active">streamlitfront.base</li>
       <li class="wy-breadcrumbs-aside">
@@ -159,7 +164,7 @@
 
 
 <span class="k">def</span> <span class="nf">_get_map</span><span class="p">(</span><span class="n">mapping</span><span class="p">:</span> <span class="n">Map</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Get a concrete mapping from a flexible specification (e.g. could be a factory)&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a concrete mapping from a flexible specification (e.g. could be a factory)&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mapping</span><span class="p">,</span> <span class="n">Callable</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">mapping</span><span class="p">()</span>  <span class="c1"># it&#39;s a factory, get the actual mapping</span>
     <span class="k">else</span><span class="p">:</span>
@@ -213,7 +218,7 @@
 <div class="viewcode-block" id="dispatch_funcs"><a class="viewcode-back" href="../../module_docs/streamlitfront/base.html#streamlitfront.base.dispatch_funcs">[docs]</a><span class="k">def</span> <span class="nf">dispatch_funcs</span><span class="p">(</span>
     <span class="n">funcs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Callable</span><span class="p">],</span> <span class="n">configs</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="n">dflt_convention</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">App</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;DEPRECATED!</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DEPRECATED!</span>
 <span class="sd">    Call this function with target funcs and get an app to run.&quot;&quot;&quot;</span>
     <span class="n">warn</span><span class="p">(</span>
         <span class="s1">&#39;This function is deprecated, use &quot;mk_app&quot; instead.&#39;</span><span class="p">,</span>
@@ -376,7 +381,7 @@
     <span class="n">page_factory</span><span class="o">=</span><span class="n">DFLT_PAGE_FACTORY</span><span class="p">,</span>
     <span class="o">**</span><span class="n">configs</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PageSpec</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Get pages specification dict&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get pages specification dict&quot;&quot;&quot;</span>
     <span class="n">page_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">func_to_page_name</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">)</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">]</span>
     <span class="n">page_callbacks</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">page_factory</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">page_name</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">)</span>
@@ -447,7 +452,7 @@
 
 
 <div class="viewcode-block" id="mk_app"><a class="viewcode-back" href="../../module_docs/streamlitfront/base.html#streamlitfront.base.mk_app">[docs]</a><span class="k">def</span> <span class="nf">mk_app</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The entrypoint of streamlitfront.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The entrypoint of streamlitfront.</span>
 <span class="sd">    Call this function with target objects and get an app to run.</span>
 
 <span class="sd">    Example: Render functions</span>

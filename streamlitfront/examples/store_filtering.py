@@ -39,13 +39,16 @@ def filter_store(store: str, filt: str, flags: int = 0):
 from i2 import wrap
 from i2.deco import postprocess
 
+
 def list_keys(store_, max_keys: int = 100):
     from itertools import islice
+
     n = len(store_)
     first_keys = '\n\r'.join(islice(store_, 0, max_keys))
     import pandas as pd
+
     return pd.DataFrame(store_)
-    return f"----- {n} keys. Below, the first {min(n, max_keys)} ----- \n\r{first_keys}"
+    return f'----- {n} keys. Below, the first {min(n, max_keys)} ----- \n\r{first_keys}'
 
 
 from lined import LineParametrized
@@ -53,14 +56,14 @@ from lined import LineParametrized
 f = wrap(filter_store, egress=list_keys)
 f.__name__ = 'filter_store'
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = mk_app(
         # [filter_store],
         [wrap(filter_store, egress=list_keys)],
         # [LineParametrized(filter_store, list_keys)],
         # [postprocess(list)(filter_store)],
         config={
-            APP_KEY: {"title": "My app"},
+            APP_KEY: {'title': 'My app'},
             RENDERING_KEY: {
                 'filter_store': {
                     'execution': {'output': TextOutput},

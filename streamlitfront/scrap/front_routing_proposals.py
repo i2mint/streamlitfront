@@ -242,6 +242,7 @@ def mk_target_render_keys_func():
 
     return _target_render_keys_func
 
+
 # That las rule is pretty ugly. We can make it better by using a feature based rule
 # Here are some ideas:
 
@@ -282,7 +283,6 @@ def if_feature_then_feature_and_obj(feature, cond, then, obj):
         yield then(obj, feat)
 
 
-
 # -----------------------------------------------------------------------------
 # Now let's try a different way: The user brings both cond and rule in a function
 # and we just chain them together. This is a bit more flexible than the previous
@@ -310,13 +310,11 @@ def rule2(obj, render_keys):
 
 def rule3(obj, render_keys):
     if (
-            type_ := first_element_matching_type(
-                SUBTYPE, (obj, filter(lambda x: isinstance(x, type), render_keys))
-            )
+        type_ := first_element_matching_type(
+            SUBTYPE, (obj, filter(lambda x: isinstance(x, type), render_keys))
+        )
     ) is not None:
         return type_, name_of_obj(type_)
 
 
 rules = [rule1, rule2, rule3]
-
-

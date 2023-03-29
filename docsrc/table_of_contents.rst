@@ -33,6 +33,7 @@
    module_docs/streamlitfront/page_funcs
    module_docs/streamlitfront/run_app
    module_docs/streamlitfront/scrap/alt_renderer
+   module_docs/streamlitfront/scrap/front_routing_proposals
    module_docs/streamlitfront/scrap/nested_select
    module_docs/streamlitfront/session_state
    module_docs/streamlitfront/spec_maker
@@ -44,6 +45,6 @@
    module_docs/streamlitfront/tests/smoke_test
    module_docs/streamlitfront/tests/test_app
    module_docs/streamlitfront/tests/test_base
-   module_docs/streamlitfront/tests/use_case_test
+   module_docs/streamlitfront/tests/use_case_test_old
    module_docs/streamlitfront/tools
    module_docs/streamlitfront/util
