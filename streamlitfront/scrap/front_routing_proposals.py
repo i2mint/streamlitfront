@@ -186,7 +186,7 @@ def target_render_keys_func(obj, render_keys):
 
 
 # -----------------------------------------------------------------------------
-# In this case we a function that implements the if then logic in a loop...
+# In this case we need a function that implements the if then logic in a loop...
 
 
 def cond_then(obj: Obj, rules: Rules) -> Iterable[Output]:
