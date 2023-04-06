@@ -2,11 +2,94 @@
 
 """
 
-from typing import Iterable, Tuple, Callable, KT, VT
+from typing import Iterable, Tuple, Callable, KT, VT, Any, Dict
 from streamlitfront.base import mk_app, Map
-from front import RENDERING_KEY
+from front import RENDERING_KEY, NAME_KEY, ELEMENT_KEY
+from front.elements import OutputBase
 
-from i2 import name_of_obj
+from i2 import name_of_obj, Pipe
+
+# ------------------------------------------------------------------------------
+# Config validation
+
+
+# TODO: Make it plugin-able. User should be able to chose what and how to validate.
+#  By "what" I mean what conditions to check, and by "how" I mean what to do when
+#  a condition is not met. Here we raise an exception, but we could just warn the user,
+#  or modify the config, or whatever.
+def validate_config(configs: dict, funcs):
+    func_names = [name_of_obj(f) for f in funcs]
+    render_names_not_in_funcs = set(filter(
+        lambda x: isinstance(x, str), set(configs[RENDERING_KEY]) - set(func_names)
+    ))
+    if render_names_not_in_funcs:
+        raise ValueError(
+            f"Render names not matched to func name: {render_names_not_in_funcs}\n"
+            f"Your func names are: {func_names}"
+        )
+    # func_names_not_in_render = set(func_names) - set(configs[RENDERING_KEY])
+
+
+# ------------------------------------------------------------------------------
+# Output rendering factory
+
+# TODO: Perhaps front itself should use this to cast non-OutputBase callables?
+# TODO: Make it more general, and picklable
+#  Take https://github.com/i2mint/streamlitfront/blob/79e4a6c0bcc53c26c164a40d58eb4ada50cc87b6/streamlitfront/examples/custom_output.py#L17
+#  as an target example, or something like it. Use dataclasses with top level class
+def mk_output_renderer(*output_trans: Callable, name=None):
+    output_trans_pipe = Pipe(*output_trans)
+
+    class CustomRenderer(OutputBase):
+        def render(self):
+            return output_trans_pipe(self.output)
+    if name:
+        CustomRenderer.__name__ = name
+    return CustomRenderer
+
+# ------------------------------------------------------------------------------
+# Render edits
+
+from itertools import chain
+from i2 import mk_sentinel
+from dol.paths import Edits
+from typing import Hashable, NewType
+
+RenderKey = NewType('RenderKey', Hashable)
+RenderKeyEdits = Dict[str, dict]
+# Why do the following make mypy complain?
+# RenderKeyEdits = NewType('RenderKeyEdits', Dict[RenderKey, Edits])
+# RenderKeyEdits = NewType('RenderKeyEdits', Dict[str, dict])
+
+NoChanges = mk_sentinel('NoChanges')
+
+
+def render_edits(render_key_edits: RenderKeyEdits):
+    return chain.from_iterable(
+        render_edits_gen(render_key, **edits)
+        for render_key, edits in render_key_edits.items()
+    )
+
+
+# TODO: Make this into a plugin architecture
+def render_edits_gen(
+        render_key,
+        output_trans=NoChanges,
+        name_key=NoChanges,
+        description_content=NoChanges,
+):
+    _render_key = (RENDERING_KEY, render_key)
+    if output_trans is not NoChanges:
+        yield _render_key + ('execution', 'output', ELEMENT_KEY), output_trans
+    if name_key is not NoChanges:
+        yield _render_key + (NAME_KEY,), name_key
+    if description_content is not NoChanges:
+        yield _render_key + ('description', 'content'), description_content
+
+
+
+# ------------------------------------------------------------------------------
+# 1. Render keys
 
 KV = Tuple[KT, VT]
 
@@ -186,7 +269,7 @@ def target_render_keys_func(obj, render_keys):
 
 
 # -----------------------------------------------------------------------------
-# In this case we a function that implements the if then logic in a loop...
+# In this case we need a function that implements the if then logic in a loop...
 
 
 def cond_then(obj: Obj, rules: Rules) -> Iterable[Output]:
