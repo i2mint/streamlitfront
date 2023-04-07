@@ -41,11 +41,35 @@ def mk_output_renderer(*output_trans: Callable, name=None):
     output_trans_pipe = Pipe(*output_trans)
 
     class CustomRenderer(OutputBase):
+        func = output_trans_pipe
+
         def render(self):
             return output_trans_pipe(self.output)
+
+        # def __repr__(self):
+        #     return f"{type(self).__name__}({repr(self.func)})"
+
     if name:
         CustomRenderer.__name__ = name
     return CustomRenderer
+
+
+# Beginning of an attempt to make it more general, and picklable.
+# class CustomRenderer(OutputBase):
+#     def __init__(self, func: Callable, *args, **kwargs):
+#         self.func = func
+#         super().__init__(*args, **kwargs)
+#
+#     def render(self):
+#         return self.func(self.output)
+#
+#     def __repr__(self):
+#         return f"{type(self).__name__}({getattr(self.func, '__name__', 'Unnamed')})"
+#
+#
+# def make_output_renderer(*output_trans: Callable, name=None):
+#     output_trans_pipe = Pipe(*output_trans)
+#     renderer = CustomRenderer(output_trans_pipe, name=name)
 
 # ------------------------------------------------------------------------------
 # Render edits
@@ -64,9 +88,31 @@ RenderKeyEdits = Dict[str, dict]
 NoChanges = mk_sentinel('NoChanges')
 
 
+def trans_output(config, key, output_trans):
+    from front import RENDERING_KEY, ELEMENT_KEY
+    from dol import path_set
+
+    if not isinstance(output_trans, OutputBase):
+        output_trans = mk_output_renderer(output_trans)
+
+    path_set(
+        config,
+        [RENDERING_KEY, key, 'execution', 'output', ELEMENT_KEY],
+        output_trans,
+    )
+
+
+def _dict_wrap_if_not_dict(value, key):
+    """If value is not a dict, wrap it in a dict with key as key and value as value"""
+    if not isinstance(value, dict):
+        return {key: value}
+    return value
+
+
 def render_edits(render_key_edits: RenderKeyEdits):
+    """Convert render_key_edits to edits for dol.paths.apply_edits"""
     return chain.from_iterable(
-        render_edits_gen(render_key, **edits)
+        render_edits_gen(render_key, **_dict_wrap_if_not_dict(edits, 'output_trans'))
         for render_key, edits in render_key_edits.items()
     )
 
@@ -75,16 +121,112 @@ def render_edits(render_key_edits: RenderKeyEdits):
 def render_edits_gen(
         render_key,
         output_trans=NoChanges,
+        *,
         name_key=NoChanges,
         description_content=NoChanges,
 ):
     _render_key = (RENDERING_KEY, render_key)
     if output_trans is not NoChanges:
+        if not isinstance(output_trans, OutputBase):
+            output_trans = mk_output_renderer(output_trans)
         yield _render_key + ('execution', 'output', ELEMENT_KEY), output_trans
     if name_key is not NoChanges:
         yield _render_key + (NAME_KEY,), name_key
     if description_content is not NoChanges:
         yield _render_key + ('description', 'content'), description_content
+
+
+# ------------------------------------------------------------------------------
+
+import streamlit as st
+
+
+def render_html(output):
+    st.markdown(
+        output,
+        unsafe_allow_html=True
+    )
+
+
+def html_img_wrap(output):
+    return f'<html> <body> <img src="{output}" /> </body> </html>'
+
+
+def html_img_wrap_w_output_display(output):
+    return f'<html> <body> <p><img src="{output}" /></p> <p>{output}</p> </body> ' \
+           f'</html>'
+
+
+def text_to_html(output):
+    return f'<html> <body> <p>{output}</p> </body> </html>'
+
+
+def lines_to_html_paragraphs(output):
+    """Converts a string with newlines to a string with html paragraphs
+
+    >>> lines_to_html_paragraphs('hello\\nworld')
+    '<p>hello</p>\\n<p>world</p>'
+    """
+    def gen():
+        for line in output.splitlines():
+            yield f'<p>{line}</p>'
+    return '\n'.join(gen())
+
+
+def identity(x):
+    return x
+
+
+def _is_html(output):
+    if isinstance(output, str):
+        return output.lstrip().startswith('<html>')
+
+
+def _is_url(output):
+    if isinstance(output, str):
+        return output.lstrip().startswith('http')
+
+
+def _is_json(output):
+    if isinstance(output, str):
+        t = output.lstrip()
+        return t.startswith('{')  # or t.startswith('[') TODO: ??
+
+
+from typing import Callable, Any
+
+Output = Any
+ConditionFunc = Callable[[Output], bool]
+TransFunc = Callable[[Output], Any]
+
+
+# TODO: resolvers as class attribute, or should we use instance attribute?
+class ConditionalTrans:
+    transformers: dict[ConditionFunc, TransFunc] = {
+        _is_html: render_html,
+        _is_json: st.json,
+    }
+
+    # TODO: Need to give use control over the order of the resolvers. Here,
+    #  if condition doesn't already exist, will be placed last.
+    #  Could also implement the resolution so all conditions are applied, and if a
+    #  conflict (or, if integer conditions, no unique max can be found), then apply
+    #  fallback callback (which could raise an exception, just return the output as is,
+    #   or something else)
+    def register(
+            self, condition: ConditionFunc, renderer: TransFunc
+    ):
+        self.transformers.update({condition: renderer})
+
+    def find_trans(self, output):
+        for condition, trans_func in self.transformers.items():
+            if condition(output):
+                return trans_func(output)
+
+    __call__ = find_trans
+
+
+dynamic_trans = ConditionalTrans()
 
 
 
