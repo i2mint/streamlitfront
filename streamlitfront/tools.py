@@ -19,13 +19,15 @@ from i2 import name_of_obj, Pipe
 #  or modify the config, or whatever.
 def validate_config(configs: dict, funcs):
     func_names = [name_of_obj(f) for f in funcs]
-    render_names_not_in_funcs = set(filter(
-        lambda x: isinstance(x, str), set(configs[RENDERING_KEY]) - set(func_names)
-    ))
+    render_names_not_in_funcs = set(
+        filter(
+            lambda x: isinstance(x, str), set(configs[RENDERING_KEY]) - set(func_names)
+        )
+    )
     if render_names_not_in_funcs:
         raise ValueError(
-            f"Render names not matched to func name: {render_names_not_in_funcs}\n"
-            f"Your func names are: {func_names}"
+            f'Render names not matched to func name: {render_names_not_in_funcs}\n'
+            f'Your func names are: {func_names}'
         )
     # func_names_not_in_render = set(func_names) - set(configs[RENDERING_KEY])
 
@@ -96,9 +98,7 @@ def trans_output(config, key, output_trans):
         output_trans = mk_output_renderer(output_trans)
 
     path_set(
-        config,
-        [RENDERING_KEY, key, 'execution', 'output', ELEMENT_KEY],
-        output_trans,
+        config, [RENDERING_KEY, key, 'execution', 'output', ELEMENT_KEY], output_trans,
     )
 
 
@@ -119,11 +119,11 @@ def render_edits(render_key_edits: RenderKeyEdits):
 
 # TODO: Make this into a plugin architecture
 def render_edits_gen(
-        render_key,
-        output_trans=NoChanges,
-        *,
-        name_key=NoChanges,
-        description_content=NoChanges,
+    render_key,
+    output_trans=NoChanges,
+    *,
+    name_key=NoChanges,
+    description_content=NoChanges,
 ):
     _render_key = (RENDERING_KEY, render_key)
     if output_trans is not NoChanges:
@@ -142,10 +142,7 @@ import streamlit as st
 
 
 def render_html(output):
-    st.markdown(
-        output,
-        unsafe_allow_html=True
-    )
+    st.markdown(output, unsafe_allow_html=True)
 
 
 def html_img_wrap(output):
@@ -153,8 +150,10 @@ def html_img_wrap(output):
 
 
 def html_img_wrap_w_output_display(output):
-    return f'<html> <body> <p><img src="{output}" /></p> <p>{output}</p> </body> ' \
-           f'</html>'
+    return (
+        f'<html> <body> <p><img src="{output}" /></p> <p>{output}</p> </body> '
+        f'</html>'
+    )
 
 
 def text_to_html(output):
@@ -167,9 +166,11 @@ def lines_to_html_paragraphs(output):
     >>> lines_to_html_paragraphs('hello\\nworld')
     '<p>hello</p>\\n<p>world</p>'
     """
+
     def gen():
         for line in output.splitlines():
             yield f'<p>{line}</p>'
+
     return '\n'.join(gen())
 
 
@@ -213,9 +214,7 @@ class ConditionalTrans:
     #  conflict (or, if integer conditions, no unique max can be found), then apply
     #  fallback callback (which could raise an exception, just return the output as is,
     #   or something else)
-    def register(
-            self, condition: ConditionFunc, renderer: TransFunc
-    ):
+    def register(self, condition: ConditionFunc, renderer: TransFunc):
         self.transformers.update({condition: renderer})
 
     def find_trans(self, output):
@@ -227,7 +226,6 @@ class ConditionalTrans:
 
 
 dynamic_trans = ConditionalTrans()
-
 
 
 # ------------------------------------------------------------------------------
