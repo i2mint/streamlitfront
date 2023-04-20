@@ -17,17 +17,24 @@ from i2 import name_of_obj, Pipe
 #  By "what" I mean what conditions to check, and by "how" I mean what to do when
 #  a condition is not met. Here we raise an exception, but we could just warn the user,
 #  or modify the config, or whatever.
-def validate_config(configs: dict, funcs):
+def validate_config(
+        configs: dict, funcs, *,
+        allow_no_rendering: bool = True,
+):
     func_names = [name_of_obj(f) for f in funcs]
-    render_names_not_in_funcs = set(filter(
-        lambda x: isinstance(x, str), set(configs[RENDERING_KEY]) - set(func_names)
-    ))
-    if render_names_not_in_funcs:
-        raise ValueError(
-            f"Render names not matched to func name: {render_names_not_in_funcs}\n"
-            f"Your func names are: {func_names}"
-        )
-    # func_names_not_in_render = set(func_names) - set(configs[RENDERING_KEY])
+
+    if RENDERING_KEY in configs:
+        render_names_not_in_funcs = set(filter(
+            lambda x: isinstance(x, str), set(configs[RENDERING_KEY]) - set(func_names)
+        ))
+        if render_names_not_in_funcs:
+            raise ValueError(
+                f"Render names not matched to func name: {render_names_not_in_funcs}\n"
+                f"Your func names are: {func_names}"
+            )
+        # func_names_not_in_render = set(func_names) - set(configs[RENDERING_KEY])
+    elif not allow_no_rendering:
+        raise ValueError(f"The config had no {RENDERING_KEY=} key")
 
 
 # ------------------------------------------------------------------------------
