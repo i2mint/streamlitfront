@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlit.delta_generator &mdash; streamlitfront 0.1.23 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>streamlit.delta_generator &mdash; streamlitfront 0.1.24 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -398,7 +398,7 @@
         <span class="c1"># instead of the original module (e.g. st.elements.markdown)</span>
         <span class="k">for</span> <span class="n">mixin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__bases__</span><span class="p">:</span>
             <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span> <span class="ow">in</span> <span class="n">mixin</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
                     <span class="n">func</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__module__</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -454,7 +454,7 @@
         <span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 
         <span class="n">streamlit_methods</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">method_name</span> <span class="k">for</span> <span class="n">method_name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">method_name</span><span class="p">))</span>
+            <span class="n">method_name</span> <span class="k">for</span> <span class="n">method_name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">method_name</span><span class="p">))</span>
         <span class="p">]</span>
 
         <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>

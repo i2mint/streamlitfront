@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.scrap.alt_renderer &mdash; streamlitfront 0.1.23 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.scrap.alt_renderer &mdash; streamlitfront 0.1.24 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -134,11 +134,11 @@
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">c</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Renderer</span><span class="p">(</span><span class="n">test_element</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">StateGet</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="n">b</span><span class="o">=</span><span class="n">StateGet</span><span class="p">(</span><span class="s1">&#39;some.thing&#39;</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">state</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;some.thing&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="o">==</span> <span class="mi">21</span>
 <span class="go">True</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">state</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;some.thing&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="o">==</span> <span class="mi">102</span>
 <span class="go">True</span>
@@ -170,14 +170,14 @@ defined design or None to fallback to the default behavior of the library.</p></
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
 <span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">chart_data</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">altair_chart</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">use_container_width</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -223,7 +223,7 @@ This argument can only be supplied by keyword.</p></li>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
 <span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
@@ -259,12 +259,12 @@ See <a class="reference external" href="https://tools.ietf.org/html/rfc4281">htt
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">audio_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myaudio.ogg&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">audio_bytes</span> <span class="o">=</span> <span class="n">audio_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">audio</span><span class="p">(</span><span class="n">audio_bytes</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;audio/ogg&#39;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sample_rate</span> <span class="o">=</span> <span class="mi">44100</span>  <span class="c1"># 44100 samples per second</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">seconds</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Note duration of 2 seconds</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">frequency_la</span> <span class="o">=</span> <span class="mi">440</span>  <span class="c1"># Our played note will be 440 Hz</span>
@@ -272,7 +272,7 @@ See <a class="reference external" href="https://tools.ietf.org/html/rfc4281">htt
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">seconds</span><span class="p">,</span> <span class="n">seconds</span> <span class="o">*</span> <span class="n">sample_rate</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Generate a 440 Hz sine wave</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">note_la</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">frequency_la</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">audio</span><span class="p">(</span><span class="n">note_la</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -284,7 +284,7 @@ See <a class="reference external" href="https://tools.ietf.org/html/rfc4281">htt
 <dd><p>Draw celebratory balloons.</p>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">balloons</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -329,7 +329,7 @@ This argument can only be supplied by keyword.</p></li>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
 <span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
@@ -360,17 +360,17 @@ precedence over Bokeh’s native <cite>width</cite> value.</p></li>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;simple line example&#39;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">x_axis_label</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">legend_label</span><span class="o">=</span><span class="s1">&#39;Trend&#39;</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">bokeh_chart</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">use_container_width</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -429,7 +429,7 @@ False otherwise.</p>
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Say hello&#39;</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Why hello there&#39;</span><span class="p">)</span>
 <span class="gp">... </span><span class="k">else</span><span class="p">:</span>
@@ -496,9 +496,9 @@ a file is expected.</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">picture</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">camera_input</span><span class="p">(</span><span class="s2">&quot;Take a picture&quot;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">picture</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">image</span><span class="p">(</span><span class="n">picture</span><span class="p">)</span>
 </pre></div>
@@ -543,7 +543,7 @@ security. For more information, see:</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">caption</span><span class="p">(</span><span class="s1">&#39;This is a string that explains something above.&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">caption</span><span class="p">(</span><span class="s1">&#39;A caption with _italics_ :blue[colors] and emojis :sunglasses:&#39;</span><span class="p">)</span>
 </pre></div>
@@ -603,9 +603,9 @@ If “collapsed”, both the label and the space are removed. Default is
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">agree</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">checkbox</span><span class="p">(</span><span class="s1">&#39;I agree&#39;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">agree</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Great!&#39;</span><span class="p">)</span>
 </pre></div>
@@ -632,7 +632,7 @@ left of the code block. Defaults to <code class="docutils literal notranslate"><
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">code</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;def hello():</span>
 <span class="gp">... </span><span class="s1">    print(&quot;Hello, Streamlit!&quot;)&#39;&#39;&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">code</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
@@ -698,7 +698,7 @@ If “collapsed”, both the label and the space are removed. Default is
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">color</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">color_picker</span><span class="p">(</span><span class="s1">&#39;Pick A Color&#39;</span><span class="p">,</span> <span class="s1">&#39;#00f900&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;The current color is&#39;</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
 </pre></div>
@@ -750,9 +750,9 @@ keyword.</p></li>
 <p class="rubric">Examples</p>
 <p>You can use <cite>with</cite> notation to insert any element into a column:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">,</span> <span class="n">col3</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">columns</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">col1</span><span class="p">:</span>
 <span class="gp">... </span>   <span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s2">&quot;A cat&quot;</span><span class="p">)</span>
 <span class="gp">... </span>   <span class="n">st</span><span class="o">.</span><span class="n">image</span><span class="p">(</span><span class="s2">&quot;https://static.streamlit.io/examples/cat.jpg&quot;</span><span class="p">)</span>
@@ -769,13 +769,13 @@ keyword.</p></li>
 <p>Or you can just call methods directly in the returned objects:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">columns</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">col1</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">&quot;A wide column with a chart&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">col1</span><span class="o">.</span><span class="n">line_chart</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">col2</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">&quot;A narrow column with the data&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">col2</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
@@ -795,7 +795,7 @@ examples below.</p>
 <p class="rubric">Examples</p>
 <p>Inserting elements using “with” notation:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">container</span><span class="p">():</span>
 <span class="gp">... </span>   <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;This is inside the container&quot;</span><span class="p">)</span>
 <span class="gp">...</span>
@@ -807,11 +807,11 @@ examples below.</p>
 </div>
 <p>Inserting elements out of order:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">container</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">container</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">container</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;This is inside the container&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;This is outside the container&quot;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Now insert some more in the container</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">container</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;This is inside too&quot;</span><span class="p">)</span>
 </pre></div>
@@ -850,7 +850,7 @@ This argument can only be supplied by keyword.</p></li>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>   <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
 <span class="gp">... </span>   <span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;col </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)))</span>
@@ -866,7 +866,7 @@ the rendered DataFrame:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>   <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
 <span class="gp">... </span>   <span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;col </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)))</span>
@@ -938,7 +938,7 @@ If “collapsed”, both the label and the space are removed. Default is
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">date_input</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="s2">&quot;When</span><span class="se">\&#39;</span><span class="s2">s your birthday&quot;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -1013,14 +1013,14 @@ False otherwise.</p>
 <p class="rubric">Examples</p>
 <p>Download a large DataFrame as a CSV:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nd">@st</span><span class="o">.</span><span class="n">cache</span>
 <span class="gp">... </span><span class="k">def</span> <span class="nf">convert_df</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="c1"># IMPORTANT: Cache the conversion to prevent computation on every rerun</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">csv</span> <span class="o">=</span> <span class="n">convert_df</span><span class="p">(</span><span class="n">my_large_df</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">download_button</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Download data as CSV&quot;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">data</span><span class="o">=</span><span class="n">csv</span><span class="p">,</span>
@@ -1031,14 +1031,14 @@ False otherwise.</p>
 </div>
 <p>Download a string as a file:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">text_contents</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;This is some text&#39;&#39;&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">download_button</span><span class="p">(</span><span class="s1">&#39;Download some text&#39;</span><span class="p">,</span> <span class="n">text_contents</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Download a binary file:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">binary_contents</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;example content&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Defaults to &#39;application/octet-stream&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">download_button</span><span class="p">(</span><span class="s1">&#39;Download binary file&#39;</span><span class="p">,</span> <span class="n">binary_contents</span><span class="p">)</span>
@@ -1046,7 +1046,7 @@ False otherwise.</p>
 </div>
 <p>Download an image:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;flower.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">btn</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">download_button</span><span class="p">(</span>
 <span class="gp">... </span>            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Download image&quot;</span><span class="p">,</span>
@@ -1072,7 +1072,7 @@ See examples below.</p>
 <p>Overwriting elements in-place using “with” notation:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="k">for</span> <span class="n">seconds</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">60</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⏳ </span><span class="si">{</span><span class="n">seconds</span><span class="si">}</span><span class="s2"> seconds have passed&quot;</span><span class="p">)</span>
@@ -1082,15 +1082,15 @@ See examples below.</p>
 </div>
 <p>Replacing several elements, then clearing them:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">placeholder</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Replace the placeholder with some text:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">placeholder</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Replace the text with a chart:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">placeholder</span><span class="o">.</span><span class="n">line_chart</span><span class="p">({</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Replace the chart with several elements:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">placeholder</span><span class="o">.</span><span class="n">container</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;This is one element&quot;</span><span class="p">)</span>
@@ -1119,7 +1119,7 @@ Defaults to None, which means no icon is displayed.</p></li>
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;This is an error&#39;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;🚨&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1136,7 +1136,7 @@ Defaults to None, which means no icon is displayed.</p></li>
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;This is an exception of type RuntimeError&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
@@ -1187,9 +1187,9 @@ False (collapsed).</p></li>
 <p class="rubric">Examples</p>
 <p>You can use <cite>with</cite> notation to insert any element into an expander</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">bar_chart</span><span class="p">({</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">expander</span><span class="p">(</span><span class="s2">&quot;See explanation&quot;</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>\<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span>
 <span class="gp">... </span>        <span class="n">The</span> <span class="n">chart</span> <span class="n">above</span> <span class="n">shows</span> <span class="n">some</span> <span class="n">numbers</span> <span class="n">I</span> <span class="n">picked</span> <span class="k">for</span> <span class="n">you</span><span class="o">.</span>
@@ -1201,9 +1201,9 @@ False (collapsed).</p></li>
 </div>
 <p>Or you can just call methods directly in the returned objects:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">bar_chart</span><span class="p">({</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">expander</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">expander</span><span class="p">(</span><span class="s2">&quot;See explanation&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">expander</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>\<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span>
 <span class="gp">... </span>    <span class="n">The</span> <span class="n">chart</span> <span class="n">above</span> <span class="n">shows</span> <span class="n">some</span> <span class="n">numbers</span> <span class="n">I</span> <span class="n">picked</span> <span class="k">for</span> <span class="n">you</span><span class="o">.</span>
@@ -1293,29 +1293,29 @@ a file is expected.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">uploaded_file</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">(</span><span class="s2">&quot;Choose a file&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">uploaded_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="c1"># To read file as bytes:</span>
 <span class="gp">... </span>    <span class="n">bytes_data</span> <span class="o">=</span> <span class="n">uploaded_file</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
 <span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bytes_data</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">... </span>    <span class="c1"># To convert to a string based IO:</span>
-<span class="gp">... </span>    <span class="n">stringio</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
-<span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stringio</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">... </span>    <span class="c1"># To read file as string:</span>
-<span class="gp">... </span>    <span class="n">string_data</span> <span class="o">=</span> <span class="n">stringio</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">string_data</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">... </span>    <span class="c1"># Can be used wherever a &quot;file-like&quot; object is accepted:</span>
-<span class="gp">... </span>    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">uploaded_file</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">...     # To convert to a string based IO:</span>
+<span class="go">...     stringio = StringIO(uploaded_file.getvalue().decode(&quot;utf-8&quot;))</span>
+<span class="go">...     st.write(stringio)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">...     # To read file as string:</span>
+<span class="go">...     string_data = stringio.read()</span>
+<span class="go">...     st.write(string_data)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">...     # Can be used wherever a &quot;file-like&quot; object is accepted:</span>
+<span class="go">...     dataframe = pd.read_csv(uploaded_file)</span>
+<span class="go">...     st.write(dataframe)</span>
 </pre></div>
 </div>
 <p>Insert a file uploader that accepts multiple files at a time:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">uploaded_files</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">(</span><span class="s2">&quot;Choose a CSV file&quot;</span><span class="p">,</span> <span class="n">accept_multiple_files</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">uploaded_file</span> <span class="ow">in</span> <span class="n">uploaded_files</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">bytes_data</span> <span class="o">=</span> <span class="n">uploaded_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
@@ -1360,7 +1360,7 @@ will not be reset to their defaults on form submission.)</p></li>
 <p class="rubric">Examples</p>
 <p>Inserting elements using “with” notation:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">form</span><span class="p">(</span><span class="s2">&quot;my_form&quot;</span><span class="p">):</span>
 <span class="gp">... </span>   <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Inside the form&quot;</span><span class="p">)</span>
 <span class="gp">... </span>   <span class="n">slider_val</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span><span class="s2">&quot;Form slider&quot;</span><span class="p">)</span>
@@ -1376,11 +1376,11 @@ will not be reset to their defaults on form submission.)</p></li>
 </div>
 <p>Inserting elements out of order:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">form</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">form</span><span class="p">(</span><span class="s2">&quot;my_form&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">form</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span><span class="s2">&quot;Inside the form&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span><span class="s2">&quot;Outside the form&quot;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Now add a submit button to the form:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">form</span><span class="o">.</span><span class="n">form_submit_button</span><span class="p">(</span><span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1440,7 +1440,7 @@ precedence over the figure’s native <cite>width</cite> value.</p></li>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">graphviz</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create a graphlib graph object</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">graph</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">graph</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;run&#39;</span><span class="p">,</span> <span class="s1">&#39;intr&#39;</span><span class="p">)</span>
@@ -1456,7 +1456,7 @@ precedence over the figure’s native <cite>width</cite> value.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">graph</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;runswap&#39;</span><span class="p">,</span> <span class="s1">&#39;runmem&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">graph</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;new&#39;</span><span class="p">,</span> <span class="s1">&#39;runmem&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">graph</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;sleep&#39;</span><span class="p">,</span> <span class="s1">&#39;runmem&#39;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">graphviz_chart</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1514,7 +1514,7 @@ If False, the anchor is not shown in the UI.</p></li>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s1">&#39;This is a header&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s1">&#39;A header with _italics_ :blue[colors] and emojis :sunglasses:&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1523,7 +1523,7 @@ If False, the anchor is not shown in the UI.</p></li>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.help">
-<em class="property">static </em><code class="sig-name descname">help</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">obj: Any = &lt;module 'streamlit' from '/opt/hostedtoolcache/Python/3.11.2/x64/lib/python3.11/site-packages/streamlit/__init__.py'&gt;</em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.help" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">help</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">obj: Any = &lt;module 'streamlit' from '/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/streamlit/__init__.py'&gt;</em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.help" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display help and other information for a given object.</p>
 <p>Depending on the type of object that is passed in, this displays the
 object’s name, type, value, signature, docstring, and member variables,
@@ -1538,14 +1538,14 @@ unspecified, this call will display help for Streamlit itself.</p>
 <p>Don’t remember how to initialize a dataframe? Try this:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">help</span><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Want to quickly check what data type is output by a certain function?
 Try:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">my_poorly_documented_function</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">help</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
@@ -1553,17 +1553,17 @@ Try:</p>
 <p>Want to quickly inspect an object? No sweat:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="w">  </span><span class="sd">&#39;&#39;&#39;A typical dog.&#39;&#39;&#39;</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">breed</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="bp">self</span><span class="o">.</span><span class="n">breed</span> <span class="o">=</span> <span class="n">breed</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span>  <span class="k">def</span> <span class="nf">bark</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="k">return</span> <span class="s1">&#39;Woof!&#39;</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fido</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s1">&#39;poodle&#39;</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">help</span><span class="p">(</span><span class="n">fido</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1571,10 +1571,10 @@ Try:</p>
 and modules without even typing <code class="docutils literal notranslate"><span class="pre">st.help</span></code>:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Get help for Pandas read_csv:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Get help for Streamlit itself:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span>
 </pre></div>
@@ -1625,9 +1625,9 @@ on the type and format of the image argument.</p></li>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;sunrise.jpg&#39;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="s1">&#39;Sunrise by the mountains&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1650,7 +1650,7 @@ Defaults to None, which means no icon is displayed.</p></li>
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;This is a purely informational message&#39;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;ℹ️&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1674,7 +1674,7 @@ This argument can only be supplied by keyword.</p></li>
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">json</span><span class="p">({</span>
 <span class="gp">... </span>    <span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="s1">&#39;baz&#39;</span><span class="p">:</span> <span class="s1">&#39;boz&#39;</span><span class="p">,</span>
@@ -1707,7 +1707,7 @@ a lot.</p></li>
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="gp">... </span><span class="s1">    a + ar + a r^2 + a r^3 + \cdots + a r^{n-1} =</span>
 <span class="gp">... </span><span class="s1">    \sum_{k=0}^{n-1} ar^k =</span>
@@ -1755,7 +1755,7 @@ This argument can only be supplied by keyword.</p></li>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
 <span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
@@ -1801,11 +1801,11 @@ For more info on how to set config options, see
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mf">37.76</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.4</span><span class="p">],</span>
 <span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">])</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1906,13 +1906,13 @@ If “collapsed”, both the label and the space are removed. Default is
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperature&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;70 °F&quot;</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="s2">&quot;1.2 °F&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">st.metric</span></code> looks especially nice in combination with <code class="docutils literal notranslate"><span class="pre">st.columns</span></code>:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">,</span> <span class="n">col3</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">columns</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">col1</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="s2">&quot;Temperature&quot;</span><span class="p">,</span> <span class="s2">&quot;70 °F&quot;</span><span class="p">,</span> <span class="s2">&quot;1.2 °F&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">col2</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="s2">&quot;Wind&quot;</span><span class="p">,</span> <span class="s2">&quot;9 mph&quot;</span><span class="p">,</span> <span class="s2">&quot;-8%&quot;</span><span class="p">)</span>
@@ -1921,10 +1921,10 @@ If “collapsed”, both the label and the space are removed. Default is
 </div>
 <p>The delta indicator color can also be inverted or turned off:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Gas price&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">delta</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">delta_color</span><span class="o">=</span><span class="s2">&quot;inverse&quot;</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Active developers&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">delta_color</span><span class="o">=</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1996,12 +1996,12 @@ This argument can only be supplied by keyword.</p></li>
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">options</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">multiselect</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="s1">&#39;What are your favorite colors&#39;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="p">[</span><span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="s1">&#39;Yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;Red&#39;</span><span class="p">,</span> <span class="s1">&#39;Blue&#39;</span><span class="p">],</span>
 <span class="gp">... </span>    <span class="p">[</span><span class="s1">&#39;Yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;Red&#39;</span><span class="p">])</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;You selected:&#39;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2075,7 +2075,7 @@ will match the data type of the value parameter.</p>
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">number</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">(</span><span class="s1">&#39;Insert a number&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;The current number is &#39;</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>
 </pre></div>
@@ -2115,21 +2115,21 @@ defined design or None to fallback to the default behavior of the library.</p></
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">plotly.figure_factory</span> <span class="k">as</span> <span class="nn">ff</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Add histogram data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Group data together</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hist_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">]</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Group 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Group 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Group 3&#39;</span><span class="p">]</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create distplot with custom bin_size</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span> <span class="o">=</span> <span class="n">ff</span><span class="o">.</span><span class="n">create_distplot</span><span class="p">(</span>
 <span class="gp">... </span>        <span class="n">hist_data</span><span class="p">,</span> <span class="n">group_labels</span><span class="p">,</span> <span class="n">bin_size</span><span class="o">=</span><span class="p">[</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">.25</span><span class="p">,</span> <span class="mf">.5</span><span class="p">])</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Plot!</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">plotly_chart</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">use_container_width</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -2172,10 +2172,10 @@ backslash-escaping them. E.g. <code class="docutils literal notranslate"><span c
 <p>Here is an example of a progress bar increasing over time:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">progress_text</span> <span class="o">=</span> <span class="s2">&quot;Operation in progress. Please wait.&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">my_bar</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">progress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">progress_text</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">percent_complete</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="n">my_bar</span><span class="o">.</span><span class="n">progress</span><span class="p">(</span><span class="n">percent_complete</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">progress_text</span><span class="p">)</span>
@@ -2220,11 +2220,11 @@ light or dark map style, based on which Streamlit theme is currently active:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pydeck</span> <span class="k">as</span> <span class="nn">pdk</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>   <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mf">37.76</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.4</span><span class="p">],</span>
 <span class="gp">... </span>   <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">])</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">pydeck_chart</span><span class="p">(</span><span class="n">pdk</span><span class="o">.</span><span class="n">Deck</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">map_style</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">initial_view_state</span><span class="o">=</span><span class="n">pdk</span><span class="o">.</span><span class="n">ViewState</span><span class="p">(</span>
@@ -2290,11 +2290,11 @@ approach to matplotlib rendering.</p></li>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">pyplot</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2380,11 +2380,11 @@ If “collapsed”, both the label and the space are removed. Default is
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">genre</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">radio</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="s2">&quot;What</span><span class="se">\&#39;</span><span class="s2">s your favorite movie genre&quot;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="p">(</span><span class="s1">&#39;Comedy&#39;</span><span class="p">,</span> <span class="s1">&#39;Drama&#39;</span><span class="p">,</span> <span class="s1">&#39;Documentary&#39;</span><span class="p">))</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">genre</span> <span class="o">==</span> <span class="s1">&#39;Comedy&#39;</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;You selected comedy.&#39;</span><span class="p">)</span>
 <span class="gp">... </span><span class="k">else</span><span class="p">:</span>
@@ -2465,7 +2465,7 @@ the data type of the value parameter.</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">color</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">select_slider</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="s1">&#39;Select a color of the rainbow&#39;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;indigo&#39;</span><span class="p">,</span> <span class="s1">&#39;violet&#39;</span><span class="p">])</span>
@@ -2474,7 +2474,7 @@ the data type of the value parameter.</p>
 </div>
 <p>And here’s an example of a range select slider:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">start_color</span><span class="p">,</span> <span class="n">end_color</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">select_slider</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="s1">&#39;Select a range of color wavelength&#39;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;indigo&#39;</span><span class="p">,</span> <span class="s1">&#39;violet&#39;</span><span class="p">],</span>
@@ -2543,11 +2543,11 @@ If “collapsed”, both the label and the space are removed. Default is
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">option</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="s1">&#39;How would you like to be contacted?&#39;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="p">(</span><span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;Home phone&#39;</span><span class="p">,</span> <span class="s1">&#39;Mobile phone&#39;</span><span class="p">))</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;You selected:&#39;</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2635,14 +2635,14 @@ the data type of the value parameter.</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">age</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span><span class="s1">&#39;How old are you?&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;I&#39;m &quot;</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="s1">&#39;years old&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>And here’s an example of a range slider:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">values</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="s1">&#39;Select a range of values&#39;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="mf">0.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="p">(</span><span class="mf">25.0</span><span class="p">,</span> <span class="mf">75.0</span><span class="p">))</span>
@@ -2652,7 +2652,7 @@ the data type of the value parameter.</p>
 <p>This is a range time slider:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">time</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">appointment</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="s2">&quot;Schedule your appointment:&quot;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">value</span><span class="o">=</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">time</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">45</span><span class="p">)))</span>
@@ -2662,7 +2662,7 @@ the data type of the value parameter.</p>
 <p>Finally, a datetime slider:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">start_time</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="s2">&quot;When do you start?&quot;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">value</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
@@ -2703,7 +2703,7 @@ If False, the anchor is not shown in the UI.</p></li>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;This is a subheader&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;A subheader with _italics_ :blue[colors] and emojis :sunglasses:&#39;</span><span class="p">)</span>
 </pre></div>
@@ -2727,7 +2727,7 @@ Defaults to None, which means no icon is displayed.</p></li>
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s1">&#39;This is a success message!&#39;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;✅&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2752,7 +2752,7 @@ To use pyarrow tables, please enable pyarrow by changing the config setting,
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>   <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
 <span class="gp">... </span>   <span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;col </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span>
@@ -2776,7 +2776,7 @@ To use pyarrow tables, please enable pyarrow by changing the config setting,
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s1">&#39;This is some text.&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2843,7 +2843,7 @@ If “collapsed”, both the label and the space are removed. Default is
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">txt</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_area</span><span class="p">(</span><span class="s1">&#39;Text to analyze&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;&#39;</span>
 <span class="gp">... </span><span class="s1">    It was the best of times, it was the worst of times, it was</span>
 <span class="gp">... </span><span class="s1">    the age of wisdom, it was the age of foolishness, it was</span>
@@ -2922,7 +2922,7 @@ If “collapsed”, both the label and the space are removed. Default is
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">title</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">(</span><span class="s1">&#39;Movie title&#39;</span><span class="p">,</span> <span class="s1">&#39;Life of Brian&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;The current movie title is&#39;</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
 </pre></div>
@@ -2988,7 +2988,7 @@ You can also pass a datetime.timedelta object.</p></li>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">time_input</span><span class="p">(</span><span class="s1">&#39;Set an alarm for&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">45</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Alarm is set for&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 </pre></div>
@@ -3028,7 +3028,7 @@ If False, the anchor is not shown in the UI.</p></li>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;This is a title&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A title with _italics_ :blue[colors] and emojis :sunglasses:&#39;</span><span class="p">)</span>
 </pre></div>
@@ -3063,11 +3063,11 @@ defined design or None to fallback to the default behavior of the library.</p></
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
 <span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">vega_lite_chart</span><span class="p">(</span><span class="n">chart_data</span><span class="p">,</span> <span class="p">{</span>
 <span class="gp">... </span>    <span class="s1">&#39;mark&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;circle&#39;</span><span class="p">,</span> <span class="s1">&#39;tooltip&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
 <span class="gp">... </span>    <span class="s1">&#39;encoding&#39;</span><span class="p">:</span> <span class="p">{</span>
@@ -3104,10 +3104,10 @@ See <a class="reference external" href="https://tools.ietf.org/html/rfc4281">htt
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">video_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myvideo.mp4&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">video_bytes</span> <span class="o">=</span> <span class="n">video_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">video</span><span class="p">(</span><span class="n">video_bytes</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3138,7 +3138,7 @@ Defaults to None, which means no icon is displayed.</p></li>
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;This is a warning&#39;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;⚠️&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3201,7 +3201,7 @@ security. For more information, see:</p>
 <p>Its basic use case is to draw Markdown-formatted text, whenever the
 input is a string:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Hello, *World!* :sunglasses:&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3209,7 +3209,7 @@ input is a string:</p>
 numbers, data frames, styled data frames, and assorted objects:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
 <span class="gp">... </span>    <span class="s1">&#39;first column&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
@@ -3219,7 +3219,7 @@ numbers, data frames, styled data frames, and assorted objects:</p>
 </div>
 <p>Finally, you can pass in multiple arguments to do things like:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;1 + 1 = &#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Below is a DataFrame:&#39;</span><span class="p">,</span> <span class="n">data_frame</span><span class="p">,</span> <span class="s1">&#39;Above is a dataframe.&#39;</span><span class="p">)</span>
 </pre></div>
@@ -3229,14 +3229,14 @@ numbers, data frames, styled data frames, and assorted objects:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
 <span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 </pre></div>
 </div>

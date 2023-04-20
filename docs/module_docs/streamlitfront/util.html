@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.util &mdash; streamlitfront 0.1.23 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.util &mdash; streamlitfront 0.1.24 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -142,18 +142,18 @@ For example:</p>
 <span class="gp">... </span>    <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;is&#39;</span><span class="p">:</span> <span class="s1">&#39;nested&#39;</span><span class="p">,</span> <span class="s1">&#39;and&#39;</span><span class="p">:</span> <span class="s1">&#39;has&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]}</span>
 <span class="gp">... </span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">NodeGetter</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;simple&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;nested&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">][</span><span class="s1">&#39;a&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>  <span class="c1"># it&#39;s to avoid accessing it this way.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># But can also expand on this and do things like:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;b.is&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="s1">&#39;nested&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;c/a&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># ... or subclass/wrap NodeGetter to do it automatically, given a protocol</span>
-<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">int_if_possible</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
 <span class="gp">... </span>        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
