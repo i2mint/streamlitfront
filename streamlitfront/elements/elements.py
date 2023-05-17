@@ -6,7 +6,8 @@ specific abstract elements class defined in front.
 
 from dataclasses import dataclass
 from functools import partial
-from typing import Any, Callable, Iterable
+from pathlib import Path
+from typing import Any, Callable, Iterable, Union
 import streamlit as st
 from pydantic import ValidationError
 from front.elements import (
@@ -26,13 +27,15 @@ from front.elements import (
     TextSectionBase,
     ELEMENT_KEY,
 )
-from front.types import FrontElementName
+from front.types import FrontElementName, Map
+from front.util import normalize_map
 from i2 import Sig
 from stogui import pipeline_maker
 
 from streamlitfront.elements.js import mk_element_factory
 from streamlitfront.data_binding import BoundData
 
+ItemTemplate = Union[Map, Path]
 
 class App(FrontContainerBase):
     """Implementation of the app root container for streamlitfront."""
@@ -192,15 +195,9 @@ FloatSliderInput = implement_input_component(FloatInputBase, st.slider)
 SelectBox = implement_input_component(
     SelectBoxBase, st.selectbox, options='_options', index='_preselected_index'
 )
-
-
-# class SelectBox(SelectBoxBase):
-#     def render(self):
-#         return st.selectbox(
-#             label=self.name,
-#             options=self._options,
-#             index=self._preselected_index,
-#         )
+MultiSelectBox = implement_input_component(
+    SelectBoxBase, st.multiselect, options='_options'
+)
 
 
 @dataclass
