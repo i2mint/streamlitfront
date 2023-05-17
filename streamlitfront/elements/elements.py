@@ -37,6 +37,7 @@ from streamlitfront.data_binding import BoundData
 
 ItemTemplate = Union[Map, Path]
 
+
 class App(FrontContainerBase):
     """Implementation of the app root container for streamlitfront."""
 
