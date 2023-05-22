@@ -27,7 +27,7 @@ from front.elements import (
     TextSectionBase,
     ELEMENT_KEY,
 )
-from front.types import FrontElementName, Map
+from front.types import FrontElementName, FrontElementDisplay, Map
 from front.util import normalize_map
 from i2 import Sig
 from stogui import pipeline_maker
@@ -110,6 +110,7 @@ class ExecSection(ExecContainerBase):
         inputs: dict,
         output: dict,
         name: FrontElementName = None,
+        display: FrontElementDisplay = None,
         auto_submit: bool = False,
         on_submit: Callable[[Any], None] = None,
         use_expander: bool = True,
@@ -119,6 +120,7 @@ class ExecSection(ExecContainerBase):
             inputs=inputs,
             output=output,
             name=name,
+            display=display,
             auto_submit=auto_submit,
             on_submit=on_submit,
         )

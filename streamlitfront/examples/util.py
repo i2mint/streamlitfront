@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from functools import partial
 import streamlit as st
 from meshed import DAG
-from front.types import FrontElementName
 from front.elements import FrontComponentBase
 
 from streamlitfront.elements.elements import TextSection
