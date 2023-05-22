@@ -110,7 +110,7 @@ class ExecSection(ExecContainerBase):
         inputs: dict,
         output: dict,
         name: FrontElementName = None,
-        display: FrontElementDisplay = None,
+        display: FrontElementDisplay = True,
         auto_submit: bool = False,
         on_submit: Callable[[Any], None] = None,
         use_expander: bool = True,
