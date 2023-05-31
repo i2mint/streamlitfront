@@ -114,6 +114,7 @@ class ExecSection(ExecContainerBase):
         auto_submit: bool = False,
         on_submit: Callable[[Any], None] = None,
         use_expander: bool = True,
+        submit_button_label: str = 'Submit',
     ):
         super().__init__(
             obj=obj,
@@ -125,6 +126,7 @@ class ExecSection(ExecContainerBase):
             on_submit=on_submit,
         )
         self.use_expander = use_expander
+        self.submit_button_label = submit_button_label
 
     def render(self):
         if self.use_expander:
@@ -135,7 +137,7 @@ class ExecSection(ExecContainerBase):
 
     def _render_section_content(self):
         inputs = self._render_inputs()
-        if self.auto_submit or st.button('Submit'):
+        if self.auto_submit or st.button(self.submit_button_label):
             try:
                 self._submit(inputs)
             except ValidationError as e:
