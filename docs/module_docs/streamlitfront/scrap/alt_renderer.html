@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.scrap.alt_renderer &mdash; streamlitfront 0.1.28 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.scrap.alt_renderer &mdash; streamlitfront 0.1.29 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -152,12 +152,12 @@
 <dd><p>A collection of streamlit renders</p>
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.altair_chart">
-<em class="property">static </em><code class="sig-name descname">altair_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">altair_chart</span><span class="p">:</span> <span class="n">Chart</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">theme</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>None<span class="p">, </span>Literal<span class="p">[</span>streamlit<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">'streamlit'</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.altair_chart" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">altair_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">altair_chart</span><span class="p">:</span> <span class="n">Char</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">theme</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>None<span class="p">, </span>Literal<span class="p">[</span>streamlit<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">'streamlit'</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.altair_chart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a chart using the Altair library.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>altair_chart</strong> (<em>altair.vegalite.v2.api.Chart</em>) – The Altair chart object to display.</p></li>
+<li><p><strong>altair_chart</strong> (<em>altair.Chart</em>) – The Altair chart object to display.</p></li>
 <li><p><strong>use_container_width</strong> (<em>bool</em>) – If True, set the chart width to the column width. This takes
 precedence over Altair’s native <cite>width</cite> value.</p></li>
 <li><p><strong>theme</strong> (<em>&quot;streamlit&quot;</em><em> or </em><em>None</em>) – The theme of the chart. Currently, we only support “streamlit” for the Streamlit
@@ -187,7 +187,7 @@ defined design or None to fallback to the default behavior of the library.</p></
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.area_chart">
-<em class="property">static </em><code class="sig-name descname">area_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Data</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.area_chart" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">area_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dat</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.area_chart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display an area chart.</p>
 <p>This is just syntax-sugar around st.altair_chart. The main difference
 is this command uses the data’s own column and indices to figure out
@@ -200,9 +200,9 @@ correctly, try specifying your desired chart using st.altair_chart.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<em>pandas.DataFrame</em><em>, </em><em>pandas.Styler</em><em>, </em><em>pyarrow.Table</em><em>, </em><em>numpy.ndarray</em><em>, </em><em>pyspark.sql.DataFrame</em><em>, </em><em>snowflake.snowpark.dataframe.DataFrame</em><em>, </em><em>snowflake.snowpark.table.Table</em><em>, </em><em>Iterable</em><em>, or </em><em>dict</em>) – Data to be plotted.
 Pyarrow tables are not supported by Streamlit’s legacy DataFrame serialization
-(i.e. with <cite>config.dataFrameSerialization = “legacy”</cite>).
+(i.e. with <code class="docutils literal notranslate"><span class="pre">config.dataFrameSerialization</span> <span class="pre">=</span> <span class="pre">&quot;legacy&quot;</span></code>).
 To use pyarrow tables, please enable pyarrow by changing the config setting,
-<cite>config.dataFrameSerialization = “arrow”</cite>.</p></li>
+<code class="docutils literal notranslate"><span class="pre">config.dataFrameSerialization</span> <span class="pre">=</span> <span class="pre">&quot;arrow&quot;</span></code>.</p></li>
 <li><p><strong>x</strong> (<em>str</em><em> or </em><em>None</em>) – Column name to use for the x-axis. If None, uses the data index for the x-axis.
 This argument can only be supplied by keyword.</p></li>
 <li><p><strong>y</strong> (<em>str</em><em>, </em><em>sequence of str</em><em>, or </em><em>None</em>) – Column name(s) to use for the y-axis. If a sequence of strings, draws several series
@@ -293,7 +293,7 @@ See <a class="reference external" href="https://tools.ietf.org/html/rfc4281">htt
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.bar_chart">
-<em class="property">static </em><code class="sig-name descname">bar_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Data</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.bar_chart" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">bar_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dat</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.bar_chart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a bar chart.</p>
 <p>This is just syntax-sugar around st.altair_chart. The main difference
 is this command uses the data’s own column and indices to figure out
@@ -306,9 +306,9 @@ correctly, try specifying your desired chart using st.altair_chart.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<em>pandas.DataFrame</em><em>, </em><em>pandas.Styler</em><em>, </em><em>pyarrow.Table</em><em>, </em><em>numpy.ndarray</em><em>, </em><em>pyspark.sql.DataFrame</em><em>, </em><em>snowflake.snowpark.dataframe.DataFrame</em><em>, </em><em>snowflake.snowpark.table.Table</em><em>, </em><em>Iterable</em><em>, or </em><em>dict</em>) – Data to be plotted.
 Pyarrow tables are not supported by Streamlit’s legacy DataFrame serialization
-(i.e. with <cite>config.dataFrameSerialization = “legacy”</cite>).
+(i.e. with <code class="docutils literal notranslate"><span class="pre">config.dataFrameSerialization</span> <span class="pre">=</span> <span class="pre">&quot;legacy&quot;</span></code>).
 To use pyarrow tables, please enable pyarrow by changing the config setting,
-<cite>config.dataFrameSerialization = “arrow”</cite>.</p></li>
+<code class="docutils literal notranslate"><span class="pre">config.dataFrameSerialization</span> <span class="pre">=</span> <span class="pre">&quot;arrow&quot;</span></code>.</p></li>
 <li><p><strong>x</strong> (<em>str</em><em> or </em><em>None</em>) – Column name to use for the x-axis. If None, uses the data index for the x-axis.
 This argument can only be supplied by keyword.</p></li>
 <li><p><strong>y</strong> (<em>str</em><em>, </em><em>sequence of str</em><em>, or </em><em>None</em>) – Column name(s) to use for the y-axis. If a sequence of strings, draws several series
@@ -479,7 +479,7 @@ changes.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the camera input if set to
 True. The default is False. This argument can only be supplied by
 keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -588,7 +588,7 @@ not share the same key.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em>) – An optional dict of kwargs to pass to the callback.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the checkbox if set to True.
 The default is False. This argument can only be supplied by keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -683,7 +683,7 @@ changes.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the color picker if set to
 True. The default is False. This argument can only be supplied by
 keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -722,22 +722,19 @@ examples below.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>spec</strong> (<em>int</em><em> or </em><em>list of numbers</em>) – <dl>
-<dt>If an int</dt><dd><p>Specifies the number of columns to insert, and all columns
-have equal width.</p>
-</dd>
-<dt>If a list of numbers</dt><dd><p>Creates a column for each number, and each
-column’s width is proportional to the number provided. Numbers can
-be ints or floats, but they must be positive.</p>
-<p>For example, <cite>st.columns([3, 1, 2])</cite> creates 3 columns where
-the first column is 3 times the width of the second, and the last
-column is 2 times that width.</p>
-</dd>
-</dl>
+<li><p><strong>spec</strong> (<em>int</em><em> or </em><em>iterable of numbers</em>) – <p>Controls the number and width of columns to insert. Can be one of:</p>
+<ul>
+<li><p>An integer that specifies the number of columns. All columns have equal
+width in this case.</p></li>
+<li><p>An iterable of numbers (int or float) that specify the relative width of
+each column. E.g. <code class="docutils literal notranslate"><span class="pre">[0.7,</span> <span class="pre">0.3]</span></code> creates two columns where the first
+one takes up 70% of the available with and the second one takes up 30%.
+Or <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> creates three columns where the second one is two times
+the width of the first one, and the third one is three times that width.</p></li>
+</ul>
 </p></li>
-<li><p><strong>gap</strong> (<em>string</em><em> (</em><em>&quot;small&quot;</em><em>, </em><em>&quot;medium&quot;</em><em>, or </em><em>&quot;large&quot;</em><em>)</em>) – An optional string, which indicates the size of the gap between each column.
-The default is a small gap between columns. This argument can only be supplied by
-keyword.</p></li>
+<li><p><strong>gap</strong> (<em>&quot;small&quot;</em><em>, </em><em>&quot;medium&quot;</em><em>, or </em><em>&quot;large&quot;</em>) – The size of the gap between the columns. Defaults to “small”. This
+argument can only be supplied by keyword.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -820,21 +817,19 @@ examples below.</p>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.dataframe">
-<em class="property">static </em><code class="sig-name descname">dataframe</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Data</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.dataframe" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">dataframe</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dat</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">hide_index</span><span class="p">:</span> <span class="n">bool | None</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">column_order</span><span class="p">:</span> <span class="n">Iterable[str] | None</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">column_config</span><span class="p">:</span> <span class="n">ColumnConfigMappingInput | None</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.dataframe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a dataframe as an interactive table.</p>
+<p>This command works with dataframes from Pandas, PyArrow, Snowpark, and PySpark.
+It can also display several other types that can be converted to dataframes,
+e.g. numpy arrays, lists, sets and dictionaries.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>pandas.DataFrame</em><em>, </em><em>pandas.Styler</em><em>, </em><em>pyarrow.Table</em><em>, </em><em>numpy.ndarray</em><em>, </em><em>pyspark.sql.DataFrame</em><em>, </em><em>snowflake.snowpark.dataframe.DataFrame</em><em>, </em><em>snowflake.snowpark.table.Table</em><em>, </em><em>Iterable</em><em>, </em><em>dict</em><em>, or </em><em>None</em>) – <p>The data to display.</p>
+<li><p><strong>data</strong> (<em>pandas.DataFrame</em><em>, </em><em>pandas.Series</em><em>, </em><em>pandas.Styler</em><em>, </em><em>pandas.Index</em><em>, </em><em>pyarrow.Table</em><em>, </em><em>numpy.ndarray</em><em>, </em><em>pyspark.sql.DataFrame</em><em>, </em><em>snowflake.snowpark.dataframe.DataFrame</em><em>, </em><em>snowflake.snowpark.table.Table</em><em>, </em><em>Iterable</em><em>, </em><em>dict</em><em>, or </em><em>None</em>) – <p>The data to display.</p>
 <p>If ‘data’ is a pandas.Styler, it will be used to style its
 underlying DataFrame. Streamlit supports custom cell
-values and colors. (It does not support some of the more exotic
-pandas styling features, like bar charts, hovering, and captions.)
-Styler support is experimental!
-Pyarrow tables are not supported by Streamlit’s legacy DataFrame serialization
-(i.e. with <cite>config.dataFrameSerialization = “legacy”</cite>).
-To use pyarrow tables, please enable pyarrow by changing the config setting,
-<cite>config.dataFrameSerialization = “arrow”</cite>.</p>
+values and colors. It does not support some of the more exotic
+pandas styling features, like bar charts, hovering, and captions.</p>
 </p></li>
 <li><p><strong>width</strong> (<em>int</em><em> or </em><em>None</em>) – Desired width of the dataframe expressed in pixels. If None, the width
 will be automatically calculated based on the column content.</p></li>
@@ -843,6 +838,25 @@ default height is used.</p></li>
 <li><p><strong>use_container_width</strong> (<em>bool</em>) – If True, set the dataframe width to the width of the parent container.
 This takes precedence over the width argument.
 This argument can only be supplied by keyword.</p></li>
+<li><p><strong>hide_index</strong> (<em>bool</em><em> or </em><em>None</em>) – Whether to hide the index column(s). If None (default), the visibility of
+index columns is automatically determined based on the data.</p></li>
+<li><p><strong>column_order</strong> (<em>iterable of str</em><em> or </em><em>None</em>) – Specifies the display order of columns. This also affects which columns are
+visible. For example, <code class="docutils literal notranslate"><span class="pre">column_order=(&quot;col2&quot;,</span> <span class="pre">&quot;col1&quot;)</span></code> will display ‘col2’
+first, followed by ‘col1’, and will hide all other non-index columns. If
+None (default), the order is inherited from the original data structure.</p></li>
+<li><p><strong>column_config</strong> (<em>dict</em><em> or </em><em>None</em>) – <p>Configures how columns are displayed, e.g. their title, visibility, type, or
+format. This needs to be a dictionary where each key is a column name and
+the value is one of:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code> to hide the column.</p></li>
+<li><p>A string to set the display label of the column.</p></li>
+<li><p>One of the column types defined under <code class="docutils literal notranslate"><span class="pre">st.column_config</span></code>, e.g.
+<code class="docutils literal notranslate"><span class="pre">st.column_config.NumberColumn(&quot;Dollar</span> <span class="pre">values”,</span> <span class="pre">format=”$</span> <span class="pre">%d&quot;)</span></code> to show
+a column as dollar amounts. See more info on the available column types
+and config options <a class="reference external" href="https://docs.streamlit.io/library/api-reference/data/st.column_config">here</a>.</p></li>
+</ul>
+<p>To configure the index column(s), use <code class="docutils literal notranslate"><span class="pre">_index</span></code> as the column name.</p>
+</p></li>
 </ul>
 </dd>
 </dl>
@@ -858,9 +872,6 @@ This argument can only be supplied by keyword.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>  <span class="c1"># Same as st.write(df)</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-</pre></div>
-</div>
 <p>You can also pass a Pandas Styler object to change the style of
 the rendered DataFrame:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
@@ -872,6 +883,37 @@ the rendered DataFrame:</p>
 <span class="gp">... </span>   <span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;col </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)))</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">highlight_max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Or you can customize the dataframe via <code class="docutils literal notranslate"><span class="pre">column_config</span></code>, <code class="docutils literal notranslate"><span class="pre">hide_index</span></code>, or <code class="docutils literal notranslate"><span class="pre">column_order</span></code>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">{</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Roadmap&quot;</span><span class="p">,</span> <span class="s2">&quot;Extras&quot;</span><span class="p">,</span> <span class="s2">&quot;Issues&quot;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;https://roadmap.streamlit.app&quot;</span><span class="p">,</span> <span class="s2">&quot;https://extras.streamlit.app&quot;</span><span class="p">,</span> <span class="s2">&quot;https://issues.streamlit.app&quot;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;stars&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)],</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;views_history&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)],</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">df</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">column_config</span><span class="o">=</span><span class="p">{</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;App name&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;stars&quot;</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">column_config</span><span class="o">.</span><span class="n">NumberColumn</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="s2">&quot;Github Stars&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of stars on GitHub&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> ⭐&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">column_config</span><span class="o">.</span><span class="n">LinkColumn</span><span class="p">(</span><span class="s2">&quot;App URL&quot;</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;views_history&quot;</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">column_config</span><span class="o">.</span><span class="n">LineChartColumn</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="s2">&quot;Views (past 30 days)&quot;</span><span class="p">,</span> <span class="n">y_min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_max</span><span class="o">=</span><span class="mi">5000</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">},</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">hide_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -922,7 +964,7 @@ not share the same key.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em>) – An optional dict of kwargs to pass to the callback.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the date input if set to True.
 The default is False. This argument can only be supplied by keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -1265,7 +1307,7 @@ changes.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the file uploader if set to
 True. The default is False. This argument can only be supplied by
 keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -1600,24 +1642,24 @@ list of captions (one for each image).</p></li>
 <li><p><strong>width</strong> (<em>int</em><em> or </em><em>None</em>) – Image width. None means use the image width,
 but do not exceed the width of the column.
 Should be set for SVG images, as they have no default image width.</p></li>
-<li><p><strong>use_column_width</strong> (<em>'auto'</em><em> or </em><em>'always'</em><em> or </em><em>'never'</em><em> or </em><em>bool</em>) – If ‘auto’, set the image’s width to its natural size,
+<li><p><strong>use_column_width</strong> (<em>&quot;auto&quot;</em><em>, </em><em>&quot;always&quot;</em><em>, </em><em>&quot;never&quot;</em><em>, or </em><em>bool</em>) – If “auto”, set the image’s width to its natural size,
 but do not exceed the width of the column.
-If ‘always’ or True, set the image’s width to the column width.
-If ‘never’ or False, set the image’s width to its natural size.
+If “always” or True, set the image’s width to the column width.
+If “never” or False, set the image’s width to its natural size.
 Note: if set, <cite>use_column_width</cite> takes precedence over the <cite>width</cite> parameter.</p></li>
 <li><p><strong>clamp</strong> (<em>bool</em>) – Clamp image pixel values to a valid range ([0-255] per channel).
 This is only meaningful for byte array images; the parameter is
 ignored for image URLs. If this is not set, and an image has an
 out-of-range value, an error will be thrown.</p></li>
-<li><p><strong>channels</strong> (<em>'RGB'</em><em> or </em><em>'BGR'</em>) – If image is an nd.array, this parameter denotes the format used to
-represent color information. Defaults to ‘RGB’, meaning
+<li><p><strong>channels</strong> (<em>&quot;RGB&quot;</em><em> or </em><em>&quot;BGR&quot;</em>) – If image is an nd.array, this parameter denotes the format used to
+represent color information. Defaults to “RGB”, meaning
 <cite>image[:, :, 0]</cite> is the red channel, <cite>image[:, :, 1]</cite> is green, and
 <cite>image[:, :, 2]</cite> is blue. For images coming from libraries like
-OpenCV you should set this to ‘BGR’, instead.</p></li>
-<li><p><strong>output_format</strong> (<em>'JPEG'</em><em>, </em><em>'PNG'</em><em>, or </em><em>'auto'</em>) – This parameter specifies the format to use when transferring the
+OpenCV you should set this to “BGR”, instead.</p></li>
+<li><p><strong>output_format</strong> (<em>&quot;JPEG&quot;</em><em>, </em><em>&quot;PNG&quot;</em><em>, or </em><em>&quot;auto&quot;</em>) – This parameter specifies the format to use when transferring the
 image data. Photos should use the JPEG format for lossy compression
 while diagrams should use the PNG format for lossless compression.
-Defaults to ‘auto’ which identifies the compression type based
+Defaults to “auto” which identifies the compression type based
 on the type and format of the image argument.</p></li>
 </ul>
 </dd>
@@ -1719,7 +1761,7 @@ a lot.</p></li>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.line_chart">
-<em class="property">static </em><code class="sig-name descname">line_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Data</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.line_chart" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">line_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dat</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.line_chart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a line chart.</p>
 <p>This is syntax-sugar around st.altair_chart. The main difference
 is this command uses the data’s own column and indices to figure out
@@ -1732,9 +1774,9 @@ correctly, try specifying your desired chart using st.altair_chart.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<em>pandas.DataFrame</em><em>, </em><em>pandas.Styler</em><em>, </em><em>pyarrow.Table</em><em>, </em><em>numpy.ndarray</em><em>, </em><em>pyspark.sql.DataFrame</em><em>, </em><em>snowflake.snowpark.dataframe.DataFrame</em><em>, </em><em>snowflake.snowpark.table.Table</em><em>, </em><em>Iterable</em><em>, </em><em>dict</em><em> or </em><em>None</em>) – Data to be plotted.
 Pyarrow tables are not supported by Streamlit’s legacy DataFrame serialization
-(i.e. with <cite>config.dataFrameSerialization = “legacy”</cite>).
+(i.e. with <code class="docutils literal notranslate"><span class="pre">config.dataFrameSerialization</span> <span class="pre">=</span> <span class="pre">&quot;legacy&quot;</span></code>).
 To use pyarrow tables, please enable pyarrow by changing the config setting,
-<cite>config.dataFrameSerialization = “arrow”</cite>.</p></li>
+<code class="docutils literal notranslate"><span class="pre">config.dataFrameSerialization</span> <span class="pre">=</span> <span class="pre">&quot;arrow&quot;</span></code>.</p></li>
 <li><p><strong>x</strong> (<em>str</em><em> or </em><em>None</em>) – Column name to use for the x-axis. If None, uses the data index for the x-axis.
 This argument can only be supplied by keyword.</p></li>
 <li><p><strong>y</strong> (<em>str</em><em>, </em><em>sequence of str</em><em>, or </em><em>None</em>) – Column name(s) to use for the y-axis. If a sequence of strings, draws several series
@@ -1846,11 +1888,11 @@ users’ security. For more information, see:</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; import streamlit as st
-&gt;&gt;&gt;
-&gt;&gt;&gt; st.markdown(&#39;Streamlit is **_really_ cool**.&#39;)
-&gt;&gt;&gt; st.markdown(”This text is :red[colored red], and this is **:blue[colored]** and bold.”)
-&gt;&gt;&gt; st.markdown(&quot;:green[$\sqrt{x^2+y^2}=1$] is a Pythagorean identity. :pencil:&quot;)
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="s1">&#39;Streamlit is **_really_ cool**.&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="s2">&quot;This text is :red[colored red], and this is **:blue[colored]** and bold.&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="s2">&quot;:green[$\sqrt{x^2+y^2}=1$] is a Pythagorean identity. :pencil:&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1891,13 +1933,13 @@ the metric. If delta is negative (int/float) or starts with a minus
 sign (str), the arrow points down and the text is red; else the
 arrow points up and the text is green. If None (default), no delta
 indicator is shown.</p></li>
-<li><p><strong>delta_color</strong> (<em>str</em>) – If “normal” (default), the delta indicator is shown as described
+<li><p><strong>delta_color</strong> (<em>&quot;normal&quot;</em><em>, </em><em>&quot;inverse&quot;</em><em>, or </em><em>&quot;off&quot;</em>) – If “normal” (default), the delta indicator is shown as described
 above. If “inverse”, it is red when positive and green when
 negative. This is useful when a negative change is considered
 good, e.g. if cost decreased. If “off”, delta is  shown in gray
 regardless of its value.</p></li>
 <li><p><strong>help</strong> (<em>str</em>) – An optional tooltip that gets displayed next to the metric label.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -1979,7 +2021,7 @@ not share the same key.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the multiselect widget if set
 to True. The default is False. This argument can only be supplied
 by keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -2011,6 +2053,13 @@ This argument can only be supplied by keyword.</p></li>
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.number_input">
 <em class="property">static </em><code class="sig-name descname">number_input</code><span class="sig-paren">(</span><em class="sig-param">self, label: str, min_value: Optional[Union[int, float]] = None, max_value: Optional[Union[int, float]] = None, value: Optional[Union[streamlit.runtime.state.widgets.NoValue, int, float]] = &lt;streamlit.runtime.state.widgets.NoValue object&gt;, step: Optional[Union[int, float]] = None, format: Optional[str, None] = None, key: Optional[Union[str, int]] = None, help: Optional[str, None] = None, on_change: Optional[Callable[[...], None], None] = None, args: Optional[Tuple[Any, ...], None] = None, kwargs: Optional[Dict[str, Any], None] = None, *, disabled: bool = False, label_visibility: Literal[visible, hidden, collapsed] = 'visible'</em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>int<span class="p">, </span>float<span class="p">]</span><a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.number_input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a numeric input widget.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Integer values exceeding +/- <code class="docutils literal notranslate"><span class="pre">(1&lt;&lt;53)</span> <span class="pre">-</span> <span class="pre">1</span></code> cannot be accurately
+stored or returned by the widget due to serialization contstraints
+between the Python server and JavaScript client. You must handle
+such numbers as floats, leading to a loss in precision.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -2036,13 +2085,13 @@ backslash-escaping them. E.g. <code class="docutils literal notranslate"><span c
 but hide it with label_visibility if needed. In the future, we may disallow
 empty labels by raising an exception.</p>
 </p></li>
-<li><p><strong>min_value</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>None</em>) – The minimum permitted value.
+<li><p><strong>min_value</strong> (<em>int</em><em>, </em><em>float</em><em>, or </em><em>None</em>) – The minimum permitted value.
 If None, there will be no minimum.</p></li>
-<li><p><strong>max_value</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>None</em>) – The maximum permitted value.
+<li><p><strong>max_value</strong> (<em>int</em><em>, </em><em>float</em><em>, or </em><em>None</em>) – The maximum permitted value.
 If None, there will be no maximum.</p></li>
-<li><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>None</em>) – The value of this widget when it first renders.
+<li><p><strong>value</strong> (<em>int</em><em>, </em><em>float</em><em>, or </em><em>None</em>) – The value of this widget when it first renders.
 Defaults to min_value, or 0.0 if min_value is None</p></li>
-<li><p><strong>step</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>None</em>) – The stepping interval.
+<li><p><strong>step</strong> (<em>int</em><em>, </em><em>float</em><em>, or </em><em>None</em>) – The stepping interval.
 Defaults to 1 if the value is an int, 0.01 otherwise.
 If the value is not specified, the format parameter will be used.</p></li>
 <li><p><strong>format</strong> (<em>str</em><em> or </em><em>None</em>) – A printf-style format string controlling how the interface should
@@ -2059,7 +2108,7 @@ not share the same key.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the number input if set to
 True. The default is False. This argument can only be supplied by
 keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -2099,7 +2148,7 @@ would call Plotly’s <cite>py.plot</cite> or <cite>py.iplot</cite>.</p>
 </p></li>
 <li><p><strong>use_container_width</strong> (<em>bool</em>) – If True, set the chart width to the column width. This takes
 precedence over the figure’s native <cite>width</cite> value.</p></li>
-<li><p><strong>sharing</strong> (<em>{'streamlit'</em><em>, </em><em>'private'</em><em>, </em><em>'secret'</em><em>, </em><em>'public'}</em>) – Use ‘streamlit’ to insert the plot and all its dependencies
+<li><p><strong>sharing</strong> (<em>&quot;streamlit&quot;</em><em>, </em><em>&quot;private&quot;</em><em>, </em><em>&quot;secret&quot;</em><em>, or </em><em>&quot;public&quot;</em>) – Use “streamlit” to insert the plot and all its dependencies
 directly in the Streamlit app using plotly’s offline mode (default).
 Use any other sharing mode to send the chart to Plotly chart studio, which
 requires an account. See <a class="reference external" href="https://plot.ly/python/chart-studio/">https://plot.ly/python/chart-studio/</a> for more information.</p></li>
@@ -2365,7 +2414,7 @@ keyword.</p></li>
 <li><p><strong>horizontal</strong> (<em>bool</em>) – An optional boolean, which orients the radio group horizontally.
 The default is false (vertical buttons). This argument can only
 be supplied by keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -2449,7 +2498,7 @@ not share the same key.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em>) – An optional dict of kwargs to pass to the callback.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the select slider if set to True.
 The default is False. This argument can only be supplied by keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -2528,7 +2577,7 @@ not share the same key.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em>) – An optional dict of kwargs to pass to the callback.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the selectbox if set to True.
 The default is False. This argument can only be supplied by keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -2564,6 +2613,13 @@ tuple or list as the <cite>value</cite>.</p>
 <cite>slider</cite> only accepts numerical or date/time data and takes a range as
 input, while <cite>select_slider</cite> accepts any datatype and takes an iterable
 set of options.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Integer values exceeding +/- <code class="docutils literal notranslate"><span class="pre">(1&lt;&lt;53)</span> <span class="pre">-</span> <span class="pre">1</span></code> cannot be accurately
+stored or returned by the widget due to serialization contstraints
+between the Python server and JavaScript client. You must handle
+such numbers as floats, leading to a loss in precision.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -2600,7 +2656,7 @@ of two values is passed here, then a range slider with those lower
 and upper bounds is rendered. For example, if set to <cite>(1, 10)</cite> the
 slider will have a selectable range between 1 and 10.
 Defaults to min_value.</p></li>
-<li><p><strong>step</strong> (<em>int/float/timedelta</em><em> or </em><em>None</em>) – The stepping interval.
+<li><p><strong>step</strong> (<em>int</em><em>, </em><em>float</em><em>, </em><em>timedelta</em><em>, or </em><em>None</em>) – The stepping interval.
 Defaults to 1 if the value is an int, 0.01 if a float,
 timedelta(days=1) if a date/datetime, timedelta(minutes=15) if a time
 (or if max_value - min_value &lt; 1 day)</p></li>
@@ -2619,7 +2675,7 @@ not share the same key.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em>) – An optional dict of kwargs to pass to the callback.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the slider if set to True. The
 default is False. This argument can only be supplied by keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -2735,7 +2791,7 @@ Defaults to None, which means no icon is displayed.</p></li>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.table">
-<em class="property">static </em><code class="sig-name descname">table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Data</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.table" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dat</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a static table.</p>
 <p>This differs from <cite>st.dataframe</cite> in that the table in this case is
 static: its entire contents are laid out directly on the page.</p>
@@ -2743,9 +2799,9 @@ static: its entire contents are laid out directly on the page.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>data</strong> (<em>pandas.DataFrame</em><em>, </em><em>pandas.Styler</em><em>, </em><em>pyarrow.Table</em><em>, </em><em>numpy.ndarray</em><em>, </em><em>pyspark.sql.DataFrame</em><em>, </em><em>snowflake.snowpark.dataframe.DataFrame</em><em>, </em><em>snowflake.snowpark.table.Table</em><em>, </em><em>Iterable</em><em>, </em><em>dict</em><em>, or </em><em>None</em>) – The table data.
 Pyarrow tables are not supported by Streamlit’s legacy DataFrame serialization
-(i.e. with <cite>config.dataFrameSerialization = “legacy”</cite>).
+(i.e. with <code class="docutils literal notranslate"><span class="pre">config.dataFrameSerialization</span> <span class="pre">=</span> <span class="pre">&quot;legacy&quot;</span></code>).
 To use pyarrow tables, please enable pyarrow by changing the config setting,
-<cite>config.dataFrameSerialization = “arrow”</cite>.</p>
+<code class="docutils literal notranslate"><span class="pre">config.dataFrameSerialization</span> <span class="pre">=</span> <span class="pre">&quot;arrow&quot;</span></code>.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
@@ -2828,7 +2884,7 @@ not share the same key.</p></li>
 no text is displayed. This argument can only be supplied by keyword.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the text area if set to True.
 The default is False. This argument can only be supplied by keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -2907,7 +2963,7 @@ autocomplete property. If unspecified, this value will be set to
 no text is displayed. This argument can only be supplied by keyword.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the text input if set to True.
 The default is False. This argument can only be supplied by keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -2970,7 +3026,7 @@ not share the same key.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em>) – An optional dict of kwargs to pass to the callback.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the time input if set to True.
 The default is False. This argument can only be supplied by keyword.</p></li>
-<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em> or </em><em>&quot;hidden&quot;</em><em> or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
+<li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
@@ -3037,7 +3093,7 @@ If False, the anchor is not shown in the UI.</p></li>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.vega_lite_chart">
-<em class="property">static </em><code class="sig-name descname">vega_lite_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Data</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">spec</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">theme</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>None<span class="p">, </span>Literal<span class="p">[</span>streamlit<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">'streamlit'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.vega_lite_chart" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">vega_lite_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dat</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">spec</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">theme</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>None<span class="p">, </span>Literal<span class="p">[</span>streamlit<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">'streamlit'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.vega_lite_chart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a chart using the Vega-Lite library.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3045,9 +3101,9 @@ If False, the anchor is not shown in the UI.</p></li>
 <li><p><strong>data</strong> (<em>pandas.DataFrame</em><em>, </em><em>pandas.Styler</em><em>, </em><em>pyarrow.Table</em><em>, </em><em>numpy.ndarray</em><em>, </em><em>Iterable</em><em>, </em><em>dict</em><em>, or </em><em>None</em>) – Either the data to be plotted or a Vega-Lite spec containing the
 data (which more closely follows the Vega-Lite API).
 Pyarrow tables are not supported by Streamlit’s legacy DataFrame serialization
-(i.e. with <cite>config.dataFrameSerialization = “legacy”</cite>).
+(i.e. with <code class="docutils literal notranslate"><span class="pre">config.dataFrameSerialization</span> <span class="pre">=</span> <span class="pre">&quot;legacy&quot;</span></code>).
 To use pyarrow tables, please enable pyarrow by changing the config setting,
-<cite>config.dataFrameSerialization = “arrow”</cite>.</p></li>
+<code class="docutils literal notranslate"><span class="pre">config.dataFrameSerialization</span> <span class="pre">=</span> <span class="pre">&quot;arrow&quot;</span></code>.</p></li>
 <li><p><strong>spec</strong> (<em>dict</em><em> or </em><em>None</em>) – The Vega-Lite spec for the chart. If the spec was already passed in
 the previous argument, this must be set to None. See
 <a class="reference external" href="https://vega.github.io/vega-lite/docs/">https://vega.github.io/vega-lite/docs/</a> for more info.</p></li>
