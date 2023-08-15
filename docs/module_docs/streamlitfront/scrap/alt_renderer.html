@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.scrap.alt_renderer &mdash; streamlitfront 0.1.29 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.scrap.alt_renderer &mdash; streamlitfront 0.1.30 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -240,8 +240,7 @@ This argument can only be supplied by keyword.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>str</em><em>, </em><em>bytes</em><em>, </em><em>BytesIO</em><em>, </em><em>numpy.ndarray</em><em>, or </em><em>file opened with</em>) – io.open().
-Raw audio data, filename, or a URL pointing to the file to load.
+<li><p><strong>data</strong> (<em>str</em><em>, </em><em>bytes</em><em>, </em><em>BytesIO</em><em>, </em><em>numpy.ndarray</em><em>, or </em><em>file</em>) – Raw audio data, filename, or a URL pointing to the file to load.
 Raw data formats must include all necessary file headers to match the file
 format specified via <code class="docutils literal notranslate"><span class="pre">format</span></code>.
 If <code class="docutils literal notranslate"><span class="pre">data</span></code> is a numpy array, it must either be a 1D array of the waveform
@@ -920,7 +919,7 @@ the rendered DataFrame:</p>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.date_input">
-<em class="property">static </em><code class="sig-name descname">date_input</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">label</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>datetime.date<span class="p">, </span>datetime.datetime<span class="p">, </span>None<span class="p">, </span>Sequence<span class="p">[</span>Optional<span class="p">[</span>Union<span class="p">[</span>datetime.date<span class="p">, </span>datetime.datetime<span class="p">]</span><span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">min_value</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>datetime.date<span class="p">, </span>datetime.datetime<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_value</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>datetime.date<span class="p">, </span>datetime.datetime<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>int<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">help</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">on_change</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span>None<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">args</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Tuple<span class="p">[</span>Any<span class="p">, </span><span class="p">…</span><span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">disabled</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">label_visibility</span><span class="p">:</span> <span class="n">Literal<span class="p">[</span>visible<span class="p">, </span>hidden<span class="p">, </span>collapsed<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">'visible'</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>datetime.date<span class="p">, </span>Tuple<span class="p">, </span>Tuple<span class="p">[</span>datetime.date<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>datetime.date<span class="p">, </span>datetime.date<span class="p">]</span><span class="p">]</span><a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.date_input" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">date_input</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">label</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>datetime.date<span class="p">, </span>datetime.datetime<span class="p">, </span>None<span class="p">, </span>Sequence<span class="p">[</span>Optional<span class="p">[</span>Union<span class="p">[</span>datetime.date<span class="p">, </span>datetime.datetime<span class="p">]</span><span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">min_value</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>datetime.date<span class="p">, </span>datetime.datetime<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_value</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>datetime.date<span class="p">, </span>datetime.datetime<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>int<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">help</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">on_change</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span>None<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">args</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Tuple<span class="p">[</span>Any<span class="p">, </span><span class="p">…</span><span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">format</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'YYYY/MM/DD'</span></em>, <em class="sig-param"><span class="n">disabled</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">label_visibility</span><span class="p">:</span> <span class="n">Literal<span class="p">[</span>visible<span class="p">, </span>hidden<span class="p">, </span>collapsed<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">'visible'</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>datetime.date<span class="p">, </span>Tuple<span class="p">, </span>Tuple<span class="p">[</span>datetime.date<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>datetime.date<span class="p">, </span>datetime.date<span class="p">]</span><span class="p">]</span><a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.date_input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a date input widget.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -962,6 +961,9 @@ not share the same key.</p></li>
 <li><p><strong>on_change</strong> (<em>callable</em>) – An optional callback invoked when this date_input’s value changes.</p></li>
 <li><p><strong>args</strong> (<em>tuple</em>) – An optional tuple of args to pass to the callback.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em>) – An optional dict of kwargs to pass to the callback.</p></li>
+<li><p><strong>format</strong> (<em>str</em>) – A format string controlling how the interface should display dates.
+Supports “YYYY/MM/DD” (default), “DD/MM/YYYY”, or “MM/DD/YYYY”.
+You may also use a period (.) or hyphen (-) as separators.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the date input if set to True.
 The default is False. This argument can only be supplied by keyword.</p></li>
 <li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
@@ -1565,7 +1567,7 @@ If False, the anchor is not shown in the UI.</p></li>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.help">
-<em class="property">static </em><code class="sig-name descname">help</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">obj: Any = &lt;module 'streamlit' from '/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/streamlit/__init__.py'&gt;</em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.help" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">help</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">obj: Any = &lt;module 'streamlit' from '/opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/site-packages/streamlit/__init__.py'&gt;</em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.help" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display help and other information for a given object.</p>
 <p>Depending on the type of object that is passed in, this displays the
 object’s name, type, value, signature, docstring, and member variables,
@@ -1809,8 +1811,8 @@ This argument can only be supplied by keyword.</p></li>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.map">
-<em class="property">static </em><code class="sig-name descname">map</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>pandas.core.frame.DataFrame<span class="p">, </span>Styler<span class="p">, </span>Iterable<span class="p">[</span>Any<span class="p">]</span><span class="p">, </span>Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">zoom</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.map" title="Permalink to this definition">¶</a></dt>
-<dd><p>Display a map with points on it.</p>
+<em class="property">static </em><code class="sig-name descname">map</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>pandas.core.frame.DataFrame<span class="p">, </span>Styler<span class="p">, </span>Iterable<span class="p">[</span>Any<span class="p">]</span><span class="p">, </span>Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">latitude</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">longitude</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>None<span class="p">, </span>str<span class="p">, </span>Tuple<span class="p">[</span>float<span class="p">, </span>float<span class="p">, </span>float<span class="p">, </span>float<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>int<span class="p">, </span>int<span class="p">, </span>int<span class="p">, </span>int<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>int<span class="p">, </span>int<span class="p">, </span>int<span class="p">, </span>float<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>float<span class="p">, </span>float<span class="p">, </span>float<span class="p">]</span><span class="p">, </span>Tuple<span class="p">[</span>int<span class="p">, </span>int<span class="p">, </span>int<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>None<span class="p">, </span>str<span class="p">, </span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">zoom</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display a map with a scatterplot overlaid onto it.</p>
 <p>This is a wrapper around <code class="docutils literal notranslate"><span class="pre">st.pydeck_chart</span></code> to quickly create
 scatterplot charts on top of a map, with auto-centering and auto-zoom.</p>
 <p>When using this command, Mapbox provides the map tiles to render map
@@ -1827,19 +1829,54 @@ For more info on how to set config options, see
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>pandas.DataFrame</em><em>, </em><em>pandas.Styler</em><em>, </em><em>pyarrow.Table</em><em>, </em><em>numpy.ndarray</em><em>, </em><em>pyspark.sql.DataFrame</em><em>, </em><em>snowflake.snowpark.dataframe.DataFrame</em><em>, </em><em>snowflake.snowpark.table.Table</em><em>, </em><em>Iterable</em><em>, </em><em>dict</em><em>, or </em><em>None</em>) – <p>The data to be plotted. Must have two columns:</p>
+<li><p><strong>data</strong> (<em>pandas.DataFrame</em><em>, </em><em>pandas.Styler</em><em>, </em><em>pyarrow.Table</em><em>, </em><em>numpy.ndarray</em><em>,            </em><em>pyspark.sql.DataFrame</em><em>, </em><em>snowflake.snowpark.dataframe.DataFrame</em><em>,            </em><em>snowflake.snowpark.table.Table</em><em>, </em><em>Iterable</em><em>, </em><em>dict</em><em>, or </em><em>None</em>) – The data to be plotted.</p></li>
+<li><p><strong>latitude</strong> (<em>str</em><em> or </em><em>None</em>) – <p>The name of the column containing the latitude coordinates of
+the datapoints in the chart. This argument can only be supplied
+by keyword.</p>
+<p>If None, the latitude data will come from any column named ‘lat’,
+‘latitude’, ‘LAT’, or ‘LATITUDE’.</p>
+</p></li>
+<li><p><strong>longitude</strong> (<em>str</em><em> or </em><em>None</em>) – <p>The name of the column containing the longitude coordinates of
+the datapoints in the chart. This argument can only be supplied
+by keyword.</p>
+<p>If None, the longitude data will come from any column named ‘lon’,
+‘longitude’, ‘LON’, or ‘LONGITUDE’.</p>
+</p></li>
+<li><p><strong>color</strong> (<em>str</em><em> or </em><em>tuple</em><em> or </em><em>None</em>) – <p>The color of the circles representing each datapoint. This argument
+can only be supplied by keyword.</p>
+<p>Can be:</p>
 <ul>
-<li><p>latitude called ‘lat’, ‘latitude’, ‘LAT’, ‘LATITUDE’</p></li>
-<li><p>longitude called ‘lon’, ‘longitude’, ‘LON’, ‘LONGITUDE’.</p></li>
+<li><p>None, to use the default color.</p></li>
+<li><p>A hex string like “#ffaa00” or “#ffaa0088”.</p></li>
+<li><p>An RGB or RGBA tuple with the red, green, blue, and alpha
+components specified as ints from 0 to 255 or floats from 0.0 to
+1.0.</p></li>
+<li><p>The name of the column to use for the color. Cells in this column
+should contain colors represented as a hex string or color tuple,
+as described above.</p></li>
+</ul>
+</p></li>
+<li><p><strong>size</strong> (<em>str</em><em> or </em><em>float</em><em> or </em><em>None</em>) – <p>The size of the circles representing each point, in meters. This
+argument can only be supplied by keyword.</p>
+<p>This can be:</p>
+<ul>
+<li><p>None, to use the default size.</p></li>
+<li><p>A number like 100, to specify a single size to use for all
+datapoints.</p></li>
+<li><p>The name of the column to use for the size. This allows each
+datapoint to be represented by a circle of a different size.</p></li>
 </ul>
 </p></li>
 <li><p><strong>zoom</strong> (<em>int</em>) – Zoom level as specified in
-<a class="reference external" href="https://wiki.openstreetmap.org/wiki/Zoom_levels">https://wiki.openstreetmap.org/wiki/Zoom_levels</a></p></li>
-<li><p><strong>use_container_width</strong> (<em>bool</em>) – </p></li>
+<a class="reference external" href="https://wiki.openstreetmap.org/wiki/Zoom_levels">https://wiki.openstreetmap.org/wiki/Zoom_levels</a>.
+This argument can only be supplied by keyword.</p></li>
+<li><p><strong>use_container_width</strong> (<em>bool</em>) – If True, set the chart width to the column width. This takes
+precedence over the width argument.
+This argument can only be supplied by keyword.</p></li>
 </ul>
 </dd>
 </dl>
-<p class="rubric">Example</p>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1847,8 +1884,33 @@ For more info on how to set config options, see
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mf">37.76</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.4</span><span class="p">],</span>
 <span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also customize the size and color of the datapoints:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0044ff&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And finally, you can choose different columns to use for the latitude
+and longitude components, as well as set size and color of each
+datapoint dynamically based on other columns:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s2">&quot;col1&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="o">/</span> <span class="mi">50</span> <span class="o">+</span> <span class="mf">37.76</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;col2&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="o">/</span> <span class="mi">50</span> <span class="o">+</span> <span class="o">-</span><span class="mf">122.4</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;col3&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;col4&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">df</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">latitude</span><span class="o">=</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">longitude</span><span class="o">=</span><span class="s1">&#39;col2&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">size</span><span class="o">=</span><span class="s1">&#39;col3&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;col4&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1975,7 +2037,7 @@ If “collapsed”, both the label and the space are removed. Default is
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.multiselect">
-<em class="property">static </em><code class="sig-name descname">multiselect</code><span class="sig-paren">(</span><em class="sig-param">self, label: str, options: Union[Iterable[T], streamlit.type_util.DataFrameGenericAlias[T]], default: Optional[Any, None] = None, format_func: Callable[[Any], Any] = &lt;class 'str'&gt;, key: Optional[Union[str, int]] = None, help: Optional[str, None] = None, on_change: Optional[Callable[[...], None], None] = None, args: Optional[Tuple[Any, ...], None] = None, kwargs: Optional[Dict[str, Any], None] = None, *, disabled: bool = False, label_visibility: Literal[visible, hidden, collapsed] = 'visible', max_selections: Optional[int, None] = None</em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>T<span class="p">]</span><a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.multiselect" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">multiselect</code><span class="sig-paren">(</span><em class="sig-param">self, label: str, options: Union[Iterable[T], streamlit.type_util.DataFrameGenericAlias[T]], default: Optional[Any, None] = None, format_func: Callable[[Any], Any] = &lt;class 'str'&gt;, key: Optional[Union[str, int]] = None, help: Optional[str, None] = None, on_change: Optional[Callable[[...], None], None] = None, args: Optional[Tuple[Any, ...], None] = None, kwargs: Optional[Dict[str, Any], None] = None, *, max_selections: Optional[int, None] = None, placeholder: str = 'Choose an option', disabled: bool = False, label_visibility: Literal[visible, hidden, collapsed] = 'visible'</em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>T<span class="p">]</span><a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.multiselect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a multiselect widget.
 The multiselect widget starts as empty.</p>
 <dl class="field-list simple">
@@ -2018,6 +2080,9 @@ not share the same key.</p></li>
 <li><p><strong>on_change</strong> (<em>callable</em>) – An optional callback invoked when this multiselect’s value changes.</p></li>
 <li><p><strong>args</strong> (<em>tuple</em>) – An optional tuple of args to pass to the callback.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em>) – An optional dict of kwargs to pass to the callback.</p></li>
+<li><p><strong>max_selections</strong> (<em>int</em>) – The max selections that can be selected at a time.
+This argument can only be supplied by keyword.</p></li>
+<li><p><strong>placeholder</strong> (<em>str</em>) – A string to display when no options are selected. Defaults to ‘Choose an option’.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the multiselect widget if set
 to True. The default is False. This argument can only be supplied
 by keyword.</p></li>
@@ -2025,8 +2090,6 @@ by keyword.</p></li>
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
 “visible”. This argument can only be supplied by keyword.</p></li>
-<li><p><strong>max_selections</strong> (<em>int</em>) – The max selections that can be selected at a time.
-This argument can only be supplied by keyword.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -2535,7 +2598,7 @@ the data type of the value parameter.</p>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.selectbox">
-<em class="property">static </em><code class="sig-name descname">selectbox</code><span class="sig-paren">(</span><em class="sig-param">self, label: str, options: Union[Iterable[T], streamlit.type_util.DataFrameGenericAlias[T]], index: int = 0, format_func: Callable[[Any], Any] = &lt;class 'str'&gt;, key: Optional[Union[str, int]] = None, help: Optional[str, None] = None, on_change: Optional[Callable[[...], None], None] = None, args: Optional[Tuple[Any, ...], None] = None, kwargs: Optional[Dict[str, Any], None] = None, *, disabled: bool = False, label_visibility: Literal[visible, hidden, collapsed] = 'visible'</em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>T<span class="p">, </span>None<span class="p">]</span><a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.selectbox" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">selectbox</code><span class="sig-paren">(</span><em class="sig-param">self, label: str, options: Union[Iterable[T], streamlit.type_util.DataFrameGenericAlias[T]], index: int = 0, format_func: Callable[[Any], Any] = &lt;class 'str'&gt;, key: Optional[Union[str, int]] = None, help: Optional[str, None] = None, on_change: Optional[Callable[[...], None], None] = None, args: Optional[Tuple[Any, ...], None] = None, kwargs: Optional[Dict[str, Any], None] = None, *, placeholder: str = 'Select...', disabled: bool = False, label_visibility: Literal[visible, hidden, collapsed] = 'visible'</em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>T<span class="p">, </span>None<span class="p">]</span><a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.selectbox" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a select widget.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2575,6 +2638,7 @@ not share the same key.</p></li>
 <li><p><strong>on_change</strong> (<em>callable</em>) – An optional callback invoked when this selectbox’s value changes.</p></li>
 <li><p><strong>args</strong> (<em>tuple</em>) – An optional tuple of args to pass to the callback.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em>) – An optional dict of kwargs to pass to the callback.</p></li>
+<li><p><strong>placeholder</strong> (<em>str</em>) – A string to display when no options are selected. Defaults to ‘Select…’.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the selectbox if set to True.
 The default is False. This argument can only be supplied by keyword.</p></li>
 <li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
@@ -3147,8 +3211,7 @@ translated to the syntax shown above.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>str</em><em>, </em><em>bytes</em><em>, </em><em>BytesIO</em><em>, </em><em>numpy.ndarray</em><em>, or </em><em>file opened with</em>) – io.open().
-Raw video data, filename, or URL pointing to a video to load.
+<li><p><strong>data</strong> (<em>str</em><em>, </em><em>bytes</em><em>, </em><em>BytesIO</em><em>, </em><em>numpy.ndarray</em><em>, or </em><em>file</em>) – Raw video data, filename, or URL pointing to a video to load.
 Includes support for YouTube URLs.
 Numpy arrays and raw data formats must include all necessary file
 headers to match specified file format.</p></li>

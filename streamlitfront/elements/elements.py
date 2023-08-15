@@ -260,7 +260,7 @@ class HiddenOutput(OutputBase):
 class KwargsInput(KwargsInputBase):
     def __post_init__(self):
         return super().__post_init__()
-    
+
     def render(self):
         exec_section = ExecSection(
             obj=self.get_kwargs,
