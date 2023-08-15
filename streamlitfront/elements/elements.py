@@ -22,7 +22,7 @@ from front.elements import (
     KwargsInputBase,
     MultiSourceInputBase,
     OutputBase,
-    SelectBoxBase,
+    SelectorBase,
     TextInputBase,
     TextSectionBase,
     ELEMENT_KEY,
@@ -198,11 +198,12 @@ IntSliderInput = implement_input_component(IntInputBase, st.slider)
 FloatInput = implement_input_component(FloatInputBase, st.number_input)
 FloatSliderInput = implement_input_component(FloatInputBase, st.slider)
 SelectBox = implement_input_component(
-    SelectBoxBase, st.selectbox, options='_options', index='_preselected_index'
+    SelectorBase, st.selectbox, options='_options', index='_preselected_index'
 )
 MultiSelectBox = implement_input_component(
-    SelectBoxBase, st.multiselect, options='_options'
+    SelectorBase, st.multiselect, options='_options'
 )
+Radio = implement_input_component(SelectorBase, st.radio, options='_options')
 
 
 @dataclass
@@ -257,6 +258,9 @@ class HiddenOutput(OutputBase):
 
 @dataclass
 class KwargsInput(KwargsInputBase):
+    def __post_init__(self):
+        return super().__post_init__()
+    
     def render(self):
         exec_section = ExecSection(
             obj=self.get_kwargs,

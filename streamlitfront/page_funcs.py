@@ -271,7 +271,7 @@ class StatePageFunc(BasePageFunc):
 
 
 from i2 import name_of_obj
-from front.py2pydantic import func_to_pyd_input_model_cls, pydantic_model_from_type
+from front.scrap.py2pydantic import func_to_pyd_input_model_cls, pydantic_model_from_type
 import streamlit as st
 import streamlit_pydantic as sp  # pip install streamlit-pydantic
 
