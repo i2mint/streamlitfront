@@ -7,6 +7,7 @@ specific abstract elements class defined in front.
 from dataclasses import dataclass
 from functools import partial
 from pathlib import Path
+from time import sleep
 from typing import Any, Callable, Iterable, Union
 import streamlit as st
 from pydantic import ValidationError
@@ -63,6 +64,45 @@ class App(FrontContainerBase):
         # TODO: The above is static: Should the above be done only once, and cached?
         #   Perhaps views should be cached in state?
 
+        if 'Authentication' in views:
+            session_state = st.session_state
+            if not hasattr(session_state, 'logged_in'):
+                session_state.logged_in = False
+
+            auth_view = views.pop('Authentication')
+            if session_state.logged_in:
+                self.render_views(views)
+            else:
+
+                def authenticate(is_authenticated: bool):
+                    session_state.logged_in = is_authenticated
+                    if is_authenticated:
+                        st.success('Login successful!')
+                        sleep(0.75)
+                        st.experimental_rerun()
+                    else:
+                        st.error('Login failed!')
+
+                if exec_sect := next(
+                    (c for c in auth_view.children if isinstance(c, ExecSection)), None
+                ):
+                    if exec_sect.on_submit is None:
+                        exec_sect.on_submit = authenticate
+                    else:
+                        es_on_submit = exec_sect.on_submit
+
+                        @Sig(es_on_submit)
+                        def on_submit(*args, **kwargs):
+                            es_on_submit(*args, **kwargs)
+                            authenticate(*args, **kwargs)
+
+                        exec_sect.on_submit = on_submit
+
+                auth_view()
+        else:
+            self.render_views(views)
+
+    def render_views(self, views):
         # Setup navigation
         with st.sidebar:
             st.title(self.name)
