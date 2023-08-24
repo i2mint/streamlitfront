@@ -5,7 +5,7 @@ specific abstract elements class defined in front.
 """
 
 from dataclasses import dataclass
-from functools import partial
+from functools import partial, cached_property
 from pathlib import Path
 from time import sleep
 from typing import Any, Callable, Iterable, Union
@@ -56,61 +56,55 @@ class App(FrontContainerBase):
         #         }
         #     </script>
         # ''')
+        if self.auth_view and not getattr(st.session_state, 'logged_in', False):
+            self.render_authentication_view()
+        else:
+            self.render_views()
 
-        # Make page objects
-        views = {view.name: view for view in self.children}
+    @cached_property
+    def _views(self):
+        """Separate the views from the authentication view."""
+        auth_view = False
+        views = {}
+        for view in self.children:
+            if auth_view:
+                views[view.name] = view
+                continue
+            for child in view.children:
+                if isinstance(child, ExecSection) and child.authentification is True:
+                    auth_view = view
+                    break
+            else:
+                views[view.name] = view
+        return views, auth_view
+
+    @property
+    def views(self):
         # st.session_state["views"] = views
 
         # TODO: The above is static: Should the above be done only once, and cached?
         #   Perhaps views should be cached in state?
+        return self._views[0]
 
-        if 'Authentication' in views:
-            session_state = st.session_state
-            if not hasattr(session_state, 'logged_in'):
-                session_state.logged_in = False
+    @property
+    def auth_view(self):
+        return self._views[1]
 
-            auth_view = views.pop('Authentication')
-            if session_state.logged_in:
-                self.render_views(views)
-            else:
+    def render_authentication_view(self):
+        session_state = st.session_state
+        if not hasattr(session_state, 'logged_in'):
+            session_state.logged_in = False
+        self.auth_view()
 
-                def authenticate(is_authenticated: bool):
-                    session_state.logged_in = is_authenticated
-                    if is_authenticated:
-                        st.success('Login successful!')
-                        sleep(0.75)
-                        st.experimental_rerun()
-                    else:
-                        st.error('Login failed!')
-
-                if exec_sect := next(
-                    (c for c in auth_view.children if isinstance(c, ExecSection)), None
-                ):
-                    if exec_sect.on_submit is None:
-                        exec_sect.on_submit = authenticate
-                    else:
-                        es_on_submit = exec_sect.on_submit
-
-                        @Sig(es_on_submit)
-                        def on_submit(*args, **kwargs):
-                            es_on_submit(*args, **kwargs)
-                            authenticate(*args, **kwargs)
-
-                        exec_sect.on_submit = on_submit
-
-                auth_view()
-        else:
-            self.render_views(views)
-
-    def render_views(self, views):
+    def render_views(self):
         # Setup navigation
         with st.sidebar:
             st.title(self.name)
-            view_key = st.radio(options=tuple(views.keys()), label='Select a view')
+            view_key = st.radio(options=tuple(self.views.keys()), label='Select a view')
 
         # Display the selected page with the session state
         # This is the part that actually runs the functionality that pages specifies
-        view_runner = views[view_key]  # gets the page runner
+        view_runner = self.views[view_key]  # gets the page runner
         view_runner()  # runs the page with the state
 
 
@@ -155,6 +149,7 @@ class ExecSection(ExecContainerBase):
         on_submit: Callable[[Any], None] = None,
         use_expander: bool = True,
         submit_button_label: str = 'Submit',
+        authentification: bool = False,
     ):
         super().__init__(
             obj=obj,
@@ -167,6 +162,18 @@ class ExecSection(ExecContainerBase):
         )
         self.use_expander = use_expander
         self.submit_button_label = submit_button_label
+        self.authentification = authentification
+        if authentification:
+            if on_submit is None:
+                self.on_submit = self._authenticate
+            else:
+
+                @Sig(on_submit)
+                def wrapped_on_submit(*args, **kwargs):
+                    on_submit(*args, **kwargs)
+                    self._authenticate(*args, **kwargs)
+
+                self.on_submit = wrapped_on_submit
 
     def render(self):
         if self.use_expander:
@@ -201,6 +208,11 @@ class ExecSection(ExecContainerBase):
         # input.render = noneable_render
         setattr(input_instance, 'render', noneable_render)
         return input_instance
+
+    def _authenticate(self, is_logged_in: bool):
+        st.session_state.logged_in = is_logged_in
+        if is_logged_in:
+            st.experimental_rerun()
 
 
 class TextOutput(OutputBase):
@@ -281,6 +293,25 @@ class AudioRecorder(InputBase):
         # audio_data = bytes(audio_data, 'utf-8') if audio_data else None
         # st.audio(audio_data)
         return audio_data
+
+
+@dataclass
+class SuccessFailureNotification(OutputBase):
+    success: str = 'Success!'
+    failure: str = 'Failure!'
+    post_render_sleep: float = 0
+
+    @property
+    def is_success(self):
+        return self.output
+
+    def render(self):
+        if self.is_success:
+            rv = st.success(self.success)
+        else:
+            rv = st.error(self.failure)
+        sleep(self.post_render_sleep)
+        return rv
 
 
 @dataclass
