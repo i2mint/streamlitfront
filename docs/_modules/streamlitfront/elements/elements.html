@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.30 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.31 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -124,8 +124,9 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span><span class="p">,</span> <span class="n">cached_property</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Union</span>
 <span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">ValidationError</span>
@@ -174,22 +175,55 @@
         <span class="c1">#         }</span>
         <span class="c1">#     &lt;/script&gt;</span>
         <span class="c1"># &#39;&#39;&#39;)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_view</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">,</span> <span class="s1">&#39;logged_in&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">render_authentication_view</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">render_views</span><span class="p">()</span>
 
-        <span class="c1"># Make page objects</span>
-        <span class="n">views</span> <span class="o">=</span> <span class="p">{</span><span class="n">view</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">view</span> <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">}</span>
+    <span class="nd">@cached_property</span>
+    <span class="k">def</span> <span class="nf">_views</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Separate the views from the authentication view.&quot;&quot;&quot;</span>
+        <span class="n">auth_view</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">views</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">auth_view</span><span class="p">:</span>
+                <span class="n">views</span><span class="p">[</span><span class="n">view</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">view</span>
+                <span class="k">continue</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">view</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">ExecSection</span><span class="p">)</span> <span class="ow">and</span> <span class="n">child</span><span class="o">.</span><span class="n">authentification</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="n">auth_view</span> <span class="o">=</span> <span class="n">view</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">views</span><span class="p">[</span><span class="n">view</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">view</span>
+        <span class="k">return</span> <span class="n">views</span><span class="p">,</span> <span class="n">auth_view</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">views</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># st.session_state[&quot;views&quot;] = views</span>
 
         <span class="c1"># TODO: The above is static: Should the above be done only once, and cached?</span>
         <span class="c1">#   Perhaps views should be cached in state?</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_views</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">auth_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_views</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">render_authentication_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">session_state</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">session_state</span><span class="p">,</span> <span class="s1">&#39;logged_in&#39;</span><span class="p">):</span>
+            <span class="n">session_state</span><span class="o">.</span><span class="n">logged_in</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth_view</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">render_views</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Setup navigation</span>
         <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="p">:</span>
             <span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-            <span class="n">view_key</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">radio</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">views</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Select a view&#39;</span><span class="p">)</span>
+            <span class="n">view_key</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">radio</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Select a view&#39;</span><span class="p">)</span>
 
         <span class="c1"># Display the selected page with the session state</span>
         <span class="c1"># This is the part that actually runs the functionality that pages specifies</span>
-        <span class="n">view_runner</span> <span class="o">=</span> <span class="n">views</span><span class="p">[</span><span class="n">view_key</span><span class="p">]</span>  <span class="c1"># gets the page runner</span>
+        <span class="n">view_runner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="n">view_key</span><span class="p">]</span>  <span class="c1"># gets the page runner</span>
         <span class="n">view_runner</span><span class="p">()</span>  <span class="c1"># runs the page with the state</span></div>
 
 
@@ -234,6 +268,7 @@
         <span class="n">on_submit</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">use_expander</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">submit_button_label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Submit&#39;</span><span class="p">,</span>
+        <span class="n">authentification</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span>
@@ -246,6 +281,18 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">use_expander</span> <span class="o">=</span> <span class="n">use_expander</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">submit_button_label</span> <span class="o">=</span> <span class="n">submit_button_label</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authentification</span> <span class="o">=</span> <span class="n">authentification</span>
+        <span class="k">if</span> <span class="n">authentification</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">on_submit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">on_submit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authenticate</span>
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="nd">@Sig</span><span class="p">(</span><span class="n">on_submit</span><span class="p">)</span>
+                <span class="k">def</span> <span class="nf">wrapped_on_submit</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                    <span class="n">on_submit</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_authenticate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">on_submit</span> <span class="o">=</span> <span class="n">wrapped_on_submit</span>
 
     <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_expander</span><span class="p">:</span>
@@ -279,7 +326,12 @@
 
         <span class="c1"># input.render = noneable_render</span>
         <span class="nb">setattr</span><span class="p">(</span><span class="n">input_instance</span><span class="p">,</span> <span class="s1">&#39;render&#39;</span><span class="p">,</span> <span class="n">noneable_render</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">input_instance</span></div>
+        <span class="k">return</span> <span class="n">input_instance</span>
+
+    <span class="k">def</span> <span class="nf">_authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_logged_in</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="o">.</span><span class="n">logged_in</span> <span class="o">=</span> <span class="n">is_logged_in</span>
+        <span class="k">if</span> <span class="n">is_logged_in</span><span class="p">:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">experimental_rerun</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="TextOutput"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.TextOutput">[docs]</a><span class="k">class</span> <span class="nc">TextOutput</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
@@ -360,6 +412,25 @@
         <span class="c1"># audio_data = bytes(audio_data, &#39;utf-8&#39;) if audio_data else None</span>
         <span class="c1"># st.audio(audio_data)</span>
         <span class="k">return</span> <span class="n">audio_data</span></div>
+
+
+<div class="viewcode-block" id="SuccessFailureNotification"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.SuccessFailureNotification">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">SuccessFailureNotification</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
+    <span class="n">success</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Success!&#39;</span>
+    <span class="n">failure</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Failure!&#39;</span>
+    <span class="n">post_render_sleep</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_success</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span>
+
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_success</span><span class="p">:</span>
+            <span class="n">rv</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">success</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rv</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">failure</span><span class="p">)</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">post_render_sleep</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">rv</span></div>
 
 
 <div class="viewcode-block" id="SuccessNotification"><a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.SuccessNotification">[docs]</a><span class="nd">@dataclass</span>

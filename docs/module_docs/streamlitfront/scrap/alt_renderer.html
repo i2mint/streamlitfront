@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.scrap.alt_renderer &mdash; streamlitfront 0.1.30 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>streamlitfront.scrap.alt_renderer &mdash; streamlitfront 0.1.31 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -187,7 +187,7 @@ defined design or None to fallback to the default behavior of the library.</p></
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.area_chart">
-<em class="property">static </em><code class="sig-name descname">area_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dat</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.area_chart" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">area_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dat</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Color<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.area_chart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display an area chart.</p>
 <p>This is just syntax-sugar around st.altair_chart. The main difference
 is this command uses the data’s own column and indices to figure out
@@ -209,6 +209,45 @@ This argument can only be supplied by keyword.</p></li>
 on the same chart by melting your wide-format table into a long-format table behind
 the scenes. If None, draws the data of all remaining columns as data series.
 This argument can only be supplied by keyword.</p></li>
+<li><p><strong>color</strong> (<em>str</em><em>, </em><em>tuple</em><em>, </em><em>sequence of str</em><em>, </em><em>sequence of tuple</em><em>, or </em><em>None</em>) – <p>The color to use for different series in this chart. This argument
+can only be supplied by keyword.</p>
+<p>For an area chart with just 1 series, this can be:</p>
+<ul>
+<li><p>None, to use the default color.</p></li>
+<li><p>A hex string like “#ffaa00” or “#ffaa0088”.</p></li>
+<li><p>An RGB or RGBA tuple with the red, green, blue, and alpha
+components specified as ints from 0 to 255 or floats from 0.0 to
+1.0.</p></li>
+</ul>
+<p>For an area chart with multiple series, where the dataframe is in
+long format (that is, y is None or just one column), this can be:</p>
+<ul>
+<li><p>None, to use the default colors.</p></li>
+<li><p>The name of a column in the dataset. Data points will be grouped
+into series of the same color based on the value of this column.
+In addition, if the values in this column match one of the color
+formats above (hex string or color tuple), then that color will
+be used.</p>
+<p>For example: if the dataset has 1000 rows, but this column can
+only contains the values “adult”, “child”, “baby”,
+then those 1000 datapoints will be grouped into 3 series, whose
+colors will be automatically selected from the default palette.</p>
+<p>But, if for the same 1000-row dataset, this column contained
+the values “#ffaa00”, “#f0f”, “#0000ff”, then then those 1000
+datapoints would still be grouped into 3 series, but their
+colors would be “#ffaa00”, “#f0f”, “#0000ff” this time around.</p>
+</li>
+</ul>
+<p>For an area chart with multiple series, where the dataframe is in
+wide format (that is, y is a sequence of columns), this can be:</p>
+<ul>
+<li><p>None, to use the default colors.</p></li>
+<li><p>A list of string colors or color tuples to be used for each of
+the series in the chart. This list should have the same length
+as the number of y values (e.g. <code class="docutils literal notranslate"><span class="pre">color=[&quot;#fd0&quot;,</span> <span class="pre">&quot;#f0f&quot;,</span> <span class="pre">&quot;#04f&quot;]</span></code>
+for three lines).</p></li>
+</ul>
+</p></li>
 <li><p><strong>width</strong> (<em>int</em>) – The chart width in pixels. If 0, selects the width automatically.
 This argument can only be supplied by keyword.</p></li>
 <li><p><strong>height</strong> (<em>int</em>) – The chart height in pixels. If 0, selects the height automatically.
@@ -226,9 +265,49 @@ This argument can only be supplied by keyword.</p></li>
 <span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
-<span class="gp">...</span>
+<span class="gp">... </span>    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">area_chart</span><span class="p">(</span><span class="n">chart_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also choose different columns to use for x and y, as well as set
+the color dynamically based on a 3rd column (assuming your dataframe is in
+long format):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;col1&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s1">&#39;col2&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s1">&#39;col3&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span> <span class="mi">20</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">area_chart</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">chart_data</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;col1&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;col2&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;col3&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, if your dataframe is in wide format, you can group multiple
+columns under the y argument to show multiple series with different
+colors:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span> <span class="s1">&#39;col2&#39;</span><span class="p">,</span> <span class="s1">&#39;col3&#39;</span><span class="p">])</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">area_chart</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">chart_data</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col2&#39;</span><span class="p">,</span> <span class="s1">&#39;col3&#39;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span><span class="s1">&#39;#0000FF&#39;</span><span class="p">]</span>  <span class="c1"># Optional</span>
+<span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -292,7 +371,7 @@ See <a class="reference external" href="https://tools.ietf.org/html/rfc4281">htt
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.bar_chart">
-<em class="property">static </em><code class="sig-name descname">bar_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dat</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.bar_chart" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">bar_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dat</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Color<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.bar_chart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a bar chart.</p>
 <p>This is just syntax-sugar around st.altair_chart. The main difference
 is this command uses the data’s own column and indices to figure out
@@ -314,6 +393,45 @@ This argument can only be supplied by keyword.</p></li>
 on the same chart by melting your wide-format table into a long-format table behind
 the scenes. If None, draws the data of all remaining columns as data series.
 This argument can only be supplied by keyword.</p></li>
+<li><p><strong>color</strong> (<em>str</em><em>, </em><em>tuple</em><em>, </em><em>sequence of str</em><em>, </em><em>sequence of tuple</em><em>, or </em><em>None</em>) – <p>The color to use for different series in this chart. This argument
+can only be supplied by keyword.</p>
+<p>For a bar chart with just 1 series, this can be:</p>
+<ul>
+<li><p>None, to use the default color.</p></li>
+<li><p>A hex string like “#ffaa00” or “#ffaa0088”.</p></li>
+<li><p>An RGB or RGBA tuple with the red, green, blue, and alpha
+components specified as ints from 0 to 255 or floats from 0.0 to
+1.0.</p></li>
+</ul>
+<p>For a bar chart with multiple series, where the dataframe is in
+long format (that is, y is None or just one column), this can be:</p>
+<ul>
+<li><p>None, to use the default colors.</p></li>
+<li><p>The name of a column in the dataset. Data points will be grouped
+into series of the same color based on the value of this column.
+In addition, if the values in this column match one of the color
+formats above (hex string or color tuple), then that color will
+be used.</p>
+<p>For example: if the dataset has 1000 rows, but this column can
+only contains the values “adult”, “child”, “baby”,
+then those 1000 datapoints will be grouped into 3 series, whose
+colors will be automatically selected from the default palette.</p>
+<p>But, if for the same 1000-row dataset, this column contained
+the values “#ffaa00”, “#f0f”, “#0000ff”, then then those 1000
+datapoints would still be grouped into 3 series, but their
+colors would be “#ffaa00”, “#f0f”, “#0000ff” this time around.</p>
+</li>
+</ul>
+<p>For a bar chart with multiple series, where the dataframe is in
+wide format (that is, y is a sequence of columns), this can be:</p>
+<ul>
+<li><p>None, to use the default colors.</p></li>
+<li><p>A list of string colors or color tuples to be used for each of
+the series in the chart. This list should have the same length
+as the number of y values (e.g. <code class="docutils literal notranslate"><span class="pre">color=[&quot;#fd0&quot;,</span> <span class="pre">&quot;#f0f&quot;,</span> <span class="pre">&quot;#04f&quot;]</span></code>
+for three lines).</p></li>
+</ul>
+</p></li>
 <li><p><strong>width</strong> (<em>int</em>) – The chart width in pixels. If 0, selects the width automatically.
 This argument can only be supplied by keyword.</p></li>
 <li><p><strong>height</strong> (<em>int</em>) – The chart height in pixels. If 0, selects the height automatically.
@@ -334,6 +452,46 @@ This argument can only be supplied by keyword.</p></li>
 <span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">bar_chart</span><span class="p">(</span><span class="n">chart_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also choose different columns to use for x and y, as well as set
+the color dynamically based on a 3rd column (assuming your dataframe is in
+long format):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;col1&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s1">&#39;col2&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s1">&#39;col3&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">],</span><span class="mi">20</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">bar_chart</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">chart_data</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;col2&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;col3&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, if your dataframe is in wide format, you can group multiple
+columns under the y argument to show multiple series with different
+colors:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span> <span class="s1">&#39;col2&#39;</span><span class="p">,</span> <span class="s1">&#39;col3&#39;</span><span class="p">])</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">bar_chart</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">chart_data</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col2&#39;</span><span class="p">,</span> <span class="s1">&#39;col3&#39;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span><span class="s1">&#39;#0000FF&#39;</span><span class="p">]</span>  <span class="c1"># Optional</span>
+<span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -395,7 +553,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -429,6 +587,7 @@ False otherwise.</p>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">&quot;Reset&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;primary&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s1">&#39;Say hello&#39;</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Why hello there&#39;</span><span class="p">)</span>
 <span class="gp">... </span><span class="k">else</span><span class="p">:</span>
@@ -457,7 +616,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -525,7 +684,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 </p></li>
 <li><p><strong>unsafe_allow_html</strong> (<em>bool</em>) – <p>By default, any HTML tags found in strings will be escaped and
@@ -569,11 +728,14 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
 backslash-escaping them. E.g. <code class="docutils literal notranslate"><span class="pre">1\.</span> <span class="pre">Not</span> <span class="pre">an</span> <span class="pre">ordered</span> <span class="pre">list</span></code>.</p>
+<p>For accessibility reasons, you should never set an empty label (label=””)
+but hide it with label_visibility if needed. In the future, we may disallow
+empty labels by raising an exception.</p>
 </p></li>
 <li><p><strong>value</strong> (<em>bool</em>) – Preselect the checkbox when it first renders. This will be
 cast to bool internally.</p></li>
@@ -659,7 +821,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -706,7 +868,7 @@ If “collapsed”, both the label and the space are removed. Default is
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.columns">
-<em class="property">static </em><code class="sig-name descname">columns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">spec</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>int<span class="p">, </span>Sequence<span class="p">[</span>Union<span class="p">[</span>int<span class="p">, </span>float<span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">gap</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">'small'</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>DeltaGenerator<span class="p">]</span><a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.columns" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">columns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">spec</span><span class="p">:</span> <span class="n">SpecType</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">gap</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">'small'</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>DeltaGenerator<span class="p">]</span><a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Insert containers laid out as side-by-side columns.</p>
 <p>Inserts a number of multi-element containers laid out side-by-side and
 returns a list of container objects.</p>
@@ -780,7 +942,7 @@ argument can only be supplied by keyword.</p></li>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.container">
-<em class="property">static </em><code class="sig-name descname">container</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.container" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">container</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.container" title="Permalink to this definition">¶</a></dt>
 <dd><p>Insert a multi-element container.</p>
 <p>Inserts an invisible container into your app that can be used to hold
 multiple elements. This allows you to, for example, insert multiple
@@ -937,7 +1099,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -979,21 +1141,37 @@ If “collapsed”, both the label and the space are removed. Default is
 <dd class="field-odd"><p>datetime.date or a tuple with 0-2 dates</p>
 </dd>
 </dl>
-<p class="rubric">Example</p>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">date_input</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="s2">&quot;When</span><span class="se">\&#39;</span><span class="s2">s your birthday&quot;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">date_input</span><span class="p">(</span><span class="s2">&quot;When&#39;s your birthday&quot;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Your birthday is:&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">next_year</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">year</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jan_1</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">next_year</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dec_31</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">next_year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">date_input</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s2">&quot;Select your vacation for next year&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="n">jan_1</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="n">next_year</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="n">jan_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">dec_31</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;MM.DD.YYYY&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.download_button">
-<em class="property">static </em><code class="sig-name descname">download_button</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">label</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>bytes<span class="p">, </span>TextIO<span class="p">, </span>BinaryIO<span class="p">, </span>io.RawIOBase<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mime</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>int<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">help</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">on_click</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span>None<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">args</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Tuple<span class="p">[</span>Any<span class="p">, </span><span class="p">…</span><span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">disabled</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.download_button" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">download_button</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">label</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>bytes<span class="p">, </span>TextIO<span class="p">, </span>BinaryIO<span class="p">, </span>io.RawIOBase<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">file_name</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mime</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>int<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">help</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">on_click</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Callable<span class="p">[</span><span class="p">[</span><span class="p">…</span><span class="p">]</span><span class="p">, </span>None<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">args</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Tuple<span class="p">[</span>Any<span class="p">, </span><span class="p">…</span><span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">kwargs</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">type</span><span class="p">:</span> <span class="n">Literal<span class="p">[</span>primary<span class="p">, </span>secondary<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">'secondary'</span></em>, <em class="sig-param"><span class="n">disabled</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.download_button" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a download button widget.</p>
 <p>This is useful when you would like to provide a way for your users
 to download a file directly from your app.</p>
@@ -1016,7 +1194,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -1040,6 +1218,9 @@ hovered over.</p></li>
 <li><p><strong>on_click</strong> (<em>callable</em>) – An optional callback invoked when this button is clicked.</p></li>
 <li><p><strong>args</strong> (<em>tuple</em>) – An optional tuple of args to pass to the callback.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em>) – An optional dict of kwargs to pass to the callback.</p></li>
+<li><p><strong>type</strong> (<em>&quot;secondary&quot;</em><em> or </em><em>&quot;primary&quot;</em>) – An optional string that specifies the button type. Can be “primary” for a
+button with additional emphasis or “secondary” for a normal button. This
+argument can only be supplied by keyword. Defaults to “secondary”.</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the download button if set to
 True. The default is False. This argument can only be supplied by
 keyword.</p></li>
@@ -1189,7 +1370,7 @@ Defaults to None, which means no icon is displayed.</p></li>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.expander">
-<em class="property">static </em><code class="sig-name descname">expander</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">label</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">expanded</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.expander" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">expander</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">label</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">expanded</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.expander" title="Permalink to this definition">¶</a></dt>
 <dd><p>Insert a multi-element container that can be expanded/collapsed.</p>
 <p>Inserts a container into your app that can be used to hold multiple elements
 and can be expanded or collapsed by the user. When collapsed, all that is
@@ -1217,7 +1398,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -1283,7 +1464,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -1386,9 +1567,9 @@ examples below.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">st.button</span></code> and <code class="docutils literal notranslate"><span class="pre">st.download_button</span></code> cannot be added to a form.</p></li>
 <li><p>Forms can appear anywhere in your app (sidebar, columns, etc),
 but they cannot be embedded inside other forms.</p></li>
+<li><p>Within a form, the only widget that can have a callback function is
+<code class="docutils literal notranslate"><span class="pre">st.form_submit_button</span></code>.</p></li>
 </ul>
-<p>For more information about forms, check out our
-<a class="reference external" href="https://blog.streamlit.io/introducing-submit-button-and-forms/">blog post</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1529,7 +1710,7 @@ language:</p>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.header">
-<em class="property">static </em><code class="sig-name descname">header</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">body</span><span class="p">:</span> <span class="n">streamlit.type_util.SupportsStr</span></em>, <em class="sig-param"><span class="n">anchor</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>Literal<span class="p">[</span>False<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">help</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.header" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">header</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">body</span><span class="p">:</span> <span class="n">streamlit.type_util.SupportsStr</span></em>, <em class="sig-param"><span class="n">anchor</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>Literal<span class="p">[</span>False<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">help</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">divider</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>bool<span class="p">, </span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.header" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display text in header formatting.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1546,21 +1727,27 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 </p></li>
 <li><p><strong>anchor</strong> (<em>str</em><em> or </em><em>False</em>) – The anchor name of the header that can be accessed with #anchor
 in the URL. If omitted, it generates an anchor using the body.
 If False, the anchor is not shown in the UI.</p></li>
 <li><p><strong>help</strong> (<em>str</em>) – An optional tooltip that gets displayed next to the header.</p></li>
+<li><p><strong>divider</strong> (<em>bool</em><em> or </em><em>“blue”</em><em>, </em><em>“green”</em><em>, </em><em>“orange”</em><em>, </em><em>“red”</em><em>, </em><em>“violet”</em><em>, </em><em>“gray”/&quot;grey&quot;</em><em>, or </em><em>“rainbow”</em>) – Shows a colored divider below the header. If True, successive
+headers will cycle through divider colors. That is, the first
+header will have a blue line, the second header will have a
+green line, and so on. If a string, the color can be set to one of
+the following: blue, green, orange, red, violet, gray/grey, or
+rainbow.</p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s1">&#39;This is a header&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s1">&#39;A header with _italics_ :blue[colors] and emojis :sunglasses:&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s1">&#39;This is a header with a divider&#39;</span><span class="p">,</span> <span class="n">divider</span><span class="o">=</span><span class="s1">&#39;rainbow&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s1">&#39;_Streamlit_ is :blue[cool] :sunglasses:&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1763,7 +1950,7 @@ a lot.</p></li>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.line_chart">
-<em class="property">static </em><code class="sig-name descname">line_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dat</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.line_chart" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">line_chart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Dat</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">y</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Sequence<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>str<span class="p">, </span>Color<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">width</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">height</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_container_width</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerato<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.line_chart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a line chart.</p>
 <p>This is syntax-sugar around st.altair_chart. The main difference
 is this command uses the data’s own column and indices to figure out
@@ -1785,6 +1972,45 @@ This argument can only be supplied by keyword.</p></li>
 on the same chart by melting your wide-format table into a long-format table behind
 the scenes. If None, draws the data of all remaining columns as data series.
 This argument can only be supplied by keyword.</p></li>
+<li><p><strong>color</strong> (<em>str</em><em>, </em><em>tuple</em><em>, </em><em>sequence of str</em><em>, </em><em>sequence of tuple</em><em>, or </em><em>None</em>) – <p>The color to use for different lines in this chart. This argument
+can only be supplied by keyword.</p>
+<p>For a line chart with just one line, this can be:</p>
+<ul>
+<li><p>None, to use the default color.</p></li>
+<li><p>A hex string like “#ffaa00” or “#ffaa0088”.</p></li>
+<li><p>An RGB or RGBA tuple with the red, green, blue, and alpha
+components specified as ints from 0 to 255 or floats from 0.0 to
+1.0.</p></li>
+</ul>
+<p>For a line chart with multiple lines, where the dataframe is in
+long format (that is, y is None or just one column), this can be:</p>
+<ul>
+<li><p>None, to use the default colors.</p></li>
+<li><p>The name of a column in the dataset. Data points will be grouped
+into lines of the same color based on the value of this column.
+In addition, if the values in this column match one of the color
+formats above (hex string or color tuple), then that color will
+be used.</p>
+<p>For example: if the dataset has 1000 rows, but this column can
+only contains the values “adult”, “child”, “baby”, then
+those 1000 datapoints will be grouped into three lines, whose
+colors will be automatically selected from the default palette.</p>
+<p>But, if for the same 1000-row dataset, this column contained
+the values “#ffaa00”, “#f0f”, “#0000ff”, then then those 1000
+datapoints would still be grouped into three lines, but their
+colors would be “#ffaa00”, “#f0f”, “#0000ff” this time around.</p>
+</li>
+</ul>
+<p>For a line chart with multiple lines, where the dataframe is in
+wide format (that is, y is a sequence of columns), this can be:</p>
+<ul>
+<li><p>None, to use the default colors.</p></li>
+<li><p>A list of string colors or color tuples to be used for each of
+the lines in the chart. This list should have the same length
+as the number of y values (e.g. <code class="docutils literal notranslate"><span class="pre">color=[&quot;#fd0&quot;,</span> <span class="pre">&quot;#f0f&quot;,</span> <span class="pre">&quot;#04f&quot;]</span></code>
+for three lines).</p></li>
+</ul>
+</p></li>
 <li><p><strong>width</strong> (<em>int</em>) – The chart width in pixels. If 0, selects the width automatically.
 This argument can only be supplied by keyword.</p></li>
 <li><p><strong>height</strong> (<em>int</em>) – The chart height in pixels. If 0, selects the height automatically.
@@ -1803,8 +2029,48 @@ This argument can only be supplied by keyword.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
 <span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
-<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">line_chart</span><span class="p">(</span><span class="n">chart_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also choose different columns to use for x and y, as well as set
+the color dynamically based on a 3rd column (assuming your dataframe is in
+long format):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;col1&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s1">&#39;col2&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s1">&#39;col3&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">],</span> <span class="mi">20</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">line_chart</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">chart_data</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;col1&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;col2&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;col3&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, if your dataframe is in wide format, you can group multiple
+columns under the y argument to show multiple lines with different
+colors:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span> <span class="s1">&#39;col2&#39;</span><span class="p">,</span> <span class="s1">&#39;col3&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">line_chart</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">chart_data</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;col1&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;col2&#39;</span><span class="p">,</span> <span class="s1">&#39;col3&#39;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="s1">&#39;#0000FF&#39;</span><span class="p">]</span>  <span class="c1"># Optional</span>
+<span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1934,7 +2200,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 </p></li>
 <li><p><strong>unsafe_allow_html</strong> (<em>bool</em>) – <p>By default, any HTML tags found in the body will be escaped and
@@ -1952,9 +2218,19 @@ users’ security. For more information, see:</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="s1">&#39;Streamlit is **_really_ cool**.&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="s2">&quot;This text is :red[colored red], and this is **:blue[colored]** and bold.&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="s2">&quot;:green[$\sqrt{x^2+y^2}=1$] is a Pythagorean identity. :pencil:&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="s2">&quot;*Streamlit* is **really** ***cool***.&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="s1">    :red[Streamlit] :orange[can] :green[write] :blue[text] :violet[in]</span>
+<span class="gp">... </span><span class="s1">    :gray[pretty] :rainbow[colors].&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="s2">&quot;Here&#39;s a bouquet &amp;mdash;</span><span class="se">\</span>
+<span class="gp">... </span><span class="s2">            :tulip::cherry_blossom::rose::hibiscus::sunflower::blossom:&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">multi</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;If you end a line with two spaces,</span>
+<span class="gp">... </span><span class="s1">a soft return is used for the next line.</span>
+<span class="gp">...</span>
+<span class="gp">... </span><span class="s1">Two (or more) newline characters in a row will result in a hard return.</span>
+<span class="gp">... </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">multi</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1983,7 +2259,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -2056,7 +2332,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -2139,7 +2415,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -2271,7 +2547,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -2429,7 +2705,7 @@ error using Matplotlib with Streamlit, try setting your backend to “TkAgg”:<
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.radio">
-<em class="property">static </em><code class="sig-name descname">radio</code><span class="sig-paren">(</span><em class="sig-param">self, label: str, options: Union[Iterable[T], streamlit.type_util.DataFrameGenericAlias[T]], index: int = 0, format_func: Callable[[Any], Any] = &lt;class 'str'&gt;, key: Optional[Union[str, int]] = None, help: Optional[str, None] = None, on_change: Optional[Callable[[...], None], None] = None, args: Optional[Tuple[Any, ...], None] = None, kwargs: Optional[Dict[str, Any], None] = None, *, disabled: bool = False, horizontal: bool = False, label_visibility: Literal[visible, hidden, collapsed] = 'visible'</em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>T<span class="p">, </span>None<span class="p">]</span><a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.radio" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">radio</code><span class="sig-paren">(</span><em class="sig-param">self, label: str, options: Union[Iterable[T], streamlit.type_util.DataFrameGenericAlias[T]], index: int = 0, format_func: Callable[[Any], Any] = &lt;class 'str'&gt;, key: Optional[Union[str, int]] = None, help: Optional[str, None] = None, on_change: Optional[Callable[[...], None], None] = None, args: Optional[Tuple[Any, ...], None] = None, kwargs: Optional[Dict[str, Any], None] = None, *, disabled: bool = False, horizontal: bool = False, captions: Optional[Sequence[str], None] = None, label_visibility: Literal[visible, hidden, collapsed] = 'visible'</em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>T<span class="p">, </span>None<span class="p">]</span><a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.radio" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display a radio button widget.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2447,7 +2723,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -2456,8 +2732,10 @@ backslash-escaping them. E.g. <code class="docutils literal notranslate"><span c
 but hide it with label_visibility if needed. In the future, we may disallow
 empty labels by raising an exception.</p>
 </p></li>
-<li><p><strong>options</strong> (<em>Sequence</em><em>, </em><em>numpy.ndarray</em><em>, </em><em>pandas.Series</em><em>, </em><em>pandas.DataFrame</em><em>, or </em><em>pandas.Index</em>) – Labels for the radio options. This will be cast to str internally
-by default. For pandas.DataFrame, the first column is selected.</p></li>
+<li><p><strong>options</strong> (<em>Sequence</em><em>, </em><em>numpy.ndarray</em><em>, </em><em>pandas.Series</em><em>, </em><em>pandas.DataFrame</em><em>, or </em><em>pandas.Index</em>) – Labels for the radio options. Labels can include markdown as
+described in the <code class="docutils literal notranslate"><span class="pre">label</span></code> parameter and will be cast to str
+internally by default. For pandas.DataFrame, the first column is
+selected.</p></li>
 <li><p><strong>index</strong> (<em>int</em>) – The index of the preselected option on first render.</p></li>
 <li><p><strong>format_func</strong> (<em>function</em>) – Function to modify the display of radio options. It receives
 the raw option as an argument and should output the label to be
@@ -2477,6 +2755,8 @@ keyword.</p></li>
 <li><p><strong>horizontal</strong> (<em>bool</em>) – An optional boolean, which orients the radio group horizontally.
 The default is false (vertical buttons). This argument can only
 be supplied by keyword.</p></li>
+<li><p><strong>captions</strong> (<em>iterable of str</em><em> or </em><em>None</em>) – A list of captions to show below each radio button. If None (default),
+no captions are shown.</p></li>
 <li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
 is still empty space for it above the widget (equivalent to label=””).
 If “collapsed”, both the label and the space are removed. Default is
@@ -2494,10 +2774,11 @@ If “collapsed”, both the label and the space are removed. Default is
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">genre</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">radio</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="s2">&quot;What</span><span class="se">\&#39;</span><span class="s2">s your favorite movie genre&quot;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="p">(</span><span class="s1">&#39;Comedy&#39;</span><span class="p">,</span> <span class="s1">&#39;Drama&#39;</span><span class="p">,</span> <span class="s1">&#39;Documentary&#39;</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="s2">&quot;What&#39;s your favorite movie genre&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">&quot;:rainbow[Comedy]&quot;</span><span class="p">,</span> <span class="s2">&quot;***Drama***&quot;</span><span class="p">,</span> <span class="s2">&quot;Documentary :movie_camera:&quot;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">captions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Laugh out loud.&quot;</span><span class="p">,</span> <span class="s2">&quot;Get the popcorn.&quot;</span><span class="p">,</span> <span class="s2">&quot;Never stop learning.&quot;</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">genre</span> <span class="o">==</span> <span class="s1">&#39;Comedy&#39;</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">genre</span> <span class="o">==</span> <span class="s1">&#39;:rainbow[Comedy]&#39;</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;You selected comedy.&#39;</span><span class="p">)</span>
 <span class="gp">... </span><span class="k">else</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;You didn</span><span class="se">\&#39;</span><span class="s2">t select comedy.&quot;</span><span class="p">)</span>
@@ -2531,7 +2812,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -2616,7 +2897,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -2638,7 +2919,11 @@ not share the same key.</p></li>
 <li><p><strong>on_change</strong> (<em>callable</em>) – An optional callback invoked when this selectbox’s value changes.</p></li>
 <li><p><strong>args</strong> (<em>tuple</em>) – An optional tuple of args to pass to the callback.</p></li>
 <li><p><strong>kwargs</strong> (<em>dict</em>) – An optional dict of kwargs to pass to the callback.</p></li>
-<li><p><strong>placeholder</strong> (<em>str</em>) – A string to display when no options are selected. Defaults to ‘Select…’.</p></li>
+<li><p><strong>placeholder</strong> (<em>str</em>) – <p>A string to display when no options are selected. Defaults to ‘Select…’.</p>
+<p>A selectbox can’t be empty, so a placeholder only displays while a
+user’s cursor is in a selectbox after manually deleting the current
+selection. A future update will allow selectboxes to be empty.</p>
+</p></li>
 <li><p><strong>disabled</strong> (<em>bool</em>) – An optional boolean, which disables the selectbox if set to True.
 The default is False. This argument can only be supplied by keyword.</p></li>
 <li><p><strong>label_visibility</strong> (<em>&quot;visible&quot;</em><em>, </em><em>&quot;hidden&quot;</em><em>, or </em><em>&quot;collapsed&quot;</em>) – The visibility of the label. If “hidden”, the label doesn’t show but there
@@ -2700,7 +2985,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -2794,7 +3079,7 @@ the data type of the value parameter.</p>
 
 <dl class="py method">
 <dt id="streamlitfront.scrap.alt_renderer.StreamlitRenderers.subheader">
-<em class="property">static </em><code class="sig-name descname">subheader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">body</span><span class="p">:</span> <span class="n">streamlit.type_util.SupportsStr</span></em>, <em class="sig-param"><span class="n">anchor</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>Literal<span class="p">[</span>False<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">help</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.subheader" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">subheader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">body</span><span class="p">:</span> <span class="n">streamlit.type_util.SupportsStr</span></em>, <em class="sig-param"><span class="n">anchor</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>Literal<span class="p">[</span>False<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">help</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">divider</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>bool<span class="p">, </span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; DeltaGenerator<a class="headerlink" href="#streamlitfront.scrap.alt_renderer.StreamlitRenderers.subheader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display text in subheader formatting.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2811,21 +3096,27 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 </p></li>
 <li><p><strong>anchor</strong> (<em>str</em><em> or </em><em>False</em>) – The anchor name of the header that can be accessed with #anchor
 in the URL. If omitted, it generates an anchor using the body.
 If False, the anchor is not shown in the UI.</p></li>
 <li><p><strong>help</strong> (<em>str</em>) – An optional tooltip that gets displayed next to the subheader.</p></li>
+<li><p><strong>divider</strong> (<em>bool</em><em> or </em><em>“blue”</em><em>, </em><em>“green”</em><em>, </em><em>“orange”</em><em>, </em><em>“red”</em><em>, </em><em>“violet”</em><em>, </em><em>“gray”/&quot;grey&quot;</em><em>, or </em><em>“rainbow”</em>) – Shows a colored divider below the header. If True, successive
+headers will cycle through divider colors. That is, the first
+header will have a blue line, the second header will have a
+green line, and so on. If a string, the color can be set to one of
+the following: blue, green, orange, red, violet, gray/grey, or
+rainbow.</p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;This is a subheader&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;A subheader with _italics_ :blue[colors] and emojis :sunglasses:&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;This is a subheader with a divider&#39;</span><span class="p">,</span> <span class="n">divider</span><span class="o">=</span><span class="s1">&#39;rainbow&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s1">&#39;_Streamlit_ is :blue[cool] :sunglasses:&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -2922,7 +3213,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -2996,7 +3287,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -3069,7 +3360,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 <p>Unsupported elements are unwrapped so only their children (text contents) render.
 Display unsupported elements as literal characters by
@@ -3136,7 +3427,7 @@ must be on their own lines). Supported LaTeX functions are listed
 at <a class="reference external" href="https://katex.org/docs/supported.html">https://katex.org/docs/supported.html</a>.</p></li>
 <li><p>Colored text, using the syntax <code class="docutils literal notranslate"><span class="pre">:color[text</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">colored]</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">color</span></code> needs to be replaced with any of the following
-supported colors: blue, green, orange, red, violet.</p></li>
+supported colors: blue, green, orange, red, violet, gray/grey, rainbow.</p></li>
 </ul>
 </p></li>
 <li><p><strong>anchor</strong> (<em>str</em><em> or </em><em>False</em>) – The anchor name of the header that can be accessed with #anchor
@@ -3150,7 +3441,7 @@ If False, the anchor is not shown in the UI.</p></li>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;This is a title&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A title with _italics_ :blue[colors] and emojis :sunglasses:&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;_Streamlit_ is :blue[cool] :sunglasses:&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>

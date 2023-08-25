@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlit.delta_generator &mdash; streamlitfront 0.1.30 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>streamlit.delta_generator &mdash; streamlitfront 0.1.31 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -143,6 +143,7 @@
     <span class="n">Hashable</span><span class="p">,</span>
     <span class="n">Iterable</span><span class="p">,</span>
     <span class="n">NoReturn</span><span class="p">,</span>
+    <span class="n">Optional</span><span class="p">,</span>
     <span class="n">Type</span><span class="p">,</span>
     <span class="n">TypeVar</span><span class="p">,</span>
     <span class="n">cast</span><span class="p">,</span>
@@ -155,27 +156,21 @@
 <span class="kn">from</span> <span class="nn">streamlit</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">env_util</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">runtime</span><span class="p">,</span> <span class="n">type_util</span><span class="p">,</span> <span class="n">util</span>
 <span class="kn">from</span> <span class="nn">streamlit.cursor</span> <span class="kn">import</span> <span class="n">Cursor</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.alert</span> <span class="kn">import</span> <span class="n">AlertMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.altair_utils</span> <span class="kn">import</span> <span class="n">AddRowsMetadata</span>
 
 <span class="c1"># DataFrame elements come in two flavors: &quot;Legacy&quot; and &quot;Arrow&quot;.</span>
 <span class="c1"># We select between them with the DataFrameElementSelectorMixin.</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.arrow</span> <span class="kn">import</span> <span class="n">ArrowMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.arrow_altair</span> <span class="kn">import</span> <span class="n">ArrowAltairMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.arrow_altair</span> <span class="kn">import</span> <span class="n">ArrowAltairMixin</span><span class="p">,</span> <span class="n">prep_data</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.arrow_vega_lite</span> <span class="kn">import</span> <span class="n">ArrowVegaLiteMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.balloons</span> <span class="kn">import</span> <span class="n">BalloonsMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.bokeh_chart</span> <span class="kn">import</span> <span class="n">BokehMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.button</span> <span class="kn">import</span> <span class="n">ButtonMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.camera_input</span> <span class="kn">import</span> <span class="n">CameraInputMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.chat</span> <span class="kn">import</span> <span class="n">ChatMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.checkbox</span> <span class="kn">import</span> <span class="n">CheckboxMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.code</span> <span class="kn">import</span> <span class="n">CodeMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.color_picker</span> <span class="kn">import</span> <span class="n">ColorPickerMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.data_editor</span> <span class="kn">import</span> <span class="n">DataEditorMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.dataframe_selector</span> <span class="kn">import</span> <span class="n">DataFrameSelectorMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.deck_gl_json_chart</span> <span class="kn">import</span> <span class="n">PydeckMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.doc_string</span> <span class="kn">import</span> <span class="n">HelpMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.empty</span> <span class="kn">import</span> <span class="n">EmptyMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.exception</span> <span class="kn">import</span> <span class="n">ExceptionMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.file_uploader</span> <span class="kn">import</span> <span class="n">FileUploaderMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.form</span> <span class="kn">import</span> <span class="n">FormData</span><span class="p">,</span> <span class="n">FormMixin</span><span class="p">,</span> <span class="n">current_form_id</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.graphviz_chart</span> <span class="kn">import</span> <span class="n">GraphvizMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.heading</span> <span class="kn">import</span> <span class="n">HeadingMixin</span>
@@ -183,27 +178,34 @@
 <span class="kn">from</span> <span class="nn">streamlit.elements.image</span> <span class="kn">import</span> <span class="n">ImageMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.json</span> <span class="kn">import</span> <span class="n">JsonMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.layouts</span> <span class="kn">import</span> <span class="n">LayoutsMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.legacy_altair</span> <span class="kn">import</span> <span class="n">LegacyAltairMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.legacy_altair</span> <span class="kn">import</span> <span class="n">ArrowNotSupportedError</span><span class="p">,</span> <span class="n">LegacyAltairMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.legacy_data_frame</span> <span class="kn">import</span> <span class="n">LegacyDataFrameMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.legacy_vega_lite</span> <span class="kn">import</span> <span class="n">LegacyVegaLiteMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.map</span> <span class="kn">import</span> <span class="n">MapMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.markdown</span> <span class="kn">import</span> <span class="n">MarkdownMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.media</span> <span class="kn">import</span> <span class="n">MediaMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.metric</span> <span class="kn">import</span> <span class="n">MetricMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.multiselect</span> <span class="kn">import</span> <span class="n">MultiSelectMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.number_input</span> <span class="kn">import</span> <span class="n">NumberInputMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.plotly_chart</span> <span class="kn">import</span> <span class="n">PlotlyMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.progress</span> <span class="kn">import</span> <span class="n">ProgressMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.pyplot</span> <span class="kn">import</span> <span class="n">PyplotMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.radio</span> <span class="kn">import</span> <span class="n">RadioMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.select_slider</span> <span class="kn">import</span> <span class="n">SelectSliderMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.selectbox</span> <span class="kn">import</span> <span class="n">SelectboxMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.slider</span> <span class="kn">import</span> <span class="n">SliderMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.snow</span> <span class="kn">import</span> <span class="n">SnowMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.text</span> <span class="kn">import</span> <span class="n">TextMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.text_widgets</span> <span class="kn">import</span> <span class="n">TextWidgetsMixin</span>
-<span class="kn">from</span> <span class="nn">streamlit.elements.time_widgets</span> <span class="kn">import</span> <span class="n">TimeWidgetsMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.toast</span> <span class="kn">import</span> <span class="n">ToastMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.button</span> <span class="kn">import</span> <span class="n">ButtonMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.camera_input</span> <span class="kn">import</span> <span class="n">CameraInputMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.chat</span> <span class="kn">import</span> <span class="n">ChatMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.checkbox</span> <span class="kn">import</span> <span class="n">CheckboxMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.color_picker</span> <span class="kn">import</span> <span class="n">ColorPickerMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.data_editor</span> <span class="kn">import</span> <span class="n">DataEditorMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.file_uploader</span> <span class="kn">import</span> <span class="n">FileUploaderMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.multiselect</span> <span class="kn">import</span> <span class="n">MultiSelectMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.number_input</span> <span class="kn">import</span> <span class="n">NumberInputMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.radio</span> <span class="kn">import</span> <span class="n">RadioMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.select_slider</span> <span class="kn">import</span> <span class="n">SelectSliderMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.selectbox</span> <span class="kn">import</span> <span class="n">SelectboxMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.slider</span> <span class="kn">import</span> <span class="n">SliderMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.text_widgets</span> <span class="kn">import</span> <span class="n">TextWidgetsMixin</span>
+<span class="kn">from</span> <span class="nn">streamlit.elements.widgets.time_widgets</span> <span class="kn">import</span> <span class="n">TimeWidgetsMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.elements.write</span> <span class="kn">import</span> <span class="n">WriteMixin</span>
 <span class="kn">from</span> <span class="nn">streamlit.errors</span> <span class="kn">import</span> <span class="n">NoSessionContext</span><span class="p">,</span> <span class="n">StreamlitAPIException</span>
 <span class="kn">from</span> <span class="nn">streamlit.logger</span> <span class="kn">import</span> <span class="n">get_logger</span>
@@ -232,6 +234,7 @@
     <span class="s2">&quot;arrow_line_chart&quot;</span><span class="p">,</span>
     <span class="s2">&quot;arrow_area_chart&quot;</span><span class="p">,</span>
     <span class="s2">&quot;arrow_bar_chart&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;arrow_scatter_chart&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">Value</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">)</span>
@@ -536,7 +539,7 @@
         <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">element_proto</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">return_value</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">last_index</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">add_rows_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AddRowsMetadata</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">element_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">element_height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeltaGenerator</span><span class="p">:</span>
@@ -548,7 +551,7 @@
         <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">element_proto</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">return_value</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">NoValue</span><span class="p">],</span>
-        <span class="n">last_index</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">add_rows_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AddRowsMetadata</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">element_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">element_height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -560,7 +563,7 @@
         <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">element_proto</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">return_value</span><span class="p">:</span> <span class="n">Value</span><span class="p">,</span>
-        <span class="n">last_index</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">add_rows_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AddRowsMetadata</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">element_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">element_height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Value</span><span class="p">:</span>
@@ -572,7 +575,7 @@
         <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">element_proto</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">return_value</span><span class="p">:</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">last_index</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">add_rows_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AddRowsMetadata</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">element_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">element_height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeltaGenerator</span><span class="p">:</span>
@@ -584,7 +587,7 @@
         <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">element_proto</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">return_value</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">NoValue</span><span class="p">]</span> <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">last_index</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">add_rows_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AddRowsMetadata</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">element_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">element_height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeltaGenerator</span> <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
@@ -595,7 +598,7 @@
         <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">element_proto</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">return_value</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">NoValue</span><span class="p">]</span> <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">last_index</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">add_rows_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AddRowsMetadata</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">element_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">element_height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeltaGenerator</span> <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
@@ -668,7 +671,7 @@
             <span class="c1"># position.</span>
             <span class="n">new_cursor</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">get_locked_cursor</span><span class="p">(</span>
-                    <span class="n">delta_type</span><span class="o">=</span><span class="n">delta_type</span><span class="p">,</span> <span class="n">last_index</span><span class="o">=</span><span class="n">last_index</span>
+                    <span class="n">delta_type</span><span class="o">=</span><span class="n">delta_type</span><span class="p">,</span> <span class="n">add_rows_metadata</span><span class="o">=</span><span class="n">add_rows_metadata</span>
                 <span class="p">)</span>
                 <span class="k">if</span> <span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                 <span class="k">else</span> <span class="kc">None</span>
@@ -698,6 +701,7 @@
     <span class="k">def</span> <span class="nf">_block</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">block_proto</span><span class="p">:</span> <span class="n">Block_pb2</span><span class="o">.</span><span class="n">Block</span> <span class="o">=</span> <span class="n">Block_pb2</span><span class="o">.</span><span class="n">Block</span><span class="p">(),</span>
+        <span class="n">dg_type</span><span class="p">:</span> <span class="nb">type</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeltaGenerator</span><span class="p">:</span>
         <span class="c1"># Operate on the active DeltaGenerator, in case we&#39;re in a `with` block.</span>
         <span class="n">dg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_active_dg</span>
@@ -745,18 +749,27 @@
             <span class="n">root_container</span><span class="o">=</span><span class="n">dg</span><span class="o">.</span><span class="n">_root_container</span><span class="p">,</span>
             <span class="n">parent_path</span><span class="o">=</span><span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">parent_path</span> <span class="o">+</span> <span class="p">(</span><span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">index</span><span class="p">,),</span>
         <span class="p">)</span>
-        <span class="n">block_dg</span> <span class="o">=</span> <span class="n">DeltaGenerator</span><span class="p">(</span>
-            <span class="n">root_container</span><span class="o">=</span><span class="n">dg</span><span class="o">.</span><span class="n">_root_container</span><span class="p">,</span>
-            <span class="n">cursor</span><span class="o">=</span><span class="n">block_cursor</span><span class="p">,</span>
-            <span class="n">parent</span><span class="o">=</span><span class="n">dg</span><span class="p">,</span>
-            <span class="n">block_type</span><span class="o">=</span><span class="n">block_type</span><span class="p">,</span>
+
+        <span class="c1"># `dg_type` param added for st.status container. It allows us to</span>
+        <span class="c1"># instantiate DeltaGenerator subclasses from the function.</span>
+        <span class="k">if</span> <span class="n">dg_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dg_type</span> <span class="o">=</span> <span class="n">DeltaGenerator</span>
+
+        <span class="n">block_dg</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">DeltaGenerator</span><span class="p">,</span>
+            <span class="n">dg_type</span><span class="p">(</span>
+                <span class="n">root_container</span><span class="o">=</span><span class="n">dg</span><span class="o">.</span><span class="n">_root_container</span><span class="p">,</span>
+                <span class="n">cursor</span><span class="o">=</span><span class="n">block_cursor</span><span class="p">,</span>
+                <span class="n">parent</span><span class="o">=</span><span class="n">dg</span><span class="p">,</span>
+                <span class="n">block_type</span><span class="o">=</span><span class="n">block_type</span><span class="p">,</span>
+            <span class="p">),</span>
         <span class="p">)</span>
         <span class="c1"># Blocks inherit their parent form ids.</span>
         <span class="c1"># NOTE: Container form ids aren&#39;t set in proto.</span>
         <span class="n">block_dg</span><span class="o">.</span><span class="n">_form_data</span> <span class="o">=</span> <span class="n">FormData</span><span class="p">(</span><span class="n">current_form_id</span><span class="p">(</span><span class="n">dg</span><span class="p">))</span>
 
         <span class="c1"># Must be called to increment this cursor&#39;s index.</span>
-        <span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">get_locked_cursor</span><span class="p">(</span><span class="n">last_index</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">dg</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">get_locked_cursor</span><span class="p">(</span><span class="n">add_rows_metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
         <span class="n">_enqueue_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
         <span class="n">caching</span><span class="o">.</span><span class="n">save_block_message</span><span class="p">(</span>
@@ -851,12 +864,16 @@
                 <span class="s2">&quot;Command requires exactly one dataset&quot;</span>
             <span class="p">)</span>
 
+        <span class="c1"># The legacy add_rows does not support Arrow tables.</span>
+        <span class="k">if</span> <span class="n">type_util</span><span class="o">.</span><span class="n">is_type</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;pyarrow.lib.Table&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ArrowNotSupportedError</span><span class="p">()</span>
+
         <span class="c1"># When doing _legacy_add_rows on an element that does not already have data</span>
         <span class="c1"># (for example, st._legacy_line_chart() without any args), call the original</span>
         <span class="c1"># st._legacy_foo() element with new data instead of doing a _legacy_add_rows().</span>
         <span class="k">if</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;delta_type&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">DELTA_TYPES_THAT_MELT_DATAFRAMES</span>
-            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;last_index&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;add_rows_metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">last_index</span> <span class="ow">is</span> <span class="kc">None</span>
         <span class="p">):</span>
             <span class="c1"># IMPORTANT: This assumes delta types and st method names always</span>
             <span class="c1"># match!</span>
@@ -866,8 +883,11 @@
             <span class="n">st_method</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span>
 
-        <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;last_index&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_maybe_melt_data_for_add_rows</span><span class="p">(</span>
-            <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;delta_type&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;last_index&quot;</span><span class="p">]</span>
+        <span class="n">new_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;add_rows_metadata&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_prep_data_for_add_rows</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;delta_type&quot;</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;add_rows_metadata&quot;</span><span class="p">],</span>
+            <span class="n">is_legacy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">msg</span> <span class="o">=</span> <span class="n">ForwardMsg_pb2</span><span class="o">.</span><span class="n">ForwardMsg</span><span class="p">()</span>
@@ -875,7 +895,7 @@
 
         <span class="kn">import</span> <span class="nn">streamlit.elements.legacy_data_frame</span> <span class="k">as</span> <span class="nn">data_frame</span>
 
-        <span class="n">data_frame</span><span class="o">.</span><span class="n">marshall_data_frame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">add_rows</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">data_frame</span><span class="o">.</span><span class="n">marshall_data_frame</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">add_rows</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
             <span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">add_rows</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
@@ -972,7 +992,7 @@
         <span class="c1"># st._arrow_foo() element with new data instead of doing a _arrow_add_rows().</span>
         <span class="k">if</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;delta_type&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">ARROW_DELTA_TYPES_THAT_MELT_DATAFRAMES</span>
-            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;last_index&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;add_rows_metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">last_index</span> <span class="ow">is</span> <span class="kc">None</span>
         <span class="p">):</span>
             <span class="c1"># IMPORTANT: This assumes delta types and st method names always</span>
             <span class="c1"># match!</span>
@@ -982,8 +1002,11 @@
             <span class="n">st_method</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span>
 
-        <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;last_index&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_maybe_melt_data_for_add_rows</span><span class="p">(</span>
-            <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;delta_type&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;last_index&quot;</span><span class="p">]</span>
+        <span class="n">new_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;add_rows_metadata&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_prep_data_for_add_rows</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;delta_type&quot;</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;add_rows_metadata&quot;</span><span class="p">],</span>
+            <span class="n">is_legacy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">msg</span> <span class="o">=</span> <span class="n">ForwardMsg_pb2</span><span class="o">.</span><span class="n">ForwardMsg</span><span class="p">()</span>
@@ -992,7 +1015,7 @@
         <span class="kn">import</span> <span class="nn">streamlit.elements.arrow</span> <span class="k">as</span> <span class="nn">arrow_proto</span>
 
         <span class="n">default_uuid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_delta_path_str</span><span class="p">()))</span>
-        <span class="n">arrow_proto</span><span class="o">.</span><span class="n">marshall</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">arrow_add_rows</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">default_uuid</span><span class="p">)</span>
+        <span class="n">arrow_proto</span><span class="o">.</span><span class="n">marshall</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">arrow_add_rows</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">new_data</span><span class="p">,</span> <span class="n">default_uuid</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
             <span class="n">msg</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">arrow_add_rows</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
@@ -1003,17 +1026,26 @@
         <span class="k">return</span> <span class="bp">self</span>
 
 
-<span class="n">DFT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;DFT&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">type_util</span><span class="o">.</span><span class="n">DataFrameCompatible</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">_maybe_melt_data_for_add_rows</span><span class="p">(</span>
-    <span class="n">data</span><span class="p">:</span> <span class="n">DFT</span><span class="p">,</span>
+<span class="k">def</span> <span class="nf">_prep_data_for_add_rows</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">,</span>
     <span class="n">delta_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">last_index</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DFT</span> <span class="o">|</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Any</span><span class="p">]:</span>
-    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+    <span class="n">add_rows_metadata</span><span class="p">:</span> <span class="n">AddRowsMetadata</span><span class="p">,</span>
+    <span class="n">is_legacy</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Data</span><span class="p">,</span> <span class="n">AddRowsMetadata</span><span class="p">]:</span>
+    <span class="n">out_data</span><span class="p">:</span> <span class="n">Data</span>
 
-    <span class="k">def</span> <span class="nf">_melt_data</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">last_index</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="c1"># For some delta types we have to reshape the data structure</span>
+    <span class="c1"># otherwise the input data and the actual data used</span>
+    <span class="c1"># by vega_lite will be different, and it will throw an error.</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">delta_type</span> <span class="ow">in</span> <span class="n">DELTA_TYPES_THAT_MELT_DATAFRAMES</span>
+        <span class="ow">or</span> <span class="n">delta_type</span> <span class="ow">in</span> <span class="n">ARROW_DELTA_TYPES_THAT_MELT_DATAFRAMES</span>
+    <span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">type_util</span><span class="o">.</span><span class="n">convert_anything_to_df</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+        <span class="c1"># Make range indices start at last_index.</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">RangeIndex</span><span class="p">):</span>
             <span class="n">old_step</span> <span class="o">=</span> <span class="n">_get_pandas_index_attr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;step&quot;</span><span class="p">)</span>
 
@@ -1027,35 +1059,26 @@
                     <span class="s2">&quot;&#39;RangeIndex&#39; object has no attribute &#39;step&#39;&quot;</span>
                 <span class="p">)</span>
 
-            <span class="n">start</span> <span class="o">=</span> <span class="n">last_index</span> <span class="o">+</span> <span class="n">old_step</span>
-            <span class="n">stop</span> <span class="o">=</span> <span class="n">last_index</span> <span class="o">+</span> <span class="n">old_step</span> <span class="o">+</span> <span class="n">old_stop</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">add_rows_metadata</span><span class="o">.</span><span class="n">last_index</span> <span class="o">+</span> <span class="n">old_step</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="n">add_rows_metadata</span><span class="o">.</span><span class="n">last_index</span> <span class="o">+</span> <span class="n">old_step</span> <span class="o">+</span> <span class="n">old_stop</span>
 
             <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">RangeIndex</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">old_step</span><span class="p">)</span>
-            <span class="n">last_index</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">add_rows_metadata</span><span class="o">.</span><span class="n">last_index</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="mi">1</span>
 
-        <span class="n">index_name</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
-        <span class="k">if</span> <span class="n">index_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">index_name</span> <span class="o">=</span> <span class="s2">&quot;index&quot;</span>
+        <span class="k">if</span> <span class="n">is_legacy</span><span class="p">:</span>
+            <span class="n">index_name</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">if</span> <span class="n">index_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">index_name</span> <span class="o">=</span> <span class="s2">&quot;index&quot;</span>
 
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="n">index_name</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">last_index</span>
-
-    <span class="c1"># For some delta types we have to reshape the data structure</span>
-    <span class="c1"># otherwise the input data and the actual data used</span>
-    <span class="c1"># by vega_lite will be different, and it will throw an error.</span>
-    <span class="k">if</span> <span class="p">(</span>
-        <span class="n">delta_type</span> <span class="ow">in</span> <span class="n">DELTA_TYPES_THAT_MELT_DATAFRAMES</span>
-        <span class="ow">or</span> <span class="n">delta_type</span> <span class="ow">in</span> <span class="n">ARROW_DELTA_TYPES_THAT_MELT_DATAFRAMES</span>
-    <span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">_melt_data</span><span class="p">(</span>
-                <span class="n">df</span><span class="o">=</span><span class="n">type_util</span><span class="o">.</span><span class="n">convert_anything_to_df</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
-                <span class="n">last_index</span><span class="o">=</span><span class="n">last_index</span><span class="p">,</span>
-            <span class="p">)</span>
+            <span class="n">out_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="n">index_name</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">_melt_data</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">last_index</span><span class="o">=</span><span class="n">last_index</span><span class="p">)</span>
+            <span class="n">out_data</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">prep_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">add_rows_metadata</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">last_index</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># When calling add_rows on st.table or st.dataframe we want styles to pass through.</span>
+        <span class="n">out_data</span> <span class="o">=</span> <span class="n">type_util</span><span class="o">.</span><span class="n">convert_anything_to_df</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">allow_styler</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">out_data</span><span class="p">,</span> <span class="n">add_rows_metadata</span>
 
 
 <span class="k">def</span> <span class="nf">_get_pandas_index_attr</span><span class="p">(</span>
