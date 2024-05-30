@@ -31,7 +31,6 @@ from front.elements import (
 from front.types import FrontElementName, FrontElementDisplay, Map
 from front.util import normalize_map
 from i2 import Sig
-from stogui import pipeline_maker
 
 from streamlitfront.elements.js import mk_element_factory
 from streamlitfront.data_binding import BoundData
@@ -345,6 +344,67 @@ class KwargsInput(KwargsInputBase):
         return self.value()
 
 
+# ------------------------------------------------------------------------------
+# Pipeline Maker
+
+# Utils, taken to avoid
+#      from stogui import pipeline_maker
+import streamlit.components.v1 as components
+import streamlit as st
+
+# SKIPPING THIS (was a prod concern)...
+# import os
+# from distutils.util import strtobool
+# DEBUG = strtobool(os.getenv('STOGUI_DEBUG', 'false'))
+
+
+# if DEBUG:
+#     _component_func = components.declare_component(
+#         'pipeline_maker',
+#         url='http://localhost:3001',
+#     )
+# else:
+#     parent_dir = os.path.dirname(os.path.abspath(__file__))
+#     build_dir = os.path.join(parent_dir, 'frontend/build')
+#     _component_func = components.declare_component('pipeline_maker', path=build_dir)
+
+# ... replacing with a forced "DEBUG" mode:
+_component_func = components.declare_component(
+    'pipeline_maker',
+    url='http://localhost:3001',
+)
+
+
+def pipeline_maker(
+    *,
+    items: Iterable = None,
+    steps: Iterable = None,
+    serializer: Callable = None,
+):
+    def identity(x):
+        return x
+
+    items = items or []
+    steps = steps or []
+    serializer = serializer or identity
+
+    serialized_items = [serializer(i) for i in items]
+    serialized_steps = [serializer(s) for s in steps]
+
+    serialized_pipeline = _component_func(
+        items=serialized_items, steps=serialized_steps
+    )
+    pipeline = (
+        [
+            next(iter(i for i in items if serializer(i) == s))
+            for s in serialized_pipeline
+        ]
+        if serialized_pipeline
+        else []
+    )
+    return pipeline
+
+
 @dataclass
 class PipelineMaker(InputBase):
     items: Iterable = None
@@ -353,5 +413,7 @@ class PipelineMaker(InputBase):
 
     def render(self):
         return pipeline_maker(
-            items=self.items, steps=self.steps, serializer=self.serializer,
+            items=self.items,
+            steps=self.steps,
+            serializer=self.serializer,
         )
