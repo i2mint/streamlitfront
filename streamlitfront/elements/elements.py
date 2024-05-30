@@ -370,16 +370,12 @@ import streamlit as st
 
 # ... replacing with a forced "DEBUG" mode:
 _component_func = components.declare_component(
-    'pipeline_maker',
-    url='http://localhost:3001',
+    'pipeline_maker', url='http://localhost:3001',
 )
 
 
 def pipeline_maker(
-    *,
-    items: Iterable = None,
-    steps: Iterable = None,
-    serializer: Callable = None,
+    *, items: Iterable = None, steps: Iterable = None, serializer: Callable = None,
 ):
     def identity(x):
         return x
@@ -413,7 +409,5 @@ class PipelineMaker(InputBase):
 
     def render(self):
         return pipeline_maker(
-            items=self.items,
-            steps=self.steps,
-            serializer=self.serializer,
+            items=self.items, steps=self.steps, serializer=self.serializer,
         )

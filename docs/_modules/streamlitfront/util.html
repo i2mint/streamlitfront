@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.util &mdash; streamlitfront 0.1.31 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <title>streamlitfront.util &mdash; streamlitfront 0.1.32 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/toggleprompt.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=e0e570cb"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -42,7 +46,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront.html">streamlitfront</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
@@ -124,7 +128,9 @@
 <span class="kn">from</span> <span class="nn">i2._deprecated</span> <span class="kn">import</span> <span class="n">Command</span> <span class="k">as</span> <span class="n">_Command</span>
 
 <span class="c1"># TODO: Consider using functools.partial (or subclass thereof) instead of Command</span>
-<div class="viewcode-block" id="Command"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.Command">[docs]</a><span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">_Command</span><span class="p">):</span>
+<div class="viewcode-block" id="Command">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.Command">[docs]</a>
+<span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">_Command</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">_caller</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">exaecute_commands_in_args</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
@@ -143,6 +149,7 @@
         <span class="p">)</span></div>
 
 
+
 <span class="n">PositionalTypes</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span>
     <span class="s1">&#39;PositionalTypes&#39;</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>
 <span class="p">)</span>
@@ -151,7 +158,9 @@
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="incremental_str_maker"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.incremental_str_maker">[docs]</a><span class="k">def</span> <span class="nf">incremental_str_maker</span><span class="p">(</span><span class="n">str_format</span><span class="o">=</span><span class="s1">&#39;{:03.f}&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="incremental_str_maker">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.incremental_str_maker">[docs]</a>
+<span class="k">def</span> <span class="nf">incremental_str_maker</span><span class="p">(</span><span class="n">str_format</span><span class="o">=</span><span class="s1">&#39;{:03.f}&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Make a function that will produce a (incrementally) new string at every call.&quot;&quot;&quot;</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -163,10 +172,13 @@
     <span class="k">return</span> <span class="n">mk_next_str</span></div>
 
 
+
 <span class="n">unnamed_page</span> <span class="o">=</span> <span class="n">incremental_str_maker</span><span class="p">(</span><span class="n">str_format</span><span class="o">=</span><span class="s1">&#39;UnnamedPage</span><span class="si">{:03.0f}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="func_name"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.func_name">[docs]</a><span class="k">def</span> <span class="nf">func_name</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="func_name">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.func_name">[docs]</a>
+<span class="k">def</span> <span class="nf">func_name</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The func.__name__ of a callable func, or makes and returns one if that fails.</span>
 <span class="sd">    To make one, it calls unamed_func_name which produces incremental names to reduce the chances of clashing&quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">name_of_obj</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
@@ -175,7 +187,10 @@
     <span class="k">return</span> <span class="n">name</span></div>
 
 
-<div class="viewcode-block" id="Objdict"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.Objdict">[docs]</a><span class="k">class</span> <span class="nc">Objdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Objdict">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.Objdict">[docs]</a>
+<span class="k">class</span> <span class="nc">Objdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A dict, whose keys can be access as if they were attributes.</span>
 
 <span class="sd">    &gt;&gt;&gt; s = Objdict()</span>
@@ -231,7 +246,10 @@
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s1">&#39;No such attribute: &#39;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="attr_or_key"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.attr_or_key">[docs]</a><span class="k">def</span> <span class="nf">attr_or_key</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+
+<div class="viewcode-block" id="attr_or_key">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.attr_or_key">[docs]</a>
+<span class="k">def</span> <span class="nf">attr_or_key</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get data for `k` by doing obj.k, or obj[k] if k not an attribute of obj</span>
 
 <span class="sd">    &gt;&gt;&gt; d = {&#39;a&#39;: 1, 2: &#39;b&#39;, &#39;__class__&#39;: &#39;do I win?&#39;}</span>
@@ -255,7 +273,10 @@
         <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">k</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="attr_or_key_with_dotpaths"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.attr_or_key_with_dotpaths">[docs]</a><span class="k">def</span> <span class="nf">attr_or_key_with_dotpaths</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+
+<div class="viewcode-block" id="attr_or_key_with_dotpaths">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.attr_or_key_with_dotpaths">[docs]</a>
+<span class="k">def</span> <span class="nf">attr_or_key_with_dotpaths</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get k-data from obj hwere k is a path of keys and attributes leading to the data.</span>
 
 <span class="sd">    &gt;&gt;&gt; attr_or_key_with_dotpaths({&#39;a&#39;: {&#39;b&#39;: 3}}, &#39;a.b&#39;)</span>
@@ -270,7 +291,10 @@
         <span class="k">return</span> <span class="n">attr_or_key</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="NodeGetter"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.NodeGetter">[docs]</a><span class="k">class</span> <span class="nc">NodeGetter</span><span class="p">:</span>
+
+<div class="viewcode-block" id="NodeGetter">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.NodeGetter">[docs]</a>
+<span class="k">class</span> <span class="nc">NodeGetter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A accessing nested (i.e. tree-like) data as data[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span>
 <span class="sd">    instead of data[&#39;a&#39;][&#39;b&#39;][&#39;c&#39;]</span>
@@ -319,6 +343,7 @@
         <span class="k">return</span> <span class="n">_src</span></div>
 
 
+
 <span class="c1"># Note: Started this in case we need more access flexibility</span>
 <span class="c1"># from glom import glom, Path</span>
 <span class="c1"># class Glommed:</span>
@@ -341,7 +366,9 @@
 <span class="c1">#         return Glommed(target=self[keys])</span>
 
 
-<div class="viewcode-block" id="build_factory"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.build_factory">[docs]</a><span class="k">def</span> <span class="nf">build_factory</span><span class="p">(</span><span class="n">element_factory</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+<div class="viewcode-block" id="build_factory">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.build_factory">[docs]</a>
+<span class="k">def</span> <span class="nf">build_factory</span><span class="p">(</span><span class="n">element_factory</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Build the factory for user input for VP and VK inputs</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -353,9 +380,12 @@
     <span class="k">return</span> <span class="n">val</span></div>
 
 
+
 <span class="c1"># TODO: consider changing the following command factories to return</span>
 <span class="c1">#  partial(factory, **factory_kwargs) instead</span>
-<div class="viewcode-block" id="build_element_commands"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.build_element_commands">[docs]</a><span class="k">def</span> <span class="nf">build_element_commands</span><span class="p">(</span>
+<div class="viewcode-block" id="build_element_commands">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.build_element_commands">[docs]</a>
+<span class="k">def</span> <span class="nf">build_element_commands</span><span class="p">(</span>
     <span class="n">name</span><span class="p">,</span> <span class="n">inferred_type</span><span class="p">,</span> <span class="n">element_factory_for_annot</span><span class="p">,</span> <span class="n">missing</span><span class="p">,</span> <span class="n">dflt_element_factory</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -378,7 +408,10 @@
     <span class="k">return</span> <span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span></div>
 
 
-<div class="viewcode-block" id="build_element_factory"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.build_element_factory">[docs]</a><span class="k">def</span> <span class="nf">build_element_factory</span><span class="p">(</span>
+
+<div class="viewcode-block" id="build_element_factory">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.build_element_factory">[docs]</a>
+<span class="k">def</span> <span class="nf">build_element_factory</span><span class="p">(</span>
     <span class="n">name</span><span class="p">,</span> <span class="n">inferred_type</span><span class="p">,</span> <span class="n">element_factory_for_annot</span><span class="p">,</span> <span class="n">missing</span><span class="p">,</span> <span class="n">dflt_element_factory</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -401,7 +434,10 @@
     <span class="k">return</span> <span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span></div>
 
 
-<div class="viewcode-block" id="build_element_factory_helper"><a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.build_element_factory_helper">[docs]</a><span class="k">def</span> <span class="nf">build_element_factory_helper</span><span class="p">(</span>
+
+<div class="viewcode-block" id="build_element_factory_helper">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/util.html#streamlitfront.util.build_element_factory_helper">[docs]</a>
+<span class="k">def</span> <span class="nf">build_element_factory_helper</span><span class="p">(</span>
     <span class="n">element_factory_for_annot</span><span class="p">,</span> <span class="n">inferred_type</span><span class="p">,</span> <span class="n">missing</span><span class="p">,</span> <span class="n">args</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -433,6 +469,7 @@
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span></div>
+
 </pre></div>
 
            </div>

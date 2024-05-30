@@ -1,24 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.base &mdash; streamlitfront 0.1.31 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <title>streamlitfront.base &mdash; streamlitfront 0.1.32 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/toggleprompt.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=e0e570cb"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -45,10 +49,16 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../streamlitfront.html">streamlitfront</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">streamlitfront.base</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">streamlitfront.base</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.base.DfltDict"><code class="docutils literal notranslate"><span class="pre">DfltDict</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.base.dispatch_funcs"><code class="docutils literal notranslate"><span class="pre">dispatch_funcs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.base.get_pages_specs"><code class="docutils literal notranslate"><span class="pre">get_pages_specs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.base.mk_app"><code class="docutils literal notranslate"><span class="pre">mk_app()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="data_binding.html">streamlitfront.data_binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements.html">streamlitfront.elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements/elements.html">streamlitfront.elements.elements</a></li>
@@ -120,29 +130,29 @@
            <div itemprop="articleBody">
              
   <section id="module-streamlitfront.base">
-<span id="streamlitfront-base"></span><h1>streamlitfront.base<a class="headerlink" href="#module-streamlitfront.base" title="Permalink to this headline">¶</a></h1>
+<span id="streamlitfront-base"></span><h1>streamlitfront.base<a class="headerlink" href="#module-streamlitfront.base" title="Link to this heading"></a></h1>
 <p>Base for UI generation</p>
 <dl class="py class">
-<dt id="streamlitfront.base.DfltDict">
-<em class="property">class </em><code class="sig-prename descclassname">streamlitfront.base.</code><code class="sig-name descname">DfltDict</code><a class="reference internal" href="../../_modules/streamlitfront/base.html#DfltDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#streamlitfront.base.DfltDict" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="streamlitfront.base.DfltDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">streamlitfront.base.</span></span><span class="sig-name descname"><span class="pre">DfltDict</span></span><a class="reference internal" href="../../_modules/streamlitfront/base.html#DfltDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.base.DfltDict" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="streamlitfront.base.dispatch_funcs">
-<code class="sig-prename descclassname">streamlitfront.base.</code><code class="sig-name descname">dispatch_funcs</code><span class="sig-paren">(</span><em class="sig-param">funcs: Iterable[Callable], configs: Union[None, Mapping, Callable[[], Mapping]] = None, convention: Union[None, Mapping, Callable[[], Mapping]] = &lt;function dflt_convention&gt;</em><span class="sig-paren">)</span> &#x2192; Callable<a class="reference internal" href="../../_modules/streamlitfront/base.html#dispatch_funcs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#streamlitfront.base.dispatch_funcs" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="streamlitfront.base.dispatch_funcs">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.base.</span></span><span class="sig-name descname"><span class="pre">dispatch_funcs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">funcs:</span> <span class="pre">~typing.Iterable[~typing.Callable],</span> <span class="pre">configs:</span> <span class="pre">None</span> <span class="pre">|</span> <span class="pre">~typing.Mapping</span> <span class="pre">|</span> <span class="pre">~typing.Callable[[],</span> <span class="pre">~typing.Mapping]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">convention:</span> <span class="pre">None</span> <span class="pre">|</span> <span class="pre">~typing.Mapping</span> <span class="pre">|</span> <span class="pre">~typing.Callable[[],</span> <span class="pre">~typing.Mapping]</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">dflt_convention&gt;</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="reference internal" href="../../_modules/streamlitfront/base.html#dispatch_funcs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.base.dispatch_funcs" title="Link to this definition"></a></dt>
 <dd><p>DEPRECATED!
 Call this function with target funcs and get an app to run.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="streamlitfront.base.get_pages_specs">
-<code class="sig-prename descclassname">streamlitfront.base.</code><code class="sig-name descname">get_pages_specs</code><span class="sig-paren">(</span><em class="sig-param">funcs: Iterable[Callable], func_to_page_name: Callable = &lt;function func_to_page_name&gt;, page_factory=&lt;class 'streamlitfront.base.SimplePageFunc'&gt;, **configs</em><span class="sig-paren">)</span> &#x2192; Mapping<span class="p">[</span>str<span class="p">, </span>Callable<span class="p">[</span><span class="p">[</span>streamlitfront.session_state._SessionState<span class="p">]</span><span class="p">, </span>Any<span class="p">]</span><span class="p">]</span><a class="reference internal" href="../../_modules/streamlitfront/base.html#get_pages_specs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#streamlitfront.base.get_pages_specs" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="streamlitfront.base.get_pages_specs">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.base.</span></span><span class="sig-name descname"><span class="pre">get_pages_specs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">funcs:</span> <span class="pre">~typing.Iterable[~typing.Callable],</span> <span class="pre">func_to_page_name:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">func_to_page_name&gt;,</span> <span class="pre">page_factory=&lt;class</span> <span class="pre">'streamlitfront.base.SimplePageFunc'&gt;,</span> <span class="pre">**configs</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">_SessionState</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/streamlitfront/base.html#get_pages_specs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.base.get_pages_specs" title="Link to this definition"></a></dt>
 <dd><p>Get pages specification dict</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="streamlitfront.base.mk_app">
-<code class="sig-prename descclassname">streamlitfront.base.</code><code class="sig-name descname">mk_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span></em>, <em class="sig-param"><span class="n">config</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>None<span class="p">, </span>Mapping<span class="p">, </span>Callable<span class="p">[</span><span class="p">]</span><span class="p">, </span>Mapping<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">convention</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>None<span class="p">, </span>Mapping<span class="p">, </span>Callable<span class="p">[</span><span class="p">]</span><span class="p">, </span>Mapping<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/streamlitfront/base.html#mk_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#streamlitfront.base.mk_app" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="streamlitfront.base.mk_app">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.base.</span></span><span class="sig-name descname"><span class="pre">mk_app</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convention</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/streamlitfront/base.html#mk_app"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.base.mk_app" title="Link to this definition"></a></dt>
 <dd><p>The entrypoint of streamlitfront.
 Call this function with target objects and get an app to run.</p>
 <p>Example: Render functions</p>
@@ -349,7 +359,7 @@ with the parameters to intantiate it.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>objs</strong> (<em>Iterable</em>) – The target objects to crender in the streamlit application.</p></li>
 <li><p><strong>config</strong> – The configuration object for the application. Overwrites the</p></li>
