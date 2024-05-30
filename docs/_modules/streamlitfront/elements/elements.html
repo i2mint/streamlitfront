@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.32 documentation</title>
+  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.33 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -16,7 +16,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=e0e570cb"></script>
+        <script src="../../../_static/documentation_options.js?v=449df4d2"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
@@ -503,78 +503,6 @@
         <span class="p">)</span>
         <span class="n">exec_section</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">()</span></div>
-
-
-
-<span class="c1"># ------------------------------------------------------------------------------</span>
-<span class="c1"># Pipeline Maker</span>
-
-<span class="c1"># Utils, taken to avoid</span>
-<span class="c1">#      from stogui import pipeline_maker</span>
-<span class="kn">import</span> <span class="nn">streamlit.components.v1</span> <span class="k">as</span> <span class="nn">components</span>
-<span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-
-<span class="c1"># SKIPPING THIS (was a prod concern)...</span>
-<span class="c1"># import os</span>
-<span class="c1"># from distutils.util import strtobool</span>
-<span class="c1"># DEBUG = strtobool(os.getenv(&#39;STOGUI_DEBUG&#39;, &#39;false&#39;))</span>
-
-
-<span class="c1"># if DEBUG:</span>
-<span class="c1">#     _component_func = components.declare_component(</span>
-<span class="c1">#         &#39;pipeline_maker&#39;,</span>
-<span class="c1">#         url=&#39;http://localhost:3001&#39;,</span>
-<span class="c1">#     )</span>
-<span class="c1"># else:</span>
-<span class="c1">#     parent_dir = os.path.dirname(os.path.abspath(__file__))</span>
-<span class="c1">#     build_dir = os.path.join(parent_dir, &#39;frontend/build&#39;)</span>
-<span class="c1">#     _component_func = components.declare_component(&#39;pipeline_maker&#39;, path=build_dir)</span>
-
-<span class="c1"># ... replacing with a forced &quot;DEBUG&quot; mode:</span>
-<span class="n">_component_func</span> <span class="o">=</span> <span class="n">components</span><span class="o">.</span><span class="n">declare_component</span><span class="p">(</span>
-    <span class="s1">&#39;pipeline_maker&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://localhost:3001&#39;</span><span class="p">,</span>
-<span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">pipeline_maker</span><span class="p">(</span>
-    <span class="o">*</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">serializer</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="p">):</span>
-    <span class="k">def</span> <span class="nf">identity</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">x</span>
-
-    <span class="n">items</span> <span class="o">=</span> <span class="n">items</span> <span class="ow">or</span> <span class="p">[]</span>
-    <span class="n">steps</span> <span class="o">=</span> <span class="n">steps</span> <span class="ow">or</span> <span class="p">[]</span>
-    <span class="n">serializer</span> <span class="o">=</span> <span class="n">serializer</span> <span class="ow">or</span> <span class="n">identity</span>
-
-    <span class="n">serialized_items</span> <span class="o">=</span> <span class="p">[</span><span class="n">serializer</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">items</span><span class="p">]</span>
-    <span class="n">serialized_steps</span> <span class="o">=</span> <span class="p">[</span><span class="n">serializer</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">]</span>
-
-    <span class="n">serialized_pipeline</span> <span class="o">=</span> <span class="n">_component_func</span><span class="p">(</span>
-        <span class="n">items</span><span class="o">=</span><span class="n">serialized_items</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="n">serialized_steps</span>
-    <span class="p">)</span>
-    <span class="n">pipeline</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="p">[</span>
-            <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">items</span> <span class="k">if</span> <span class="n">serializer</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">s</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">serialized_pipeline</span>
-        <span class="p">]</span>
-        <span class="k">if</span> <span class="n">serialized_pipeline</span>
-        <span class="k">else</span> <span class="p">[]</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">pipeline</span>
-
-
-<div class="viewcode-block" id="PipelineMaker">
-<a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.PipelineMaker">[docs]</a>
-<span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">PipelineMaker</span><span class="p">(</span><span class="n">InputBase</span><span class="p">):</span>
-    <span class="n">items</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">steps</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">serializer</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">pipeline_maker</span><span class="p">(</span>
-            <span class="n">items</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">,</span> <span class="n">serializer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">serializer</span><span class="p">,</span>
-        <span class="p">)</span></div>
 
 </pre></div>
 

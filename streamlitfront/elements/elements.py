@@ -342,4 +342,3 @@ class KwargsInput(KwargsInputBase):
         )
         exec_section()
         return self.value()
-
