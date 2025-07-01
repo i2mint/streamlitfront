@@ -20,7 +20,7 @@ def mk_ui_func(func, funcs, dom):
     @sig
     def ui_func(*args, **kwargs):
         def send_inputs():
-            kw = sig.kwargs_from_args_and_kwargs(args, kwargs)
+            kw = sig.map_arguments(args, kwargs)
             for idx, param in enumerate(sig):
                 input_ = kw.get(param)
                 if input_ is not None:

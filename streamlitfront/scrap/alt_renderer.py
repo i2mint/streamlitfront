@@ -132,7 +132,7 @@ def mk_component_base(
 
     @sig
     def __init__(*args, **kwargs) -> None:
-        kw = sig.kwargs_from_args_and_kwargs(args, kwargs, apply_defaults=True)
+        kw = sig.map_arguments(args, kwargs, apply_defaults=True)
         self = kw.pop('self')
         call_forgivingly(base_cls.__init__, self, **kw)
         for name in component_sig:
