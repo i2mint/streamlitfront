@@ -1,28 +1,26 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.base &mdash; streamlitfront 0.1.33 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+  <title>streamlitfront.base &mdash; streamlitfront 0.1.34 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=449df4d2"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
-        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8f14641f"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -134,7 +132,7 @@
 <p>Base for UI generation</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="streamlitfront.base.DfltDict">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">streamlitfront.base.</span></span><span class="sig-name descname"><span class="pre">DfltDict</span></span><a class="reference internal" href="../../_modules/streamlitfront/base.html#DfltDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.base.DfltDict" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">streamlitfront.base.</span></span><span class="sig-name descname"><span class="pre">DfltDict</span></span><a class="reference internal" href="../../_modules/streamlitfront/base.html#DfltDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.base.DfltDict" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -157,11 +155,11 @@ Call this function with target funcs and get an app to run.</p>
 Call this function with target objects and get an app to run.</p>
 <p>Example: Render functions</p>
 <p>First define a bunch of functions:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">greeting</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">greeting</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">greeting</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">confuser</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">confuser</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">confuser</span><span class="p">]</span>
 </pre></div>
@@ -177,7 +175,7 @@ The configuration is composed of three parts: app, obj and rendering.</p>
 <p>The app configuration:
 By default, the application name is “My Front Application”, but you can set the
 title of the application as follow:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front</span> <span class="kn">import</span> <span class="n">APP_KEY</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">front</span><span class="w"> </span><span class="kn">import</span> <span class="n">APP_KEY</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
 <span class="gp">... </span>    <span class="n">APP_KEY</span><span class="p">:</span> <span class="p">{</span>
 <span class="gp">... </span>        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Another application name&#39;</span>
@@ -189,9 +187,9 @@ title of the application as follow:</p>
 <p>The obj configuration:
 You can define a wrapper to transform the initial object into an output of your
 choice to be rendered:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.util</span> <span class="kn">import</span> <span class="n">dflt_trans</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front</span> <span class="kn">import</span> <span class="n">OBJ_KEY</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">trans</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">front.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">dflt_trans</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">front</span><span class="w"> </span><span class="kn">import</span> <span class="n">OBJ_KEY</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">trans</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">dflt_trans</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">objs</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
 <span class="gp">... </span>    <span class="n">OBJ_KEY</span><span class="p">:</span> <span class="p">{</span>
@@ -205,8 +203,8 @@ choice to be rendered:</p>
 You can define the way elements are rendered in the GUI.
 For instance, you can choose to render a text input instead of a number input for a
 specific parameter of a specific function:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front</span> <span class="kn">import</span> <span class="n">ELEMENT_KEY</span><span class="p">,</span> <span class="n">RENDERING_KEY</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">streamlitfront.elements</span> <span class="kn">import</span> <span class="n">IntSliderInput</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">front</span><span class="w"> </span><span class="kn">import</span> <span class="n">ELEMENT_KEY</span><span class="p">,</span> <span class="n">RENDERING_KEY</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.elements</span><span class="w"> </span><span class="kn">import</span> <span class="n">IntSliderInput</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
 <span class="gp">... </span>    <span class="n">RENDERING_KEY</span><span class="p">:</span> <span class="p">{</span>
 <span class="gp">... </span>        <span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="p">{</span>
@@ -252,9 +250,9 @@ specific parameter of a specific function:</p>
 parameter. Be careful though, by overwritting the default convention, you have to
 make sure that all configuations are defined. Otherwise, the application would
 crash or behave unexpectedly.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front</span> <span class="kn">import</span> <span class="n">NAME_KEY</span><span class="p">,</span> <span class="n">DEFAULT_INPUT_KEY</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">streamlitfront.elements</span> <span class="kn">import</span> <span class="p">(</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">front</span><span class="w"> </span><span class="kn">import</span> <span class="n">NAME_KEY</span><span class="p">,</span> <span class="n">DEFAULT_INPUT_KEY</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.elements</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
 <span class="gp">... </span>    <span class="n">App</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">ExecSection</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">FloatSliderInput</span><span class="p">,</span>
@@ -264,7 +262,7 @@ crash or behave unexpectedly.</p>
 <span class="gp">... </span>    <span class="n">TextSection</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">View</span><span class="p">,</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">streamlitfront.data_binding</span> <span class="kn">import</span> <span class="n">BoundData</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.data_binding</span><span class="w"> </span><span class="kn">import</span> <span class="n">BoundData</span>
 <span class="gp">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">convention</span> <span class="o">=</span> <span class="p">{</span>
 <span class="gp">... </span>    <span class="n">APP_KEY</span><span class="p">:</span> <span class="p">{</span>
@@ -313,20 +311,20 @@ crash or behave unexpectedly.</p>
 configuration. In the following example, we display the dot graph of a DAG using
 our own implementation of the component. It is then referenced in the configuration
 with the parameters to intantiate it.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">meshed</span> <span class="kn">import</span> <span class="n">DAG</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.types</span> <span class="kn">import</span> <span class="n">FrontElementName</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="n">FrontComponentBase</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">meshed</span><span class="w"> </span><span class="kn">import</span> <span class="n">DAG</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">front.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">FrontElementName</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">front.elements</span><span class="w"> </span><span class="kn">import</span> <span class="n">FrontComponentBase</span>
 <span class="gp">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">b</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">b</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">a</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">d</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">d</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="mi">10</span> <span class="o">-</span> <span class="p">(</span><span class="mi">5</span> <span class="o">**</span> <span class="n">c</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">result</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">result</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">b</span> <span class="o">*</span> <span class="n">d</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dag</span> <span class="o">=</span> <span class="n">DAG</span><span class="p">((</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Graph</span><span class="p">(</span><span class="n">FrontComponentBase</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">Graph</span><span class="p">(</span><span class="n">FrontComponentBase</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
 <span class="gp">... </span>        <span class="bp">self</span><span class="p">,</span>
 <span class="gp">... </span>        <span class="n">obj</span><span class="p">:</span> <span class="n">DAG</span><span class="p">,</span>
 <span class="gp">... </span>        <span class="n">name</span><span class="p">:</span> <span class="n">FrontElementName</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -335,7 +333,7 @@ with the parameters to intantiate it.</p>
 <span class="gp">... </span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 <span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">use_container_width</span> <span class="o">=</span> <span class="n">use_container_width</span>
 <span class="gp">...</span>
-<span class="gp">... </span>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">expander</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
 <span class="gp">... </span>            <span class="n">dag</span><span class="p">:</span> <span class="n">DAG</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span>
 <span class="gp">... </span>            <span class="n">st</span><span class="o">.</span><span class="n">graphviz_chart</span><span class="p">(</span>

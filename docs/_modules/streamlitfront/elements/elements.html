@@ -1,27 +1,25 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.33 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+  <title>streamlitfront.elements.elements &mdash; streamlitfront 0.1.34 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=449df4d2"></script>
-        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
-        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8f14641f"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -127,14 +125,14 @@
 <span class="sd">specific abstract elements class defined in front.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span><span class="p">,</span> <span class="n">cached_property</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Union</span>
-<span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">ValidationError</span>
-<span class="kn">from</span> <span class="nn">front.elements</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span><span class="p">,</span> <span class="n">cached_property</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValidationError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">front.elements</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">implement_component</span><span class="p">,</span>
     <span class="n">BooleanInputBase</span><span class="p">,</span>
     <span class="n">ExecContainerBase</span><span class="p">,</span>
@@ -151,22 +149,22 @@
     <span class="n">TextSectionBase</span><span class="p">,</span>
     <span class="n">ELEMENT_KEY</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">front.types</span> <span class="kn">import</span> <span class="n">FrontElementName</span><span class="p">,</span> <span class="n">FrontElementDisplay</span><span class="p">,</span> <span class="n">Map</span>
-<span class="kn">from</span> <span class="nn">front.util</span> <span class="kn">import</span> <span class="n">normalize_map</span>
-<span class="kn">from</span> <span class="nn">i2</span> <span class="kn">import</span> <span class="n">Sig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">front.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">FrontElementName</span><span class="p">,</span> <span class="n">FrontElementDisplay</span><span class="p">,</span> <span class="n">Map</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">front.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_map</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">i2</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sig</span>
 
-<span class="kn">from</span> <span class="nn">streamlitfront.elements.js</span> <span class="kn">import</span> <span class="n">mk_element_factory</span>
-<span class="kn">from</span> <span class="nn">streamlitfront.data_binding</span> <span class="kn">import</span> <span class="n">BoundData</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.elements.js</span><span class="w"> </span><span class="kn">import</span> <span class="n">mk_element_factory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.data_binding</span><span class="w"> </span><span class="kn">import</span> <span class="n">BoundData</span>
 
 <span class="n">ItemTemplate</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">Map</span><span class="p">,</span> <span class="n">Path</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="App">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.App">[docs]</a>
-<span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="n">FrontContainerBase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">App</span><span class="p">(</span><span class="n">FrontContainerBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Implementation of the app root container for streamlitfront.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Page setup</span>
         <span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s1">&#39;wide&#39;</span><span class="p">)</span>
         <span class="c1"># html(&#39;&#39;&#39;</span>
@@ -186,7 +184,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">render_views</span><span class="p">()</span>
 
     <span class="nd">@cached_property</span>
-    <span class="k">def</span> <span class="nf">_views</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_views</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Separate the views from the authentication view.&quot;&quot;&quot;</span>
         <span class="n">auth_view</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">views</span> <span class="o">=</span> <span class="p">{}</span>
@@ -203,7 +201,7 @@
         <span class="k">return</span> <span class="n">views</span><span class="p">,</span> <span class="n">auth_view</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">views</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">views</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># st.session_state[&quot;views&quot;] = views</span>
 
         <span class="c1"># TODO: The above is static: Should the above be done only once, and cached?</span>
@@ -211,16 +209,16 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_views</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">auth_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">auth_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_views</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">render_authentication_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render_authentication_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">session_state</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">session_state</span><span class="p">,</span> <span class="s1">&#39;logged_in&#39;</span><span class="p">):</span>
             <span class="n">session_state</span><span class="o">.</span><span class="n">logged_in</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">auth_view</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">render_views</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render_views</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Setup navigation</span>
         <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="p">:</span>
             <span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -235,8 +233,8 @@
 
 <div class="viewcode-block" id="View">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.View">[docs]</a>
-<span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="n">FrontContainerBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">View</span><span class="p">(</span><span class="n">FrontContainerBase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;&#39;## **</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">**&#39;&#39;&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_render_children</span><span class="p">()</span></div>
 
@@ -244,8 +242,8 @@
 
 <div class="viewcode-block" id="Section">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.Section">[docs]</a>
-<span class="k">class</span> <span class="nc">Section</span><span class="p">(</span><span class="n">FrontContainerBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Section</span><span class="p">(</span><span class="n">FrontContainerBase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">expander</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_render_children</span><span class="p">()</span></div>
 
@@ -253,8 +251,8 @@
 
 <div class="viewcode-block" id="TextSection">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.TextSection">[docs]</a>
-<span class="k">class</span> <span class="nc">TextSection</span><span class="p">(</span><span class="n">TextSectionBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TextSection</span><span class="p">(</span><span class="n">TextSectionBase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -264,7 +262,7 @@
     <span class="c1">#     super().__post_init__()</span>
     <span class="c1">#     self.kind = self.kind if self.kind in [&#39;markdown&#39;, &#39;code&#39;, &#39;latex&#39;] else &#39;text&#39;</span>
 
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">expander</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
                 <span class="nb">getattr</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span></div>
@@ -273,8 +271,8 @@
 
 <div class="viewcode-block" id="ExecSection">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.ExecSection">[docs]</a>
-<span class="k">class</span> <span class="nc">ExecSection</span><span class="p">(</span><span class="n">ExecContainerBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ExecSection</span><span class="p">(</span><span class="n">ExecContainerBase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">obj</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
         <span class="n">inputs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
@@ -305,20 +303,20 @@
             <span class="k">else</span><span class="p">:</span>
 
                 <span class="nd">@Sig</span><span class="p">(</span><span class="n">on_submit</span><span class="p">)</span>
-                <span class="k">def</span> <span class="nf">wrapped_on_submit</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="k">def</span><span class="w"> </span><span class="nf">wrapped_on_submit</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
                     <span class="n">on_submit</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_authenticate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">on_submit</span> <span class="o">=</span> <span class="n">wrapped_on_submit</span>
 
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_expander</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">expander</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_render_section_content</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_render_section_content</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_render_section_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_render_section_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_inputs</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_submit</span> <span class="ow">or</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">submit_button_label</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
@@ -326,11 +324,11 @@
             <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_noneable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_instance</span><span class="p">:</span> <span class="n">InputBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InputBase</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_noneable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_instance</span><span class="p">:</span> <span class="n">InputBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InputBase</span><span class="p">:</span>
         <span class="c1"># input_render = input_instance.render</span>
         <span class="n">input_render</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">input_instance</span><span class="p">,</span> <span class="s1">&#39;render&#39;</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">noneable_render</span><span class="p">():</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">noneable_render</span><span class="p">():</span>
             <span class="n">none_value</span> <span class="o">=</span> <span class="n">input_instance</span><span class="o">.</span><span class="n">none_value</span>
             <span class="n">input_instance</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="n">none_value</span>
             <span class="c1"># if none_value:</span>
@@ -345,7 +343,7 @@
         <span class="nb">setattr</span><span class="p">(</span><span class="n">input_instance</span><span class="p">,</span> <span class="s1">&#39;render&#39;</span><span class="p">,</span> <span class="n">noneable_render</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">input_instance</span>
 
-    <span class="k">def</span> <span class="nf">_authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_logged_in</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_logged_in</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="o">.</span><span class="n">logged_in</span> <span class="o">=</span> <span class="n">is_logged_in</span>
         <span class="k">if</span> <span class="n">is_logged_in</span><span class="p">:</span>
             <span class="n">st</span><span class="o">.</span><span class="n">experimental_rerun</span><span class="p">()</span></div>
@@ -354,8 +352,8 @@
 
 <div class="viewcode-block" id="TextOutput">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.TextOutput">[docs]</a>
-<span class="k">class</span> <span class="nc">TextOutput</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TextOutput</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">st</span><span class="o">.</span><span class="n">caption</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">)</span></div>
 
@@ -363,8 +361,8 @@
 
 <div class="viewcode-block" id="MultiSourceInput">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.MultiSourceInput">[docs]</a>
-<span class="k">class</span> <span class="nc">MultiSourceInput</span><span class="p">(</span><span class="n">MultiSourceInputBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MultiSourceInput</span><span class="p">(</span><span class="n">MultiSourceInputBase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">with</span> <span class="n">st</span><span class="o">.</span><span class="n">container</span><span class="p">():</span>
             <span class="n">options</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_components</span><span class="p">)</span>
             <span class="c1"># source = st.radio(self.name, options)</span>
@@ -404,10 +402,10 @@
 <div class="viewcode-block" id="FileUploader">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.FileUploader">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">FileUploader</span><span class="p">(</span><span class="n">FileUploaderBase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FileUploader</span><span class="p">(</span><span class="n">FileUploaderBase</span><span class="p">):</span>
     <span class="n">display_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">label_visibility</span> <span class="o">=</span> <span class="s1">&#39;visible&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">display_label</span> <span class="k">else</span> <span class="s1">&#39;collapsed&#39;</span>
         <span class="k">return</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">(</span>
             <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
@@ -420,8 +418,8 @@
 
 <div class="viewcode-block" id="AudioRecorder">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.AudioRecorder">[docs]</a>
-<span class="k">class</span> <span class="nc">AudioRecorder</span><span class="p">(</span><span class="n">InputBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AudioRecorder</span><span class="p">(</span><span class="n">InputBase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># # Design move app further up and remove top padding</span>
         <span class="c1"># st.markdown(&#39;&#39;&#39;&lt;style&gt;.css-1egvi7u {margin-top: -3rem;}&lt;/style&gt;&#39;&#39;&#39;,</span>
         <span class="c1">#     unsafe_allow_html=True)</span>
@@ -447,16 +445,16 @@
 <div class="viewcode-block" id="SuccessFailureNotification">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.SuccessFailureNotification">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">SuccessFailureNotification</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SuccessFailureNotification</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
     <span class="n">success</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Success!&#39;</span>
     <span class="n">failure</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Failure!&#39;</span>
     <span class="n">post_render_sleep</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_success</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_success</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span>
 
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_success</span><span class="p">:</span>
             <span class="n">rv</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">success</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -469,18 +467,18 @@
 <div class="viewcode-block" id="SuccessNotification">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.SuccessNotification">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">SuccessNotification</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SuccessNotification</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
     <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Success!&#39;</span>
 
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
 
 
 
 <div class="viewcode-block" id="HiddenOutput">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.HiddenOutput">[docs]</a>
-<span class="k">class</span> <span class="nc">HiddenOutput</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">HiddenOutput</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
 
 
@@ -488,11 +486,11 @@
 <div class="viewcode-block" id="KwargsInput">
 <a class="viewcode-back" href="../../../module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.KwargsInput">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">KwargsInput</span><span class="p">(</span><span class="n">KwargsInputBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">KwargsInput</span><span class="p">(</span><span class="n">KwargsInputBase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__post_init__</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">exec_section</span> <span class="o">=</span> <span class="n">ExecSection</span><span class="p">(</span>
             <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_kwargs</span><span class="p">,</span>
             <span class="n">inputs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span>

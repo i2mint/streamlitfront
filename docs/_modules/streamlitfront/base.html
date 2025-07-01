@@ -1,27 +1,25 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.base &mdash; streamlitfront 0.1.33 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+  <title>streamlitfront.base &mdash; streamlitfront 0.1.34 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=449df4d2"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
-        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8f14641f"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -124,18 +122,18 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Base for UI generation</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">ChainMap</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Iterable</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">import</span> <span class="nn">typing</span>
-<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
-<span class="kn">from</span> <span class="nn">i2</span> <span class="kn">import</span> <span class="n">Sig</span>
-<span class="kn">from</span> <span class="nn">front</span> <span class="kn">import</span> <span class="n">AppMaker</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChainMap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Iterable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">i2</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">front</span><span class="w"> </span><span class="kn">import</span> <span class="n">AppMaker</span>
 
-<span class="kn">from</span> <span class="nn">streamlitfront.spec_maker</span> <span class="kn">import</span> <span class="n">SpecMaker</span>
-<span class="kn">from</span> <span class="nn">streamlitfront.session_state</span> <span class="kn">import</span> <span class="n">get_state</span><span class="p">,</span> <span class="n">_SessionState</span>
-<span class="kn">from</span> <span class="nn">streamlitfront.util</span> <span class="kn">import</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">build_element_factory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.spec_maker</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpecMaker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.session_state</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_state</span><span class="p">,</span> <span class="n">_SessionState</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">build_element_factory</span>
 
 <span class="c1"># --------------------- types/protocols/interfaces --------------------------------------</span>
 
@@ -154,12 +152,12 @@
 <span class="c1"># TODO: Lots of configs/convention/defaults stuff piling up: Needs it&#39;s own module</span>
 
 
-<span class="k">def</span> <span class="nf">func_to_page_name</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">func_to_page_name</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">func_name</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
 
 
 <span class="c1"># TODO: Need to enforce SOME structure/content. Use a subclass of util.Objdict instead?</span>
-<span class="k">def</span> <span class="nf">dflt_convention</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dflt_convention</span><span class="p">():</span>
     <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">app_maker</span><span class="o">=</span><span class="n">pages_app</span><span class="p">,</span>
         <span class="n">page_configs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s1">&#39;wide&#39;</span><span class="p">),</span>
@@ -167,7 +165,7 @@
     <span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_get_map</span><span class="p">(</span><span class="n">mapping</span><span class="p">:</span> <span class="n">Map</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_map</span><span class="p">(</span><span class="n">mapping</span><span class="p">:</span> <span class="n">Map</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a concrete mapping from a flexible specification (e.g. could be a factory)&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mapping</span><span class="p">,</span> <span class="n">Callable</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">mapping</span><span class="p">()</span>  <span class="c1"># it&#39;s a factory, get the actual mapping</span>
@@ -175,20 +173,20 @@
         <span class="k">return</span> <span class="n">mapping</span> <span class="ow">or</span> <span class="p">{}</span>
 
 
-<span class="k">def</span> <span class="nf">_get_configs</span><span class="p">(</span><span class="n">configs</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="n">dflt_convention</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_configs</span><span class="p">(</span><span class="n">configs</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="n">dflt_convention</span><span class="p">):</span>
     <span class="n">configs</span><span class="p">,</span> <span class="n">convention</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">_get_map</span><span class="p">,</span> <span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">convention</span><span class="p">))</span>  <span class="c1"># get concrete mappings</span>
     <span class="n">configs</span> <span class="o">=</span> <span class="n">ChainMap</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">convention</span><span class="p">)</span>  <span class="c1"># merge them</span>
     <span class="k">return</span> <span class="n">configs</span>
 
 
-<span class="k">def</span> <span class="nf">default_hash_func</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">default_hash_func</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">id</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="DfltDict">
 <a class="viewcode-back" href="../../module_docs/streamlitfront/base.html#streamlitfront.base.DfltDict">[docs]</a>
-<span class="k">class</span> <span class="nc">DfltDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__missing__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DfltDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__missing__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">default_hash_func</span></div>
 
 
@@ -224,7 +222,7 @@
 
 <div class="viewcode-block" id="dispatch_funcs">
 <a class="viewcode-back" href="../../module_docs/streamlitfront/base.html#streamlitfront.base.dispatch_funcs">[docs]</a>
-<span class="k">def</span> <span class="nf">dispatch_funcs</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dispatch_funcs</span><span class="p">(</span>
     <span class="n">funcs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Callable</span><span class="p">],</span> <span class="n">configs</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="n">dflt_convention</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">App</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;DEPRECATED!</span>
@@ -256,7 +254,7 @@
 <span class="n">missing</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;Missing&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})()</span>
 
 
-<span class="k">def</span> <span class="nf">infer_type</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">infer_type</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">annotations</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">sig</span><span class="o">.</span><span class="n">annotations</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
     <span class="k">elif</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">defaults</span><span class="p">:</span>
@@ -267,7 +265,7 @@
         <span class="k">return</span> <span class="n">missing</span>
 
 
-<span class="k">def</span> <span class="nf">_get_dflt_element_factory_for_annot</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_dflt_element_factory_for_annot</span><span class="p">():</span>
     <span class="c1"># _ = _get_state()</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="nb">int</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">,</span>
@@ -304,7 +302,7 @@
 <span class="c1">#</span>
 <span class="c1"># TODO: Too messy -- needs some design thinking</span>
 <span class="c1"># TODO: Basic: Add some more smart mapping</span>
-<span class="k">def</span> <span class="nf">get_func_args_specs</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_func_args_specs</span><span class="p">(</span>
     <span class="n">func</span><span class="p">,</span>
     <span class="n">dflt_element_factory</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">,</span>
     <span class="n">element_factory_for_annot</span><span class="p">:</span> <span class="n">Mapping</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -342,24 +340,24 @@
     <span class="k">return</span> <span class="n">func_args_specs</span>
 
 
-<span class="k">class</span> <span class="nc">BasePageFunc</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">view_title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BasePageFunc</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">view_title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">view_title</span> <span class="o">=</span> <span class="n">view_title</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">configs</span> <span class="o">=</span> <span class="n">configs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sig</span> <span class="o">=</span> <span class="n">Sig</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">prepare_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">prepare_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_title</span><span class="p">:</span>
             <span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;&#39;## **</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">view_title</span><span class="si">}</span><span class="s1">**&#39;&#39;&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">prepare_view</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
         <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sig</span><span class="p">)</span>  <span class="c1"># Was Sig(self.func)</span>
 
 
-<span class="k">class</span> <span class="nc">SimplePageFunc</span><span class="p">(</span><span class="n">BasePageFunc</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SimplePageFunc</span><span class="p">(</span><span class="n">BasePageFunc</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">prepare_view</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
         <span class="n">args_specs</span> <span class="o">=</span> <span class="n">get_func_args_specs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
         <span class="c1"># func_inputs = dict(self.sig.defaults, **state[&#39;page_state&#39;][self.func])</span>
@@ -387,7 +385,7 @@
 <span class="c1"># TODO: Get func_page for real</span>
 <div class="viewcode-block" id="get_pages_specs">
 <a class="viewcode-back" href="../../module_docs/streamlitfront/base.html#streamlitfront.base.get_pages_specs">[docs]</a>
-<span class="k">def</span> <span class="nf">get_pages_specs</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_pages_specs</span><span class="p">(</span>
     <span class="n">funcs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Callable</span><span class="p">],</span>
     <span class="n">func_to_page_name</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">func_to_page_name</span><span class="p">,</span>
     <span class="n">page_factory</span><span class="o">=</span><span class="n">DFLT_PAGE_FACTORY</span><span class="p">,</span>
@@ -403,7 +401,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_get_view_key</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_view_key</span><span class="p">(</span>
     <span class="n">view_keys</span><span class="p">,</span>
     <span class="n">container</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="p">,</span>
     <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Navigation&#39;</span><span class="p">,</span>
@@ -417,7 +415,7 @@
     <span class="k">return</span> <span class="n">page_key</span>
 
 
-<span class="k">def</span> <span class="nf">pages_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">configs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">pages_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">configs</span><span class="p">):</span>
     <span class="c1"># Page setup</span>
 
     <span class="c1"># Note: set_page_config at top: needs to be the first call after importing streamlit</span>
@@ -466,7 +464,7 @@
 
 <div class="viewcode-block" id="mk_app">
 <a class="viewcode-back" href="../../module_docs/streamlitfront/base.html#streamlitfront.base.mk_app">[docs]</a>
-<span class="k">def</span> <span class="nf">mk_app</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mk_app</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The entrypoint of streamlitfront.</span>
 <span class="sd">    Call this function with target objects and get an app to run.</span>
 
