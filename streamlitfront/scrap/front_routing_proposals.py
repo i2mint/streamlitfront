@@ -2,13 +2,14 @@
 
 """
 
-from typing import Iterable, Tuple, Callable, KT, VT
+from typing import Tuple, KT, VT
+from collections.abc import Iterable, Callable
 from streamlitfront.base import mk_app, Map
 from front import RENDERING_KEY
 
 from i2 import name_of_obj
 
-KV = Tuple[KT, VT]
+KV = tuple[KT, VT]
 
 # def validate_bijection(objs, config):
 #     object_names = list(map(name_of_obj, objs))
@@ -143,13 +144,14 @@ def alt_mk_render_keys(objs, render_keys, resolver: Callable):
     return render_keys
 
 
-from typing import TypeVar, Tuple, Iterable, Callable
+from typing import TypeVar, Tuple
+from collections.abc import Iterable, Callable
 
 Obj = TypeVar('Obj')
 Output = TypeVar('Output')
 Cond = Callable[[Obj], bool]
 Then = Callable[[Obj], Output]
-Rule = Tuple[Cond, Then]
+Rule = tuple[Cond, Then]
 Rules = Iterable[Rule]
 
 # Note: We could iterate over objs or over rules. Context tells what's best.

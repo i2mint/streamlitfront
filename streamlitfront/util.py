@@ -1,6 +1,7 @@
 """Utils"""
 from functools import partial
-from typing import TypeVar, Iterable, Dict
+from typing import TypeVar, Dict
+from collections.abc import Iterable
 from i2.signatures import Sig, name_of_obj
 from i2._deprecated import Command as _Command
 
@@ -28,7 +29,7 @@ PositionalTypes = TypeVar(
     'PositionalTypes', Iterable[int], Iterable[float], Iterable[str], Iterable[bool]
 )
 KeywordTypes = TypeVar(
-    'KeywordTypes', Dict[str, int], Dict[str, float], Dict[str, str], Dict[str, bool]
+    'KeywordTypes', dict[str, int], dict[str, float], dict[str, str], dict[str, bool]
 )
 
 

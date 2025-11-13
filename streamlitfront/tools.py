@@ -2,7 +2,8 @@
 
 """
 
-from typing import Iterable, Tuple, Callable, KT, VT, Any, Dict
+from typing import Tuple, KT, VT, Any, Dict
+from collections.abc import Iterable, Callable
 from streamlitfront.base import mk_app, Map
 from front import RENDERING_KEY, NAME_KEY, ELEMENT_KEY
 from front.elements import OutputBase
@@ -86,10 +87,11 @@ def mk_output_renderer(*output_trans: Callable, name=None):
 from itertools import chain
 from i2 import mk_sentinel
 from dol.paths import Edits
-from typing import Hashable, NewType
+from typing import NewType
+from collections.abc import Hashable
 
 RenderKey = NewType('RenderKey', Hashable)
-RenderKeyEdits = Dict[str, dict]
+RenderKeyEdits = dict[str, dict]
 # Why do the following make mypy complain?
 # RenderKeyEdits = NewType('RenderKeyEdits', Dict[RenderKey, Edits])
 # RenderKeyEdits = NewType('RenderKeyEdits', Dict[str, dict])
@@ -201,7 +203,8 @@ def _is_json(output):
         return t.startswith('{')  # or t.startswith('[') TODO: ??
 
 
-from typing import Callable, Any
+from typing import Any
+from collections.abc import Callable
 
 Output = Any
 ConditionFunc = Callable[[Output], bool]
@@ -238,7 +241,7 @@ dynamic_trans = ConditionalTrans()
 # ------------------------------------------------------------------------------
 # 1. Render keys
 
-KV = Tuple[KT, VT]
+KV = tuple[KT, VT]
 
 # def validate_bijection(objs, config):
 #     object_names = list(map(name_of_obj, objs))
@@ -373,13 +376,14 @@ def alt_mk_render_keys(objs, render_keys, resolver: Callable):
     return render_keys
 
 
-from typing import TypeVar, Tuple, Iterable, Callable
+from typing import TypeVar, Tuple
+from collections.abc import Iterable, Callable
 
 Obj = TypeVar('Obj')
 Output = TypeVar('Output')
 Cond = Callable[[Obj], bool]
 Then = Callable[[Obj], Output]
-Rule = Tuple[Cond, Then]
+Rule = tuple[Cond, Then]
 Rules = Iterable[Rule]
 
 # Note: We could iterate over objs or over rules. Context tells what's best.

@@ -1,7 +1,8 @@
 from front.spec_maker_base import BASE_DFLT_CONVENTION
 from front.util import deep_merge
 import streamlit as st
-from typing import Any, Literal, Mapping
+from typing import Any, Literal
+from collections.abc import Mapping
 from collections.abc import Callable
 from front import SpecMakerBase, APP_KEY, RENDERING_KEY, ELEMENT_KEY, DEFAULT_INPUT_KEY
 

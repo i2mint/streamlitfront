@@ -4,7 +4,7 @@ Functions to create pages
 
 import streamlit as st
 from i2 import Sig
-from typing import Mapping
+from collections.abc import Mapping
 
 from streamlitfront.base import (
     BasePageFunc,

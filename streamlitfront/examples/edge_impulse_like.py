@@ -4,7 +4,8 @@ from io import BytesIO
 import os
 from pathlib import Path
 import time
-from typing import Any, Iterable, Union
+from typing import Any, Union
+from collections.abc import Iterable
 from dol import Files
 from front.elements import DEFAULT_INPUT_KEY, OutputBase
 from meshed import code_to_dag, DAG

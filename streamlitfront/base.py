@@ -3,7 +3,8 @@ Base for UI generation
 """
 import streamlit as st
 from collections import ChainMap
-from typing import Callable, Any, Union, Mapping, Iterable
+from typing import Any, Union
+from collections.abc import Callable, Mapping, Iterable
 from functools import partial
 import typing
 from warnings import warn

@@ -8,7 +8,8 @@ from dataclasses import dataclass
 from functools import partial, cached_property
 from pathlib import Path
 from time import sleep
-from typing import Any, Callable, Iterable, Union
+from typing import Any, Union
+from collections.abc import Callable, Iterable
 import streamlit as st
 from pydantic import ValidationError
 from front.elements import (

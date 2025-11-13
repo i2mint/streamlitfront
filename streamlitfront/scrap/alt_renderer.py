@@ -105,7 +105,7 @@ renderers = StreamlitRenderers()
 
 # ------------------
 from functools import partial
-from typing import Callable
+from collections.abc import Callable
 from types import MethodType
 
 from i2 import Sig, call_forgivingly, name_of_obj

@@ -1,12 +1,13 @@
 import dill
 from sys import argv
-from typing import Callable, Iterable, Union
+from typing import Union
+from collections.abc import Callable, Iterable
 from streamlit.web.bootstrap import run
 from streamlitfront.base import Map, dflt_convention, dispatch_funcs
 
 
 def run_app(
-    funcs: Union[Iterable[Callable], bytes],
+    funcs: Iterable[Callable] | bytes,
     configs: Map = None,
     convention: Map = dflt_convention,
 ):

@@ -10,7 +10,7 @@ from streamlitfront.elements.elements import TextInput
 #     pass
 
 
-def foo(a: int = 1, b: Optional[int] = 2, c: Optional[int] = None, d: str = None):
+def foo(a: int = 1, b: int | None = 2, c: int | None = None, d: str = None):
     # def foo(a: int = 1, b: int = 2, c: int = 3, d: str = ''):
     """This is foo. It computes something"""
     b = b if b is not None else 1

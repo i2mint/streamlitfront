@@ -1,4 +1,4 @@
-from typing import Iterable
+from collections.abc import Iterable
 from collections.abc import Callable
 from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY
 from streamlitfront.examples.pipeline_maker import MultiSelect

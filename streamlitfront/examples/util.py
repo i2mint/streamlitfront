@@ -21,7 +21,7 @@ class Graph(FrontComponentBase):
 
 
 def get_code_of_current_file():
-    with open(__file__, 'r') as f:
+    with open(__file__) as f:
         return f.read()
 
 

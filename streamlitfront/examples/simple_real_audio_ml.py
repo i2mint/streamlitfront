@@ -1,4 +1,4 @@
-from typing import Iterable
+from collections.abc import Iterable
 from meshed import code_to_dag, DAG
 from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY, NAME_KEY
 
