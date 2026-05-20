@@ -1,0 +1,261 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>streamlitfront.tools &mdash; streamlitfront 0.1.35 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2b6ce006"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="streamlitfront.util" href="util.html" />
+    <link rel="prev" title="streamlitfront.tests.use_case_test_old" href="tests/use_case_test_old.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            streamlitfront
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../streamlitfront.html">streamlitfront</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_binding.html">streamlitfront.data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements.html">streamlitfront.elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/elements.html">streamlitfront.elements.elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/js.html">streamlitfront.elements.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/costing_inflexibility.html">streamlitfront.examples.costing_inflexibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/crude.html">streamlitfront.examples.crude</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/custom_output.html">streamlitfront.examples.custom_output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/data_prep.html">streamlitfront.examples.data_prep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/edge_impulse_like.html">streamlitfront.examples.edge_impulse_like</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/handle_none_params.html">streamlitfront.examples.handle_none_params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/issues.html">streamlitfront.examples.issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/pipeline_maker.html">streamlitfront.examples.pipeline_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/pipeline_maker_2.html">streamlitfront.examples.pipeline_maker_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/simple.html">streamlitfront.examples.simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/simple_ml_1.html">streamlitfront.examples.simple_ml_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/store_filtering.html">streamlitfront.examples.store_filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/util.html">streamlitfront.examples.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="page_funcs.html">streamlitfront.page_funcs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pydantic_widgets.html">streamlitfront.pydantic_widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_app.html">streamlitfront.run_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scrap/front_routing_proposals.html">streamlitfront.scrap.front_routing_proposals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scrap/nested_select.html">streamlitfront.scrap.nested_select</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_state.html">streamlitfront.session_state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spec_maker.html">streamlitfront.spec_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/common.html">streamlitfront.tests.common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/conftest.html">streamlitfront.tests.conftest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/dispatch_funcs_test.html">streamlitfront.tests.dispatch_funcs_test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/dummy_app.html">streamlitfront.tests.dummy_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/fake_app.html">streamlitfront.tests.fake_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/smoke_test.html">streamlitfront.tests.smoke_test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/test_app.html">streamlitfront.tests.test_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/test_base.html">streamlitfront.tests.test_base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/test_pydantic_widgets.html">streamlitfront.tests.test_pydantic_widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests/use_case_test_old.html">streamlitfront.tests.use_case_test_old</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">streamlitfront.tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.tools.Rules"><code class="docutils literal notranslate"><span class="pre">Rules</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.tools.alt_mk_render_keys"><code class="docutils literal notranslate"><span class="pre">alt_mk_render_keys()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.tools.first_element_matching_type"><code class="docutils literal notranslate"><span class="pre">first_element_matching_type()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.tools.if_then"><code class="docutils literal notranslate"><span class="pre">if_then()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.tools.lines_to_html_paragraphs"><code class="docutils literal notranslate"><span class="pre">lines_to_html_paragraphs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.tools.mk_render_keys"><code class="docutils literal notranslate"><span class="pre">mk_render_keys()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.tools.mk_specs"><code class="docutils literal notranslate"><span class="pre">mk_specs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.tools.mk_target_render_keys_func"><code class="docutils literal notranslate"><span class="pre">mk_target_render_keys_func()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.tools.render_edits"><code class="docutils literal notranslate"><span class="pre">render_edits()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#streamlitfront.tools.rule_applier"><code class="docutils literal notranslate"><span class="pre">rule_applier()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">streamlitfront.util</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">streamlitfront</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">streamlitfront.tools</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/module_docs/streamlitfront/tools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-streamlitfront.tools">
+<span id="streamlitfront-tools"></span><h1>streamlitfront.tools<a class="headerlink" href="#module-streamlitfront.tools" title="Link to this heading"></a></h1>
+<p>Tools made with streamlitfront</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="streamlitfront.tools.Rules">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.tools.</span></span><span class="sig-name descname"><span class="pre">Rules</span></span><a class="headerlink" href="#streamlitfront.tools.Rules" title="Link to this definition"></a></dt>
+<dd><p>typical use is to define rules and apply to objs like so
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">from</span> <span class="pre">functools</span> <span class="pre">import</span> <span class="pre">partial</span>
+<span class="pre">singular_find_render_keys</span> <span class="pre">=</span> <span class="pre">partial(mk_find_render_keys,</span> <span class="pre">rules=rules)</span>&#160; <span class="pre">#</span> <span class="pre">fix</span> <span class="pre">rules</span>
+<span class="pre">find_render_keys</span> <span class="pre">=</span> <span class="pre">partial(map,</span> <span class="pre">singular_find_render_keys)</span>&#160; <span class="pre">#</span> <span class="pre">apply</span> <span class="pre">to</span> <span class="pre">iterable</span>
+<span class="pre">`</span></code></p>
+<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Obj</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-obj docutils literal notranslate"><span class="pre">Obj</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">Output</span></code>]]]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.tools.alt_mk_render_keys">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.tools.</span></span><span class="sig-name descname"><span class="pre">alt_mk_render_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/streamlitfront/tools.html#alt_mk_render_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.tools.alt_mk_render_keys" title="Link to this definition"></a></dt>
+<dd><p>Make a static render_keys that has a one-to-one relationship with objects</p>
+<p># &gt;&gt;&gt; find_render_keys = lambda objs, render_keys:
+# &gt;&gt;&gt; dict(mk_render_keys([1, 2, 3], {1: ‘a’, 2: ‘b’, 3: ‘c’}))
+# {1: ‘a’, 2: ‘b’, 3: ‘c’}</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.tools.first_element_matching_type">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.tools.</span></span><span class="sig-name descname"><span class="pre">first_element_matching_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/streamlitfront/tools.html#first_element_matching_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.tools.first_element_matching_type" title="Link to this definition"></a></dt>
+<dd><p>returns the first type found that obj is an instance of</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.tools.if_then">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.tools.</span></span><span class="sig-name descname"><span class="pre">if_then</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">then</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/streamlitfront/tools.html#if_then"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.tools.if_then" title="Link to this definition"></a></dt>
+<dd><p>Intent is to be used with <code class="docutils literal notranslate"><span class="pre">functools.partial</span></code>, <code class="docutils literal notranslate"><span class="pre">map</span></code> and <code class="docutils literal notranslate"><span class="pre">itertools.chain</span></code></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">chain</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_if_then</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">if_then</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">my_if_then</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">f</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">f</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>  <span class="c1"># get all matches</span>
+<span class="go">[4, 8]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.tools.lines_to_html_paragraphs">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.tools.</span></span><span class="sig-name descname"><span class="pre">lines_to_html_paragraphs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/streamlitfront/tools.html#lines_to_html_paragraphs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.tools.lines_to_html_paragraphs" title="Link to this definition"></a></dt>
+<dd><p>Converts a string with newlines to a string with html paragraphs</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lines_to_html_paragraphs</span><span class="p">(</span><span class="s1">&#39;hello</span><span class="se">\n</span><span class="s1">world&#39;</span><span class="p">)</span>
+<span class="go">&#39;&lt;p&gt;hello&lt;/p&gt;\n&lt;p&gt;world&lt;/p&gt;&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.tools.mk_render_keys">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.tools.</span></span><span class="sig-name descname"><span class="pre">mk_render_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">find_render_keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">_find_render_keys&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/streamlitfront/tools.html#mk_render_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.tools.mk_render_keys" title="Link to this definition"></a></dt>
+<dd><p>Make a static render_keys that has a one-to-one relationship with objects</p>
+<p># &gt;&gt;&gt; find_render_keys = lambda objs, render_keys:
+# &gt;&gt;&gt; dict(mk_render_keys([1, 2, 3], {1: ‘a’, 2: ‘b’, 3: ‘c’}))
+# {1: ‘a’, 2: ‘b’, 3: ‘c’}</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.tools.mk_specs">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.tools.</span></span><span class="sig-name descname"><span class="pre">mk_specs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/streamlitfront/tools.html#mk_specs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.tools.mk_specs" title="Link to this definition"></a></dt>
+<dd><p>Make a static configs that has a one-to-one relationship with objects</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.tools.mk_target_render_keys_func">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.tools.</span></span><span class="sig-name descname"><span class="pre">mk_target_render_keys_func</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/streamlitfront/tools.html#mk_target_render_keys_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.tools.mk_target_render_keys_func" title="Link to this definition"></a></dt>
+<dd><p>Will use mk_find_render_keys to make a function equivalent to
+target_render_keys_func</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.tools.render_edits">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.tools.</span></span><span class="sig-name descname"><span class="pre">render_edits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">render_key_edits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/streamlitfront/tools.html#render_edits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.tools.render_edits" title="Link to this definition"></a></dt>
+<dd><p>Convert render_key_edits to edits for dol.paths.apply_edits</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.tools.rule_applier">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.tools.</span></span><span class="sig-name descname"><span class="pre">rule_applier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rules</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sentinel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/streamlitfront/tools.html#rule_applier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.tools.rule_applier" title="Link to this definition"></a></dt>
+<dd><p>Applies rules to obj and returns the first non-sentinel value</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tests/use_case_test_old.html" class="btn btn-neutral float-left" title="streamlitfront.tests.use_case_test_old" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="util.html" class="btn btn-neutral float-right" title="streamlitfront.util" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

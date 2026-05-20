@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>streamlitfront.tools &mdash; streamlitfront 0.1.35 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2b6ce006"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            streamlitfront
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront.html">streamlitfront</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/data_binding.html">streamlitfront.data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements.html">streamlitfront.elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/js.html">streamlitfront.elements.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/costing_inflexibility.html">streamlitfront.examples.costing_inflexibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/crude.html">streamlitfront.examples.crude</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/custom_output.html">streamlitfront.examples.custom_output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/data_prep.html">streamlitfront.examples.data_prep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/edge_impulse_like.html">streamlitfront.examples.edge_impulse_like</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/handle_none_params.html">streamlitfront.examples.handle_none_params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/pipeline_maker.html">streamlitfront.examples.pipeline_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/pipeline_maker_2.html">streamlitfront.examples.pipeline_maker_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/simple_ml_1.html">streamlitfront.examples.simple_ml_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/store_filtering.html">streamlitfront.examples.store_filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/util.html">streamlitfront.examples.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/pydantic_widgets.html">streamlitfront.pydantic_widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/run_app.html">streamlitfront.run_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/scrap/front_routing_proposals.html">streamlitfront.scrap.front_routing_proposals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/scrap/nested_select.html">streamlitfront.scrap.nested_select</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/session_state.html">streamlitfront.session_state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/spec_maker.html">streamlitfront.spec_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/common.html">streamlitfront.tests.common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/conftest.html">streamlitfront.tests.conftest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/dispatch_funcs_test.html">streamlitfront.tests.dispatch_funcs_test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/dummy_app.html">streamlitfront.tests.dummy_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/fake_app.html">streamlitfront.tests.fake_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/smoke_test.html">streamlitfront.tests.smoke_test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/test_app.html">streamlitfront.tests.test_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/test_base.html">streamlitfront.tests.test_base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/test_pydantic_widgets.html">streamlitfront.tests.test_pydantic_widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/use_case_test_old.html">streamlitfront.tests.use_case_test_old</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tools.html">streamlitfront.tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">streamlitfront</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">streamlitfront.tools</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for streamlitfront.tools</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Tools made with streamlitfront</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">KT</span><span class="p">,</span> <span class="n">VT</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">mk_app</span><span class="p">,</span> <span class="n">Map</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">front</span><span class="w"> </span><span class="kn">import</span> <span class="n">RENDERING_KEY</span><span class="p">,</span> <span class="n">NAME_KEY</span><span class="p">,</span> <span class="n">ELEMENT_KEY</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">front.elements</span><span class="w"> </span><span class="kn">import</span> <span class="n">OutputBase</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">i2</span><span class="w"> </span><span class="kn">import</span> <span class="n">name_of_obj</span><span class="p">,</span> <span class="n">Pipe</span>
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># Config validation</span>
+
+
+<span class="c1"># TODO: Make it plugin-able. User should be able to chose what and how to validate.</span>
+<span class="c1">#  By &quot;what&quot; I mean what conditions to check, and by &quot;how&quot; I mean what to do when</span>
+<span class="c1">#  a condition is not met. Here we raise an exception, but we could just warn the user,</span>
+<span class="c1">#  or modify the config, or whatever.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_config</span><span class="p">(</span>
+    <span class="n">configs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">funcs</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">allow_no_rendering</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">func_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name_of_obj</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">RENDERING_KEY</span> <span class="ow">in</span> <span class="n">configs</span><span class="p">:</span>
+        <span class="n">render_names_not_in_funcs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span>
+            <span class="nb">filter</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span>
+                <span class="nb">set</span><span class="p">(</span><span class="n">configs</span><span class="p">[</span><span class="n">RENDERING_KEY</span><span class="p">])</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">func_names</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">render_names_not_in_funcs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;Render names not matched to func name: </span><span class="si">{</span><span class="n">render_names_not_in_funcs</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;Your func names are: </span><span class="si">{</span><span class="n">func_names</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="p">)</span>
+        <span class="c1"># func_names_not_in_render = set(func_names) - set(configs[RENDERING_KEY])</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">allow_no_rendering</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The config had no </span><span class="si">{</span><span class="n">RENDERING_KEY</span><span class="si">=}</span><span class="s1"> key&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># Output rendering factory</span>
+
+<span class="c1"># TODO: Perhaps front itself should use this to cast non-OutputBase callables?</span>
+<span class="c1"># TODO: Make it more general, and picklable</span>
+<span class="c1">#  Take https://github.com/i2mint/streamlitfront/blob/79e4a6c0bcc53c26c164a40d58eb4ada50cc87b6/streamlitfront/examples/custom_output.py#L17</span>
+<span class="c1">#  as an target example, or something like it. Use dataclasses with top level class</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mk_output_renderer</span><span class="p">(</span><span class="o">*</span><span class="n">output_trans</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">output_trans_pipe</span> <span class="o">=</span> <span class="n">Pipe</span><span class="p">(</span><span class="o">*</span><span class="n">output_trans</span><span class="p">)</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">CustomRenderer</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="n">output_trans_pipe</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">output_trans_pipe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+
+        <span class="c1"># def __repr__(self):</span>
+        <span class="c1">#     return f&quot;{type(self).__name__}({repr(self.func)})&quot;</span>
+
+    <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
+        <span class="n">CustomRenderer</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">return</span> <span class="n">CustomRenderer</span>
+
+
+<span class="c1"># Beginning of an attempt to make it more general, and picklable.</span>
+<span class="c1"># class CustomRenderer(OutputBase):</span>
+<span class="c1">#     def __init__(self, func: Callable, *args, **kwargs):</span>
+<span class="c1">#         self.func = func</span>
+<span class="c1">#         super().__init__(*args, **kwargs)</span>
+<span class="c1">#</span>
+<span class="c1">#     def render(self):</span>
+<span class="c1">#         return self.func(self.output)</span>
+<span class="c1">#</span>
+<span class="c1">#     def __repr__(self):</span>
+<span class="c1">#         return f&quot;{type(self).__name__}({getattr(self.func, &#39;__name__&#39;, &#39;Unnamed&#39;)})&quot;</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># def make_output_renderer(*output_trans: Callable, name=None):</span>
+<span class="c1">#     output_trans_pipe = Pipe(*output_trans)</span>
+<span class="c1">#     renderer = CustomRenderer(output_trans_pipe, name=name)</span>
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># Render edits</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">i2</span><span class="w"> </span><span class="kn">import</span> <span class="n">mk_sentinel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dol.paths</span><span class="w"> </span><span class="kn">import</span> <span class="n">Edits</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NewType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Hashable</span>
+
+<span class="n">RenderKey</span> <span class="o">=</span> <span class="n">NewType</span><span class="p">(</span><span class="s1">&#39;RenderKey&#39;</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">)</span>
+<span class="n">RenderKeyEdits</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span>
+<span class="c1"># Why do the following make mypy complain?</span>
+<span class="c1"># RenderKeyEdits = NewType(&#39;RenderKeyEdits&#39;, Dict[RenderKey, Edits])</span>
+<span class="c1"># RenderKeyEdits = NewType(&#39;RenderKeyEdits&#39;, Dict[str, dict])</span>
+
+<span class="n">NoChanges</span> <span class="o">=</span> <span class="n">mk_sentinel</span><span class="p">(</span><span class="s1">&#39;NoChanges&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">trans_output</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">output_trans</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">front</span><span class="w"> </span><span class="kn">import</span> <span class="n">RENDERING_KEY</span><span class="p">,</span> <span class="n">ELEMENT_KEY</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">dol</span><span class="w"> </span><span class="kn">import</span> <span class="n">path_set</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output_trans</span><span class="p">,</span> <span class="n">OutputBase</span><span class="p">):</span>
+        <span class="n">output_trans</span> <span class="o">=</span> <span class="n">mk_output_renderer</span><span class="p">(</span><span class="n">output_trans</span><span class="p">)</span>
+
+    <span class="n">path_set</span><span class="p">(</span>
+        <span class="n">config</span><span class="p">,</span> <span class="p">[</span><span class="n">RENDERING_KEY</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="s1">&#39;execution&#39;</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="n">ELEMENT_KEY</span><span class="p">],</span> <span class="n">output_trans</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_dict_wrap_if_not_dict</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;If value is not a dict, wrap it in a dict with key as key and value as value&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">value</span>
+
+
+<div class="viewcode-block" id="render_edits">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/tools.html#streamlitfront.tools.render_edits">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">render_edits</span><span class="p">(</span><span class="n">render_key_edits</span><span class="p">:</span> <span class="n">RenderKeyEdits</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert render_key_edits to edits for dol.paths.apply_edits&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span>
+        <span class="n">render_edits_gen</span><span class="p">(</span><span class="n">render_key</span><span class="p">,</span> <span class="o">**</span><span class="n">_dict_wrap_if_not_dict</span><span class="p">(</span><span class="n">edits</span><span class="p">,</span> <span class="s1">&#39;output_trans&#39;</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">render_key</span><span class="p">,</span> <span class="n">edits</span> <span class="ow">in</span> <span class="n">render_key_edits</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">)</span></div>
+
+
+
+<span class="c1"># TODO: Make this into a plugin architecture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">render_edits_gen</span><span class="p">(</span>
+    <span class="n">render_key</span><span class="p">,</span>
+    <span class="n">output_trans</span><span class="o">=</span><span class="n">NoChanges</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">name_key</span><span class="o">=</span><span class="n">NoChanges</span><span class="p">,</span>
+    <span class="n">description_content</span><span class="o">=</span><span class="n">NoChanges</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">_render_key</span> <span class="o">=</span> <span class="p">(</span><span class="n">RENDERING_KEY</span><span class="p">,</span> <span class="n">render_key</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">output_trans</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">NoChanges</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output_trans</span><span class="p">,</span> <span class="n">OutputBase</span><span class="p">):</span>
+            <span class="n">output_trans</span> <span class="o">=</span> <span class="n">mk_output_renderer</span><span class="p">(</span><span class="n">output_trans</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">_render_key</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;execution&#39;</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="n">ELEMENT_KEY</span><span class="p">),</span> <span class="n">output_trans</span>
+    <span class="k">if</span> <span class="n">name_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">NoChanges</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">_render_key</span> <span class="o">+</span> <span class="p">(</span><span class="n">NAME_KEY</span><span class="p">,),</span> <span class="n">name_key</span>
+    <span class="k">if</span> <span class="n">description_content</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">NoChanges</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">_render_key</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">),</span> <span class="n">description_content</span>
+
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">render_html</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">unsafe_allow_html</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">html_img_wrap</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;html&gt; &lt;body&gt; &lt;img src=&quot;</span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s1">&quot; /&gt; &lt;/body&gt; &lt;/html&gt;&#39;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">html_img_wrap_w_output_display</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s1">&#39;&lt;html&gt; &lt;body&gt; &lt;p&gt;&lt;img src=&quot;</span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s1">&quot; /&gt;&lt;/p&gt; &lt;p&gt;</span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s1">&lt;/p&gt; &lt;/body&gt; &#39;</span>
+        <span class="sa">f</span><span class="s1">&#39;&lt;/html&gt;&#39;</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">text_to_html</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;html&gt; &lt;body&gt; &lt;p&gt;</span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s1">&lt;/p&gt; &lt;/body&gt; &lt;/html&gt;&#39;</span>
+
+
+<div class="viewcode-block" id="lines_to_html_paragraphs">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/tools.html#streamlitfront.tools.lines_to_html_paragraphs">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">lines_to_html_paragraphs</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a string with newlines to a string with html paragraphs</span>
+
+<span class="sd">    &gt;&gt;&gt; lines_to_html_paragraphs(&#39;hello\\nworld&#39;)</span>
+<span class="sd">    &#39;&lt;p&gt;hello&lt;/p&gt;\\n&lt;p&gt;world&lt;/p&gt;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">gen</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="sa">f</span><span class="s1">&#39;&lt;p&gt;</span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="s1">&lt;/p&gt;&#39;</span>
+
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gen</span><span class="p">())</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">identity</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_html</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;&lt;html&gt;&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_url</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_json</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;{&#39;</span><span class="p">)</span>  <span class="c1"># or t.startswith(&#39;[&#39;) TODO: ??</span>
+
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+
+<span class="n">Output</span> <span class="o">=</span> <span class="n">Any</span>
+<span class="n">ConditionFunc</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Output</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span>
+<span class="n">TransFunc</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Output</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span>
+
+
+<span class="c1"># TODO: resolvers as class attribute, or should we use instance attribute?</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ConditionalTrans</span><span class="p">:</span>
+    <span class="n">transformers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">ConditionFunc</span><span class="p">,</span> <span class="n">TransFunc</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">_is_html</span><span class="p">:</span> <span class="n">render_html</span><span class="p">,</span>
+        <span class="n">_is_json</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">json</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># TODO: Need to give use control over the order of the resolvers. Here,</span>
+    <span class="c1">#  if condition doesn&#39;t already exist, will be placed last.</span>
+    <span class="c1">#  Could also implement the resolution so all conditions are applied, and if a</span>
+    <span class="c1">#  conflict (or, if integer conditions, no unique max can be found), then apply</span>
+    <span class="c1">#  fallback callback (which could raise an exception, just return the output as is,</span>
+    <span class="c1">#   or something else)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">condition</span><span class="p">:</span> <span class="n">ConditionFunc</span><span class="p">,</span> <span class="n">renderer</span><span class="p">:</span> <span class="n">TransFunc</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transformers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">condition</span><span class="p">:</span> <span class="n">renderer</span><span class="p">})</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_trans</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">condition</span><span class="p">,</span> <span class="n">trans_func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">condition</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">trans_func</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+    <span class="fm">__call__</span> <span class="o">=</span> <span class="n">find_trans</span>
+
+
+<span class="n">dynamic_trans</span> <span class="o">=</span> <span class="n">ConditionalTrans</span><span class="p">()</span>
+
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1"># 1. Render keys</span>
+
+<span class="n">KV</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">KT</span><span class="p">,</span> <span class="n">VT</span><span class="p">]</span>
+
+<span class="c1"># def validate_bijection(objs, config):</span>
+<span class="c1">#     object_names = list(map(name_of_obj, objs))</span>
+<span class="c1">#     if set(object_names) != set(get_render_keys(config)):</span>
+<span class="c1">#         raise ValueError(f&quot;The object names don&#39;t match the render keys of configs&quot;)</span>
+
+
+<span class="c1"># TODO: Make one that is smarter than taking first (example, take closest in mro)</span>
+<div class="viewcode-block" id="first_element_matching_type">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/tools.html#streamlitfront.tools.first_element_matching_type">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">first_element_matching_type</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;returns the first type found that obj is an instance of&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">type_</span> <span class="ow">in</span> <span class="n">types</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">type_</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">type_</span></div>
+
+    <span class="c1"># else return None</span>
+
+
+<span class="n">OBJECT</span> <span class="o">=</span> <span class="s1">&#39;OBJECT&#39;</span>
+<span class="n">NAME_OF_OBJ</span> <span class="o">=</span> <span class="s1">&#39;NAME_OF_OBJ&#39;</span>
+<span class="n">SUBTYPE</span> <span class="o">=</span> <span class="s1">&#39;SUBTYPE&#39;</span>
+
+
+<span class="c1"># TODO: Finish. Intened to be used with _find_render_keys function that handles a</span>
+<span class="c1">#  single obj (do we need global view?)</span>
+<span class="c1"># TODO: Replace if/elif statement by parametrized function + factory that produces</span>
+<span class="c1">#  this function based on rules. (Routing, once again).</span>
+<span class="c1"># def _find_val(objs, render_keys: dict):</span>
+<span class="c1">#     &quot;&quot;&quot;Generates render config items for each object&quot;&quot;&quot;</span>
+<span class="c1">#     # TODO: raise specific error with more info instead of assert:</span>
+<span class="c1">#     objs = list(objs)</span>
+<span class="c1">#     assert len(set(objs)) == objs, f&quot;Some of your objects weren&#39;t unique&quot;</span>
+<span class="c1">#</span>
+<span class="c1">#     for obj in objs:</span>
+<span class="c1">#         if obj in render_keys:</span>
+<span class="c1">#             yield OBJECT, (obj, render_keys[obj])</span>
+<span class="c1">#         elif name_of_obj(obj) in render_keys:</span>
+<span class="c1">#             yield NAME_OF_OBJ, (name_of_obj(obj), render_keys[name_of_obj(obj)])</span>
+<span class="c1">#         elif (type_ := first_element_matching_type(</span>
+<span class="c1">#                 SUBTYPE, (obj, filter(lambda x: isinstance(x, type), render_keys))</span>
+<span class="c1">#         )) is not None:</span>
+<span class="c1">#             yield type_, name_of_obj(type_)</span>
+<span class="c1">#         else:</span>
+<span class="c1">#             # TODO: More significant error (perhaps list ALL the objects that are not</span>
+<span class="c1">#             #  mapped and suggest what to do about it (given the specific objects and</span>
+<span class="c1">#             #  render keys).</span>
+<span class="c1">#             raise ValueError(</span>
+<span class="c1">#                 f&quot;Object couldn&#39;t be mapped to a render_keys key: {obj}&quot;</span>
+<span class="c1">#             )</span>
+
+<span class="c1"># TODO: Extract routing logic (the if/elifs) and expose control to interface</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_find_render_keys</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Make a static configs that has a one to one relationship with objects&quot;&quot;&quot;</span>
+    <span class="c1"># TODO: raise specific error with more info instead of assert:</span>
+    <span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">objs</span><span class="p">)</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">objs</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Some of your objects weren&#39;t unique&quot;</span>
+
+    <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">:</span>
+        <span class="k">yield from</span> <span class="n">__find_render_keys</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">__find_render_keys</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">render_keys</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">OBJECT</span><span class="p">,</span> <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">[</span><span class="n">obj</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">in</span> <span class="n">render_keys</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">NAME_OF_OBJ</span><span class="p">,</span> <span class="p">(</span><span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">render_keys</span><span class="p">[</span><span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)])</span>
+    <span class="k">elif</span> <span class="p">(</span>
+        <span class="n">type_</span> <span class="o">:=</span> <span class="n">first_element_matching_type</span><span class="p">(</span>
+            <span class="n">SUBTYPE</span><span class="p">,</span> <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">type</span><span class="p">),</span> <span class="n">render_keys</span><span class="p">))</span>
+        <span class="p">)</span>
+    <span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">type_</span><span class="p">,</span> <span class="n">name_of_obj</span><span class="p">(</span><span class="n">type_</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># TODO: More significant error (perhaps list ALL the objects that are not</span>
+        <span class="c1">#  mapped and suggest what to do about it (given the specific objects and</span>
+        <span class="c1">#  render keys).</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Object couldn&#39;t be mapped to a render_keys key: </span><span class="si">{</span><span class="n">obj</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_map_render_keys</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">KV</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Translate render_keys to render_keys that can be handled by front&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">kind</span><span class="p">,</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">rendering_specs</span><span class="p">)</span> <span class="ow">in</span> <span class="n">render_keys</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="n">OBJECT</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">key</span>
+            <span class="k">yield</span> <span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">rendering_specs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="n">rendering_specs</span>
+
+
+<div class="viewcode-block" id="mk_render_keys">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/tools.html#streamlitfront.tools.mk_render_keys">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mk_render_keys</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">,</span> <span class="n">find_render_keys</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">_find_render_keys</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Make a static render_keys that has a one-to-one relationship with objects</span>
+
+<span class="sd">    # &gt;&gt;&gt; find_render_keys = lambda objs, render_keys:</span>
+<span class="sd">    # &gt;&gt;&gt; dict(mk_render_keys([1, 2, 3], {1: &#39;a&#39;, 2: &#39;b&#39;, 3: &#39;c&#39;}))</span>
+<span class="sd">    # {1: &#39;a&#39;, 2: &#39;b&#39;, 3: &#39;c&#39;}</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">render_keys</span> <span class="o">=</span> <span class="n">find_render_keys</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">)</span>
+    <span class="n">render_keys</span> <span class="o">=</span> <span class="n">_map_render_keys</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_keys</span></div>
+
+
+
+<div class="viewcode-block" id="mk_specs">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/tools.html#streamlitfront.tools.mk_specs">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mk_specs</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">configs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make a static configs that has a one-to-one relationship with objects</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">render_keys</span> <span class="o">=</span> <span class="n">mk_render_keys</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">configs</span><span class="p">[</span><span class="n">RENDERING_KEY</span><span class="p">])</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">RENDERING_KEY</span><span class="o">=</span><span class="n">render_keys</span><span class="p">))</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">app_maker</span><span class="p">(</span>
+    <span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">static_config</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">allow_config_excess</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">specs</span> <span class="o">=</span> <span class="n">mk_specs</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">convention</span><span class="p">)</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">specs</span><span class="p">,</span> <span class="n">convention</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">app</span><span class="o">.</span><span class="n">convention</span><span class="p">,</span> <span class="n">app</span><span class="o">.</span><span class="n">specs</span> <span class="o">=</span> <span class="n">config</span><span class="p">,</span> <span class="n">convention</span><span class="p">,</span> <span class="n">specs</span>
+    <span class="k">return</span> <span class="n">app</span>
+
+
+<div class="viewcode-block" id="alt_mk_render_keys">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/tools.html#streamlitfront.tools.alt_mk_render_keys">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">alt_mk_render_keys</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">,</span> <span class="n">resolver</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Make a static render_keys that has a one-to-one relationship with objects</span>
+
+<span class="sd">    # &gt;&gt;&gt; find_render_keys = lambda objs, render_keys:</span>
+<span class="sd">    # &gt;&gt;&gt; dict(mk_render_keys([1, 2, 3], {1: &#39;a&#39;, 2: &#39;b&#39;, 3: &#39;c&#39;}))</span>
+<span class="sd">    # {1: &#39;a&#39;, 2: &#39;b&#39;, 3: &#39;c&#39;}</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">render_keys</span> <span class="o">=</span> <span class="n">resolver</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">)</span>
+    <span class="n">render_keys</span> <span class="o">=</span> <span class="n">_map_render_keys</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_keys</span></div>
+
+
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Callable</span>
+
+<span class="n">Obj</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;Obj&#39;</span><span class="p">)</span>
+<span class="n">Output</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;Output&#39;</span><span class="p">)</span>
+<span class="n">Cond</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Obj</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span>
+<span class="n">Then</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Obj</span><span class="p">],</span> <span class="n">Output</span><span class="p">]</span>
+<span class="n">Rule</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Cond</span><span class="p">,</span> <span class="n">Then</span><span class="p">]</span>
+<span class="n">Rules</span> <span class="o">=</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Rule</span><span class="p">]</span>
+
+<span class="c1"># Note: We could iterate over objs or over rules. Context tells what&#39;s best.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">typical use is to define rules and apply to objs like so</span>
+<span class="sd">```</span>
+<span class="sd">from functools import partial</span>
+<span class="sd">singular_find_render_keys = partial(mk_find_render_keys, rules=rules)  # fix rules</span>
+<span class="sd">find_render_keys = partial(map, singular_find_render_keys)  # apply to iterable</span>
+<span class="sd">```</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Say we want to make a function like the following have a plugin architecture</span>
+
+<span class="c1"># TODO: Extract routing logic (the if/elifs) and expose control to interface</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">target_render_keys_func</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">render_keys</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">OBJECT</span><span class="p">,</span> <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">[</span><span class="n">obj</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">in</span> <span class="n">render_keys</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">NAME_OF_OBJ</span><span class="p">,</span> <span class="p">(</span><span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">render_keys</span><span class="p">[</span><span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)])</span>
+    <span class="k">elif</span> <span class="p">(</span>
+        <span class="n">type_</span> <span class="o">:=</span> <span class="n">first_element_matching_type</span><span class="p">(</span>
+            <span class="n">SUBTYPE</span><span class="p">,</span> <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">type</span><span class="p">),</span> <span class="n">render_keys</span><span class="p">))</span>
+        <span class="p">)</span>
+    <span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">type_</span><span class="p">,</span> <span class="n">name_of_obj</span><span class="p">(</span><span class="n">type_</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># TODO: More significant error (perhaps list ALL the objects that are not</span>
+        <span class="c1">#  mapped and suggest what to do about it (given the specific objects and</span>
+        <span class="c1">#  render keys).</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Object couldn&#39;t be mapped to a render_keys key: </span><span class="si">{</span><span class="n">obj</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># In this case we need a function that implements the if then logic in a loop...</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">cond_then</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Obj</span><span class="p">,</span> <span class="n">rules</span><span class="p">:</span> <span class="n">Rules</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Output</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">cond</span><span class="p">,</span> <span class="n">then</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cond</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">then</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="mk_target_render_keys_func">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/tools.html#streamlitfront.tools.mk_target_render_keys_func">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mk_target_render_keys_func</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Will use mk_find_render_keys to make a function equivalent to</span>
+<span class="sd">    target_render_keys_func</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_target_render_keys_func</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">):</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">render_keys</span><span class="p">,</span>
+                <span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="p">(</span><span class="n">OBJECT</span><span class="p">,</span> <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">[</span><span class="n">obj</span><span class="p">])),</span>
+            <span class="p">),</span>
+            <span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">in</span> <span class="n">render_keys</span><span class="p">,</span>
+                <span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="n">NAME_OF_OBJ</span><span class="p">,</span>
+                    <span class="p">(</span><span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">render_keys</span><span class="p">[</span><span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)]),</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+            <span class="c1"># TODO: Note in the following how first_element_matching_type needs to be</span>
+            <span class="c1">#  called three times in the following rule. This is where the feature</span>
+            <span class="c1">#  based rules can come in handy.</span>
+            <span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="n">first_element_matching_type</span><span class="p">(</span>
+                        <span class="n">SUBTYPE</span><span class="p">,</span>
+                        <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">type</span><span class="p">),</span> <span class="n">render_keys</span><span class="p">)),</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+                <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="n">first_element_matching_type</span><span class="p">(</span>
+                        <span class="n">SUBTYPE</span><span class="p">,</span>
+                        <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">type</span><span class="p">),</span> <span class="n">render_keys</span><span class="p">)),</span>
+                    <span class="p">),</span>
+                    <span class="n">name_of_obj</span><span class="p">(</span>
+                        <span class="n">first_element_matching_type</span><span class="p">(</span>
+                            <span class="n">SUBTYPE</span><span class="p">,</span>
+                            <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">type</span><span class="p">),</span> <span class="n">render_keys</span><span class="p">)),</span>
+                        <span class="p">)</span>
+                    <span class="p">),</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">]</span>
+        <span class="k">return</span> <span class="n">cond_then</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">rules</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">_target_render_keys_func</span></div>
+
+
+
+<span class="c1"># That las rule is pretty ugly. We can make it better by using a feature based rule</span>
+<span class="c1"># Here are some ideas:</span>
+
+
+<div class="viewcode-block" id="if_then">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/tools.html#streamlitfront.tools.if_then">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">if_then</span><span class="p">(</span><span class="n">cond</span><span class="p">,</span> <span class="n">then</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Intent is to be used with ``functools.partial``, ``map`` and ``itertools.chain``</span>
+
+<span class="sd">    &gt;&gt;&gt; from functools import partial</span>
+<span class="sd">    &gt;&gt;&gt; from itertools import chain</span>
+<span class="sd">    &gt;&gt;&gt; my_if_then = partial(if_then, lambda x: x % 2 == 0, lambda x: x * 2)</span>
+<span class="sd">    &gt;&gt;&gt; f = lambda x: chain.from_iterable(map(my_if_then, x))</span>
+<span class="sd">    &gt;&gt;&gt; next(f([1, 2, 3, 4]))</span>
+<span class="sd">    4</span>
+<span class="sd">    &gt;&gt;&gt; list(f([1, 2, 3, 4]))  # get all matches</span>
+<span class="sd">    [4, 8]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cond</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">then</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">if_feature_then_obj</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">cond</span><span class="p">,</span> <span class="n">then</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+    <span class="n">feat</span> <span class="o">=</span> <span class="n">feature</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cond</span><span class="p">(</span><span class="n">feat</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">then</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">if_feature_then_feature</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">cond</span><span class="p">,</span> <span class="n">then</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+    <span class="n">feat</span> <span class="o">=</span> <span class="n">feature</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cond</span><span class="p">(</span><span class="n">feat</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">then</span><span class="p">(</span><span class="n">feat</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">if_feature_then_feature_and_obj</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">cond</span><span class="p">,</span> <span class="n">then</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+    <span class="n">feat</span> <span class="o">=</span> <span class="n">feature</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cond</span><span class="p">(</span><span class="n">feat</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">then</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">feat</span><span class="p">)</span>
+
+
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Now let&#39;s try a different way: The user brings both cond and rule in a function</span>
+<span class="c1"># and we just chain them together. This is a bit more flexible than the previous</span>
+<span class="c1"># approach, but doesn&#39;t allow us to reuse cond and then logic as much.</span>
+
+
+<div class="viewcode-block" id="rule_applier">
+<a class="viewcode-back" href="../../module_docs/streamlitfront/tools.html#streamlitfront.tools.rule_applier">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">rule_applier</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">,</span> <span class="n">sentinel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Applies rules to obj and returns the first non-sentinel value</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">:=</span> <span class="n">rule</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">sentinel</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">result</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rule1</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">render_keys</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">OBJECT</span><span class="p">,</span> <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">[</span><span class="n">obj</span><span class="p">])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rule2</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">in</span> <span class="n">render_keys</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">NAME_OF_OBJ</span><span class="p">,</span> <span class="p">(</span><span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span> <span class="n">render_keys</span><span class="p">[</span><span class="n">name_of_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rule3</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">type_</span> <span class="o">:=</span> <span class="n">first_element_matching_type</span><span class="p">(</span>
+            <span class="n">SUBTYPE</span><span class="p">,</span> <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">type</span><span class="p">),</span> <span class="n">render_keys</span><span class="p">))</span>
+        <span class="p">)</span>
+    <span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">type_</span><span class="p">,</span> <span class="n">name_of_obj</span><span class="p">(</span><span class="n">type_</span><span class="p">)</span>
+
+
+<span class="n">rules</span> <span class="o">=</span> <span class="p">[</span><span class="n">rule1</span><span class="p">,</span> <span class="n">rule2</span><span class="p">,</span> <span class="n">rule3</span><span class="p">]</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

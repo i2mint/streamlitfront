@@ -1,0 +1,4 @@
+streamlitfront.tests.test_pydantic_widgets
+==========================================
+.. automodule:: streamlitfront.tests.test_pydantic_widgets
+   :members:

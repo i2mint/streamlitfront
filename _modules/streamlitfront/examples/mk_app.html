@@ -1,0 +1,203 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>streamlitfront.examples.mk_app &mdash; streamlitfront 0.1.35 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=2b6ce006"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            streamlitfront
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront.html">streamlitfront</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/data_binding.html">streamlitfront.data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements.html">streamlitfront.elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/elements/js.html">streamlitfront.elements.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/costing_inflexibility.html">streamlitfront.examples.costing_inflexibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/crude.html">streamlitfront.examples.crude</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/custom_output.html">streamlitfront.examples.custom_output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/data_prep.html">streamlitfront.examples.data_prep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/edge_impulse_like.html">streamlitfront.examples.edge_impulse_like</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/handle_none_params.html">streamlitfront.examples.handle_none_params</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/pipeline_maker.html">streamlitfront.examples.pipeline_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/pipeline_maker_2.html">streamlitfront.examples.pipeline_maker_2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/simple_ml_1.html">streamlitfront.examples.simple_ml_1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/store_filtering.html">streamlitfront.examples.store_filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/util.html">streamlitfront.examples.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/pydantic_widgets.html">streamlitfront.pydantic_widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/run_app.html">streamlitfront.run_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/scrap/front_routing_proposals.html">streamlitfront.scrap.front_routing_proposals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/scrap/nested_select.html">streamlitfront.scrap.nested_select</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/session_state.html">streamlitfront.session_state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/spec_maker.html">streamlitfront.spec_maker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/common.html">streamlitfront.tests.common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/conftest.html">streamlitfront.tests.conftest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/dispatch_funcs_test.html">streamlitfront.tests.dispatch_funcs_test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/dummy_app.html">streamlitfront.tests.dummy_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/fake_app.html">streamlitfront.tests.fake_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/smoke_test.html">streamlitfront.tests.smoke_test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/test_app.html">streamlitfront.tests.test_app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/test_base.html">streamlitfront.tests.test_base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/test_pydantic_widgets.html">streamlitfront.tests.test_pydantic_widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tests/use_case_test_old.html">streamlitfront.tests.use_case_test_old</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/tools.html">streamlitfront.tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">streamlitfront</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">streamlitfront.examples.mk_app</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for streamlitfront.examples.mk_app</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">front</span><span class="w"> </span><span class="kn">import</span> <span class="n">APP_KEY</span><span class="p">,</span> <span class="n">RENDERING_KEY</span><span class="p">,</span> <span class="n">ELEMENT_KEY</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.elements</span><span class="w"> </span><span class="kn">import</span> <span class="n">FloatSliderInput</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">mk_app</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.elements.elements</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextInput</span>
+
+<span class="c1"># BACKEND</span>
+<div class="viewcode-block" id="foo">
+<a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/mk_app.html#streamlitfront.examples.mk_app.foo">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is foo. It computes something&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span></div>
+
+
+
+<div class="viewcode-block" id="bar">
+<a class="viewcode-back" href="../../../module_docs/streamlitfront/examples/mk_app.html#streamlitfront.examples.mk_app.bar">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">greeting</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;bar greets its input&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">greeting</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">confuser</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">proportion</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">p</span>
+
+
+<span class="c1"># ======</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">confuser</span><span class="p">,</span> <span class="n">proportion</span><span class="p">],</span>
+        <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+            <span class="n">APP_KEY</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;My app&#39;</span><span class="p">},</span>
+            <span class="n">RENDERING_KEY</span><span class="p">:</span> <span class="p">{</span>
+                <span class="c1"># &#39;foo&#39;: {</span>
+                <span class="c1">#     &#39;execution&#39;: {&#39;inputs&#39;: {&#39;a&#39;: {ELEMENT_KEY: TextInput,}},}</span>
+                <span class="c1"># },</span>
+                <span class="s1">&#39;proportion&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;execution&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">FloatSliderInput</span><span class="p">,}},}</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+    <span class="n">app</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright NO COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

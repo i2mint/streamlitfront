@@ -1,5 +1,0 @@
-dill
-pytest
-selenium
-strand
-webdriver-manager
