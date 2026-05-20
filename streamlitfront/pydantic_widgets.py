@@ -44,7 +44,10 @@ def _widget_for_field(field_name, field_info, *, key):
         return st.checkbox(field_name, value=bool(default) or False, key=key)
     if annotation is int:
         return st.number_input(
-            field_name, value=int(default) if default is not None else 0, step=1, key=key
+            field_name,
+            value=int(default) if default is not None else 0,
+            step=1,
+            key=key,
         )
     if annotation is float:
         return st.number_input(

@@ -10,14 +10,14 @@ except ModuleNotFoundError:
     from warnings import warn
 
     warn(
-        'Use streamlit 1.11.1 if you want to use the old and deprecated dispatch_funcs function.'
+        "Use streamlit 1.11.1 if you want to use the old and deprecated dispatch_funcs function."
     )
 
 from streamlitfront.util import Objdict
 
 
 def display_state_values(state, key):
-    st.write('Current value of ' + str(key) + ':', state[key])
+    st.write("Current value of " + str(key) + ":", state[key])
 
 
 class PageState(Objdict):
@@ -27,38 +27,38 @@ class PageState(Objdict):
 class _SessionState:
     def __init__(self, hash_funcs):
         """Initialize SessionState instance."""
-        self.__dict__['_state'] = {
-            'data': {},
-            'hash': None,
-            'hasher': _CodeHasher(hash_funcs),
-            'is_rerun': False,
+        self.__dict__["_state"] = {
+            "data": {},
+            "hash": None,
+            "hasher": _CodeHasher(hash_funcs),
+            "is_rerun": False,
         }
 
     def __call__(self, **kwargs):
         """Initialize state data once."""
         for item, value in kwargs.items():
-            if item not in self._state['data']:
-                self._state['data'][item] = value
+            if item not in self._state["data"]:
+                self._state["data"][item] = value
 
     def __getitem__(self, item):
         """Return a saved state value, None if item is undefined."""
-        return self._state['data'].get(item, None)
+        return self._state["data"].get(item, None)
 
     def __getattr__(self, item):
         """Return a saved state value, None if item is undefined."""
-        return self._state['data'].get(item, None)
+        return self._state["data"].get(item, None)
 
     def __setitem__(self, item, value):
         """Set state value."""
-        self._state['data'][item] = value
+        self._state["data"][item] = value
 
     def __setattr__(self, item, value):
         """Set state value."""
-        self._state['data'][item] = value
+        self._state["data"][item] = value
 
     def clear(self):
         """Clear session state and request a rerun."""
-        self._state['data'].clear()
+        self._state["data"].clear()
         st.experimental_rerun()
 
     def has_valid(self, *k, is_valid=bool):
@@ -121,7 +121,7 @@ class _SessionState:
         """
         # return all((key in self and is_valid(self[key])) for key in k)
         return all(
-            (key in self and is_valid(self._state['data'].get(key, None))) for key in k
+            (key in self and is_valid(self._state["data"].get(key, None))) for key in k
         )
 
     def sync(self):
@@ -131,17 +131,17 @@ class _SessionState:
         # caused by a constantly changing state value at each run.
         #
         # Example: state.value += 1
-        if self._state['is_rerun']:
-            self._state['is_rerun'] = False
+        if self._state["is_rerun"]:
+            self._state["is_rerun"] = False
 
-        elif self._state['hash'] is not None:
-            if self._state['hash'] != self._state['hasher'].to_bytes(
-                self._state['data'], None
+        elif self._state["hash"] is not None:
+            if self._state["hash"] != self._state["hasher"].to_bytes(
+                self._state["data"], None
             ):
-                self._state['is_rerun'] = True
+                self._state["is_rerun"] = True
                 st.experimental_rerun()
 
-        self._state['hash'] = self._state['hasher'].to_bytes(self._state['data'], None)
+        self._state["hash"] = self._state["hasher"].to_bytes(self._state["data"], None)
 
 
 _session_state = None

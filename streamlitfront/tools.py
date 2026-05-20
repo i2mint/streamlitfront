@@ -1,6 +1,4 @@
-"""Tools made with streamlitfront
-
-"""
+"""Tools made with streamlitfront"""
 
 from typing import Tuple, KT, VT, Any, Dict
 from collections.abc import Iterable, Callable
@@ -19,7 +17,10 @@ from i2 import name_of_obj, Pipe
 #  a condition is not met. Here we raise an exception, but we could just warn the user,
 #  or modify the config, or whatever.
 def validate_config(
-    configs: dict, funcs, *, allow_no_rendering: bool = True,
+    configs: dict,
+    funcs,
+    *,
+    allow_no_rendering: bool = True,
 ):
     func_names = [name_of_obj(f) for f in funcs]
 
@@ -32,16 +33,17 @@ def validate_config(
         )
         if render_names_not_in_funcs:
             raise ValueError(
-                f'Render names not matched to func name: {render_names_not_in_funcs}\n'
-                f'Your func names are: {func_names}'
+                f"Render names not matched to func name: {render_names_not_in_funcs}\n"
+                f"Your func names are: {func_names}"
             )
         # func_names_not_in_render = set(func_names) - set(configs[RENDERING_KEY])
     elif not allow_no_rendering:
-        raise ValueError(f'The config had no {RENDERING_KEY=} key')
+        raise ValueError(f"The config had no {RENDERING_KEY=} key")
 
 
 # ------------------------------------------------------------------------------
 # Output rendering factory
+
 
 # TODO: Perhaps front itself should use this to cast non-OutputBase callables?
 # TODO: Make it more general, and picklable
@@ -90,13 +92,13 @@ from dol.paths import Edits
 from typing import NewType
 from collections.abc import Hashable
 
-RenderKey = NewType('RenderKey', Hashable)
+RenderKey = NewType("RenderKey", Hashable)
 RenderKeyEdits = dict[str, dict]
 # Why do the following make mypy complain?
 # RenderKeyEdits = NewType('RenderKeyEdits', Dict[RenderKey, Edits])
 # RenderKeyEdits = NewType('RenderKeyEdits', Dict[str, dict])
 
-NoChanges = mk_sentinel('NoChanges')
+NoChanges = mk_sentinel("NoChanges")
 
 
 def trans_output(config, key, output_trans):
@@ -107,7 +109,9 @@ def trans_output(config, key, output_trans):
         output_trans = mk_output_renderer(output_trans)
 
     path_set(
-        config, [RENDERING_KEY, key, 'execution', 'output', ELEMENT_KEY], output_trans,
+        config,
+        [RENDERING_KEY, key, "execution", "output", ELEMENT_KEY],
+        output_trans,
     )
 
 
@@ -121,7 +125,7 @@ def _dict_wrap_if_not_dict(value, key):
 def render_edits(render_key_edits: RenderKeyEdits):
     """Convert render_key_edits to edits for dol.paths.apply_edits"""
     return chain.from_iterable(
-        render_edits_gen(render_key, **_dict_wrap_if_not_dict(edits, 'output_trans'))
+        render_edits_gen(render_key, **_dict_wrap_if_not_dict(edits, "output_trans"))
         for render_key, edits in render_key_edits.items()
     )
 
@@ -138,11 +142,11 @@ def render_edits_gen(
     if output_trans is not NoChanges:
         if not isinstance(output_trans, OutputBase):
             output_trans = mk_output_renderer(output_trans)
-        yield _render_key + ('execution', 'output', ELEMENT_KEY), output_trans
+        yield _render_key + ("execution", "output", ELEMENT_KEY), output_trans
     if name_key is not NoChanges:
         yield _render_key + (NAME_KEY,), name_key
     if description_content is not NoChanges:
-        yield _render_key + ('description', 'content'), description_content
+        yield _render_key + ("description", "content"), description_content
 
 
 # ------------------------------------------------------------------------------
@@ -160,13 +164,12 @@ def html_img_wrap(output):
 
 def html_img_wrap_w_output_display(output):
     return (
-        f'<html> <body> <p><img src="{output}" /></p> <p>{output}</p> </body> '
-        f'</html>'
+        f'<html> <body> <p><img src="{output}" /></p> <p>{output}</p> </body> </html>'
     )
 
 
 def text_to_html(output):
-    return f'<html> <body> <p>{output}</p> </body> </html>'
+    return f"<html> <body> <p>{output}</p> </body> </html>"
 
 
 def lines_to_html_paragraphs(output):
@@ -178,9 +181,9 @@ def lines_to_html_paragraphs(output):
 
     def gen():
         for line in output.splitlines():
-            yield f'<p>{line}</p>'
+            yield f"<p>{line}</p>"
 
-    return '\n'.join(gen())
+    return "\n".join(gen())
 
 
 def identity(x):
@@ -189,18 +192,18 @@ def identity(x):
 
 def _is_html(output):
     if isinstance(output, str):
-        return output.lstrip().startswith('<html>')
+        return output.lstrip().startswith("<html>")
 
 
 def _is_url(output):
     if isinstance(output, str):
-        return output.lstrip().startswith('http')
+        return output.lstrip().startswith("http")
 
 
 def _is_json(output):
     if isinstance(output, str):
         t = output.lstrip()
-        return t.startswith('{')  # or t.startswith('[') TODO: ??
+        return t.startswith("{")  # or t.startswith('[') TODO: ??
 
 
 from typing import Any
@@ -258,9 +261,9 @@ def first_element_matching_type(obj, types):
     # else return None
 
 
-OBJECT = 'OBJECT'
-NAME_OF_OBJ = 'NAME_OF_OBJ'
-SUBTYPE = 'SUBTYPE'
+OBJECT = "OBJECT"
+NAME_OF_OBJ = "NAME_OF_OBJ"
+SUBTYPE = "SUBTYPE"
 
 
 # TODO: Finish. Intened to be used with _find_render_keys function that handles a
@@ -289,6 +292,7 @@ SUBTYPE = 'SUBTYPE'
 #             raise ValueError(
 #                 f"Object couldn't be mapped to a render_keys key: {obj}"
 #             )
+
 
 # TODO: Extract routing logic (the if/elifs) and expose control to interface
 def _find_render_keys(objs, render_keys: dict):
@@ -379,8 +383,8 @@ def alt_mk_render_keys(objs, render_keys, resolver: Callable):
 from typing import TypeVar, Tuple
 from collections.abc import Iterable, Callable
 
-Obj = TypeVar('Obj')
-Output = TypeVar('Output')
+Obj = TypeVar("Obj")
+Output = TypeVar("Output")
 Cond = Callable[[Obj], bool]
 Then = Callable[[Obj], Output]
 Rule = tuple[Cond, Then]
@@ -399,6 +403,7 @@ find_render_keys = partial(map, singular_find_render_keys)  # apply to iterable
 
 # -----------------------------------------------------------------------------
 # Say we want to make a function like the following have a plugin architecture
+
 
 # TODO: Extract routing logic (the if/elifs) and expose control to interface
 def target_render_keys_func(obj, render_keys):
@@ -452,12 +457,14 @@ def mk_target_render_keys_func():
             #  based rules can come in handy.
             (
                 lambda obj: (
-                    first_element_matching_type(
-                        SUBTYPE,
-                        (obj, filter(lambda x: isinstance(x, type), render_keys)),
+                    (
+                        first_element_matching_type(
+                            SUBTYPE,
+                            (obj, filter(lambda x: isinstance(x, type), render_keys)),
+                        )
                     )
-                )
-                is not None,
+                    is not None
+                ),
                 lambda obj: (
                     first_element_matching_type(
                         SUBTYPE,
@@ -524,9 +531,7 @@ def if_feature_then_feature_and_obj(feature, cond, then, obj):
 
 
 def rule_applier(obj, rules, render_keys, sentinel=None):
-    """Applies rules to obj and returns the first non-sentinel value
-
-    """
+    """Applies rules to obj and returns the first non-sentinel value"""
     for rule in rules:
         if (result := rule(obj, render_keys)) is not sentinel:
             return result

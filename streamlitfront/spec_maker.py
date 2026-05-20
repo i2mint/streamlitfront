@@ -31,24 +31,40 @@ from streamlitfront.data_binding import BoundData
 DFLT_CONVENTION_DICT = deep_merge(
     BASE_DFLT_CONVENTION,
     {
-        APP_KEY: {'title': 'My Streamlit Front Application'},
+        APP_KEY: {"title": "My Streamlit Front Application"},
         RENDERING_KEY: {
             ELEMENT_KEY: App,
             Callable: {
                 ELEMENT_KEY: View,
-                'description': {ELEMENT_KEY: TextSection,},
-                'execution': {
+                "description": {
+                    ELEMENT_KEY: TextSection,
+                },
+                "execution": {
                     ELEMENT_KEY: ExecSection,
-                    'inputs': {
-                        bool: {ELEMENT_KEY: BooleanInput,},
-                        int: {ELEMENT_KEY: IntInput,},
-                        float: {ELEMENT_KEY: FloatInput,},
-                        Literal: {ELEMENT_KEY: SelectBox,},
-                        'kwargs': {ELEMENT_KEY: KwargsInput,},
-                        Any: {ELEMENT_KEY: TextInput,},
-                        DEFAULT_INPUT_KEY: {'bound_data_factory': BoundData},
+                    "inputs": {
+                        bool: {
+                            ELEMENT_KEY: BooleanInput,
+                        },
+                        int: {
+                            ELEMENT_KEY: IntInput,
+                        },
+                        float: {
+                            ELEMENT_KEY: FloatInput,
+                        },
+                        Literal: {
+                            ELEMENT_KEY: SelectBox,
+                        },
+                        "kwargs": {
+                            ELEMENT_KEY: KwargsInput,
+                        },
+                        Any: {
+                            ELEMENT_KEY: TextInput,
+                        },
+                        DEFAULT_INPUT_KEY: {"bound_data_factory": BoundData},
                     },
-                    'output': {ELEMENT_KEY: TextOutput,},
+                    "output": {
+                        ELEMENT_KEY: TextOutput,
+                    },
                 },
             },
         },
