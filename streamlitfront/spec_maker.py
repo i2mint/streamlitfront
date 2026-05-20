@@ -1,3 +1,9 @@
+"""The streamlit spec maker — front's ``SpecMakerBase`` bound to streamlit elements.
+
+Provides the default convention mapping front element roles to the concrete
+streamlit element classes from :mod:`streamlitfront.elements`.
+"""
+
 from front.spec_maker_base import BASE_DFLT_CONVENTION
 from front.util import deep_merge
 import streamlit as st

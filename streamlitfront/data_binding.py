@@ -1,3 +1,5 @@
+"""Streamlit-backed data binding — wires front's ``BoundData`` / ``Binder`` to ``st.session_state``."""
+
 from functools import partial
 from front import BoundData as BoundDataBase, Binder
 import streamlit as st
