@@ -1,7 +1,9 @@
+"""A tiny streamlit-app fixture used by the streamlitfront test suite."""
+
 from streamlitfront.base import get_pages_specs, get_func_args_specs, BasePageFunc
 import streamlit as st
 from pydantic import BaseModel
-import streamlit_pydantic as sp
+from streamlitfront import pydantic_widgets as sp
 
 
 def multiple(x: int, word: str) -> str:

@@ -273,7 +273,7 @@ class StatePageFunc(BasePageFunc):
 from i2 import name_of_obj
 from front.py2pydantic import func_to_pyd_input_model_cls, pydantic_model_from_type
 import streamlit as st
-import streamlit_pydantic as sp  # pip install streamlit-pydantic
+from streamlitfront import pydantic_widgets as sp
 
 
 class SimplePageFuncPydanticWrite(BasePageFunc):
@@ -282,13 +282,9 @@ class SimplePageFuncPydanticWrite(BasePageFunc):
         mymodel = func_to_pyd_input_model_cls(self.func)
         name = name_of_obj(self.func)
         data = sp.pydantic_form(key=f'my_form_{name}', model=mymodel)
-        # data = sp.pydantic_input(key=f"my_form_{name}", model=mymodel)
 
         if data:
-            # print(f"--------st.write(self.func(**dict(data)))")
-            # print(f"{Sig(self.func)}")
-            # print(f"{dict(data)}")
-            st.write(self.func(**dict(data)))
+            st.write(self.func(**data.model_dump()))
 
 
 class SimplePageFuncPydanticWithOutput(BasePageFunc):
@@ -305,7 +301,7 @@ class SimplePageFuncPydanticWithOutput(BasePageFunc):
         data = sp.pydantic_input(key=f'my_form_{name}', model=mymodel)
 
         if data:
-            func_result = self.func(**data)
+            func_result = self.func(**data.model_dump())
 
             instance = output_model(result=func_result)
 
