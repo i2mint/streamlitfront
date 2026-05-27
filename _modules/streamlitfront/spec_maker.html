@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.spec_maker &mdash; streamlitfront 0.1.35 documentation</title>
+  <title>streamlitfront.spec_maker &mdash; streamlitfront 0.1.37 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=2b6ce006"></script>
+      <script src="../../_static/documentation_options.js?v=b8ecee75"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
@@ -154,24 +154,40 @@
 <span class="n">DFLT_CONVENTION_DICT</span> <span class="o">=</span> <span class="n">deep_merge</span><span class="p">(</span>
     <span class="n">BASE_DFLT_CONVENTION</span><span class="p">,</span>
     <span class="p">{</span>
-        <span class="n">APP_KEY</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;My Streamlit Front Application&#39;</span><span class="p">},</span>
+        <span class="n">APP_KEY</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;My Streamlit Front Application&quot;</span><span class="p">},</span>
         <span class="n">RENDERING_KEY</span><span class="p">:</span> <span class="p">{</span>
             <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">App</span><span class="p">,</span>
             <span class="n">Callable</span><span class="p">:</span> <span class="p">{</span>
                 <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">View</span><span class="p">,</span>
-                <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TextSection</span><span class="p">,},</span>
-                <span class="s1">&#39;execution&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TextSection</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;execution&quot;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">ExecSection</span><span class="p">,</span>
-                    <span class="s1">&#39;inputs&#39;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="nb">bool</span><span class="p">:</span> <span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">BooleanInput</span><span class="p">,},</span>
-                        <span class="nb">int</span><span class="p">:</span> <span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">IntInput</span><span class="p">,},</span>
-                        <span class="nb">float</span><span class="p">:</span> <span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">FloatInput</span><span class="p">,},</span>
-                        <span class="n">Literal</span><span class="p">:</span> <span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">SelectBox</span><span class="p">,},</span>
-                        <span class="s1">&#39;kwargs&#39;</span><span class="p">:</span> <span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">KwargsInput</span><span class="p">,},</span>
-                        <span class="n">Any</span><span class="p">:</span> <span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TextInput</span><span class="p">,},</span>
-                        <span class="n">DEFAULT_INPUT_KEY</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;bound_data_factory&#39;</span><span class="p">:</span> <span class="n">BoundData</span><span class="p">},</span>
+                    <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="nb">bool</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">BooleanInput</span><span class="p">,</span>
+                        <span class="p">},</span>
+                        <span class="nb">int</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">IntInput</span><span class="p">,</span>
+                        <span class="p">},</span>
+                        <span class="nb">float</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">FloatInput</span><span class="p">,</span>
+                        <span class="p">},</span>
+                        <span class="n">Literal</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">SelectBox</span><span class="p">,</span>
+                        <span class="p">},</span>
+                        <span class="s2">&quot;kwargs&quot;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">KwargsInput</span><span class="p">,</span>
+                        <span class="p">},</span>
+                        <span class="n">Any</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TextInput</span><span class="p">,</span>
+                        <span class="p">},</span>
+                        <span class="n">DEFAULT_INPUT_KEY</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;bound_data_factory&quot;</span><span class="p">:</span> <span class="n">BoundData</span><span class="p">},</span>
                     <span class="p">},</span>
-                    <span class="s1">&#39;output&#39;</span><span class="p">:</span> <span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TextOutput</span><span class="p">,},</span>
+                    <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TextOutput</span><span class="p">,</span>
+                    <span class="p">},</span>
                 <span class="p">},</span>
             <span class="p">},</span>
         <span class="p">},</span>

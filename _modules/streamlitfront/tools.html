@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.tools &mdash; streamlitfront 0.1.35 documentation</title>
+  <title>streamlitfront.tools &mdash; streamlitfront 0.1.37 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=2b6ce006"></script>
+      <script src="../../_static/documentation_options.js?v=b8ecee75"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
@@ -121,9 +121,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for streamlitfront.tools</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Tools made with streamlitfront</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Tools made with streamlitfront&quot;&quot;&quot;</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">KT</span><span class="p">,</span> <span class="n">VT</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Callable</span>
@@ -142,7 +140,10 @@
 <span class="c1">#  a condition is not met. Here we raise an exception, but we could just warn the user,</span>
 <span class="c1">#  or modify the config, or whatever.</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">validate_config</span><span class="p">(</span>
-    <span class="n">configs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">funcs</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">allow_no_rendering</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">configs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">funcs</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">allow_no_rendering</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="n">func_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name_of_obj</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">]</span>
 
@@ -155,16 +156,17 @@
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">render_names_not_in_funcs</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s1">&#39;Render names not matched to func name: </span><span class="si">{</span><span class="n">render_names_not_in_funcs</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
-                <span class="sa">f</span><span class="s1">&#39;Your func names are: </span><span class="si">{</span><span class="n">func_names</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="sa">f</span><span class="s2">&quot;Render names not matched to func name: </span><span class="si">{</span><span class="n">render_names_not_in_funcs</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Your func names are: </span><span class="si">{</span><span class="n">func_names</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
         <span class="c1"># func_names_not_in_render = set(func_names) - set(configs[RENDERING_KEY])</span>
     <span class="k">elif</span> <span class="ow">not</span> <span class="n">allow_no_rendering</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The config had no </span><span class="si">{</span><span class="n">RENDERING_KEY</span><span class="si">=}</span><span class="s1"> key&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The config had no </span><span class="si">{</span><span class="n">RENDERING_KEY</span><span class="si">=}</span><span class="s2"> key&quot;</span><span class="p">)</span>
 
 
 <span class="c1"># ------------------------------------------------------------------------------</span>
 <span class="c1"># Output rendering factory</span>
+
 
 <span class="c1"># TODO: Perhaps front itself should use this to cast non-OutputBase callables?</span>
 <span class="c1"># TODO: Make it more general, and picklable</span>
@@ -213,13 +215,13 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">NewType</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Hashable</span>
 
-<span class="n">RenderKey</span> <span class="o">=</span> <span class="n">NewType</span><span class="p">(</span><span class="s1">&#39;RenderKey&#39;</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">)</span>
+<span class="n">RenderKey</span> <span class="o">=</span> <span class="n">NewType</span><span class="p">(</span><span class="s2">&quot;RenderKey&quot;</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">)</span>
 <span class="n">RenderKeyEdits</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span>
 <span class="c1"># Why do the following make mypy complain?</span>
 <span class="c1"># RenderKeyEdits = NewType(&#39;RenderKeyEdits&#39;, Dict[RenderKey, Edits])</span>
 <span class="c1"># RenderKeyEdits = NewType(&#39;RenderKeyEdits&#39;, Dict[str, dict])</span>
 
-<span class="n">NoChanges</span> <span class="o">=</span> <span class="n">mk_sentinel</span><span class="p">(</span><span class="s1">&#39;NoChanges&#39;</span><span class="p">)</span>
+<span class="n">NoChanges</span> <span class="o">=</span> <span class="n">mk_sentinel</span><span class="p">(</span><span class="s2">&quot;NoChanges&quot;</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">trans_output</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">output_trans</span><span class="p">):</span>
@@ -230,7 +232,9 @@
         <span class="n">output_trans</span> <span class="o">=</span> <span class="n">mk_output_renderer</span><span class="p">(</span><span class="n">output_trans</span><span class="p">)</span>
 
     <span class="n">path_set</span><span class="p">(</span>
-        <span class="n">config</span><span class="p">,</span> <span class="p">[</span><span class="n">RENDERING_KEY</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="s1">&#39;execution&#39;</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="n">ELEMENT_KEY</span><span class="p">],</span> <span class="n">output_trans</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">,</span>
+        <span class="p">[</span><span class="n">RENDERING_KEY</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="s2">&quot;execution&quot;</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span> <span class="n">ELEMENT_KEY</span><span class="p">],</span>
+        <span class="n">output_trans</span><span class="p">,</span>
     <span class="p">)</span>
 
 
@@ -246,7 +250,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">render_edits</span><span class="p">(</span><span class="n">render_key_edits</span><span class="p">:</span> <span class="n">RenderKeyEdits</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert render_key_edits to edits for dol.paths.apply_edits&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span>
-        <span class="n">render_edits_gen</span><span class="p">(</span><span class="n">render_key</span><span class="p">,</span> <span class="o">**</span><span class="n">_dict_wrap_if_not_dict</span><span class="p">(</span><span class="n">edits</span><span class="p">,</span> <span class="s1">&#39;output_trans&#39;</span><span class="p">))</span>
+        <span class="n">render_edits_gen</span><span class="p">(</span><span class="n">render_key</span><span class="p">,</span> <span class="o">**</span><span class="n">_dict_wrap_if_not_dict</span><span class="p">(</span><span class="n">edits</span><span class="p">,</span> <span class="s2">&quot;output_trans&quot;</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">render_key</span><span class="p">,</span> <span class="n">edits</span> <span class="ow">in</span> <span class="n">render_key_edits</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
     <span class="p">)</span></div>
 
@@ -264,11 +268,11 @@
     <span class="k">if</span> <span class="n">output_trans</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">NoChanges</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output_trans</span><span class="p">,</span> <span class="n">OutputBase</span><span class="p">):</span>
             <span class="n">output_trans</span> <span class="o">=</span> <span class="n">mk_output_renderer</span><span class="p">(</span><span class="n">output_trans</span><span class="p">)</span>
-        <span class="k">yield</span> <span class="n">_render_key</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;execution&#39;</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="n">ELEMENT_KEY</span><span class="p">),</span> <span class="n">output_trans</span>
+        <span class="k">yield</span> <span class="n">_render_key</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;execution&quot;</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span> <span class="n">ELEMENT_KEY</span><span class="p">),</span> <span class="n">output_trans</span>
     <span class="k">if</span> <span class="n">name_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">NoChanges</span><span class="p">:</span>
         <span class="k">yield</span> <span class="n">_render_key</span> <span class="o">+</span> <span class="p">(</span><span class="n">NAME_KEY</span><span class="p">,),</span> <span class="n">name_key</span>
     <span class="k">if</span> <span class="n">description_content</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">NoChanges</span><span class="p">:</span>
-        <span class="k">yield</span> <span class="n">_render_key</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">),</span> <span class="n">description_content</span>
+        <span class="k">yield</span> <span class="n">_render_key</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">),</span> <span class="n">description_content</span>
 
 
 <span class="c1"># ------------------------------------------------------------------------------</span>
@@ -286,13 +290,12 @@
 
 <span class="k">def</span><span class="w"> </span><span class="nf">html_img_wrap_w_output_display</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s1">&#39;&lt;html&gt; &lt;body&gt; &lt;p&gt;&lt;img src=&quot;</span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s1">&quot; /&gt;&lt;/p&gt; &lt;p&gt;</span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s1">&lt;/p&gt; &lt;/body&gt; &#39;</span>
-        <span class="sa">f</span><span class="s1">&#39;&lt;/html&gt;&#39;</span>
+        <span class="sa">f</span><span class="s1">&#39;&lt;html&gt; &lt;body&gt; &lt;p&gt;&lt;img src=&quot;</span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s1">&quot; /&gt;&lt;/p&gt; &lt;p&gt;</span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s1">&lt;/p&gt; &lt;/body&gt; &lt;/html&gt;&#39;</span>
     <span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">text_to_html</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;html&gt; &lt;body&gt; &lt;p&gt;</span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s1">&lt;/p&gt; &lt;/body&gt; &lt;/html&gt;&#39;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;html&gt; &lt;body&gt; &lt;p&gt;</span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&lt;/p&gt; &lt;/body&gt; &lt;/html&gt;&quot;</span>
 
 
 <div class="viewcode-block" id="lines_to_html_paragraphs">
@@ -306,9 +309,9 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">gen</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
-            <span class="k">yield</span> <span class="sa">f</span><span class="s1">&#39;&lt;p&gt;</span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="s1">&lt;/p&gt;&#39;</span>
+            <span class="k">yield</span> <span class="sa">f</span><span class="s2">&quot;&lt;p&gt;</span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="s2">&lt;/p&gt;&quot;</span>
 
-    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gen</span><span class="p">())</span></div>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gen</span><span class="p">())</span></div>
 
 
 
@@ -318,18 +321,18 @@
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_is_html</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;&lt;html&gt;&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&quot;</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_is_url</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_is_json</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;{&#39;</span><span class="p">)</span>  <span class="c1"># or t.startswith(&#39;[&#39;) TODO: ??</span>
+        <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;{&quot;</span><span class="p">)</span>  <span class="c1"># or t.startswith(&#39;[&#39;) TODO: ??</span>
 
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
@@ -390,9 +393,9 @@
     <span class="c1"># else return None</span>
 
 
-<span class="n">OBJECT</span> <span class="o">=</span> <span class="s1">&#39;OBJECT&#39;</span>
-<span class="n">NAME_OF_OBJ</span> <span class="o">=</span> <span class="s1">&#39;NAME_OF_OBJ&#39;</span>
-<span class="n">SUBTYPE</span> <span class="o">=</span> <span class="s1">&#39;SUBTYPE&#39;</span>
+<span class="n">OBJECT</span> <span class="o">=</span> <span class="s2">&quot;OBJECT&quot;</span>
+<span class="n">NAME_OF_OBJ</span> <span class="o">=</span> <span class="s2">&quot;NAME_OF_OBJ&quot;</span>
+<span class="n">SUBTYPE</span> <span class="o">=</span> <span class="s2">&quot;SUBTYPE&quot;</span>
 
 
 <span class="c1"># TODO: Finish. Intened to be used with _find_render_keys function that handles a</span>
@@ -421,6 +424,7 @@
 <span class="c1">#             raise ValueError(</span>
 <span class="c1">#                 f&quot;Object couldn&#39;t be mapped to a render_keys key: {obj}&quot;</span>
 <span class="c1">#             )</span>
+
 
 <span class="c1"># TODO: Extract routing logic (the if/elifs) and expose control to interface</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">_find_render_keys</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
@@ -520,8 +524,8 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Tuple</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Callable</span>
 
-<span class="n">Obj</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;Obj&#39;</span><span class="p">)</span>
-<span class="n">Output</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;Output&#39;</span><span class="p">)</span>
+<span class="n">Obj</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;Obj&quot;</span><span class="p">)</span>
+<span class="n">Output</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;Output&quot;</span><span class="p">)</span>
 <span class="n">Cond</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Obj</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span>
 <span class="n">Then</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Obj</span><span class="p">],</span> <span class="n">Output</span><span class="p">]</span>
 <span class="n">Rule</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Cond</span><span class="p">,</span> <span class="n">Then</span><span class="p">]</span>
@@ -540,6 +544,7 @@
 
 <span class="c1"># -----------------------------------------------------------------------------</span>
 <span class="c1"># Say we want to make a function like the following have a plugin architecture</span>
+
 
 <span class="c1"># TODO: Extract routing logic (the if/elifs) and expose control to interface</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">target_render_keys_func</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">):</span>
@@ -595,12 +600,14 @@
             <span class="c1">#  based rules can come in handy.</span>
             <span class="p">(</span>
                 <span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="p">(</span>
-                    <span class="n">first_element_matching_type</span><span class="p">(</span>
-                        <span class="n">SUBTYPE</span><span class="p">,</span>
-                        <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">type</span><span class="p">),</span> <span class="n">render_keys</span><span class="p">)),</span>
+                    <span class="p">(</span>
+                        <span class="n">first_element_matching_type</span><span class="p">(</span>
+                            <span class="n">SUBTYPE</span><span class="p">,</span>
+                            <span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">type</span><span class="p">),</span> <span class="n">render_keys</span><span class="p">)),</span>
+                        <span class="p">)</span>
                     <span class="p">)</span>
-                <span class="p">)</span>
-                <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="p">),</span>
                 <span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="p">(</span>
                     <span class="n">first_element_matching_type</span><span class="p">(</span>
                         <span class="n">SUBTYPE</span><span class="p">,</span>
@@ -673,9 +680,7 @@
 <div class="viewcode-block" id="rule_applier">
 <a class="viewcode-back" href="../../module_docs/streamlitfront/tools.html#streamlitfront.tools.rule_applier">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">rule_applier</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">,</span> <span class="n">sentinel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Applies rules to obj and returns the first non-sentinel value</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Applies rules to obj and returns the first non-sentinel value&quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">:=</span> <span class="n">rule</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">render_keys</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">sentinel</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">result</span></div>
