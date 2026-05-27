@@ -1,239 +1,48 @@
-name: Continuous Integration (uv)
-# MIGRATION NOTE: Old CI uses pylint - new CI uses ruff for linting
-# MIGRATION NOTE: PyPI auth changed: set secrets.PYPI_PASSWORD to a PyPI API token (uv publish uses UV_PUBLISH_TOKEN, mapped from PYPI_PASSWORD)
+# wads CI — calls the reusable workflow hosted in i2mint/wads.
+#
+# All configuration comes from this repo's pyproject.toml [tool.wads.ci.*].
+# To customize the workflow itself (rare), replace this file with the
+# full inline template `wads/data/github_ci_uv.yml` from i2mint/wads.
+#
+# Pinning: `@master` floats with wads. If you need version stability for
+# a release-sensitive repo, change `@master` to a wads tag (e.g. `@v0.1.81`).
+# CI failure does not block a published release — it blocks the publish
+# step itself — so floating master is generally safe.
+#
+# Permissions: GitHub validates that the caller grants AT LEAST the
+# permissions any job in the called workflow requests — at workflow-parse
+# time, not at run-time, even if the job would be skipped via `if:`.
+# The reusable workflow needs:
+#   contents: write   for the publish job's version-bump push-back
+#                     and for the github-pages job's gh-pages branch push
+#   pages: write      for the github-pages job's REST API Pages config
+# Both default to `write` on org-account GITHUB_TOKEN and need to be
+# granted explicitly on personal-account callers (where the default is
+# read-only). No `id-token: write` needed — the publish-github-pages
+# action uses peaceiris/actions-gh-pages (branch-based) + REST API,
+# not the OIDC `actions/deploy-pages` flow.
+name: Continuous Integration
 on: [push, pull_request]
-
-# Workflow-level env vars from [tool.wads.ci.env] in pyproject.toml.
-# Populated by wads-migrate / wads init via template substitution.
-# Includes PROJECT_NAME, literal defaults from env.defaults, and secret-
-# backed vars from required_envvars / test_envvars / extra_envvars,
-# rendered as `KEY: secrets.KEY || ''` so missing secrets don't fail parsing.
-env:
-  PROJECT_NAME: streamlitfront
-
 jobs:
-  # First job: Read configuration from pyproject.toml
-  setup:
-    name: Read Configuration
-    runs-on: ubuntu-latest
-    outputs:
-      project-name: ${{ steps.config.outputs.project-name }}
-      python-versions: ${{ steps.config.outputs.python-versions }}
-      pytest-args: ${{ steps.config.outputs.pytest-args }}
-      coverage-enabled: ${{ steps.config.outputs.coverage-enabled }}
-      exclude-paths: ${{ steps.config.outputs.exclude-paths }}
-      test-on-windows: ${{ steps.config.outputs.test-on-windows }}
-      build-sdist: ${{ steps.config.outputs.build-sdist }}
-      build-wheel: ${{ steps.config.outputs.build-wheel }}
-      metrics-enabled: ${{ steps.config.outputs.metrics-enabled }}
-      metrics-config-path: ${{ steps.config.outputs.metrics-config-path }}
-      metrics-storage-branch: ${{ steps.config.outputs.metrics-storage-branch }}
-      metrics-python-version: ${{ steps.config.outputs.metrics-python-version }}
-      metrics-force-run: ${{ steps.config.outputs.metrics-force-run }}
-      ruff-enabled: ${{ steps.config.outputs.ruff-enabled }}
-      black-enabled: ${{ steps.config.outputs.black-enabled }}
-      mypy-enabled: ${{ steps.config.outputs.mypy-enabled }}
-      docs-enabled: ${{ steps.config.outputs.docs-enabled }}
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Set up uv
-        uses: astral-sh/setup-uv@v7
-
-      - name: Set up Python
-        run: uv python install 3.11
-
-      - name: Read CI Config
-        id: config
-        uses: i2mint/wads/actions/read-ci-config@master
-        with:
-          pyproject-path: .
-
-  # Second job: Validation using the config
-  validation:
-    name: Validation
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    needs: setup
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ${{ fromJson(needs.setup.outputs.python-versions) }}
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Set up uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          enable-cache: true
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: i2mint/wads/actions/setup-python-uv@master
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install System Dependencies
-        uses: i2mint/wads/actions/install-system-deps@master
-        with:
-          pyproject-path: .
-
-      - name: Install Dependencies
-        uses: i2mint/wads/actions/install-deps-uv@master
-
-      - name: Format Source Code
-        if: needs.setup.outputs.ruff-enabled != 'false'
-        run: uvx ruff format .
-
-      - name: Format Source Code (black)
-        if: needs.setup.outputs.black-enabled == 'true'
-        run: uvx black .
-
-      - name: Lint Validation
-        if: needs.setup.outputs.ruff-enabled != 'false'
-        run: uvx ruff check --output-format=github ${{ needs.setup.outputs.project-name }}
-
-      - name: Type Check (mypy)
-        if: needs.setup.outputs.mypy-enabled == 'true'
-        run: uvx mypy ${{ needs.setup.outputs.project-name }}
-
-      - name: Run Tests
-        uses: i2mint/wads/actions/run-tests-uv@master
-        with:
-          root-dir: ${{ needs.setup.outputs.project-name }}
-          pytest-args: ${{ needs.setup.outputs.pytest-args }}
-          exclude-paths: ${{ needs.setup.outputs.exclude-paths }}
-          coverage: ${{ needs.setup.outputs.coverage-enabled }}
-
-      - name: Track Code Metrics
-        if: needs.setup.outputs.metrics-enabled == 'true'
-        uses: i2mint/umpyre/actions/track-metrics@master
-        continue-on-error: true
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          config-path: ${{ needs.setup.outputs.metrics-config-path }}
-          storage-branch: ${{ needs.setup.outputs.metrics-storage-branch }}
-          python-version: ${{ needs.setup.outputs.metrics-python-version }}
-          force-run: ${{ needs.setup.outputs.metrics-force-run }}
-
-  # Optional Windows testing (if enabled in config)
-  windows-validation:
-    name: Windows Tests
-    if: "!contains(github.event.head_commit.message, '[skip ci]') && needs.setup.outputs.test-on-windows == 'true'"
-    needs: setup
-    runs-on: windows-latest
-    continue-on-error: true
-    env:
-      # PEP 540 UTF-8 mode: avoid cp1252 UnicodeDecode/EncodeError when test
-      # code reads source files or scripts print non-ASCII characters.
-      PYTHONUTF8: "1"
-      PYTHONIOENCODING: "utf-8"
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Set up uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          enable-cache: true
-
-      - name: Set up Python
-        uses: i2mint/wads/actions/setup-python-uv@master
-        with:
-          python-version: ${{ fromJson(needs.setup.outputs.python-versions)[0] }}
-
-      - name: Install System Dependencies
-        uses: i2mint/wads/actions/install-system-deps@master
-        with:
-          pyproject-path: .
-
-      - name: Install Dependencies
-        uses: i2mint/wads/actions/install-deps-uv@master
-
-      - name: Run Tests
-        uses: i2mint/wads/actions/run-tests-uv@master
-        with:
-          root-dir: ${{ needs.setup.outputs.project-name }}
-          pytest-args: ${{ needs.setup.outputs.pytest-args }}
-          exclude-paths: ${{ needs.setup.outputs.exclude-paths }}
-
-  # Publishing job
-  publish:
-    name: Publish
-    permissions:
-      contents: write
-    if: "!contains(github.event.head_commit.message, '[skip ci]') && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')"
-    needs: [setup, validation]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up uv
-        uses: astral-sh/setup-uv@v7
-
-      - name: Set up Python
-        uses: i2mint/wads/actions/setup-python-uv@master
-        with:
-          python-version: ${{ fromJson(needs.setup.outputs.python-versions)[0] }}
-          create-venv: "false"
-
-      - name: Format Source Code
-        if: needs.setup.outputs.ruff-enabled != 'false'
-        run: uvx ruff format .
-
-      - name: Format Source Code (black)
-        if: needs.setup.outputs.black-enabled == 'true'
-        run: uvx black .
-
-      - name: Update Version Number
-        id: version
-        uses: i2mint/isee/actions/bump-version-number@master
-
-      - name: Build Distribution
-        uses: i2mint/wads/actions/build-dist-uv@master
-        with:
-          sdist: ${{ needs.setup.outputs.build-sdist }}
-          wheel: ${{ needs.setup.outputs.build-wheel }}
-
-      - name: Publish to PyPI
-        uses: i2mint/wads/actions/pypi-publish-uv@master
-        with:
-          pypi-token: ${{ secrets.PYPI_PASSWORD }}
-
-      - name: Force SSH for git remote
-        run: git remote set-url origin git@github.com:${{ github.repository }}.git
-
-      - name: Commit Changes
-        uses: i2mint/wads/actions/git-commit@master
-        with:
-          commit-message: "**CI** Formatted code + Updated version to ${{ env.VERSION }} [skip ci]"
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          push: true
-
-      - name: Tag Repository
-        uses: i2mint/wads/actions/git-tag@master
-        with:
-          tag: ${{ env.VERSION }}
-          message: "Release version ${{ env.VERSION }}"
-          push: true
-
-  # Optional GitHub Pages (skipped when [tool.wads.ci.docs].enabled = false)
-  github-pages:
-    name: Publish GitHub Pages
+  ci:
+    uses: i2mint/wads/.github/workflows/uv-ci.yml@master
     permissions:
       contents: write
       pages: write
-      id-token: write
-    if: "!contains(github.event.head_commit.message, '[skip ci]') && github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && needs.setup.outputs.docs-enabled != 'false'"
-    needs: [setup, publish]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: i2mint/epythet/actions/publish-github-pages@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          ignore: "tests/,scrap/,examples/"
+    # Explicit pass-through (not `secrets: inherit`) because `inherit` does
+    # not reliably propagate caller-repo secrets to a reusable workflow
+    # owned by a different account (verified empirically: caller in a
+    # personal account, called in i2mint org → `${{ secrets.PYPI_PASSWORD }}`
+    # resolved to empty inside the reusable workflow despite the secret
+    # being set on the caller repo). Listing each secret here makes the
+    # propagation unambiguous regardless of caller-vs-called ownership.
+    # Missing secrets on the caller resolve to empty strings, harmless for
+    # the optional ones; PYPI_PASSWORD must be set for the publish job.
+    secrets:
+      PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
+      KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+      KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
