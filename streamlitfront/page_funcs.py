@@ -10,7 +10,12 @@ from streamlitfront.base import (
     BasePageFunc,
     _get_dflt_element_factory_for_annot,
 )
-from streamlitfront.util import build_factory, Command, NodeGetter
+from streamlitfront.util import (
+    build_factory,
+    Command,
+    NodeGetter,
+    signature_defaults,
+)
 
 
 # TODO: Extract the page setup (view_title, etc.) and make it injectable.
@@ -30,6 +35,7 @@ def get_func_elements_commands(
         element_factory_for_annot or _get_dflt_element_factory_for_annot()
     )
     sig = Sig(func)
+    defaults = signature_defaults(sig)  # i2's NotSet sentinel is not a default
     NodeGetter(state["views"])
 
     func_args_specs = {name: {} for name in sig.names}
@@ -46,8 +52,8 @@ def get_func_elements_commands(
             dflt_element_factory,
         )
 
-        if name in sig.defaults:
-            dflt = sig.defaults[name]
+        if name in defaults:
+            dflt = defaults[name]
             if dflt is not None:
                 # TODO: type-to-element conditions must be in configs
                 if isinstance(dflt, (list, tuple, set)):
@@ -68,6 +74,7 @@ def get_func_args_specs(
         element_factory_for_annot or _get_dflt_element_factory_for_annot()
     )
     sig = Sig(func)
+    defaults = signature_defaults(sig)  # i2's NotSet sentinel is not a default
     func_args_specs = {name: {} for name in sig.names}
     for name in sig.names:
         d = func_args_specs[name]
@@ -79,8 +86,8 @@ def get_func_args_specs(
             missing,
             dflt_element_factory,
         )
-        if name in sig.defaults:
-            dflt = sig.defaults[name]
+        if name in defaults:
+            dflt = defaults[name]
             if dflt is not None:
                 # TODO: type-to-element conditions must be in configs
                 if isinstance(dflt, (list, tuple, set)):
@@ -127,6 +134,7 @@ def special_get_func_args_specs(
         element_factory_for_annot or _get_dflt_element_factory_for_annot()
     )
     sig = Sig(func)
+    defaults = signature_defaults(sig)  # i2's NotSet sentinel is not a default
     func_args_specs = {name: {} for name in sig.names}
     for name in sig.names:
         d = func_args_specs[name]
@@ -138,8 +146,8 @@ def special_get_func_args_specs(
             missing,
             dflt_element_factory,
         )
-        if name in sig.defaults:
-            dflt = sig.defaults[name]
+        if name in defaults:
+            dflt = defaults[name]
             if dflt is not None:
                 # TODO: type-to-element conditions must be in configs
                 if isinstance(dflt, (list, tuple, set)):

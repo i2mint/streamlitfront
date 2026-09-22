@@ -6,6 +6,29 @@ from collections.abc import Iterable
 from i2.signatures import Sig, name_of_obj
 from i2._deprecated import Command as _Command
 
+try:
+    from i2 import is_not_set
+except ImportError:  # older i2: same sentinel, not exported from the root yet
+    from i2.deco import NotSet as _NotSet
+
+    def is_not_set(x) -> bool:
+        """Return True iff ``x`` is ``i2``'s ``NotSet`` sentinel."""
+        return x is _NotSet
+
+
+def signature_defaults(sig) -> dict:
+    """Return ``sig.defaults`` without the params whose default is ``i2``'s ``NotSet``.
+
+    ``NotSet`` in a signature means "no value given", not a real default, so a widget
+    must not be prefilled with it, nor typed after it.
+
+    >>> from i2.deco import NotSet
+    >>> def foo(a, b=NotSet, c=3): ...
+    >>> signature_defaults(Sig(foo))
+    {'c': 3}
+    """
+    return {k: v for k, v in sig.defaults.items() if not is_not_set(v)}
+
 
 # TODO: Consider using functools.partial (or subclass thereof) instead of Command
 class Command(_Command):
