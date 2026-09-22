@@ -1,0 +1,14 @@
+streamlitfront.pydantic\_widgets
+================================
+
+.. automodule:: streamlitfront.pydantic_widgets
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      pydantic_form
+      pydantic_input
+      pydantic_output
+   

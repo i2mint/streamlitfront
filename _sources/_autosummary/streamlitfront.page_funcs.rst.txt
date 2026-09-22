@@ -1,0 +1,26 @@
+streamlitfront.page\_funcs
+==========================
+
+.. automodule:: streamlitfront.page_funcs
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      get_func_args_specs
+      get_func_elements_commands
+      special_get_func_args_specs
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ArgsPageFunc
+      DataAccessPageFunc
+      DataBindingExploPageFunc
+      ExperimentalViewFunc
+      SimplePageFuncPydanticWithOutput
+      SimplePageFuncPydanticWrite
+      StatePageFunc
+   

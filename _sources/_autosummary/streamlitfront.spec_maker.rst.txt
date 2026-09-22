@@ -1,0 +1,12 @@
+streamlitfront.spec\_maker
+==========================
+
+.. automodule:: streamlitfront.spec_maker
+
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SpecMaker
+   

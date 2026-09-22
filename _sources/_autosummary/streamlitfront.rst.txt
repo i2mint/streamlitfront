@@ -1,0 +1,22 @@
+﻿streamlitfront
+==============
+
+.. automodule:: streamlitfront
+
+   
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   base
+   data_binding
+   elements
+   page_funcs
+   pydantic_widgets
+   run_app
+   session_state
+   spec_maker
+   tools
+   util

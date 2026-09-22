@@ -1,0 +1,29 @@
+streamlitfront.base
+===================
+
+.. automodule:: streamlitfront.base
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      default_hash_func
+      dflt_convention
+      dispatch_funcs
+      func_to_page_name
+      get_func_args_specs
+      get_pages_specs
+      infer_type
+      mk_app
+      pages_app
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BasePageFunc
+      DFLT_PAGE_FACTORY
+      DfltDict
+      SimplePageFunc
+   

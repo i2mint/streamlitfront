@@ -1,0 +1,50 @@
+streamlitfront.tools
+====================
+
+.. automodule:: streamlitfront.tools
+
+   
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+   
+      Rules
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      alt_mk_render_keys
+      app_maker
+      cond_then
+      first_element_matching_type
+      html_img_wrap
+      html_img_wrap_w_output_display
+      identity
+      if_feature_then_feature
+      if_feature_then_feature_and_obj
+      if_feature_then_obj
+      if_then
+      lines_to_html_paragraphs
+      mk_output_renderer
+      mk_render_keys
+      mk_specs
+      mk_target_render_keys_func
+      render_edits
+      render_edits_gen
+      render_html
+      rule1
+      rule2
+      rule3
+      rule_applier
+      target_render_keys_func
+      text_to_html
+      trans_output
+      validate_config
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ConditionalTrans
+   

@@ -1,0 +1,24 @@
+# streamlitfront
+
+> Generate streamlit frontends from python functions
+
+
+## Pages in this subsection
+
+- [streamlitfront](streamlitfront.html.md): Dispatching python functions as webservices, docker containers, and GUIs
+- [streamlitfront.base](streamlitfront.base.html.md): Base for UI generation
+- [streamlitfront.data_binding](streamlitfront.data_binding.html.md): Streamlit-backed data binding — wires front’s &#96;BoundData&#96; / &#96;Binder&#96; to &#96;st.session_state&#96;.
+- [streamlitfront.elements](streamlitfront.elements.html.md): | &#96;elements&#96;   | Here are implemented the elements for streamlitfront.   |
+- [streamlitfront.elements.elements](streamlitfront.elements.elements.html.md): Here are implemented the elements for streamlitfront.
+- [streamlitfront.elements.js](streamlitfront.elements.js.html.md): | &#96;mk_element_factory&#96;(element_name)   |    |
+- [streamlitfront.page_funcs](streamlitfront.page_funcs.html.md): Functions to create pages
+- [streamlitfront.pydantic_widgets](streamlitfront.pydantic_widgets.html.md): Native-Streamlit rendering of pydantic v2 models — input forms and output.
+- [streamlitfront.run_app](streamlitfront.run_app.html.md): Launch a streamlit app from a set of functions — the &#96;run_app&#96; entry point.
+- [streamlitfront.session_state](streamlitfront.session_state.html.md): Session state management
+- [streamlitfront.spec_maker](streamlitfront.spec_maker.html.md): The streamlit spec maker — front’s &#96;SpecMakerBase&#96; bound to streamlit elements.
+- [streamlitfront.tools](streamlitfront.tools.html.md): Tools made with streamlitfront
+- [streamlitfront.util](streamlitfront.util.html.md): | &#96;attr_or_key&#96;(obj, k)                              | Get data for &#96;k&#96; by doing obj.k, or obj&#91;k&#93; if...
+
+## Optional
+
+- [Top-level llms.txt](../llms.txt): Complete documentation index.

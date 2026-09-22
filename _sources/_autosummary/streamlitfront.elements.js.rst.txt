@@ -1,0 +1,12 @@
+streamlitfront.elements.js
+==========================
+
+.. automodule:: streamlitfront.elements.js
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      mk_element_factory
+   

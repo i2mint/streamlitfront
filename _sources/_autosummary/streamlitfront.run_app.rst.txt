@@ -1,0 +1,12 @@
+streamlitfront.run\_app
+=======================
+
+.. automodule:: streamlitfront.run_app
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      run_app
+   

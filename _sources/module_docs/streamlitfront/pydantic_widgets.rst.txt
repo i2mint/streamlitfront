@@ -1,4 +1,0 @@
-streamlitfront.pydantic_widgets
-===============================
-.. automodule:: streamlitfront.pydantic_widgets
-   :members:

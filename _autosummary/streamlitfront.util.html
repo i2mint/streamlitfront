@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="cyan" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>streamlitfront.util - streamlitfront</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="streamlitfront.tools" href="streamlitfront.tools.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d88b86f9" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=2ceb65ce" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+  <meta property="og:type" content="website"/><meta property="og:title" content="streamlitfront.util"/>
+    <meta name="twitter:card" content="summary"/>
+  
+<link rel="alternate" type="text/markdown" href="streamlitfront.util.html.md">
+<link rel="describedby" href="../llms.txt" type="text/markdown">
+</head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>streamlitfront</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/i2mint/streamlitfront" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="streamlitfront.html">streamlitfront</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="streamlitfront.base.html">streamlitfront.base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="streamlitfront.data_binding.html">streamlitfront.data_binding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="streamlitfront.elements.html">streamlitfront.elements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="streamlitfront.elements.elements.html">streamlitfront.elements.elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="streamlitfront.elements.js.html">streamlitfront.elements.js</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="streamlitfront.page_funcs.html">streamlitfront.page_funcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="streamlitfront.pydantic_widgets.html">streamlitfront.pydantic_widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="streamlitfront.run_app.html">streamlitfront.run_app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="streamlitfront.session_state.html">streamlitfront.session_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="streamlitfront.spec_maker.html">streamlitfront.spec_maker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="streamlitfront.tools.html">streamlitfront.tools</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">streamlitfront.util</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#streamlitfront.util.Command"><code class="docutils literal notranslate"><span class="pre">Command</span></code></a></li>
+<li><a class="reference internal" href="#streamlitfront.util.NodeGetter"><code class="docutils literal notranslate"><span class="pre">NodeGetter</span></code></a></li>
+<li><a class="reference internal" href="#streamlitfront.util.Objdict"><code class="docutils literal notranslate"><span class="pre">Objdict</span></code></a></li>
+<li><a class="reference internal" href="#streamlitfront.util.attr_or_key"><code class="docutils literal notranslate"><span class="pre">attr_or_key()</span></code></a></li>
+<li><a class="reference internal" href="#streamlitfront.util.attr_or_key_with_dotpaths"><code class="docutils literal notranslate"><span class="pre">attr_or_key_with_dotpaths()</span></code></a></li>
+<li><a class="reference internal" href="#streamlitfront.util.build_element_commands"><code class="docutils literal notranslate"><span class="pre">build_element_commands()</span></code></a></li>
+<li><a class="reference internal" href="#streamlitfront.util.build_element_factory"><code class="docutils literal notranslate"><span class="pre">build_element_factory()</span></code></a></li>
+<li><a class="reference internal" href="#streamlitfront.util.build_element_factory_helper"><code class="docutils literal notranslate"><span class="pre">build_element_factory_helper()</span></code></a></li>
+<li><a class="reference internal" href="#streamlitfront.util.build_factory"><code class="docutils literal notranslate"><span class="pre">build_factory()</span></code></a></li>
+<li><a class="reference internal" href="#streamlitfront.util.func_name"><code class="docutils literal notranslate"><span class="pre">func_name()</span></code></a></li>
+<li><a class="reference internal" href="#streamlitfront.util.incremental_str_maker"><code class="docutils literal notranslate"><span class="pre">incremental_str_maker()</span></code></a></li>
+<li><a class="reference internal" href="#streamlitfront.util.signature_defaults"><code class="docutils literal notranslate"><span class="pre">signature_defaults()</span></code></a></li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">streamlitfront</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../api.html"><span itemprop="name">API reference</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="streamlitfront.html"><span itemprop="name">streamlitfront</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="3" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">streamlitfront.util</strong>
+        <meta itemprop="position" content="4" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue dark-code" role="main">
+          <section id="module-streamlitfront.util">
+<span id="streamlitfront-util"></span><h1>streamlitfront.util<a class="headerlink" href="#module-streamlitfront.util" title="Link to this heading">#</a></h1>
+<p>Utils</p>
+<p class="rubric">Functions</p>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.util.attr_or_key" title="streamlitfront.util.attr_or_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attr_or_key</span></code></a>(obj, k)</p></td>
+<td><p>Get data for <code class="code docutils literal notranslate"><span class="pre">k</span></code> by doing obj.k, or obj[k] if k not an attribute of obj</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.util.attr_or_key_with_dotpaths" title="streamlitfront.util.attr_or_key_with_dotpaths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attr_or_key_with_dotpaths</span></code></a>(obj, k)</p></td>
+<td><p>Get k-data from obj hwere k is a path of keys and attributes leading to the data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.util.build_element_commands" title="streamlitfront.util.build_element_commands"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_element_commands</span></code></a>(name, inferred_type, ...)</p></td>
+<td><p>Build the element factory for each argument to allow for user input</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.util.build_element_factory" title="streamlitfront.util.build_element_factory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_element_factory</span></code></a>(name, inferred_type, ...)</p></td>
+<td><p>Build the element factory for each argument to allow for user input</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.util.build_element_factory_helper" title="streamlitfront.util.build_element_factory_helper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_element_factory_helper</span></code></a>(...)</p></td>
+<td><p>Helper to build the element factory for VP and VK arguments</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.util.build_factory" title="streamlitfront.util.build_factory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_factory</span></code></a>(element_factory, kind, idx)</p></td>
+<td><p>Build the factory for user input for VP and VK inputs</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.util.func_name" title="streamlitfront.util.func_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">func_name</span></code></a>(func)</p></td>
+<td><p>The func.__name__ of a callable func, or makes and returns one if that fails.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.util.incremental_str_maker" title="streamlitfront.util.incremental_str_maker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">incremental_str_maker</span></code></a>([str_format])</p></td>
+<td><p>Make a function that will produce a (incrementally) new string at every call.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.util.signature_defaults" title="streamlitfront.util.signature_defaults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signature_defaults</span></code></a>(sig)</p></td>
+<td><p>Return <code class="docutils literal notranslate"><span class="pre">sig.defaults</span></code> without the params whose default is <code class="docutils literal notranslate"><span class="pre">i2</span></code>'s <code class="docutils literal notranslate"><span class="pre">NotSet</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">unnamed_page</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Classes</p>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.util.Command" title="streamlitfront.util.Command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Command</span></code></a>(func, *args, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.util.NodeGetter" title="streamlitfront.util.NodeGetter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeGetter</span></code></a>(src[, item_getter])</p></td>
+<td><p>A accessing nested (i.e. tree-like) data as data['a', 'b', 'c'] instead of data['a']['b']['c'] This is the base to be able to define other path-based ways to see nested data. For example::.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.util.Objdict" title="streamlitfront.util.Objdict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Objdict</span></code></a></p></td>
+<td><p>A dict, whose keys can be access as if they were attributes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="streamlitfront.util.Command">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/util.html#Command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.Command" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="streamlitfront.util.NodeGetter">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">NodeGetter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_getter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">attr_or_key_with_dotpaths&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/util.html#NodeGetter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.NodeGetter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A accessing nested (i.e. tree-like) data as data[‘a’, ‘b’, ‘c’]
+instead of data[‘a’][‘b’][‘c’]
+This is the base to be able to define other path-based ways to see nested data.
+For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">data</span><span class="p">[</span><span class="s1">'a.b.c'</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)]</span>
+</span></pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="2"><span class="gp">... </span>    <span class="s1">'a'</span><span class="p">:</span> <span class="s1">'simple'</span><span class="p">,</span>
+</span><span data-line="3"><span class="gp">... </span>    <span class="s1">'b'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'is'</span><span class="p">:</span> <span class="s1">'nested'</span><span class="p">},</span>
+</span><span data-line="4"><span class="gp">... </span>    <span class="s1">'c'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'is'</span><span class="p">:</span> <span class="s1">'nested'</span><span class="p">,</span> <span class="s1">'and'</span><span class="p">:</span> <span class="s1">'has'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]}</span>
+</span><span data-line="5"><span class="gp">... </span><span class="p">}</span>
+</span><span data-line="6"><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">NodeGetter</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</span><span data-line="7"><span class="gp">&gt;&gt;&gt;</span>
+</span><span data-line="8"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="s1">'a'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'simple'</span>
+</span><span data-line="9"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="s1">'b'</span><span class="p">,</span> <span class="s1">'is'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'nested'</span>
+</span><span data-line="10"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="s1">'c'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span data-line="11"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="s1">'c'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
+</span><span data-line="12"><span class="gp">&gt;&gt;&gt;</span>
+</span><span data-line="13"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">d</span><span class="p">[</span><span class="s1">'c'</span><span class="p">][</span><span class="s1">'a'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>  <span class="c1"># it's to avoid accessing it this way.</span>
+</span><span data-line="14"><span class="gp">&gt;&gt;&gt; </span><span class="c1"># But can also expand on this and do things like:</span>
+</span><span data-line="15"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="s1">'b.is'</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)]</span> <span class="o">==</span> <span class="s1">'nested'</span>
+</span><span data-line="16"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="s1">'c/a'</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span data-line="17"><span class="gp">&gt;&gt;&gt; </span><span class="c1"># ... or subclass/wrap NodeGetter to do it automatically, given a protocol</span>
+</span><span data-line="18"><span class="gp">&gt;&gt;&gt;</span>
+</span><span data-line="19"><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">int_if_possible</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span><span data-line="20"><span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
+</span><span data-line="21"><span class="gp">... </span>        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span data-line="22"><span class="gp">... </span>    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+</span><span data-line="23"><span class="gp">... </span>        <span class="k">return</span> <span class="n">x</span>
+</span><span data-line="24"><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="nb">map</span><span class="p">(</span><span class="n">int_if_possible</span><span class="p">,</span> <span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'.'</span><span class="p">))</span>
+</span><span data-line="25"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">g</span><span class="p">[</span><span class="n">p</span><span class="p">(</span><span class="s1">'c.a.1'</span><span class="p">)]</span> <span class="o">==</span> <span class="mi">2</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="streamlitfront.util.Objdict">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">Objdict</span></span><a class="reference internal" href="../_modules/streamlitfront/util.html#Objdict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.Objdict" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+<p>A dict, whose keys can be access as if they were attributes.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Objdict</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p>Write it as you do with attributes or dict keys,
+get it as an attribute and a dict keys.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> <span class="s1">'bar'</span>
+</span><span data-line="2"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">s</span><span class="o">.</span><span class="n">foo</span> <span class="o">==</span> <span class="s1">'bar'</span>
+</span><span data-line="3"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">s</span><span class="p">[</span><span class="s1">'foo'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'bar'</span>
+</span><span data-line="4"><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="s1">'hello'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'world'</span>
+</span><span data-line="5"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">s</span><span class="o">.</span><span class="n">hello</span> <span class="o">==</span> <span class="s1">'world'</span>
+</span><span data-line="6"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">s</span><span class="p">[</span><span class="s1">'hello'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'world'</span>
+</span><span data-line="7"><span class="gp">&gt;&gt;&gt; </span><span class="nb">hasattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s1">'hello'</span><span class="p">)</span>
+</span><span data-line="8"><span class="go">True</span>
+</span></pre></div>
+</div>
+<p>And you can still do dict stuff with it…</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span><span data-line="2"><span class="go">['foo', 'hello']</span>
+</span><span data-line="3"><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+</span><span data-line="4"><span class="go">[('foo', 'bar'), ('hello', 'world')]</span>
+</span><span data-line="5"><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'key not there'</span><span class="p">,</span> <span class="s1">'nope'</span><span class="p">)</span>
+</span><span data-line="6"><span class="go">'nope'</span>
+</span><span data-line="7"><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span><span data-line="8"><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</span></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can use anything that’s a valid dict key as a key</p>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="s1">'strings with space'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span data-line="2"><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="mi">42</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'meaning of life'</span>
+</span><span data-line="3"><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[(</span><span class="s1">'tuples'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span> <span class="o">=</span> <span class="s1">'weird'</span>
+</span><span data-line="4"><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span><span data-line="5"><span class="go">['strings with space', 42, ('tuples', 1, None)]</span>
+</span></pre></div>
+</div>
+<p>But obviously, the only ones you’ll be able to access are those that are
+valid attribute names.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.util.attr_or_key">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">attr_or_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/util.html#attr_or_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.attr_or_key" title="Link to this definition">#</a></dt>
+<dd><p>Get data for <code class="code docutils literal notranslate"><span class="pre">k</span></code> by doing obj.k, or obj[k] if k not an attribute of obj</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'a'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'__class__'</span><span class="p">:</span> <span class="s1">'do I win?'</span><span class="p">}</span>
+</span><span data-line="2"><span class="gp">&gt;&gt;&gt; </span><span class="n">attr_or_key</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">)</span>
+</span><span data-line="3"><span class="go">1</span>
+</span><span data-line="4"><span class="gp">&gt;&gt;&gt; </span><span class="n">attr_or_key</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span data-line="5"><span class="go">'b'</span>
+</span><span data-line="6"><span class="gp">&gt;&gt;&gt; </span><span class="n">attr_or_key</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s1">'__class__'</span><span class="p">)</span>
+</span><span data-line="7"><span class="go">&lt;class 'dict'&gt;</span>
+</span></pre></div>
+</div>
+<p>That last one shows that <code class="code docutils literal notranslate"><span class="pre">attr_or_key</span></code> will also look in attributes to find
+the data of <code class="code docutils literal notranslate"><span class="pre">k</span></code>. In fact, it looks there first, before using [k].
+That’s why we got the dict type returned, and not the ‘do I win?’ string.
+Because <code class="code docutils literal notranslate"><span class="pre">d</span></code> has an attribute called <code class="code docutils literal notranslate"><span class="pre">__class__</span></code> (like… well… all python
+objects do).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.util.attr_or_key_with_dotpaths">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">attr_or_key_with_dotpaths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/util.html#attr_or_key_with_dotpaths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.attr_or_key_with_dotpaths" title="Link to this definition">#</a></dt>
+<dd><p>Get k-data from obj hwere k is a path of keys and attributes leading to the data.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="n">attr_or_key_with_dotpaths</span><span class="p">({</span><span class="s1">'a'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'b'</span><span class="p">:</span> <span class="mi">3</span><span class="p">}},</span> <span class="s1">'a.b'</span><span class="p">)</span>
+</span><span data-line="2"><span class="go">3</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.util.build_element_commands">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">build_element_commands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inferred_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_factory_for_annot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dflt_element_factory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/util.html#build_element_commands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.build_element_commands" title="Link to this definition">#</a></dt>
+<dd><p>Build the element factory for each argument to allow for user input</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.util.build_element_factory">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">build_element_factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inferred_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_factory_for_annot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dflt_element_factory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/util.html#build_element_factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.build_element_factory" title="Link to this definition">#</a></dt>
+<dd><p>Build the element factory for each argument to allow for user input</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.util.build_element_factory_helper">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">build_element_factory_helper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_factory_for_annot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inferred_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/util.html#build_element_factory_helper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.build_element_factory_helper" title="Link to this definition">#</a></dt>
+<dd><p>Helper to build the element factory for VP and VK arguments</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.util.build_factory">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">build_factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_factory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/util.html#build_factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.build_factory" title="Link to this definition">#</a></dt>
+<dd><p>Build the factory for user input for VP and VK inputs</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.util.func_name">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">func_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/util.html#func_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.func_name" title="Link to this definition">#</a></dt>
+<dd><p>The func.__name__ of a callable func, or makes and returns one if that fails.
+To make one, it calls unamed_func_name which produces incremental names to reduce the chances of clashing</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.util.incremental_str_maker">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">incremental_str_maker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'{:03.f}'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/util.html#incremental_str_maker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.incremental_str_maker" title="Link to this definition">#</a></dt>
+<dd><p>Make a function that will produce a (incrementally) new string at every call.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.util.signature_defaults">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">signature_defaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/util.html#signature_defaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.signature_defaults" title="Link to this definition">#</a></dt>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">sig.defaults</span></code> without the params whose default is <code class="docutils literal notranslate"><span class="pre">i2</span></code>’s <code class="docutils literal notranslate"><span class="pre">NotSet</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NotSet</span></code> in a signature means “no value given”, not a real default, so a widget
+must not be prefilled with it, nor typed after it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></span></p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">i2.deco</span><span class="w"> </span><span class="kn">import</span> <span class="n">NotSet</span>
+</span><span data-line="2"><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">NotSet</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span> <span class="o">...</span>
+</span><span data-line="3"><span class="gp">&gt;&gt;&gt; </span><span class="n">signature_defaults</span><span class="p">(</span><span class="n">Sig</span><span class="p">(</span><span class="n">foo</span><span class="p">))</span>
+</span><span data-line="4"><span class="go">{'c': 3}</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="streamlitfront.tools.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">streamlitfront.tools</div></div>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright">
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+  <a href="https://github.com/i2mint/streamlitfront" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../_static/documentation_options.js?v=50f64db7"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=fd10adb8"></script>
+      <script src="../_static/shibuya.js?v=50760d75"></script></body>
+</html>

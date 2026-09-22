@@ -1,724 +1,1096 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html lang="en" data-accent-color="cyan" data-content_root="../../">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>streamlitfront.base &mdash; streamlitfront 0.1.37 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
-
-  
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=b8ecee75"></script>
-      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
-      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
-      <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
-      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-      <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
-</head>
-
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../index.html" class="icon icon-home">
-            streamlitfront
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>streamlitfront.base - streamlitfront</title><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d88b86f9" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=2ceb65ce" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+  <meta property="og:type" content="website"/><meta property="og:title" content="streamlitfront.base"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      
+      
+      <strong>streamlitfront</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/i2mint/streamlitfront" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront.html">streamlitfront</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/data_binding.html">streamlitfront.data_binding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements.html">streamlitfront.elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/elements/js.html">streamlitfront.elements.js</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/costing_inflexibility.html">streamlitfront.examples.costing_inflexibility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/crude.html">streamlitfront.examples.crude</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/custom_output.html">streamlitfront.examples.custom_output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/data_prep.html">streamlitfront.examples.data_prep</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/edge_impulse_like.html">streamlitfront.examples.edge_impulse_like</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/handle_none_params.html">streamlitfront.examples.handle_none_params</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/pipeline_maker.html">streamlitfront.examples.pipeline_maker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/pipeline_maker_2.html">streamlitfront.examples.pipeline_maker_2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/simple_ml_1.html">streamlitfront.examples.simple_ml_1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/store_filtering.html">streamlitfront.examples.store_filtering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/util.html">streamlitfront.examples.util</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/pydantic_widgets.html">streamlitfront.pydantic_widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/run_app.html">streamlitfront.run_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/scrap/front_routing_proposals.html">streamlitfront.scrap.front_routing_proposals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/scrap/nested_select.html">streamlitfront.scrap.nested_select</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/session_state.html">streamlitfront.session_state</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/spec_maker.html">streamlitfront.spec_maker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/common.html">streamlitfront.tests.common</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/conftest.html">streamlitfront.tests.conftest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/dispatch_funcs_test.html">streamlitfront.tests.dispatch_funcs_test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/dummy_app.html">streamlitfront.tests.dummy_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/fake_app.html">streamlitfront.tests.fake_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/smoke_test.html">streamlitfront.tests.smoke_test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/test_app.html">streamlitfront.tests.test_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/test_base.html">streamlitfront.tests.test_base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/test_pydantic_widgets.html">streamlitfront.tests.test_pydantic_widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tests/use_case_test_old.html">streamlitfront.tests.use_case_test_old</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/tools.html">streamlitfront.tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_autosummary/streamlitfront.html">streamlitfront</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/streamlitfront.base.html">streamlitfront.base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/streamlitfront.data_binding.html">streamlitfront.data_binding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/streamlitfront.elements.html">streamlitfront.elements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/streamlitfront.elements.elements.html">streamlitfront.elements.elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_autosummary/streamlitfront.elements.js.html">streamlitfront.elements.js</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/streamlitfront.page_funcs.html">streamlitfront.page_funcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/streamlitfront.pydantic_widgets.html">streamlitfront.pydantic_widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/streamlitfront.run_app.html">streamlitfront.run_app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/streamlitfront.session_state.html">streamlitfront.session_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/streamlitfront.spec_maker.html">streamlitfront.spec_maker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/streamlitfront.tools.html">streamlitfront.tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/streamlitfront.util.html">streamlitfront.util</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
       </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">streamlitfront</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">streamlitfront.base</li>
-      <li class="wy-breadcrumbs-aside">
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <h1>Source code for streamlitfront.base</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Base for UI generation</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChainMap</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Iterable</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">warn</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">i2</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sig</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">front</span><span class="w"> </span><span class="kn">import</span> <span class="n">AppMaker</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.spec_maker</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpecMaker</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.session_state</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_state</span><span class="p">,</span> <span class="n">_SessionState</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">build_element_factory</span>
-
-<span class="c1"># --------------------- types/protocols/interfaces --------------------------------------</span>
-
-<span class="n">Map</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Mapping</span><span class="p">]]</span>
-<span class="n">Configuration</span> <span class="o">=</span> <span class="n">Mapping</span>
-<span class="n">Convention</span> <span class="o">=</span> <span class="n">Mapping</span>
-<span class="n">PageFunc</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_SessionState</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span>
-<span class="n">PageName</span> <span class="o">=</span> <span class="nb">str</span>
-<span class="n">PageSpec</span> <span class="o">=</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">PageName</span><span class="p">,</span> <span class="n">PageFunc</span><span class="p">]</span>
-<span class="n">App</span> <span class="o">=</span> <span class="n">Callable</span>
-<span class="c1"># AppMaker = Callable[[Iterable[Callable], Configuration], App]</span>
-
-<span class="c1"># ------- configuration/convention/default management -----------------------------------</span>
-
-
-<span class="c1"># TODO: Lots of configs/convention/defaults stuff piling up: Needs it&#39;s own module</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">func_to_page_name</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">func_name</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
-
-
-<span class="c1"># TODO: Need to enforce SOME structure/content. Use a subclass of util.Objdict instead?</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">dflt_convention</span><span class="p">():</span>
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">app_maker</span><span class="o">=</span><span class="n">pages_app</span><span class="p">,</span>
-        <span class="n">page_configs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;wide&quot;</span><span class="p">),</span>
-        <span class="n">func_to_page_name</span><span class="o">=</span><span class="n">func_to_page_name</span><span class="p">,</span>
-    <span class="p">)</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_get_map</span><span class="p">(</span><span class="n">mapping</span><span class="p">:</span> <span class="n">Map</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a concrete mapping from a flexible specification (e.g. could be a factory)&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mapping</span><span class="p">,</span> <span class="n">Callable</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">mapping</span><span class="p">()</span>  <span class="c1"># it&#39;s a factory, get the actual mapping</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">mapping</span> <span class="ow">or</span> <span class="p">{}</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_get_configs</span><span class="p">(</span><span class="n">configs</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="n">dflt_convention</span><span class="p">):</span>
-    <span class="n">configs</span><span class="p">,</span> <span class="n">convention</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">_get_map</span><span class="p">,</span> <span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">convention</span><span class="p">))</span>  <span class="c1"># get concrete mappings</span>
-    <span class="n">configs</span> <span class="o">=</span> <span class="n">ChainMap</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">convention</span><span class="p">)</span>  <span class="c1"># merge them</span>
-    <span class="k">return</span> <span class="n">configs</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">default_hash_func</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">id</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-
-
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">streamlitfront</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">Module code</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">streamlitfront.base</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue dark-code" role="main">
+          <h1>Source code for streamlitfront.base</h1><div class="highlight"><pre>
+<span></span><span data-line="1"><span class="sd">"""</span>
+</span><span data-line="2"><span class="sd">Base for UI generation</span>
+</span><span data-line="3"><span class="sd">"""</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+</span><span data-line="6"><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChainMap</span>
+</span><span data-line="7"><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span>
+</span><span data-line="8"><span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Iterable</span>
+</span><span data-line="9"><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+</span><span data-line="10"><span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
+</span><span data-line="11"><span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">warn</span>
+</span><span data-line="12"><span class="kn">from</span><span class="w"> </span><span class="nn">i2</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sig</span>
+</span><span data-line="13"><span class="kn">from</span><span class="w"> </span><span class="nn">front</span><span class="w"> </span><span class="kn">import</span> <span class="n">AppMaker</span>
+</span><span data-line="14">
+</span><span data-line="15"><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.spec_maker</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpecMaker</span>
+</span><span data-line="16"><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.session_state</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_state</span><span class="p">,</span> <span class="n">_SessionState</span>
+</span><span data-line="17"><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.util</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+</span><span data-line="18">    <span class="n">func_name</span><span class="p">,</span>
+</span><span data-line="19">    <span class="n">build_element_factory</span><span class="p">,</span>
+</span><span data-line="20">    <span class="n">signature_defaults</span><span class="p">,</span>
+</span><span data-line="21"><span class="p">)</span>
+</span><span data-line="22">
+</span><span data-line="23"><span class="c1"># --------------------- types/protocols/interfaces --------------------------------------</span>
+</span><span data-line="24">
+</span><span data-line="25"><span class="n">Map</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Mapping</span><span class="p">]]</span>
+</span><span data-line="26"><span class="n">Configuration</span> <span class="o">=</span> <span class="n">Mapping</span>
+</span><span data-line="27"><span class="n">Convention</span> <span class="o">=</span> <span class="n">Mapping</span>
+</span><span data-line="28"><span class="n">PageFunc</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">_SessionState</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span>
+</span><span data-line="29"><span class="n">PageName</span> <span class="o">=</span> <span class="nb">str</span>
+</span><span data-line="30"><span class="n">PageSpec</span> <span class="o">=</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">PageName</span><span class="p">,</span> <span class="n">PageFunc</span><span class="p">]</span>
+</span><span data-line="31"><span class="n">App</span> <span class="o">=</span> <span class="n">Callable</span>
+</span><span data-line="32"><span class="c1"># AppMaker = Callable[[Iterable[Callable], Configuration], App]</span>
+</span><span data-line="33">
+</span><span data-line="34"><span class="c1"># ------- configuration/convention/default management -----------------------------------</span>
+</span><span data-line="35">
+</span><span data-line="36">
+</span><span data-line="37"><span class="c1"># TODO: Lots of configs/convention/defaults stuff piling up: Needs it's own module</span>
+</span><span data-line="38">
+</span><span data-line="39">
+</span><span data-line="40"><span class="k">def</span><span class="w"> </span><span class="nf">func_to_page_name</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span data-line="41">    <span class="k">return</span> <span class="n">func_name</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"_"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+</span><span data-line="42">
+</span><span data-line="43">
+</span><span data-line="44"><span class="c1"># TODO: Need to enforce SOME structure/content. Use a subclass of util.Objdict instead?</span>
+</span><span data-line="45"><span class="k">def</span><span class="w"> </span><span class="nf">dflt_convention</span><span class="p">():</span>
+</span><span data-line="46">    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+</span><span data-line="47">        <span class="n">app_maker</span><span class="o">=</span><span class="n">pages_app</span><span class="p">,</span>
+</span><span data-line="48">        <span class="n">page_configs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">"wide"</span><span class="p">),</span>
+</span><span data-line="49">        <span class="n">func_to_page_name</span><span class="o">=</span><span class="n">func_to_page_name</span><span class="p">,</span>
+</span><span data-line="50">    <span class="p">)</span>
+</span><span data-line="51">
+</span><span data-line="52">
+</span><span data-line="53"><span class="k">def</span><span class="w"> </span><span class="nf">_get_map</span><span class="p">(</span><span class="n">mapping</span><span class="p">:</span> <span class="n">Map</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">:</span>
+</span><span data-line="54"><span class="w">    </span><span class="sd">"""Get a concrete mapping from a flexible specification (e.g. could be a factory)"""</span>
+</span><span data-line="55">    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mapping</span><span class="p">,</span> <span class="n">Callable</span><span class="p">):</span>
+</span><span data-line="56">        <span class="k">return</span> <span class="n">mapping</span><span class="p">()</span>  <span class="c1"># it's a factory, get the actual mapping</span>
+</span><span data-line="57">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="58">        <span class="k">return</span> <span class="n">mapping</span> <span class="ow">or</span> <span class="p">{}</span>
+</span><span data-line="59">
+</span><span data-line="60">
+</span><span data-line="61"><span class="k">def</span><span class="w"> </span><span class="nf">_get_configs</span><span class="p">(</span><span class="n">configs</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="n">dflt_convention</span><span class="p">):</span>
+</span><span data-line="62">    <span class="n">configs</span><span class="p">,</span> <span class="n">convention</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">_get_map</span><span class="p">,</span> <span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">convention</span><span class="p">))</span>  <span class="c1"># get concrete mappings</span>
+</span><span data-line="63">    <span class="n">configs</span> <span class="o">=</span> <span class="n">ChainMap</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">convention</span><span class="p">)</span>  <span class="c1"># merge them</span>
+</span><span data-line="64">    <span class="k">return</span> <span class="n">configs</span>
+</span><span data-line="65">
+</span><span data-line="66">
+</span><span data-line="67"><span class="k">def</span><span class="w"> </span><span class="nf">default_hash_func</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+</span><span data-line="68">    <span class="k">return</span> <span class="nb">id</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span><span data-line="69">
+</span><span data-line="70">
 <div class="viewcode-block" id="DfltDict">
-<a class="viewcode-back" href="../../module_docs/streamlitfront/base.html#streamlitfront.base.DfltDict">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">DfltDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__missing__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">default_hash_func</span></div>
+<a class="viewcode-back" href="../../_autosummary/streamlitfront.base.html#streamlitfront.base.DfltDict">[docs]</a>
+</span><span data-line="71"><span class="k">class</span><span class="w"> </span><span class="nc">DfltDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+</span><span data-line="72">    <span class="k">def</span><span class="w"> </span><span class="fm">__missing__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+</span><span data-line="73">        <span class="k">return</span> <span class="n">default_hash_func</span></div>
 
-
-
-<span class="c1"># TODO: No particulars should be here. Should figure out how to inject particulars</span>
-<span class="c1">#  when a particular app requires it. dflt_hash_funcs is for GENERAL defaults.</span>
-<span class="c1">#  If the key is not found, will return default_hash_func anyway.</span>
-<span class="n">dflt_hash_funcs</span> <span class="o">=</span> <span class="n">DfltDict</span><span class="p">(</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;abc.WfStoreWrapped&quot;</span><span class="p">:</span> <span class="n">default_hash_func</span><span class="p">,</span>
-        <span class="s2">&quot;qcoto.dacc.Dacc&quot;</span><span class="p">:</span> <span class="n">default_hash_func</span><span class="p">,</span>
-        <span class="s2">&quot;abc.DfSimpleStoreWrapped&quot;</span><span class="p">:</span> <span class="n">default_hash_func</span><span class="p">,</span>
-        <span class="s2">&quot;builtins.dict&quot;</span><span class="p">:</span> <span class="n">default_hash_func</span><span class="p">,</span>
-        <span class="s2">&quot;haggle.dacc.KaggleDatasetInfoReader&quot;</span><span class="p">:</span> <span class="n">default_hash_func</span><span class="p">,</span>
-    <span class="p">}</span>
-<span class="p">)</span>
-
-
-<span class="c1"># def func_to_page_name(func: Callable, page_name_for_func: Map = None, **configs) -&gt; str:</span>
-<span class="c1">#     &quot;&quot;&quot;Get page name for function.</span>
-<span class="c1">#     If explicit in  page_name_for_func</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     page_name_for_func = page_name_for_func or {}</span>
-<span class="c1">#     func_name_str = page_name_for_func.get(func, None)</span>
-<span class="c1">#     if func_name_str is not None:</span>
-<span class="c1">#         return func_name_str</span>
-<span class="c1">#     else:</span>
-<span class="c1">#         return mk_func_name(func)</span>
-
-<span class="c1"># ---------------------------------------------------------------------------------------</span>
-<span class="c1"># The main function and raison d&#39;etre of front</span>
-
-
+</span><span data-line="74">
+</span><span data-line="75">
+</span><span data-line="76"><span class="c1"># TODO: No particulars should be here. Should figure out how to inject particulars</span>
+</span><span data-line="77"><span class="c1">#  when a particular app requires it. dflt_hash_funcs is for GENERAL defaults.</span>
+</span><span data-line="78"><span class="c1">#  If the key is not found, will return default_hash_func anyway.</span>
+</span><span data-line="79"><span class="n">dflt_hash_funcs</span> <span class="o">=</span> <span class="n">DfltDict</span><span class="p">(</span>
+</span><span data-line="80">    <span class="p">{</span>
+</span><span data-line="81">        <span class="s2">"abc.WfStoreWrapped"</span><span class="p">:</span> <span class="n">default_hash_func</span><span class="p">,</span>
+</span><span data-line="82">        <span class="s2">"qcoto.dacc.Dacc"</span><span class="p">:</span> <span class="n">default_hash_func</span><span class="p">,</span>
+</span><span data-line="83">        <span class="s2">"abc.DfSimpleStoreWrapped"</span><span class="p">:</span> <span class="n">default_hash_func</span><span class="p">,</span>
+</span><span data-line="84">        <span class="s2">"builtins.dict"</span><span class="p">:</span> <span class="n">default_hash_func</span><span class="p">,</span>
+</span><span data-line="85">        <span class="s2">"haggle.dacc.KaggleDatasetInfoReader"</span><span class="p">:</span> <span class="n">default_hash_func</span><span class="p">,</span>
+</span><span data-line="86">    <span class="p">}</span>
+</span><span data-line="87"><span class="p">)</span>
+</span><span data-line="88">
+</span><span data-line="89">
+</span><span data-line="90"><span class="c1"># def func_to_page_name(func: Callable, page_name_for_func: Map = None, **configs) -&gt; str:</span>
+</span><span data-line="91"><span class="c1">#     """Get page name for function.</span>
+</span><span data-line="92"><span class="c1">#     If explicit in  page_name_for_func</span>
+</span><span data-line="93"><span class="c1">#     """</span>
+</span><span data-line="94"><span class="c1">#     page_name_for_func = page_name_for_func or {}</span>
+</span><span data-line="95"><span class="c1">#     func_name_str = page_name_for_func.get(func, None)</span>
+</span><span data-line="96"><span class="c1">#     if func_name_str is not None:</span>
+</span><span data-line="97"><span class="c1">#         return func_name_str</span>
+</span><span data-line="98"><span class="c1">#     else:</span>
+</span><span data-line="99"><span class="c1">#         return mk_func_name(func)</span>
+</span><span data-line="100">
+</span><span data-line="101"><span class="c1"># ---------------------------------------------------------------------------------------</span>
+</span><span data-line="102"><span class="c1"># The main function and raison d'etre of front</span>
+</span><span data-line="103">
+</span><span data-line="104">
 <div class="viewcode-block" id="dispatch_funcs">
-<a class="viewcode-back" href="../../module_docs/streamlitfront/base.html#streamlitfront.base.dispatch_funcs">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">dispatch_funcs</span><span class="p">(</span>
-    <span class="n">funcs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Callable</span><span class="p">],</span>
-    <span class="n">configs</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="n">dflt_convention</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">App</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;DEPRECATED!</span>
-<span class="sd">    Call this function with target funcs and get an app to run.&quot;&quot;&quot;</span>
-    <span class="n">warn</span><span class="p">(</span>
-        <span class="s1">&#39;This function is deprecated, use &quot;mk_app&quot; instead.&#39;</span><span class="p">,</span>
-        <span class="ne">DeprecationWarning</span><span class="p">,</span>
-        <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="c1"># _get_configs is responsible for merging convention into configs.</span>
-    <span class="c1"># The easiest example of that is defaults: convention holding the defaults so</span>
-    <span class="c1"># configs doesn&#39;t have to express them.</span>
-    <span class="c1"># TODO: _get_configs should be expanded (or added as argument of dispatch_func</span>
-    <span class="c1">#  so that is can handle more kinds of configs/convention merging.</span>
-    <span class="n">configs</span> <span class="o">=</span> <span class="n">_get_configs</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">convention</span><span class="p">)</span>
-    <span class="c1"># configs holds it&#39;s own interpreter: app_maker</span>
-    <span class="n">app_maker</span> <span class="o">=</span> <span class="n">configs</span><span class="p">[</span><span class="s2">&quot;app_maker&quot;</span><span class="p">]</span>
-    <span class="c1"># ... which needs to be a callable</span>
-    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">app_maker</span><span class="p">,</span> <span class="n">Callable</span><span class="p">)</span>
-    <span class="c1"># The app we return the curry of app_maker with funcs and configs bindings.</span>
-    <span class="c1"># With that, we should be able to run the app by calling it: app()</span>
-    <span class="c1"># Note: We&#39;re still open to also specify further configs through app(...) arguments</span>
-    <span class="k">return</span> <span class="n">partial</span><span class="p">(</span><span class="n">app_maker</span><span class="p">,</span> <span class="n">funcs</span><span class="o">=</span><span class="n">funcs</span><span class="p">,</span> <span class="n">configs</span><span class="o">=</span><span class="n">configs</span><span class="p">)</span></div>
+<a class="viewcode-back" href="../../_autosummary/streamlitfront.base.html#streamlitfront.base.dispatch_funcs">[docs]</a>
+</span><span data-line="105"><span class="k">def</span><span class="w"> </span><span class="nf">dispatch_funcs</span><span class="p">(</span>
+</span><span data-line="106">    <span class="n">funcs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Callable</span><span class="p">],</span>
+</span><span data-line="107">    <span class="n">configs</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span data-line="108">    <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="n">dflt_convention</span><span class="p">,</span>
+</span><span data-line="109"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">App</span><span class="p">:</span>
+</span><span data-line="110"><span class="w">    </span><span class="sd">"""DEPRECATED!</span>
+</span><span data-line="111"><span class="sd">    Call this function with target funcs and get an app to run."""</span>
+</span><span data-line="112">    <span class="n">warn</span><span class="p">(</span>
+</span><span data-line="113">        <span class="s1">'This function is deprecated, use "mk_app" instead.'</span><span class="p">,</span>
+</span><span data-line="114">        <span class="ne">DeprecationWarning</span><span class="p">,</span>
+</span><span data-line="115">        <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span data-line="116">    <span class="p">)</span>
+</span><span data-line="117">    <span class="c1"># _get_configs is responsible for merging convention into configs.</span>
+</span><span data-line="118">    <span class="c1"># The easiest example of that is defaults: convention holding the defaults so</span>
+</span><span data-line="119">    <span class="c1"># configs doesn't have to express them.</span>
+</span><span data-line="120">    <span class="c1"># TODO: _get_configs should be expanded (or added as argument of dispatch_func</span>
+</span><span data-line="121">    <span class="c1">#  so that is can handle more kinds of configs/convention merging.</span>
+</span><span data-line="122">    <span class="n">configs</span> <span class="o">=</span> <span class="n">_get_configs</span><span class="p">(</span><span class="n">configs</span><span class="p">,</span> <span class="n">convention</span><span class="p">)</span>
+</span><span data-line="123">    <span class="c1"># configs holds it's own interpreter: app_maker</span>
+</span><span data-line="124">    <span class="n">app_maker</span> <span class="o">=</span> <span class="n">configs</span><span class="p">[</span><span class="s2">"app_maker"</span><span class="p">]</span>
+</span><span data-line="125">    <span class="c1"># ... which needs to be a callable</span>
+</span><span data-line="126">    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">app_maker</span><span class="p">,</span> <span class="n">Callable</span><span class="p">)</span>
+</span><span data-line="127">    <span class="c1"># The app we return the curry of app_maker with funcs and configs bindings.</span>
+</span><span data-line="128">    <span class="c1"># With that, we should be able to run the app by calling it: app()</span>
+</span><span data-line="129">    <span class="c1"># Note: We're still open to also specify further configs through app(...) arguments</span>
+</span><span data-line="130">    <span class="k">return</span> <span class="n">partial</span><span class="p">(</span><span class="n">app_maker</span><span class="p">,</span> <span class="n">funcs</span><span class="o">=</span><span class="n">funcs</span><span class="p">,</span> <span class="n">configs</span><span class="o">=</span><span class="n">configs</span><span class="p">)</span></div>
 
-
-
-<span class="c1"># ---------------------------------------------------------------------------------------</span>
-
-<span class="n">missing</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s2">&quot;Missing&quot;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})()</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">infer_type</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">annotations</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">sig</span><span class="o">.</span><span class="n">annotations</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-    <span class="k">elif</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">defaults</span><span class="p">:</span>
-        <span class="n">dflt</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">defaults</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">dflt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">dflt</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">missing</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_get_dflt_element_factory_for_annot</span><span class="p">():</span>
-    <span class="c1"># _ = _get_state()</span>
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="nb">int</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">,</span>
-        <span class="nb">float</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">,</span>
-        <span class="nb">str</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">,</span>
-        <span class="nb">bool</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">checkbox</span><span class="p">,</span>
-        <span class="c1"># TODO: OL: selectbox result is singular; not a list.</span>
-        <span class="c1">#   In situations where we need a lit of items from a collection of</span>
-        <span class="c1">#   of possibilities, we can use multiselect (if not too many options).</span>
-        <span class="c1">#   But even that is not general enough. We should either not handle iterbles</span>
-        <span class="c1">#   in defaults, or, once we have it, open a list selection widget that would</span>
-        <span class="c1">#   offer the possibilities (comma separated string, upload csv/excel/pickle</span>
-        <span class="c1">#   etc.).</span>
-        <span class="c1"># list: st.selectbox,</span>
-        <span class="c1"># tuple: st.selectbox,</span>
-        <span class="c1"># type(lambda df: df) is just function</span>
-        <span class="c1"># type(</span>
-        <span class="c1">#     lambda df: df</span>
-        <span class="c1"># ): st.file_uploader,  # TODO: Find a better way to identify as file_uploader</span>
-        <span class="c1"># type(_): None,</span>
-        <span class="c1"># TODO: Below can be computed and injected in dict</span>
-        <span class="c1">#  ... But is it correct? ONe number input for iterables?</span>
-        <span class="c1"># typing.Iterable[int]: (st.number_input, int),</span>
-        <span class="c1"># typing.Iterable[float]: (st.number_input, float),</span>
-        <span class="c1"># typing.Iterable[str]: (st.number_input, str),</span>
-        <span class="c1"># typing.Iterable[bool]: (st.number_input, bool),</span>
-        <span class="c1"># typing.Dict[str, int]: (st.number_input, str, int),</span>
-        <span class="c1"># typing.Dict[str, float]: (st.number_input, str, float),</span>
-        <span class="c1"># typing.Dict[str, str]: (st.number_input, str, str),</span>
-        <span class="c1"># typing.Dict[str, bool]: (st.number_input, str, bool),</span>
-    <span class="p">}</span>
-
-
-<span class="c1">#</span>
-<span class="c1"># TODO: Too messy -- needs some design thinking</span>
-<span class="c1"># TODO: Basic: Add some more smart mapping</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_func_args_specs</span><span class="p">(</span>
-    <span class="n">func</span><span class="p">,</span>
-    <span class="n">dflt_element_factory</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">,</span>
-    <span class="n">element_factory_for_annot</span><span class="p">:</span> <span class="n">Mapping</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">configs</span><span class="p">,</span>
-<span class="p">):</span>
-    <span class="n">element_factory_for_annot</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">element_factory_for_annot</span> <span class="ow">or</span> <span class="n">_get_dflt_element_factory_for_annot</span><span class="p">()</span>
-    <span class="p">)</span>
-    <span class="n">sig</span> <span class="o">=</span> <span class="n">Sig</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-    <span class="n">func_args_specs</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="p">{}</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">names</span><span class="p">}</span>
-    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">names</span><span class="p">:</span>
-        <span class="n">d</span> <span class="o">=</span> <span class="n">func_args_specs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-        <span class="n">inferred_type</span> <span class="o">=</span> <span class="n">infer_type</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-        <span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="n">build_element_factory</span><span class="p">(</span>
-            <span class="n">name</span><span class="p">,</span>
-            <span class="n">inferred_type</span><span class="p">,</span>
-            <span class="n">element_factory_for_annot</span><span class="p">,</span>
-            <span class="n">missing</span><span class="p">,</span>
-            <span class="n">dflt_element_factory</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">defaults</span><span class="p">:</span>
-            <span class="n">dflt</span> <span class="o">=</span> <span class="n">sig</span><span class="o">.</span><span class="n">defaults</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">dflt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="c1"># TODO: type-to-element conditions must be in configs</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dflt</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="nb">set</span><span class="p">)):</span>
-                    <span class="c1"># TODO: This case seems false (maybe? don&#39;t want multiple choice</span>
-                    <span class="c1">#  when default is a list)</span>
-                    <span class="c1"># TODO: When we have list defaults, error occurs</span>
-                    <span class="n">factory_kwargs</span><span class="p">[</span><span class="s2">&quot;options&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dflt</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">factory_kwargs</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dflt</span>
-
-        <span class="n">d</span><span class="p">[</span><span class="s2">&quot;element_factory&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">func_args_specs</span>
-
-
-<span class="k">class</span><span class="w"> </span><span class="nc">BasePageFunc</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">view_title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">view_title</span> <span class="o">=</span> <span class="n">view_title</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">configs</span> <span class="o">=</span> <span class="n">configs</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sig</span> <span class="o">=</span> <span class="n">Sig</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">prepare_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_title</span><span class="p">:</span>
-            <span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;## **</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">view_title</span><span class="si">}</span><span class="s2">**&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">prepare_view</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
-        <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sig</span><span class="p">)</span>  <span class="c1"># Was Sig(self.func)</span>
-
-
-<span class="k">class</span><span class="w"> </span><span class="nc">SimplePageFunc</span><span class="p">(</span><span class="n">BasePageFunc</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">prepare_view</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
-        <span class="n">args_specs</span> <span class="o">=</span> <span class="n">get_func_args_specs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
-        <span class="c1"># func_inputs = dict(self.sig.defaults, **state[&#39;page_state&#39;][self.func])</span>
-        <span class="n">func_inputs</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">argname</span><span class="p">,</span> <span class="n">spec</span> <span class="ow">in</span> <span class="n">args_specs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">element_factory</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">spec</span><span class="p">[</span><span class="s2">&quot;element_factory&quot;</span><span class="p">]</span>
-            <span class="n">func_inputs</span><span class="p">[</span><span class="n">argname</span><span class="p">]</span> <span class="o">=</span> <span class="n">element_factory</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">submit</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">submit</span><span class="p">:</span>
-            <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">**</span><span class="n">func_inputs</span><span class="p">))</span>
-            <span class="c1"># state[&#39;page_state&#39;][self.func].clear()</span>
-
-
-<span class="n">DFLT_PAGE_FACTORY</span> <span class="o">=</span> <span class="n">SimplePageFunc</span>  <span class="c1"># Try BasePageFunc too</span>
-
-<span class="c1">#</span>
-<span class="c1"># # TODO: Code this!</span>
-<span class="c1"># def get_page_callbacks(funcs, page_names, page_factory=DFLT_PAGE_FACTORY, **configs):</span>
-<span class="c1">#     return [</span>
-<span class="c1">#         page_factory(func, page_name, **configs)</span>
-<span class="c1">#         for func, page_name in zip(funcs, page_names)</span>
-<span class="c1">#     ]</span>
-
-
-<span class="c1"># TODO: Get func_page for real</span>
+</span><span data-line="131">
+</span><span data-line="132">
+</span><span data-line="133"><span class="c1"># ---------------------------------------------------------------------------------------</span>
+</span><span data-line="134">
+</span><span data-line="135"><span class="n">missing</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s2">"Missing"</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})()</span>
+</span><span data-line="136">
+</span><span data-line="137">
+</span><span data-line="138"><span class="k">def</span><span class="w"> </span><span class="nf">infer_type</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span><span data-line="139">    <span class="n">defaults</span> <span class="o">=</span> <span class="n">signature_defaults</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>  <span class="c1"># i2's NotSet sentinel is not a default</span>
+</span><span data-line="140">    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">annotations</span><span class="p">:</span>
+</span><span data-line="141">        <span class="k">return</span> <span class="n">sig</span><span class="o">.</span><span class="n">annotations</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+</span><span data-line="142">    <span class="k">elif</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">defaults</span><span class="p">:</span>
+</span><span data-line="143">        <span class="n">dflt</span> <span class="o">=</span> <span class="n">defaults</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+</span><span data-line="144">        <span class="k">if</span> <span class="n">dflt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="145">            <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">dflt</span><span class="p">)</span>
+</span><span data-line="146">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="147">        <span class="k">return</span> <span class="n">missing</span>
+</span><span data-line="148">
+</span><span data-line="149">
+</span><span data-line="150"><span class="k">def</span><span class="w"> </span><span class="nf">_get_dflt_element_factory_for_annot</span><span class="p">():</span>
+</span><span data-line="151">    <span class="c1"># _ = _get_state()</span>
+</span><span data-line="152">    <span class="k">return</span> <span class="p">{</span>
+</span><span data-line="153">        <span class="nb">int</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">,</span>
+</span><span data-line="154">        <span class="nb">float</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">,</span>
+</span><span data-line="155">        <span class="nb">str</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">,</span>
+</span><span data-line="156">        <span class="nb">bool</span><span class="p">:</span> <span class="n">st</span><span class="o">.</span><span class="n">checkbox</span><span class="p">,</span>
+</span><span data-line="157">        <span class="c1"># TODO: OL: selectbox result is singular; not a list.</span>
+</span><span data-line="158">        <span class="c1">#   In situations where we need a lit of items from a collection of</span>
+</span><span data-line="159">        <span class="c1">#   of possibilities, we can use multiselect (if not too many options).</span>
+</span><span data-line="160">        <span class="c1">#   But even that is not general enough. We should either not handle iterbles</span>
+</span><span data-line="161">        <span class="c1">#   in defaults, or, once we have it, open a list selection widget that would</span>
+</span><span data-line="162">        <span class="c1">#   offer the possibilities (comma separated string, upload csv/excel/pickle</span>
+</span><span data-line="163">        <span class="c1">#   etc.).</span>
+</span><span data-line="164">        <span class="c1"># list: st.selectbox,</span>
+</span><span data-line="165">        <span class="c1"># tuple: st.selectbox,</span>
+</span><span data-line="166">        <span class="c1"># type(lambda df: df) is just function</span>
+</span><span data-line="167">        <span class="c1"># type(</span>
+</span><span data-line="168">        <span class="c1">#     lambda df: df</span>
+</span><span data-line="169">        <span class="c1"># ): st.file_uploader,  # TODO: Find a better way to identify as file_uploader</span>
+</span><span data-line="170">        <span class="c1"># type(_): None,</span>
+</span><span data-line="171">        <span class="c1"># TODO: Below can be computed and injected in dict</span>
+</span><span data-line="172">        <span class="c1">#  ... But is it correct? ONe number input for iterables?</span>
+</span><span data-line="173">        <span class="c1"># typing.Iterable[int]: (st.number_input, int),</span>
+</span><span data-line="174">        <span class="c1"># typing.Iterable[float]: (st.number_input, float),</span>
+</span><span data-line="175">        <span class="c1"># typing.Iterable[str]: (st.number_input, str),</span>
+</span><span data-line="176">        <span class="c1"># typing.Iterable[bool]: (st.number_input, bool),</span>
+</span><span data-line="177">        <span class="c1"># typing.Dict[str, int]: (st.number_input, str, int),</span>
+</span><span data-line="178">        <span class="c1"># typing.Dict[str, float]: (st.number_input, str, float),</span>
+</span><span data-line="179">        <span class="c1"># typing.Dict[str, str]: (st.number_input, str, str),</span>
+</span><span data-line="180">        <span class="c1"># typing.Dict[str, bool]: (st.number_input, str, bool),</span>
+</span><span data-line="181">    <span class="p">}</span>
+</span><span data-line="182">
+</span><span data-line="183">
+</span><span data-line="184"><span class="c1">#</span>
+</span><span data-line="185"><span class="c1"># TODO: Too messy -- needs some design thinking</span>
+</span><span data-line="186"><span class="c1"># TODO: Basic: Add some more smart mapping</span>
+</span><span data-line="187"><span class="k">def</span><span class="w"> </span><span class="nf">get_func_args_specs</span><span class="p">(</span>
+</span><span data-line="188">    <span class="n">func</span><span class="p">,</span>
+</span><span data-line="189">    <span class="n">dflt_element_factory</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">,</span>
+</span><span data-line="190">    <span class="n">element_factory_for_annot</span><span class="p">:</span> <span class="n">Mapping</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span data-line="191">    <span class="o">**</span><span class="n">configs</span><span class="p">,</span>
+</span><span data-line="192"><span class="p">):</span>
+</span><span data-line="193">    <span class="n">element_factory_for_annot</span> <span class="o">=</span> <span class="p">(</span>
+</span><span data-line="194">        <span class="n">element_factory_for_annot</span> <span class="ow">or</span> <span class="n">_get_dflt_element_factory_for_annot</span><span class="p">()</span>
+</span><span data-line="195">    <span class="p">)</span>
+</span><span data-line="196">    <span class="n">sig</span> <span class="o">=</span> <span class="n">Sig</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+</span><span data-line="197">    <span class="n">defaults</span> <span class="o">=</span> <span class="n">signature_defaults</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>  <span class="c1"># i2's NotSet sentinel is not a default</span>
+</span><span data-line="198">    <span class="n">func_args_specs</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="p">{}</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">names</span><span class="p">}</span>
+</span><span data-line="199">    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">names</span><span class="p">:</span>
+</span><span data-line="200">        <span class="n">d</span> <span class="o">=</span> <span class="n">func_args_specs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+</span><span data-line="201">        <span class="n">inferred_type</span> <span class="o">=</span> <span class="n">infer_type</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</span><span data-line="202">        <span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span> <span class="o">=</span> <span class="n">build_element_factory</span><span class="p">(</span>
+</span><span data-line="203">            <span class="n">name</span><span class="p">,</span>
+</span><span data-line="204">            <span class="n">inferred_type</span><span class="p">,</span>
+</span><span data-line="205">            <span class="n">element_factory_for_annot</span><span class="p">,</span>
+</span><span data-line="206">            <span class="n">missing</span><span class="p">,</span>
+</span><span data-line="207">            <span class="n">dflt_element_factory</span><span class="p">,</span>
+</span><span data-line="208">        <span class="p">)</span>
+</span><span data-line="209">        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">defaults</span><span class="p">:</span>
+</span><span data-line="210">            <span class="n">dflt</span> <span class="o">=</span> <span class="n">defaults</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+</span><span data-line="211">            <span class="k">if</span> <span class="n">dflt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="212">                <span class="c1"># TODO: type-to-element conditions must be in configs</span>
+</span><span data-line="213">                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dflt</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="nb">set</span><span class="p">)):</span>
+</span><span data-line="214">                    <span class="c1"># TODO: This case seems false (maybe? don't want multiple choice</span>
+</span><span data-line="215">                    <span class="c1">#  when default is a list)</span>
+</span><span data-line="216">                    <span class="c1"># TODO: When we have list defaults, error occurs</span>
+</span><span data-line="217">                    <span class="n">factory_kwargs</span><span class="p">[</span><span class="s2">"options"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dflt</span>
+</span><span data-line="218">                <span class="k">else</span><span class="p">:</span>
+</span><span data-line="219">                    <span class="n">factory_kwargs</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dflt</span>
+</span><span data-line="220">
+</span><span data-line="221">        <span class="n">d</span><span class="p">[</span><span class="s2">"element_factory"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">element_factory</span><span class="p">,</span> <span class="n">factory_kwargs</span><span class="p">)</span>
+</span><span data-line="222">
+</span><span data-line="223">    <span class="k">return</span> <span class="n">func_args_specs</span>
+</span><span data-line="224">
+</span><span data-line="225">
+</span><span data-line="226"><span class="k">class</span><span class="w"> </span><span class="nc">BasePageFunc</span><span class="p">:</span>
+</span><span data-line="227">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">view_title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">):</span>
+</span><span data-line="228">        <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+</span><span data-line="229">        <span class="bp">self</span><span class="o">.</span><span class="n">view_title</span> <span class="o">=</span> <span class="n">view_title</span>
+</span><span data-line="230">        <span class="bp">self</span><span class="o">.</span><span class="n">configs</span> <span class="o">=</span> <span class="n">configs</span>
+</span><span data-line="231">        <span class="bp">self</span><span class="o">.</span><span class="n">sig</span> <span class="o">=</span> <span class="n">Sig</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+</span><span data-line="232">
+</span><span data-line="233">    <span class="k">def</span><span class="w"> </span><span class="nf">prepare_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+</span><span data-line="234">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_title</span><span class="p">:</span>
+</span><span data-line="235">            <span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""## **</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">view_title</span><span class="si">}</span><span class="s2">**"""</span><span class="p">)</span>
+</span><span data-line="236">
+</span><span data-line="237">    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+</span><span data-line="238">        <span class="bp">self</span><span class="o">.</span><span class="n">prepare_view</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+</span><span data-line="239">        <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sig</span><span class="p">)</span>  <span class="c1"># Was Sig(self.func)</span>
+</span><span data-line="240">
+</span><span data-line="241">
+</span><span data-line="242"><span class="k">class</span><span class="w"> </span><span class="nc">SimplePageFunc</span><span class="p">(</span><span class="n">BasePageFunc</span><span class="p">):</span>
+</span><span data-line="243">    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+</span><span data-line="244">        <span class="bp">self</span><span class="o">.</span><span class="n">prepare_view</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+</span><span data-line="245">        <span class="n">args_specs</span> <span class="o">=</span> <span class="n">get_func_args_specs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
+</span><span data-line="246">        <span class="c1"># func_inputs = dict(self.sig.defaults, **state['page_state'][self.func])</span>
+</span><span data-line="247">        <span class="n">func_inputs</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span data-line="248">        <span class="k">for</span> <span class="n">argname</span><span class="p">,</span> <span class="n">spec</span> <span class="ow">in</span> <span class="n">args_specs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span data-line="249">            <span class="n">element_factory</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">spec</span><span class="p">[</span><span class="s2">"element_factory"</span><span class="p">]</span>
+</span><span data-line="250">            <span class="n">func_inputs</span><span class="p">[</span><span class="n">argname</span><span class="p">]</span> <span class="o">=</span> <span class="n">element_factory</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span data-line="251">        <span class="n">submit</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">"Submit"</span><span class="p">)</span>
+</span><span data-line="252">        <span class="k">if</span> <span class="n">submit</span><span class="p">:</span>
+</span><span data-line="253">            <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">**</span><span class="n">func_inputs</span><span class="p">))</span>
+</span><span data-line="254">            <span class="c1"># state['page_state'][self.func].clear()</span>
+</span><span data-line="255">
+</span><span data-line="256">
+</span><span data-line="257"><span class="n">DFLT_PAGE_FACTORY</span> <span class="o">=</span> <span class="n">SimplePageFunc</span>  <span class="c1"># Try BasePageFunc too</span>
+</span><span data-line="258">
+</span><span data-line="259"><span class="c1">#</span>
+</span><span data-line="260"><span class="c1"># # TODO: Code this!</span>
+</span><span data-line="261"><span class="c1"># def get_page_callbacks(funcs, page_names, page_factory=DFLT_PAGE_FACTORY, **configs):</span>
+</span><span data-line="262"><span class="c1">#     return [</span>
+</span><span data-line="263"><span class="c1">#         page_factory(func, page_name, **configs)</span>
+</span><span data-line="264"><span class="c1">#         for func, page_name in zip(funcs, page_names)</span>
+</span><span data-line="265"><span class="c1">#     ]</span>
+</span><span data-line="266">
+</span><span data-line="267">
+</span><span data-line="268"><span class="c1"># TODO: Get func_page for real</span>
 <div class="viewcode-block" id="get_pages_specs">
-<a class="viewcode-back" href="../../module_docs/streamlitfront/base.html#streamlitfront.base.get_pages_specs">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_pages_specs</span><span class="p">(</span>
-    <span class="n">funcs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Callable</span><span class="p">],</span>
-    <span class="n">func_to_page_name</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">func_to_page_name</span><span class="p">,</span>
-    <span class="n">page_factory</span><span class="o">=</span><span class="n">DFLT_PAGE_FACTORY</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">configs</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PageSpec</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get pages specification dict&quot;&quot;&quot;</span>
-    <span class="n">page_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">func_to_page_name</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">)</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">]</span>
-    <span class="n">page_callbacks</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">page_factory</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">page_name</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">page_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">page_names</span><span class="p">)</span>
-    <span class="p">]</span>
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">page_names</span><span class="p">,</span> <span class="n">page_callbacks</span><span class="p">))</span></div>
+<a class="viewcode-back" href="../../_autosummary/streamlitfront.base.html#streamlitfront.base.get_pages_specs">[docs]</a>
+</span><span data-line="269"><span class="k">def</span><span class="w"> </span><span class="nf">get_pages_specs</span><span class="p">(</span>
+</span><span data-line="270">    <span class="n">funcs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Callable</span><span class="p">],</span>
+</span><span data-line="271">    <span class="n">func_to_page_name</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">func_to_page_name</span><span class="p">,</span>
+</span><span data-line="272">    <span class="n">page_factory</span><span class="o">=</span><span class="n">DFLT_PAGE_FACTORY</span><span class="p">,</span>
+</span><span data-line="273">    <span class="o">**</span><span class="n">configs</span><span class="p">,</span>
+</span><span data-line="274"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PageSpec</span><span class="p">:</span>
+</span><span data-line="275"><span class="w">    </span><span class="sd">"""Get pages specification dict"""</span>
+</span><span data-line="276">    <span class="n">page_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">func_to_page_name</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">)</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">]</span>
+</span><span data-line="277">    <span class="n">page_callbacks</span> <span class="o">=</span> <span class="p">[</span>
+</span><span data-line="278">        <span class="n">page_factory</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">page_name</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">)</span>
+</span><span data-line="279">        <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">page_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">page_names</span><span class="p">)</span>
+</span><span data-line="280">    <span class="p">]</span>
+</span><span data-line="281">    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">page_names</span><span class="p">,</span> <span class="n">page_callbacks</span><span class="p">))</span></div>
 
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_get_view_key</span><span class="p">(</span>
-    <span class="n">view_keys</span><span class="p">,</span>
-    <span class="n">container</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="p">,</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Navigation&quot;</span><span class="p">,</span>
-    <span class="n">chooser</span><span class="o">=</span><span class="s2">&quot;radio&quot;</span><span class="p">,</span>  <span class="c1"># TODO: make into enum</span>
-    <span class="o">**</span><span class="n">chooser_kwargs</span><span class="p">,</span>
-<span class="p">):</span>
-    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">container</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>  <span class="c1"># title</span>
-    <span class="n">input_element</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">chooser</span><span class="p">)</span>
-    <span class="n">page_key</span> <span class="o">=</span> <span class="n">input_element</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">view_keys</span><span class="p">,</span> <span class="o">**</span><span class="n">chooser_kwargs</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">page_key</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">pages_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">configs</span><span class="p">):</span>
-    <span class="c1"># Page setup</span>
-
-    <span class="c1"># Note: set_page_config at top: needs to be the first call after importing streamlit</span>
-    <span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">&quot;wide&quot;</span><span class="p">)</span>
-
-    <span class="n">state</span> <span class="o">=</span> <span class="n">get_state</span><span class="p">(</span><span class="n">hash_funcs</span><span class="o">=</span><span class="n">dflt_hash_funcs</span><span class="p">)</span>  <span class="c1"># TODO: get from configs</span>
-
-    <span class="c1"># # Experimentation -- to be reviewed if kept #############</span>
-    <span class="c1"># if &#39;page_state&#39; not in state:</span>
-    <span class="c1">#     state[&#39;page_state&#39;] = {}</span>
-    <span class="c1">#     for func in funcs:</span>
-    <span class="c1">#         state[&#39;page_state&#39;][func] = {}</span>
-    <span class="c1"># full page layout style</span>
-    <span class="c1"># st.set_page_config(**configs.get(&#39;page_config&#39;, {}))</span>
-    <span class="c1"># configs don&#39;t work here because the layout call has to be the first call after</span>
-    <span class="c1"># importing streamlit</span>
-
-    <span class="c1"># # Page setup</span>
-    <span class="c1"># st.set_page_config(layout=&quot;wide&quot;)</span>
-
-    <span class="c1"># Make page objects</span>
-    <span class="n">views</span> <span class="o">=</span> <span class="n">get_pages_specs</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">)</span>
-    <span class="n">state</span><span class="p">[</span><span class="s2">&quot;views&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">views</span>
-
-    <span class="c1"># TODO: The above is static: Should the above be done only once, and cached?</span>
-    <span class="c1">#   Perhaps views should be cached in state?</span>
-
-    <span class="c1"># Setup navigation</span>
-    <span class="n">view_key</span> <span class="o">=</span> <span class="n">_get_view_key</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">views</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Select your view&quot;</span><span class="p">)</span>
-
-    <span class="c1"># navigation_container = st.sidebar  # container</span>
-    <span class="c1"># navigation_container.title(&#39;Navigation&#39;)  # title</span>
-    <span class="c1"># page_key = navigation_container.radio(  # view component kind</span>
-    <span class="c1">#     &#39;Select your page&#39;,  # label</span>
-    <span class="c1">#     tuple(pages.keys())  # options</span>
-    <span class="c1"># )</span>
-
-    <span class="c1"># Display the selected page with the session state</span>
-    <span class="c1"># This is the part that actually runs the functionality that pages specifies</span>
-    <span class="n">view_runner</span> <span class="o">=</span> <span class="n">views</span><span class="p">[</span><span class="n">view_key</span><span class="p">]</span>  <span class="c1"># gets the page runner</span>
-    <span class="n">view_runner</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>  <span class="c1"># runs the page with the state</span>
-
-    <span class="c1"># Mandatory to avoid rollbacks with widgets, must be called at the end of your app</span>
-    <span class="n">state</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span>
-
-
+</span><span data-line="282">
+</span><span data-line="283">
+</span><span data-line="284"><span class="k">def</span><span class="w"> </span><span class="nf">_get_view_key</span><span class="p">(</span>
+</span><span data-line="285">    <span class="n">view_keys</span><span class="p">,</span>
+</span><span data-line="286">    <span class="n">container</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="p">,</span>
+</span><span data-line="287">    <span class="n">title</span><span class="o">=</span><span class="s2">"Navigation"</span><span class="p">,</span>
+</span><span data-line="288">    <span class="n">chooser</span><span class="o">=</span><span class="s2">"radio"</span><span class="p">,</span>  <span class="c1"># TODO: make into enum</span>
+</span><span data-line="289">    <span class="o">**</span><span class="n">chooser_kwargs</span><span class="p">,</span>
+</span><span data-line="290"><span class="p">):</span>
+</span><span data-line="291">    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="292">        <span class="n">container</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>  <span class="c1"># title</span>
+</span><span data-line="293">    <span class="n">input_element</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">chooser</span><span class="p">)</span>
+</span><span data-line="294">    <span class="n">page_key</span> <span class="o">=</span> <span class="n">input_element</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">view_keys</span><span class="p">,</span> <span class="o">**</span><span class="n">chooser_kwargs</span><span class="p">)</span>
+</span><span data-line="295">    <span class="k">return</span> <span class="n">page_key</span>
+</span><span data-line="296">
+</span><span data-line="297">
+</span><span data-line="298"><span class="k">def</span><span class="w"> </span><span class="nf">pages_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">configs</span><span class="p">):</span>
+</span><span data-line="299">    <span class="c1"># Page setup</span>
+</span><span data-line="300">
+</span><span data-line="301">    <span class="c1"># Note: set_page_config at top: needs to be the first call after importing streamlit</span>
+</span><span data-line="302">    <span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s2">"wide"</span><span class="p">)</span>
+</span><span data-line="303">
+</span><span data-line="304">    <span class="n">state</span> <span class="o">=</span> <span class="n">get_state</span><span class="p">(</span><span class="n">hash_funcs</span><span class="o">=</span><span class="n">dflt_hash_funcs</span><span class="p">)</span>  <span class="c1"># TODO: get from configs</span>
+</span><span data-line="305">
+</span><span data-line="306">    <span class="c1"># # Experimentation -- to be reviewed if kept #############</span>
+</span><span data-line="307">    <span class="c1"># if 'page_state' not in state:</span>
+</span><span data-line="308">    <span class="c1">#     state['page_state'] = {}</span>
+</span><span data-line="309">    <span class="c1">#     for func in funcs:</span>
+</span><span data-line="310">    <span class="c1">#         state['page_state'][func] = {}</span>
+</span><span data-line="311">    <span class="c1"># full page layout style</span>
+</span><span data-line="312">    <span class="c1"># st.set_page_config(**configs.get('page_config', {}))</span>
+</span><span data-line="313">    <span class="c1"># configs don't work here because the layout call has to be the first call after</span>
+</span><span data-line="314">    <span class="c1"># importing streamlit</span>
+</span><span data-line="315">
+</span><span data-line="316">    <span class="c1"># # Page setup</span>
+</span><span data-line="317">    <span class="c1"># st.set_page_config(layout="wide")</span>
+</span><span data-line="318">
+</span><span data-line="319">    <span class="c1"># Make page objects</span>
+</span><span data-line="320">    <span class="n">views</span> <span class="o">=</span> <span class="n">get_pages_specs</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="o">**</span><span class="n">configs</span><span class="p">)</span>
+</span><span data-line="321">    <span class="n">state</span><span class="p">[</span><span class="s2">"views"</span><span class="p">]</span> <span class="o">=</span> <span class="n">views</span>
+</span><span data-line="322">
+</span><span data-line="323">    <span class="c1"># TODO: The above is static: Should the above be done only once, and cached?</span>
+</span><span data-line="324">    <span class="c1">#   Perhaps views should be cached in state?</span>
+</span><span data-line="325">
+</span><span data-line="326">    <span class="c1"># Setup navigation</span>
+</span><span data-line="327">    <span class="n">view_key</span> <span class="o">=</span> <span class="n">_get_view_key</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">views</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Select your view"</span><span class="p">)</span>
+</span><span data-line="328">
+</span><span data-line="329">    <span class="c1"># navigation_container = st.sidebar  # container</span>
+</span><span data-line="330">    <span class="c1"># navigation_container.title('Navigation')  # title</span>
+</span><span data-line="331">    <span class="c1"># page_key = navigation_container.radio(  # view component kind</span>
+</span><span data-line="332">    <span class="c1">#     'Select your page',  # label</span>
+</span><span data-line="333">    <span class="c1">#     tuple(pages.keys())  # options</span>
+</span><span data-line="334">    <span class="c1"># )</span>
+</span><span data-line="335">
+</span><span data-line="336">    <span class="c1"># Display the selected page with the session state</span>
+</span><span data-line="337">    <span class="c1"># This is the part that actually runs the functionality that pages specifies</span>
+</span><span data-line="338">    <span class="n">view_runner</span> <span class="o">=</span> <span class="n">views</span><span class="p">[</span><span class="n">view_key</span><span class="p">]</span>  <span class="c1"># gets the page runner</span>
+</span><span data-line="339">    <span class="n">view_runner</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>  <span class="c1"># runs the page with the state</span>
+</span><span data-line="340">
+</span><span data-line="341">    <span class="c1"># Mandatory to avoid rollbacks with widgets, must be called at the end of your app</span>
+</span><span data-line="342">    <span class="n">state</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span>
+</span><span data-line="343">
+</span><span data-line="344">
 <div class="viewcode-block" id="mk_app">
-<a class="viewcode-back" href="../../module_docs/streamlitfront/base.html#streamlitfront.base.mk_app">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">mk_app</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The entrypoint of streamlitfront.</span>
-<span class="sd">    Call this function with target objects and get an app to run.</span>
+<a class="viewcode-back" href="../../_autosummary/streamlitfront.base.html#streamlitfront.base.mk_app">[docs]</a>
+</span><span data-line="345"><span class="k">def</span><span class="w"> </span><span class="nf">mk_app</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">convention</span><span class="p">:</span> <span class="n">Map</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+</span><span data-line="346"><span class="w">    </span><span class="sd">"""The entrypoint of streamlitfront.</span>
+</span><span data-line="347"><span class="sd">    Call this function with target objects and get an app to run.</span>
+</span><span data-line="348">
+</span><span data-line="349"><span class="sd">    Example: Render functions</span>
+</span><span data-line="350">
+</span><span data-line="351"><span class="sd">    First define a bunch of functions:</span>
+</span><span data-line="352">
+</span><span data-line="353"><span class="sd">    &gt;&gt;&gt; def foo(a: int = 1, b: int = 2, c=3):</span>
+</span><span data-line="354"><span class="sd">    ...     return (a * b) + c</span>
+</span><span data-line="355"><span class="sd">    &gt;&gt;&gt; def bar(x, greeting="hello"):</span>
+</span><span data-line="356"><span class="sd">    ...     return f"{greeting} {x}"</span>
+</span><span data-line="357"><span class="sd">    &gt;&gt;&gt; def confuser(a: int, x: float = 3.14):</span>
+</span><span data-line="358"><span class="sd">    ...     return (a ** 2) * x</span>
+</span><span data-line="359"><span class="sd">    &gt;&gt;&gt; funcs = [foo, bar, confuser]</span>
+</span><span data-line="360">
+</span><span data-line="361"><span class="sd">    Then make the app from these functions:</span>
+</span><span data-line="362">
+</span><span data-line="363"><span class="sd">    &gt;&gt;&gt; app = mk_app(funcs)</span>
+</span><span data-line="364">
+</span><span data-line="365"><span class="sd">    The default configuration for the application is defined in</span>
+</span><span data-line="366"><span class="sd">    ``streamlitfront/spec_maker.py`` and ``front/spec_maker_base.py``. But you can</span>
+</span><span data-line="367"><span class="sd">    overwrite parts or the entire configuration by setting the ``config`` parameter.</span>
+</span><span data-line="368"><span class="sd">    The configuration is composed of three parts: app, obj and rendering.</span>
+</span><span data-line="369">
+</span><span data-line="370"><span class="sd">    The app configuration:</span>
+</span><span data-line="371"><span class="sd">    By default, the application name is "My Front Application", but you can set the</span>
+</span><span data-line="372"><span class="sd">    title of the application as follow:</span>
+</span><span data-line="373">
+</span><span data-line="374"><span class="sd">    &gt;&gt;&gt; from front import APP_KEY</span>
+</span><span data-line="375"><span class="sd">    &gt;&gt;&gt; config = {</span>
+</span><span data-line="376"><span class="sd">    ...     APP_KEY: {</span>
+</span><span data-line="377"><span class="sd">    ...         'title': 'Another application name'</span>
+</span><span data-line="378"><span class="sd">    ...     }</span>
+</span><span data-line="379"><span class="sd">    ... }</span>
+</span><span data-line="380"><span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, config=config)</span>
+</span><span data-line="381">
+</span><span data-line="382"><span class="sd">    The obj configuration:</span>
+</span><span data-line="383"><span class="sd">    You can define a wrapper to transform the initial object into an output of your</span>
+</span><span data-line="384"><span class="sd">    choice to be rendered:</span>
+</span><span data-line="385">
+</span><span data-line="386"><span class="sd">    &gt;&gt;&gt; from front.util import dflt_trans</span>
+</span><span data-line="387"><span class="sd">    &gt;&gt;&gt; from front import OBJ_KEY</span>
+</span><span data-line="388"><span class="sd">    &gt;&gt;&gt; def trans(objs: Iterable):</span>
+</span><span data-line="389"><span class="sd">    ...     return dflt_trans(reversed(objs))</span>
+</span><span data-line="390"><span class="sd">    &gt;&gt;&gt; config = {</span>
+</span><span data-line="391"><span class="sd">    ...     OBJ_KEY: {</span>
+</span><span data-line="392"><span class="sd">    ...         'trans': trans</span>
+</span><span data-line="393"><span class="sd">    ...     }</span>
+</span><span data-line="394"><span class="sd">    ... }</span>
+</span><span data-line="395"><span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, config=config)</span>
+</span><span data-line="396">
+</span><span data-line="397"><span class="sd">    The rendering configuration:</span>
+</span><span data-line="398"><span class="sd">    You can define the way elements are rendered in the GUI.</span>
+</span><span data-line="399"><span class="sd">    For instance, you can choose to render a text input instead of a number input for a</span>
+</span><span data-line="400"><span class="sd">    specific parameter of a specific function:</span>
+</span><span data-line="401">
+</span><span data-line="402"><span class="sd">    &gt;&gt;&gt; from front import ELEMENT_KEY, RENDERING_KEY</span>
+</span><span data-line="403"><span class="sd">    &gt;&gt;&gt; from streamlitfront.elements import IntSliderInput</span>
+</span><span data-line="404"><span class="sd">    &gt;&gt;&gt; config = {</span>
+</span><span data-line="405"><span class="sd">    ...     RENDERING_KEY: {</span>
+</span><span data-line="406"><span class="sd">    ...         'foo': {</span>
+</span><span data-line="407"><span class="sd">    ...             'execution': {</span>
+</span><span data-line="408"><span class="sd">    ...                 'inputs': {</span>
+</span><span data-line="409"><span class="sd">    ...                     'a': {</span>
+</span><span data-line="410"><span class="sd">    ...                         ELEMENT_KEY: IntSliderInput,</span>
+</span><span data-line="411"><span class="sd">    ...                         'max_value': 10</span>
+</span><span data-line="412"><span class="sd">    ...                     }</span>
+</span><span data-line="413"><span class="sd">    ...                 }</span>
+</span><span data-line="414"><span class="sd">    ...             }</span>
+</span><span data-line="415"><span class="sd">    ...         }</span>
+</span><span data-line="416"><span class="sd">    ...     }</span>
+</span><span data-line="417"><span class="sd">    ... }</span>
+</span><span data-line="418"><span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, config=config)</span>
+</span><span data-line="419">
+</span><span data-line="420"><span class="sd">    Obviously, you can combine the three types of configuration:</span>
+</span><span data-line="421">
+</span><span data-line="422"><span class="sd">    &gt;&gt;&gt; config = {</span>
+</span><span data-line="423"><span class="sd">    ...     APP_KEY: {</span>
+</span><span data-line="424"><span class="sd">    ...         'title': 'Another application name'</span>
+</span><span data-line="425"><span class="sd">    ...     },</span>
+</span><span data-line="426"><span class="sd">    ...     OBJ_KEY: {</span>
+</span><span data-line="427"><span class="sd">    ...         'trans': trans</span>
+</span><span data-line="428"><span class="sd">    ...     },</span>
+</span><span data-line="429"><span class="sd">    ...     RENDERING_KEY: {</span>
+</span><span data-line="430"><span class="sd">    ...         'foo': {</span>
+</span><span data-line="431"><span class="sd">    ...             'execution': {</span>
+</span><span data-line="432"><span class="sd">    ...                 'inputs': {</span>
+</span><span data-line="433"><span class="sd">    ...                     'a': {</span>
+</span><span data-line="434"><span class="sd">    ...                         ELEMENT_KEY: IntSliderInput,</span>
+</span><span data-line="435"><span class="sd">    ...                         'max_value': 10</span>
+</span><span data-line="436"><span class="sd">    ...                     }</span>
+</span><span data-line="437"><span class="sd">    ...                 }</span>
+</span><span data-line="438"><span class="sd">    ...             }</span>
+</span><span data-line="439"><span class="sd">    ...         }</span>
+</span><span data-line="440"><span class="sd">    ...     }</span>
+</span><span data-line="441"><span class="sd">    ... }</span>
+</span><span data-line="442"><span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, config=config)</span>
+</span><span data-line="443">
+</span><span data-line="444"><span class="sd">    You can also overwrite the whole configuration by setting the ``convention``</span>
+</span><span data-line="445"><span class="sd">    parameter. Be careful though, by overwritting the default convention, you have to</span>
+</span><span data-line="446"><span class="sd">    make sure that all configuations are defined. Otherwise, the application would</span>
+</span><span data-line="447"><span class="sd">    crash or behave unexpectedly.</span>
+</span><span data-line="448">
+</span><span data-line="449"><span class="sd">    &gt;&gt;&gt; from collections.abc import Callable</span>
+</span><span data-line="450"><span class="sd">    &gt;&gt;&gt; from front import NAME_KEY, DEFAULT_INPUT_KEY</span>
+</span><span data-line="451"><span class="sd">    &gt;&gt;&gt; from streamlitfront.elements import (</span>
+</span><span data-line="452"><span class="sd">    ...     App,</span>
+</span><span data-line="453"><span class="sd">    ...     ExecSection,</span>
+</span><span data-line="454"><span class="sd">    ...     FloatSliderInput,</span>
+</span><span data-line="455"><span class="sd">    ...     IntInput,</span>
+</span><span data-line="456"><span class="sd">    ...     TextInput,</span>
+</span><span data-line="457"><span class="sd">    ...     TextOutput,</span>
+</span><span data-line="458"><span class="sd">    ...     TextSection,</span>
+</span><span data-line="459"><span class="sd">    ...     View,</span>
+</span><span data-line="460"><span class="sd">    ... )</span>
+</span><span data-line="461"><span class="sd">    &gt;&gt;&gt; from streamlitfront.data_binding import BoundData</span>
+</span><span data-line="462"><span class="sd">    &gt;&gt;&gt;</span>
+</span><span data-line="463"><span class="sd">    &gt;&gt;&gt; convention = {</span>
+</span><span data-line="464"><span class="sd">    ...     APP_KEY: {</span>
+</span><span data-line="465"><span class="sd">    ...         'title': 'Another application name'</span>
+</span><span data-line="466"><span class="sd">    ...     },</span>
+</span><span data-line="467"><span class="sd">    ...     OBJ_KEY: {</span>
+</span><span data-line="468"><span class="sd">    ...         'trans': trans</span>
+</span><span data-line="469"><span class="sd">    ...     },</span>
+</span><span data-line="470"><span class="sd">    ...     RENDERING_KEY: {</span>
+</span><span data-line="471"><span class="sd">    ...         ELEMENT_KEY: App,</span>
+</span><span data-line="472"><span class="sd">    ...         Callable: {</span>
+</span><span data-line="473"><span class="sd">    ...             ELEMENT_KEY: View,</span>
+</span><span data-line="474"><span class="sd">    ...             'description': {</span>
+</span><span data-line="475"><span class="sd">    ...                 ELEMENT_KEY: TextSection,</span>
+</span><span data-line="476"><span class="sd">    ...                 NAME_KEY: 'Description',</span>
+</span><span data-line="477"><span class="sd">    ...                 'content': lambda o: o.__doc__,</span>
+</span><span data-line="478"><span class="sd">    ...             },</span>
+</span><span data-line="479"><span class="sd">    ...             'execution': {</span>
+</span><span data-line="480"><span class="sd">    ...                 ELEMENT_KEY: ExecSection,</span>
+</span><span data-line="481"><span class="sd">    ...                 NAME_KEY: 'Execution',</span>
+</span><span data-line="482"><span class="sd">    ...                 'inputs': {</span>
+</span><span data-line="483"><span class="sd">    ...                     int: {ELEMENT_KEY: IntInput,},</span>
+</span><span data-line="484"><span class="sd">    ...                     float: {</span>
+</span><span data-line="485"><span class="sd">    ...                         ELEMENT_KEY: FloatSliderInput,</span>
+</span><span data-line="486"><span class="sd">    ...                         'format': '%.2f',</span>
+</span><span data-line="487"><span class="sd">    ...                         'step': 0.01,</span>
+</span><span data-line="488"><span class="sd">    ...                     },</span>
+</span><span data-line="489"><span class="sd">    ...                     Any: {ELEMENT_KEY: TextInput,},</span>
+</span><span data-line="490"><span class="sd">    ...                     DEFAULT_INPUT_KEY: {</span>
+</span><span data-line="491"><span class="sd">    ...                         NAME_KEY: lambda p: p.name,</span>
+</span><span data-line="492"><span class="sd">    ...                         'bound_data_factory': BoundData</span>
+</span><span data-line="493"><span class="sd">    ...                     }</span>
+</span><span data-line="494"><span class="sd">    ...                 },</span>
+</span><span data-line="495"><span class="sd">    ...                 'output': {</span>
+</span><span data-line="496"><span class="sd">    ...                     ELEMENT_KEY: TextOutput,</span>
+</span><span data-line="497"><span class="sd">    ...                     NAME_KEY: 'Output',</span>
+</span><span data-line="498"><span class="sd">    ...                 }</span>
+</span><span data-line="499"><span class="sd">    ...             }</span>
+</span><span data-line="500"><span class="sd">    ...         }</span>
+</span><span data-line="501"><span class="sd">    ...     }</span>
+</span><span data-line="502"><span class="sd">    ... }</span>
+</span><span data-line="503"><span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, convention=convention)</span>
+</span><span data-line="504">
+</span><span data-line="505"><span class="sd">    You can also add new elements to the GUI by defining it first then add it to the</span>
+</span><span data-line="506"><span class="sd">    configuration. In the following example, we display the dot graph of a DAG using</span>
+</span><span data-line="507"><span class="sd">    our own implementation of the component. It is then referenced in the configuration</span>
+</span><span data-line="508"><span class="sd">    with the parameters to intantiate it.</span>
+</span><span data-line="509">
+</span><span data-line="510"><span class="sd">    &gt;&gt;&gt; from meshed import DAG</span>
+</span><span data-line="511"><span class="sd">    &gt;&gt;&gt; from front.types import FrontElementName</span>
+</span><span data-line="512"><span class="sd">    &gt;&gt;&gt; from front.elements import FrontComponentBase</span>
+</span><span data-line="513"><span class="sd">    &gt;&gt;&gt;</span>
+</span><span data-line="514"><span class="sd">    &gt;&gt;&gt; def b(a: int):</span>
+</span><span data-line="515"><span class="sd">    ...     return 2 ** a</span>
+</span><span data-line="516"><span class="sd">    &gt;&gt;&gt; def d(c: int):</span>
+</span><span data-line="517"><span class="sd">    ...     return 10 - (5 ** c)</span>
+</span><span data-line="518"><span class="sd">    &gt;&gt;&gt; def result(b, d):</span>
+</span><span data-line="519"><span class="sd">    ...     return b * d</span>
+</span><span data-line="520"><span class="sd">    &gt;&gt;&gt; dag = DAG((b, d, result))</span>
+</span><span data-line="521"><span class="sd">    &gt;&gt;&gt;</span>
+</span><span data-line="522"><span class="sd">    &gt;&gt;&gt; class Graph(FrontComponentBase):</span>
+</span><span data-line="523"><span class="sd">    ...     def __init__(</span>
+</span><span data-line="524"><span class="sd">    ...         self,</span>
+</span><span data-line="525"><span class="sd">    ...         obj: DAG,</span>
+</span><span data-line="526"><span class="sd">    ...         name: FrontElementName = None,</span>
+</span><span data-line="527"><span class="sd">    ...         use_container_width: bool = False</span>
+</span><span data-line="528"><span class="sd">    ...     ):</span>
+</span><span data-line="529"><span class="sd">    ...         super().__init__(obj=obj, name=name)</span>
+</span><span data-line="530"><span class="sd">    ...         self.use_container_width = use_container_width</span>
+</span><span data-line="531"><span class="sd">    ...</span>
+</span><span data-line="532"><span class="sd">    ...     def render(self):</span>
+</span><span data-line="533"><span class="sd">    ...         with st.expander(self.name, True):</span>
+</span><span data-line="534"><span class="sd">    ...             dag: DAG = self.obj</span>
+</span><span data-line="535"><span class="sd">    ...             st.graphviz_chart(</span>
+</span><span data-line="536"><span class="sd">    ...                 figure_or_dot=dag.dot_digraph(),</span>
+</span><span data-line="537"><span class="sd">    ...                 use_container_width=self.use_container_width</span>
+</span><span data-line="538"><span class="sd">    ...             )</span>
+</span><span data-line="539"><span class="sd">    &gt;&gt;&gt;</span>
+</span><span data-line="540"><span class="sd">    &gt;&gt;&gt; config = {</span>
+</span><span data-line="541"><span class="sd">    ...     APP_KEY: {'title': 'DAG App'},</span>
+</span><span data-line="542"><span class="sd">    ...     RENDERING_KEY: {</span>
+</span><span data-line="543"><span class="sd">    ...         DAG: {</span>
+</span><span data-line="544"><span class="sd">    ...             'graph': {</span>
+</span><span data-line="545"><span class="sd">    ...                 ELEMENT_KEY: Graph,</span>
+</span><span data-line="546"><span class="sd">    ...                 NAME_KEY: 'Flow',</span>
+</span><span data-line="547"><span class="sd">    ...                 'use_container_width': True</span>
+</span><span data-line="548"><span class="sd">    ...             }</span>
+</span><span data-line="549"><span class="sd">    ...         }</span>
+</span><span data-line="550"><span class="sd">    ...     }</span>
+</span><span data-line="551"><span class="sd">    ... }</span>
+</span><span data-line="552"><span class="sd">    &gt;&gt;&gt; app = mk_app([dag], config=config)</span>
+</span><span data-line="553">
+</span><span data-line="554"><span class="sd">    :param objs: The target objects to crender in the streamlit application.</span>
+</span><span data-line="555"><span class="sd">    :type objs: Iterable</span>
+</span><span data-line="556"><span class="sd">    :param config: The configuration object for the application. Overwrites the</span>
+</span><span data-line="557"><span class="sd">    convention for every value present in the configuration object. See above for more</span>
+</span><span data-line="558"><span class="sd">    details.</span>
+</span><span data-line="559"><span class="sd">    :type objs: Map</span>
+</span><span data-line="560"><span class="sd">    :param config: The convention object for the application. Defines the default</span>
+</span><span data-line="561"><span class="sd">    configuration. See above for more details.</span>
+</span><span data-line="562"><span class="sd">    :type objs: Map</span>
+</span><span data-line="563"><span class="sd">    """</span>
+</span><span data-line="564">    <span class="n">app_maker</span> <span class="o">=</span> <span class="n">AppMaker</span><span class="p">(</span><span class="n">spec_maker_factory</span><span class="o">=</span><span class="n">SpecMaker</span><span class="p">)</span>
+</span><span data-line="565">    <span class="k">return</span> <span class="n">app_maker</span><span class="o">.</span><span class="n">mk_app</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">convention</span><span class="p">)</span></div>
 
-<span class="sd">    Example: Render functions</span>
-
-<span class="sd">    First define a bunch of functions:</span>
-
-<span class="sd">    &gt;&gt;&gt; def foo(a: int = 1, b: int = 2, c=3):</span>
-<span class="sd">    ...     return (a * b) + c</span>
-<span class="sd">    &gt;&gt;&gt; def bar(x, greeting=&quot;hello&quot;):</span>
-<span class="sd">    ...     return f&quot;{greeting} {x}&quot;</span>
-<span class="sd">    &gt;&gt;&gt; def confuser(a: int, x: float = 3.14):</span>
-<span class="sd">    ...     return (a ** 2) * x</span>
-<span class="sd">    &gt;&gt;&gt; funcs = [foo, bar, confuser]</span>
-
-<span class="sd">    Then make the app from these functions:</span>
-
-<span class="sd">    &gt;&gt;&gt; app = mk_app(funcs)</span>
-
-<span class="sd">    The default configuration for the application is defined in</span>
-<span class="sd">    ``streamlitfront/spec_maker.py`` and ``front/spec_maker_base.py``. But you can</span>
-<span class="sd">    overwrite parts or the entire configuration by setting the ``config`` parameter.</span>
-<span class="sd">    The configuration is composed of three parts: app, obj and rendering.</span>
-
-<span class="sd">    The app configuration:</span>
-<span class="sd">    By default, the application name is &quot;My Front Application&quot;, but you can set the</span>
-<span class="sd">    title of the application as follow:</span>
-
-<span class="sd">    &gt;&gt;&gt; from front import APP_KEY</span>
-<span class="sd">    &gt;&gt;&gt; config = {</span>
-<span class="sd">    ...     APP_KEY: {</span>
-<span class="sd">    ...         &#39;title&#39;: &#39;Another application name&#39;</span>
-<span class="sd">    ...     }</span>
-<span class="sd">    ... }</span>
-<span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, config=config)</span>
-
-<span class="sd">    The obj configuration:</span>
-<span class="sd">    You can define a wrapper to transform the initial object into an output of your</span>
-<span class="sd">    choice to be rendered:</span>
-
-<span class="sd">    &gt;&gt;&gt; from front.util import dflt_trans</span>
-<span class="sd">    &gt;&gt;&gt; from front import OBJ_KEY</span>
-<span class="sd">    &gt;&gt;&gt; def trans(objs: Iterable):</span>
-<span class="sd">    ...     return dflt_trans(reversed(objs))</span>
-<span class="sd">    &gt;&gt;&gt; config = {</span>
-<span class="sd">    ...     OBJ_KEY: {</span>
-<span class="sd">    ...         &#39;trans&#39;: trans</span>
-<span class="sd">    ...     }</span>
-<span class="sd">    ... }</span>
-<span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, config=config)</span>
-
-<span class="sd">    The rendering configuration:</span>
-<span class="sd">    You can define the way elements are rendered in the GUI.</span>
-<span class="sd">    For instance, you can choose to render a text input instead of a number input for a</span>
-<span class="sd">    specific parameter of a specific function:</span>
-
-<span class="sd">    &gt;&gt;&gt; from front import ELEMENT_KEY, RENDERING_KEY</span>
-<span class="sd">    &gt;&gt;&gt; from streamlitfront.elements import IntSliderInput</span>
-<span class="sd">    &gt;&gt;&gt; config = {</span>
-<span class="sd">    ...     RENDERING_KEY: {</span>
-<span class="sd">    ...         &#39;foo&#39;: {</span>
-<span class="sd">    ...             &#39;execution&#39;: {</span>
-<span class="sd">    ...                 &#39;inputs&#39;: {</span>
-<span class="sd">    ...                     &#39;a&#39;: {</span>
-<span class="sd">    ...                         ELEMENT_KEY: IntSliderInput,</span>
-<span class="sd">    ...                         &#39;max_value&#39;: 10</span>
-<span class="sd">    ...                     }</span>
-<span class="sd">    ...                 }</span>
-<span class="sd">    ...             }</span>
-<span class="sd">    ...         }</span>
-<span class="sd">    ...     }</span>
-<span class="sd">    ... }</span>
-<span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, config=config)</span>
-
-<span class="sd">    Obviously, you can combine the three types of configuration:</span>
-
-<span class="sd">    &gt;&gt;&gt; config = {</span>
-<span class="sd">    ...     APP_KEY: {</span>
-<span class="sd">    ...         &#39;title&#39;: &#39;Another application name&#39;</span>
-<span class="sd">    ...     },</span>
-<span class="sd">    ...     OBJ_KEY: {</span>
-<span class="sd">    ...         &#39;trans&#39;: trans</span>
-<span class="sd">    ...     },</span>
-<span class="sd">    ...     RENDERING_KEY: {</span>
-<span class="sd">    ...         &#39;foo&#39;: {</span>
-<span class="sd">    ...             &#39;execution&#39;: {</span>
-<span class="sd">    ...                 &#39;inputs&#39;: {</span>
-<span class="sd">    ...                     &#39;a&#39;: {</span>
-<span class="sd">    ...                         ELEMENT_KEY: IntSliderInput,</span>
-<span class="sd">    ...                         &#39;max_value&#39;: 10</span>
-<span class="sd">    ...                     }</span>
-<span class="sd">    ...                 }</span>
-<span class="sd">    ...             }</span>
-<span class="sd">    ...         }</span>
-<span class="sd">    ...     }</span>
-<span class="sd">    ... }</span>
-<span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, config=config)</span>
-
-<span class="sd">    You can also overwrite the whole configuration by setting the ``convention``</span>
-<span class="sd">    parameter. Be careful though, by overwritting the default convention, you have to</span>
-<span class="sd">    make sure that all configuations are defined. Otherwise, the application would</span>
-<span class="sd">    crash or behave unexpectedly.</span>
-
-<span class="sd">    &gt;&gt;&gt; from collections.abc import Callable</span>
-<span class="sd">    &gt;&gt;&gt; from front import NAME_KEY, DEFAULT_INPUT_KEY</span>
-<span class="sd">    &gt;&gt;&gt; from streamlitfront.elements import (</span>
-<span class="sd">    ...     App,</span>
-<span class="sd">    ...     ExecSection,</span>
-<span class="sd">    ...     FloatSliderInput,</span>
-<span class="sd">    ...     IntInput,</span>
-<span class="sd">    ...     TextInput,</span>
-<span class="sd">    ...     TextOutput,</span>
-<span class="sd">    ...     TextSection,</span>
-<span class="sd">    ...     View,</span>
-<span class="sd">    ... )</span>
-<span class="sd">    &gt;&gt;&gt; from streamlitfront.data_binding import BoundData</span>
-<span class="sd">    &gt;&gt;&gt;</span>
-<span class="sd">    &gt;&gt;&gt; convention = {</span>
-<span class="sd">    ...     APP_KEY: {</span>
-<span class="sd">    ...         &#39;title&#39;: &#39;Another application name&#39;</span>
-<span class="sd">    ...     },</span>
-<span class="sd">    ...     OBJ_KEY: {</span>
-<span class="sd">    ...         &#39;trans&#39;: trans</span>
-<span class="sd">    ...     },</span>
-<span class="sd">    ...     RENDERING_KEY: {</span>
-<span class="sd">    ...         ELEMENT_KEY: App,</span>
-<span class="sd">    ...         Callable: {</span>
-<span class="sd">    ...             ELEMENT_KEY: View,</span>
-<span class="sd">    ...             &#39;description&#39;: {</span>
-<span class="sd">    ...                 ELEMENT_KEY: TextSection,</span>
-<span class="sd">    ...                 NAME_KEY: &#39;Description&#39;,</span>
-<span class="sd">    ...                 &#39;content&#39;: lambda o: o.__doc__,</span>
-<span class="sd">    ...             },</span>
-<span class="sd">    ...             &#39;execution&#39;: {</span>
-<span class="sd">    ...                 ELEMENT_KEY: ExecSection,</span>
-<span class="sd">    ...                 NAME_KEY: &#39;Execution&#39;,</span>
-<span class="sd">    ...                 &#39;inputs&#39;: {</span>
-<span class="sd">    ...                     int: {ELEMENT_KEY: IntInput,},</span>
-<span class="sd">    ...                     float: {</span>
-<span class="sd">    ...                         ELEMENT_KEY: FloatSliderInput,</span>
-<span class="sd">    ...                         &#39;format&#39;: &#39;%.2f&#39;,</span>
-<span class="sd">    ...                         &#39;step&#39;: 0.01,</span>
-<span class="sd">    ...                     },</span>
-<span class="sd">    ...                     Any: {ELEMENT_KEY: TextInput,},</span>
-<span class="sd">    ...                     DEFAULT_INPUT_KEY: {</span>
-<span class="sd">    ...                         NAME_KEY: lambda p: p.name,</span>
-<span class="sd">    ...                         &#39;bound_data_factory&#39;: BoundData</span>
-<span class="sd">    ...                     }</span>
-<span class="sd">    ...                 },</span>
-<span class="sd">    ...                 &#39;output&#39;: {</span>
-<span class="sd">    ...                     ELEMENT_KEY: TextOutput,</span>
-<span class="sd">    ...                     NAME_KEY: &#39;Output&#39;,</span>
-<span class="sd">    ...                 }</span>
-<span class="sd">    ...             }</span>
-<span class="sd">    ...         }</span>
-<span class="sd">    ...     }</span>
-<span class="sd">    ... }</span>
-<span class="sd">    &gt;&gt;&gt; app = mk_app(funcs, convention=convention)</span>
-
-<span class="sd">    You can also add new elements to the GUI by defining it first then add it to the</span>
-<span class="sd">    configuration. In the following example, we display the dot graph of a DAG using</span>
-<span class="sd">    our own implementation of the component. It is then referenced in the configuration</span>
-<span class="sd">    with the parameters to intantiate it.</span>
-
-<span class="sd">    &gt;&gt;&gt; from meshed import DAG</span>
-<span class="sd">    &gt;&gt;&gt; from front.types import FrontElementName</span>
-<span class="sd">    &gt;&gt;&gt; from front.elements import FrontComponentBase</span>
-<span class="sd">    &gt;&gt;&gt;</span>
-<span class="sd">    &gt;&gt;&gt; def b(a: int):</span>
-<span class="sd">    ...     return 2 ** a</span>
-<span class="sd">    &gt;&gt;&gt; def d(c: int):</span>
-<span class="sd">    ...     return 10 - (5 ** c)</span>
-<span class="sd">    &gt;&gt;&gt; def result(b, d):</span>
-<span class="sd">    ...     return b * d</span>
-<span class="sd">    &gt;&gt;&gt; dag = DAG((b, d, result))</span>
-<span class="sd">    &gt;&gt;&gt;</span>
-<span class="sd">    &gt;&gt;&gt; class Graph(FrontComponentBase):</span>
-<span class="sd">    ...     def __init__(</span>
-<span class="sd">    ...         self,</span>
-<span class="sd">    ...         obj: DAG,</span>
-<span class="sd">    ...         name: FrontElementName = None,</span>
-<span class="sd">    ...         use_container_width: bool = False</span>
-<span class="sd">    ...     ):</span>
-<span class="sd">    ...         super().__init__(obj=obj, name=name)</span>
-<span class="sd">    ...         self.use_container_width = use_container_width</span>
-<span class="sd">    ...</span>
-<span class="sd">    ...     def render(self):</span>
-<span class="sd">    ...         with st.expander(self.name, True):</span>
-<span class="sd">    ...             dag: DAG = self.obj</span>
-<span class="sd">    ...             st.graphviz_chart(</span>
-<span class="sd">    ...                 figure_or_dot=dag.dot_digraph(),</span>
-<span class="sd">    ...                 use_container_width=self.use_container_width</span>
-<span class="sd">    ...             )</span>
-<span class="sd">    &gt;&gt;&gt;</span>
-<span class="sd">    &gt;&gt;&gt; config = {</span>
-<span class="sd">    ...     APP_KEY: {&#39;title&#39;: &#39;DAG App&#39;},</span>
-<span class="sd">    ...     RENDERING_KEY: {</span>
-<span class="sd">    ...         DAG: {</span>
-<span class="sd">    ...             &#39;graph&#39;: {</span>
-<span class="sd">    ...                 ELEMENT_KEY: Graph,</span>
-<span class="sd">    ...                 NAME_KEY: &#39;Flow&#39;,</span>
-<span class="sd">    ...                 &#39;use_container_width&#39;: True</span>
-<span class="sd">    ...             }</span>
-<span class="sd">    ...         }</span>
-<span class="sd">    ...     }</span>
-<span class="sd">    ... }</span>
-<span class="sd">    &gt;&gt;&gt; app = mk_app([dag], config=config)</span>
-
-<span class="sd">    :param objs: The target objects to crender in the streamlit application.</span>
-<span class="sd">    :type objs: Iterable</span>
-<span class="sd">    :param config: The configuration object for the application. Overwrites the</span>
-<span class="sd">    convention for every value present in the configuration object. See above for more</span>
-<span class="sd">    details.</span>
-<span class="sd">    :type objs: Map</span>
-<span class="sd">    :param config: The convention object for the application. Defines the default</span>
-<span class="sd">    configuration. See above for more details.</span>
-<span class="sd">    :type objs: Map</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">app_maker</span> <span class="o">=</span> <span class="n">AppMaker</span><span class="p">(</span><span class="n">spec_maker_factory</span><span class="o">=</span><span class="n">SpecMaker</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">app_maker</span><span class="o">.</span><span class="n">mk_app</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">convention</span><span class="p">)</span></div>
-
-</pre></div>
-
-           </div>
-          </div>
-          <footer>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright NO COPYRIGHT.</p>
+</span></pre></div>
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright">
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+  <a href="https://github.com/i2mint/streamlitfront" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div>
+    </div>
   </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
 </footer>
-        </div>
-      </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+      <script src="../../_static/documentation_options.js?v=50f64db7"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=fd10adb8"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script>
+      <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
 
-</body>
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = "pre.mermaid {\n    /* Same as .mermaid-container > pre */\n    display: block;\n    width: 100%;\n}\n\npre.mermaid > svg {\n    /* Same as .mermaid-container > pre > svg */\n    height: 500px;\n    width: 100%;\n    max-width: 100% !important;\n}";
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = ".mermaid-container {\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    width: 100%;\n}\n\n.mermaid-container > pre {\n    display: block;\n    width: 100%;\n}\n\n.mermaid-container > pre > svg {\n    height: 500px;\n    width: 100%;\n    max-width: 100% !important;\n}\n\n.mermaid-fullscreen-btn {\n    position: absolute;\n    width: 28px;\n    height: 28px;\n    background: rgba(255, 255, 255, 0.95);\n    border: 1px solid rgba(0, 0, 0, 0.3);\n    border-radius: 4px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s;\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);\n    font-size: 14px;\n    line-height: 1;\n    padding: 0;\n    color: #333;\n}\n\n.mermaid-fullscreen-btn:hover {\n    opacity: 100% !important;\n    background: rgba(255, 255, 255, 1);\n    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);\n    transform: scale(1.1);\n}\n\n.mermaid-fullscreen-btn.dark-theme {\n    background: rgba(50, 50, 50, 0.95);\n    border: 1px solid rgba(255, 255, 255, 0.3);\n    color: #e0e0e0;\n}\n\n.mermaid-fullscreen-btn.dark-theme:hover {\n    background: rgba(60, 60, 60, 1);\n    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);\n}\n\n.mermaid-fullscreen-modal {\n    display: none;\n    position: fixed !important;\n    top: 0 !important;\n    left: 0 !important;\n    width: 95vw;\n    height: 100vh;\n    background: rgba(255, 255, 255, 0.98);\n    z-index: 9999;\n    padding: 20px;\n    overflow: auto;\n}\n\n.mermaid-fullscreen-modal.dark-theme {\n    background: rgba(0, 0, 0, 0.98);\n}\n\n.mermaid-fullscreen-modal.active {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.mermaid-container-fullscreen {\n    position: relative;\n    width: 95vw;\n    height: 90vh;\n    max-width: 95vw;\n    max-height: 90vh;\n    background: white;\n    border-radius: 8px;\n    padding: 20px;\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);\n    overflow: auto;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.mermaid-container-fullscreen.dark-theme {\n    background: #1a1a1a;\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);\n}\n\n.mermaid-container-fullscreen pre.mermaid {\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.mermaid-container-fullscreen .mermaid svg {\n    height: 100% !important;\n    width: 100% !important;\n    cursor: grab;\n}\n\n.mermaid-fullscreen-close {\n    position: fixed !important;\n    top: 20px !important;\n    right: 20px !important;\n    width: 40px;\n    height: 40px;\n    background: rgba(255, 255, 255, 0.95);\n    border: 1px solid rgba(0, 0, 0, 0.2);\n    border-radius: 50%;\n    cursor: pointer;\n    z-index: 10000;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n    transition: all 0.2s;\n    font-size: 24px;\n    line-height: 1;\n    color: #333;\n}\n\n.mermaid-fullscreen-close:hover {\n    background: white;\n    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);\n    transform: scale(1.1);\n}\n\n.mermaid-fullscreen-close.dark-theme {\n    background: rgba(50, 50, 50, 0.95);\n    border: 1px solid rgba(255, 255, 255, 0.2);\n    color: #e0e0e0;\n}\n\n.mermaid-fullscreen-close.dark-theme:hover {\n    background: rgba(60, 60, 60, 1);\n    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);\n}\n\n.mermaid-fullscreen-modal .mermaid-fullscreen-btn {\n    display: none !important;\n}";
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+let _lazyObserver = null;
+let _renderQueue = Promise.resolve();
+let closeModal = () => {};
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('active')) {
+        closeModal();
+    }
+});
+
+// Apply d3 zoom to each SVG. Idempotent: an SVG already wrapped is skipped,
+// so this is safe to call both for the initial batch and for diagrams that
+// render lazily once they become visible.
+const addZoomToSvgs = (svgs) => {
+    svgs.each(function() {
+        if (this.getAttribute('data-zoom-applied') === 'true') return;
+        var svg = d3.select(this);
+        svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+        var inner = svg.select("g");
+        var zoom = d3.zoom().on("zoom", function(event) {
+            inner.attr("transform", event.transform);
+        });
+        svg.call(zoom);
+        this.setAttribute('data-zoom-applied', 'true');
+    });
+};
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        // Disconnect any previous lazy rendering observer
+        if (_lazyObserver) {
+            _lazyObserver.disconnect();
+            _lazyObserver = null;
+        }
+
+        all_mermaids.forEach((el) => {
+            el.removeAttribute('data-mermaid-deferred');
+            el.removeAttribute('data-mermaid-render-failed');
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+
+        // Separate visible and hidden elements. Mermaid's layout engine measures
+        // text dimensions via the DOM, which fails for elements hidden by a parent
+        // (e.g., Reveal.js non-active slides, sphinx-design unopened tabs),
+        // producing broken SVGs. Render visible elements now, defer hidden ones.
+        const visible = [];
+        const hidden = [];
+        all_mermaids.forEach((el) => {
+            // offsetParent is null for display:none ancestors.
+            // getClientRects().length > 0 catches position:fixed elements
+            // (which also have null offsetParent but are still visible).
+            if (el.offsetParent !== null || el.getClientRects().length > 0) {
+                visible.push(el);
+            } else {
+                hidden.push(el);
+                el.setAttribute('data-mermaid-deferred', 'true');
+            }
+        });
+
+        if (visible.length > 0) {
+            try {
+                await mermaid.run({ nodes: visible });
+            } catch (e) {
+                console.error("Mermaid rendering failed:", e);
+            }
+        }
+
+        // Lazily render hidden elements when they become visible.
+        // Uses a promise chain (_renderQueue) to serialize rendering,
+        // since IntersectionObserver may report multiple entries at once
+        // and mermaid.run() is not safe to call concurrently.
+        if (hidden.length > 0) {
+            if (typeof IntersectionObserver === 'undefined') {
+                console.warn("IntersectionObserver not available; hidden mermaid diagrams will not render.");
+            } else {
+                _renderQueue = Promise.resolve();
+                _lazyObserver = new IntersectionObserver((entries) => {
+                    for (const entry of entries) {
+                        if (entry.isIntersecting && entry.target.getAttribute("data-processed") !== "true") {
+                            _lazyObserver.unobserve(entry.target);
+                            const el = entry.target;
+                            _renderQueue = _renderQueue.then(async () => {
+                                try {
+                                    await mermaid.run({ nodes: [el] });
+                                    el.removeAttribute('data-mermaid-deferred');
+                                    // Apply zoom to the now-rendered diagram, matching
+                                    // the decoration visible diagrams receive.
+                                    if (false) {
+                                        addZoomToSvgs(d3.selectAll("").select(function() {
+                                            return this.querySelector("svg");
+                                        }));
+                                    }
+                                } catch (e) {
+                                    console.error("Mermaid deferred rendering failed:", e);
+                                    el.removeAttribute('data-mermaid-deferred');
+                                    el.setAttribute('data-mermaid-render-failed', 'true');
+                                }
+                            });
+                        }
+                    }
+                });
+                hidden.forEach((el) => _lazyObserver.observe(el));
+            }
+        }
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    // Exclude deferred (hidden) and render-failed elements from completion checks
+    const mermaids_active = document.querySelectorAll(".mermaid:not([data-mermaid-deferred]):not([data-mermaid-render-failed])");
+    const mermaids_processed = document.querySelectorAll(".mermaid:not([data-mermaid-deferred]):not([data-mermaid-render-failed])[data-processed='true']");
+
+    if (false) {
+        const mermaids_to_add_zoom = 0 === -1 ? mermaids_active.length : 0;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("").select(function() {
+                return this.querySelector("svg");
+            });
+            // Wait until every active (visible) diagram has rendered. Deferred
+            // diagrams are excluded, so a fixed d3_node_count that counts a
+            // hidden diagram no longer loops forever waiting for its SVG.
+            if(mermaids_active.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            }
+            addZoomToSvgs(svgs);
+        }
+    } else if(mermaids_active.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if (!true) return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = "\u26f6";
+        fullscreenBtn.style.opacity = "50%";
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scrollX, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.display = 'block';
+
+                if (false) {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+
+
+const load = async () => {
+    initStyles();
+
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...{"startOnLoad": false},
+                ...{ darkMode: darkTheme, theme: darkTheme ? "dark" : "default" },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...{"startOnLoad": false},
+    ...{ darkMode: darkTheme, theme: darkTheme ? "dark" : "default" },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script></body>
 </html>

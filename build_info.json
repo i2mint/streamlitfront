@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "built_at": "2026-09-22T15:31:06Z",
+  "package": {
+    "name": "streamlitfront",
+    "version": "0.1.38",
+    "display_name": "streamlitfront",
+    "source": "pyproject.toml"
+  },
+  "git": {
+    "available": true,
+    "commit": "1122f2682b256e537bc9d96067f91cd22ed29601",
+    "short_commit": "1122f26",
+    "branch": "master",
+    "tags": [],
+    "dirty": false,
+    "remote_url": "https://github.com/i2mint/streamlitfront",
+    "commit_url": "https://github.com/i2mint/streamlitfront/commit/1122f2682b256e537bc9d96067f91cd22ed29601",
+    "error": null
+  },
+  "ci": {
+    "provider": "github",
+    "repository": "i2mint/streamlitfront",
+    "sha": "1122f2682b256e537bc9d96067f91cd22ed29601",
+    "sha_in_history": true,
+    "ref": "refs/heads/master",
+    "ref_name": "master",
+    "run_id": "35747664508",
+    "run_url": "https://github.com/i2mint/streamlitfront/actions/runs/35747664508",
+    "server_url": "https://github.com"
+  },
+  "tools": {
+    "epythet": "0.2.12",
+    "sphinx": "9.1.0",
+    "docutils": "0.22.4",
+    "python": "3.12.14"
+  },
+  "config": {
+    "theme": "auto",
+    "html_theme": "shibuya",
+    "accent": "#006884",
+    "mode": "auto",
+    "api_generator": "autosummary",
+    "ignore": [
+      "tests/",
+      "scrap/",
+      "examples/"
+    ],
+    "agent_outputs": true,
+    "aggregates": [
+      "md"
+    ],
+    "ai_artifacts": true,
+    "provenance": true,
+    "docs_dir": "docsrc"
+  },
+  "site": {
+    "modules_documented": 13,
+    "objects_documented": 57
+  },
+  "pypi": {
+    "checked": true,
+    "latest": "0.1.39",
+    "relation": "behind",
+    "error": null
+  },
+  "reproduce": "git clone https://github.com/i2mint/streamlitfront && cd streamlitfront\ngit checkout 1122f2682b256e537bc9d96067f91cd22ed29601\npip install \"epythet==0.2.12\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "warnings": [],
+  "alignment": {
+    "aligned": false,
+    "notes": [
+      "The documented version (0.1.38) is behind the latest release on PyPI (0.1.39): `pip install streamlitfront` gives newer code than these docs describe."
+    ]
+  }
+}

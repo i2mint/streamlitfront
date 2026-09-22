@@ -1,340 +1,402 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html lang="en" data-accent-color="cyan" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to streamlitfront’s documentation! &mdash; streamlitfront 0.1.37 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>streamlitfront</title><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="API reference" href="api.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d88b86f9" />
+    <link rel="stylesheet" type="text/css" href="_static/shibuya.css?v=2ceb65ce" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link media="print" rel="stylesheet" type="text/css" href="_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+  <meta property="og:type" content="website"/><meta property="og:title" content="streamlitfront"/>
+    <meta name="twitter:card" content="summary"/>
   
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=b8ecee75"></script>
+<link rel="alternate" type="text/markdown" href="index.html.md">
+<link rel="describedby" href="llms.txt" type="text/markdown">
+</head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="#">
+      
+      
+      <strong>streamlitfront</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/i2mint/streamlitfront" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/streamlitfront.html">streamlitfront</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/streamlitfront.base.html">streamlitfront.base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/streamlitfront.data_binding.html">streamlitfront.data_binding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/streamlitfront.elements.html">streamlitfront.elements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/streamlitfront.elements.elements.html">streamlitfront.elements.elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_autosummary/streamlitfront.elements.js.html">streamlitfront.elements.js</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/streamlitfront.page_funcs.html">streamlitfront.page_funcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/streamlitfront.pydantic_widgets.html">streamlitfront.pydantic_widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/streamlitfront.run_app.html">streamlitfront.run_app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/streamlitfront.session_state.html">streamlitfront.session_state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/streamlitfront.spec_maker.html">streamlitfront.spec_maker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/streamlitfront.tools.html">streamlitfront.tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_autosummary/streamlitfront.util.html">streamlitfront.util</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#">streamlitfront</a></li>
+<li><a class="reference internal" href="#example">Example</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#old-example-using-deprecated-dispatch-funcs-function">Old Example (using deprecated <code class="docutils literal notranslate"><span class="pre">dispatch_funcs</span></code> function)</a></li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="#"><span itemprop="name">streamlitfront</span></a>
+        <meta itemprop="position" content="1" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue dark-code" role="main">
+          <!-- generated by epythet -->
+<section id="streamlitfront">
+<h1>streamlitfront<a class="headerlink" href="#streamlitfront" title="Link to this heading">#</a></h1>
+<p>Generate streamlit frontends from python functions</p>
+<p>To install:	<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">streamlitfront</span></code></p>
+</section>
+<section id="example">
+<h1>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h1>
+<p>Define functions in a file named <code class="docutils literal notranslate"><span class="pre">render_functions.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">"""This is foo. It computes something"""</span>
+</span><span data-line="3">    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span>
+</span><span data-line="4">
+</span><span data-line="5">
+</span><span data-line="6"><span class="k">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">greeting</span><span class="o">=</span><span class="s2">"hello"</span><span class="p">):</span>
+</span><span data-line="7"><span class="w">    </span><span class="sd">"""bar greets its input"""</span>
+</span><span data-line="8">    <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">greeting</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">"</span>
+</span><span data-line="9">
+</span><span data-line="10">
+</span><span data-line="11"><span class="k">def</span><span class="w"> </span><span class="nf">confuser</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">):</span>
+</span><span data-line="12">    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+</span><span data-line="13">
+</span><span data-line="14">
+</span><span data-line="15"><span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">confuser</span><span class="p">]</span>
+</span></pre></div>
+</div>
+<p>Then add the following to the file (we will be modifying this part):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront</span><span class="w"> </span><span class="kn">import</span> <span class="n">mk_app</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+</span><span data-line="4">    <span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">)</span>
+</span><span data-line="5">    <span class="n">app</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p>Execute <code class="docutils literal notranslate"><span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">render_functions.py</span></code> in terminal and …</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/63666082/172496315-86f65258-f59f-4e17-b9bc-c92c69884311.png" /></p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/63666082/172496343-a0a876eb-6e6b-4e6b-a890-352c4a21664a.png" /></p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/63666082/172496378-40efc696-05d6-4e4e-af9f-da94e0803927.png" /></p>
+<p>… you can play with your functions!</p>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h2>
+<p>The default configuration for the application is define by the convention object: <code class="docutils literal notranslate"><span class="pre">dflt_convention</span></code>. But you can overwrite parts or the entire configuration by setting the <code class="docutils literal notranslate"><span class="pre">config</span></code> parameter. The configuration is composed of three parts: app, obj and rendering.</p>
+<ul>
+<li><p>app</p>
+<p>By default, the application name is “My Front Application”, but you can set the title of the application as follow:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront</span><span class="w"> </span><span class="kn">import</span> <span class="n">mk_app</span>
+</span><span data-line="2">
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+</span><span data-line="5">    <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="6">        <span class="s1">'app'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="7">            <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'Another application name'</span>
+</span><span data-line="8">        <span class="p">}</span>
+</span><span data-line="9">    <span class="p">}</span>
+</span><span data-line="10">    <span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</span><span data-line="11">    <span class="n">app</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p>Execute <code class="docutils literal notranslate"><span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">render_functions.py</span></code> in terminal and …</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/63666082/172715999-6611d981-6e7c-4ea1-8d02-2ec449912bf2.png" /></p>
+<p>… the application name changed!</p>
+</li>
+<li><p>obj</p>
+<p>You can define a wrapper to transform the initial object into an output of your choice to be rendered:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
+</span><span data-line="2"><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront</span><span class="w"> </span><span class="kn">import</span> <span class="n">mk_app</span>
+</span><span data-line="3">
+</span><span data-line="4">
+</span><span data-line="5"><span class="k">def</span><span class="w"> </span><span class="nf">trans</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">):</span>
+</span><span data-line="6">    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">objs</span><span class="p">))</span>
+</span><span data-line="7">
+</span><span data-line="8">
+</span><span data-line="9"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+</span><span data-line="10">    <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="11">        <span class="s1">'obj'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="12">            <span class="s1">'trans'</span><span class="p">:</span> <span class="n">trans</span>
+</span><span data-line="13">        <span class="p">}</span>
+</span><span data-line="14">    <span class="p">}</span>
+</span><span data-line="15">    <span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</span><span data-line="16">    <span class="n">app</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p>Execute <code class="docutils literal notranslate"><span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">render_functions.py</span></code> in terminal and …</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/63666082/172716258-3efcfa55-f25c-4ae2-a232-a788f62b541b.png" /></p>
+<p>… the view order has changed !</p>
+<p>Note that the capital letter at the beginning of the view names are gone, because the default transforming is no longer applied.</p>
+</li>
+<li><p>rendering</p>
+<p>You can define the way elements are rendered in the GUI.
+For instance, you can choose to render a text input instead of a number input for a specific parameter of a specific function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">from</span><span class="w"> </span><span class="nn">front.elements</span><span class="w"> </span><span class="kn">import</span> <span class="n">INT_INPUT_SLIDER_COMPONENT</span>
+</span><span data-line="2"><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront</span><span class="w"> </span><span class="kn">import</span> <span class="n">mk_app</span>
+</span><span data-line="3">
+</span><span data-line="4">
+</span><span data-line="5"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+</span><span data-line="6">    <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="7">        <span class="s1">'rendering'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="8">            <span class="s1">'Foo'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="9">                <span class="s1">'inputs'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="10">                    <span class="s1">'a'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="11">                        <span class="s1">'component'</span><span class="p">:</span> <span class="n">INT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span>
+</span><span data-line="12">                        <span class="s1">'max_value'</span><span class="p">:</span> <span class="mi">10</span>
+</span><span data-line="13">                    <span class="p">}</span>
+</span><span data-line="14">                <span class="p">}</span>
+</span><span data-line="15">            <span class="p">}</span>
+</span><span data-line="16">        <span class="p">}</span>
+</span><span data-line="17">    <span class="p">}</span>
+</span><span data-line="18">    <span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</span><span data-line="19">    <span class="n">app</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p>Execute <code class="docutils literal notranslate"><span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">render_functions.py</span></code> in terminal and …</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/63666082/172725124-2a88c95b-8c1f-423e-9e68-0c1b90a5e031.png" /></p>
+<p>… the input <code class="docutils literal notranslate"><span class="pre">a</span></code> is a slider now !</p>
+</li>
+</ul>
+<p>Obviously, you can combine the three types of configuration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
+</span><span data-line="2"><span class="kn">from</span><span class="w"> </span><span class="nn">front.elements</span><span class="w"> </span><span class="kn">import</span> <span class="n">INT_INPUT_SLIDER_COMPONENT</span>
+</span><span data-line="3"><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront</span><span class="w"> </span><span class="kn">import</span> <span class="n">mk_app</span>
+</span><span data-line="4">    
+</span><span data-line="5">
+</span><span data-line="6"><span class="k">def</span><span class="w"> </span><span class="nf">trans</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">):</span>
+</span><span data-line="7">    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">objs</span><span class="p">))</span>
+</span><span data-line="8">
+</span><span data-line="9">
+</span><span data-line="10"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+</span><span data-line="11">    <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="12">        <span class="s1">'app'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="13">            <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'Another application name'</span>
+</span><span data-line="14">        <span class="p">},</span>
+</span><span data-line="15">        <span class="s1">'obj'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="16">            <span class="s1">'trans'</span><span class="p">:</span> <span class="n">trans</span>
+</span><span data-line="17">        <span class="p">},</span>
+</span><span data-line="18">        <span class="s1">'rendering'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="19">            <span class="s1">'foo'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="20">                <span class="s1">'inputs'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="21">                    <span class="s1">'a'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="22">                        <span class="s1">'component'</span><span class="p">:</span> <span class="n">INT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span>
+</span><span data-line="23">                        <span class="s1">'max_value'</span><span class="p">:</span> <span class="mi">10</span>
+</span><span data-line="24">                    <span class="p">}</span>
+</span><span data-line="25">                <span class="p">}</span>
+</span><span data-line="26">            <span class="p">}</span>
+</span><span data-line="27">        <span class="p">}</span>
+</span><span data-line="28">    <span class="p">}</span>
+</span><span data-line="29">    <span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</span><span data-line="30">    <span class="n">app</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p>Execute <code class="docutils literal notranslate"><span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">render_functions.py</span></code> in terminal and …</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/63666082/172725591-b3a60cf6-b497-4f4d-87d7-ce02ec90dbe4.png" /></p>
+<p>… all three configurations are applied !</p>
+<p>You can also overwrite the whole configuration by setting the <code class="docutils literal notranslate"><span class="pre">convention</span></code> parameter. Be careful though, by overwritting the default convention, you have to make sure that all configuations are defined. Otherwise, the application would crash or behave unexpectedly.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span>
+</span><span data-line="2"><span class="kn">from</span><span class="w"> </span><span class="nn">front.elements</span><span class="w"> </span><span class="kn">import</span> <span class="n">VIEW_CONTAINER</span><span class="p">,</span> <span class="n">FLOAT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span> <span class="n">TEXT_INPUT_COMPONENT</span>
+</span><span data-line="3"><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront</span><span class="w"> </span><span class="kn">import</span> <span class="n">mk_app</span>
+</span><span data-line="4">    
+</span><span data-line="5">
+</span><span data-line="6"><span class="k">def</span><span class="w"> </span><span class="nf">trans</span><span class="p">(</span><span class="n">objs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">):</span>
+</span><span data-line="7">    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">objs</span><span class="p">))</span>
+</span><span data-line="8">
+</span><span data-line="9">
+</span><span data-line="10"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+</span><span data-line="11">    <span class="n">convention</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="12">        <span class="s1">'app'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="13">            <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'Another application name'</span>
+</span><span data-line="14">        <span class="p">},</span>
+</span><span data-line="15">        <span class="s1">'obj'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="16">            <span class="s1">'trans'</span><span class="p">:</span> <span class="n">trans</span>
+</span><span data-line="17">        <span class="p">},</span>
+</span><span data-line="18">        <span class="s1">'rendering'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="19">            <span class="n">Callable</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="20">                <span class="s1">'container'</span><span class="p">:</span> <span class="n">VIEW_CONTAINER</span><span class="p">,</span>
+</span><span data-line="21">                <span class="s1">'inputs'</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="22">                    <span class="nb">float</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="23">                        <span class="s1">'component'</span><span class="p">:</span> <span class="n">FLOAT_INPUT_SLIDER_COMPONENT</span><span class="p">,</span>
+</span><span data-line="24">                        <span class="s1">'max_value'</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+</span><span data-line="25">                        <span class="s1">'format'</span><span class="p">:</span> <span class="s1">'</span><span class="si">%.2f</span><span class="s1">'</span><span class="p">,</span>
+</span><span data-line="26">                        <span class="s1">'step'</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+</span><span data-line="27">                    <span class="p">},</span>
+</span><span data-line="28">                    <span class="n">Any</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="29">                        <span class="s1">'component'</span><span class="p">:</span> <span class="n">TEXT_INPUT_COMPONENT</span><span class="p">,</span>
+</span><span data-line="30">                    <span class="p">},</span>
+</span><span data-line="31">                <span class="p">},</span>
+</span><span data-line="32">            <span class="p">},</span>
+</span><span data-line="33">        <span class="p">},</span>
+</span><span data-line="34">    <span class="p">}</span>
+</span><span data-line="35">    <span class="n">app</span> <span class="o">=</span> <span class="n">mk_app</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="n">convention</span><span class="p">)</span>
+</span><span data-line="36">    <span class="n">app</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p>Execute <code class="docutils literal notranslate"><span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">render_functions.py</span></code> in terminal and …</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/63666082/172726101-a596ea02-bf1c-4c66-b6b4-6569d1176b5c.png" /></p>
+<p>… the convention is applied !</p>
+</section>
+</section>
+<section id="old-example-using-deprecated-dispatch-funcs-function">
+<h1>Old Example (using deprecated <code class="docutils literal notranslate"><span class="pre">dispatch_funcs</span></code> function)<a class="headerlink" href="#old-example-using-deprecated-dispatch-funcs-function" title="Link to this heading">#</a></h1>
+<p>Write a module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># simple.py</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</span><span data-line="4"><span class="w">    </span><span class="sd">"""This is foo. It computes something"""</span>
+</span><span data-line="5">    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="k">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">greeting</span><span class="o">=</span><span class="s1">'hello'</span><span class="p">):</span>
+</span><span data-line="8"><span class="w">    </span><span class="sd">"""bar greets its input"""</span>
+</span><span data-line="9">    <span class="k">return</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">greeting</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">'</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="k">def</span><span class="w"> </span><span class="nf">confuser</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">):</span>
+</span><span data-line="12">    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+</span><span data-line="13">
+</span><span data-line="14"><span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">confuser</span><span class="p">]</span>
+</span><span data-line="15">
+</span><span data-line="16"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+</span><span data-line="17">    <span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront</span><span class="w"> </span><span class="kn">import</span> <span class="n">dispatch_funcs</span>
+</span><span data-line="18">    <span class="n">app</span> <span class="o">=</span> <span class="n">dispatch_funcs</span><span class="p">(</span><span class="n">funcs</span><span class="p">)</span>
+</span><span data-line="19">    <span class="n">app</span><span class="p">()</span>
+</span><span data-line="20">    
+</span><span data-line="21">    <span class="c1"># ... and you get a browser based app that exposes foo, bar, and confuser</span>
+</span><span data-line="22">
+</span></pre></div>
+</div>
+<p>Execute <code class="docutils literal notranslate"><span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">simple.py</span></code> in terminal and …</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/1906276/121604989-61874d80-ca00-11eb-9e1b-e3ac28e09418.png" /></p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/1906276/121605028-7f54b280-ca00-11eb-93f7-f4c936ae9d54.png" /></p>
+<p class="epythet-aggregates">This documentation as a single file: <a href="streamlitfront.md">streamlitfront.md</a> (Markdown, for agents).</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+<p class="epythet-provenance" style="font-size:.8em;opacity:.65;margin-top:2.5em;text-align:right">built 2026-09-22 15:31 UTC from <a href="https://github.com/i2mint/streamlitfront/commit/1122f2682b256e537bc9d96067f91cd22ed29601">1122f26</a> (master) · streamlitfront 0.1.38 · <a href="about-this-build.html">about this build</a></p>
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-next">
+    <a href="api.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">API reference</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright">
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+  <a href="https://github.com/i2mint/streamlitfront" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div>
+    </div>
+  </div>
+</footer>
+      <script src="_static/documentation_options.js?v=50f64db7"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
-      <script src="_static/toggleprompt.js?v=d7ede5d2"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-      <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="streamlitfront" href="module_docs/streamlitfront.html" /> 
-</head>
-
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="#" class="icon icon-home">
-            streamlitfront
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront.html">streamlitfront</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/base.html">streamlitfront.base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/data_binding.html">streamlitfront.data_binding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/elements.html">streamlitfront.elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/elements/js.html">streamlitfront.elements.js</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/costing_inflexibility.html">streamlitfront.examples.costing_inflexibility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/crude.html">streamlitfront.examples.crude</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/custom_output.html">streamlitfront.examples.custom_output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/data_prep.html">streamlitfront.examples.data_prep</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/edge_impulse_like.html">streamlitfront.examples.edge_impulse_like</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/handle_none_params.html">streamlitfront.examples.handle_none_params</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/pipeline_maker.html">streamlitfront.examples.pipeline_maker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/pipeline_maker_2.html">streamlitfront.examples.pipeline_maker_2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/simple_ml_1.html">streamlitfront.examples.simple_ml_1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/store_filtering.html">streamlitfront.examples.store_filtering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/util.html">streamlitfront.examples.util</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/pydantic_widgets.html">streamlitfront.pydantic_widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/run_app.html">streamlitfront.run_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/scrap/front_routing_proposals.html">streamlitfront.scrap.front_routing_proposals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/scrap/nested_select.html">streamlitfront.scrap.nested_select</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/session_state.html">streamlitfront.session_state</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/spec_maker.html">streamlitfront.spec_maker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/common.html">streamlitfront.tests.common</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/conftest.html">streamlitfront.tests.conftest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/dispatch_funcs_test.html">streamlitfront.tests.dispatch_funcs_test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/dummy_app.html">streamlitfront.tests.dummy_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/fake_app.html">streamlitfront.tests.fake_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/smoke_test.html">streamlitfront.tests.smoke_test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/test_app.html">streamlitfront.tests.test_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/test_base.html">streamlitfront.tests.test_base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/test_pydantic_widgets.html">streamlitfront.tests.test_pydantic_widgets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/use_case_test_old.html">streamlitfront.tests.use_case_test_old</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tools.html">streamlitfront.tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/util.html">streamlitfront.util</a></li>
-</ul>
-
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">streamlitfront</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Welcome to streamlitfront’s documentation!</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <section id="welcome-to-streamlitfront-s-documentation">
-<h1>Welcome to streamlitfront’s documentation!<a class="headerlink" href="#welcome-to-streamlitfront-s-documentation" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront.html">streamlitfront</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/base.html">streamlitfront.base</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/base.html#streamlitfront.base.DfltDict"><code class="docutils literal notranslate"><span class="pre">DfltDict</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/base.html#streamlitfront.base.dispatch_funcs"><code class="docutils literal notranslate"><span class="pre">dispatch_funcs()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/base.html#streamlitfront.base.get_pages_specs"><code class="docutils literal notranslate"><span class="pre">get_pages_specs()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/base.html#streamlitfront.base.mk_app"><code class="docutils literal notranslate"><span class="pre">mk_app()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/data_binding.html">streamlitfront.data_binding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/elements.html">streamlitfront.elements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html">streamlitfront.elements.elements</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.App"><code class="docutils literal notranslate"><span class="pre">App</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.AudioRecorder"><code class="docutils literal notranslate"><span class="pre">AudioRecorder</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.ExecSection"><code class="docutils literal notranslate"><span class="pre">ExecSection</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.FileUploader"><code class="docutils literal notranslate"><span class="pre">FileUploader</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.HiddenOutput"><code class="docutils literal notranslate"><span class="pre">HiddenOutput</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.KwargsInput"><code class="docutils literal notranslate"><span class="pre">KwargsInput</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.MultiSourceInput"><code class="docutils literal notranslate"><span class="pre">MultiSourceInput</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.Section"><code class="docutils literal notranslate"><span class="pre">Section</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.SuccessFailureNotification"><code class="docutils literal notranslate"><span class="pre">SuccessFailureNotification</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.SuccessNotification"><code class="docutils literal notranslate"><span class="pre">SuccessNotification</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.TextOutput"><code class="docutils literal notranslate"><span class="pre">TextOutput</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.TextSection"><code class="docutils literal notranslate"><span class="pre">TextSection</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/elements/elements.html#streamlitfront.elements.elements.View"><code class="docutils literal notranslate"><span class="pre">View</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/elements/js.html">streamlitfront.elements.js</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/costing_inflexibility.html">streamlitfront.examples.costing_inflexibility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/crude.html">streamlitfront.examples.crude</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/crude.html#streamlitfront.examples.crude.foo"><code class="docutils literal notranslate"><span class="pre">foo()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/custom_output.html">streamlitfront.examples.custom_output</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/custom_output.html#streamlitfront.examples.custom_output.HitTheOutputValue"><code class="docutils literal notranslate"><span class="pre">HitTheOutputValue</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/custom_output.html#streamlitfront.examples.custom_output.foo"><code class="docutils literal notranslate"><span class="pre">foo()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/dag_app.html">streamlitfront.examples.dag_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/data_binding.html">streamlitfront.examples.data_binding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/data_prep.html">streamlitfront.examples.data_prep</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/edge_impulse_like.html">streamlitfront.examples.edge_impulse_like</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/experimentation.html">streamlitfront.examples.experimentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/experimentation.html#streamlitfront.examples.experimentation.bar"><code class="docutils literal notranslate"><span class="pre">bar()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/experimentation.html#streamlitfront.examples.experimentation.foo"><code class="docutils literal notranslate"><span class="pre">foo()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/handle_none_params.html">streamlitfront.examples.handle_none_params</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/handle_none_params.html#streamlitfront.examples.handle_none_params.bar"><code class="docutils literal notranslate"><span class="pre">bar()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/handle_none_params.html#streamlitfront.examples.handle_none_params.foo"><code class="docutils literal notranslate"><span class="pre">foo()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/issues.html">streamlitfront.examples.issues</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/kaggle_front.html">streamlitfront.examples.kaggle_front</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/mk_app.html">streamlitfront.examples.mk_app</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/mk_app.html#streamlitfront.examples.mk_app.bar"><code class="docutils literal notranslate"><span class="pre">bar()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/mk_app.html#streamlitfront.examples.mk_app.foo"><code class="docutils literal notranslate"><span class="pre">foo()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/pipeline_maker.html">streamlitfront.examples.pipeline_maker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/pipeline_maker.html#streamlitfront.examples.pipeline_maker.MultiSelect"><code class="docutils literal notranslate"><span class="pre">MultiSelect</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/pipeline_maker_2.html">streamlitfront.examples.pipeline_maker_2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/pos_key_args.html">streamlitfront.examples.pos_key_args</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/simple.html">streamlitfront.examples.simple</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/simple.html#streamlitfront.examples.simple.bar"><code class="docutils literal notranslate"><span class="pre">bar()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/simple.html#streamlitfront.examples.simple.foo"><code class="docutils literal notranslate"><span class="pre">foo()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/simple_ml_1.html">streamlitfront.examples.simple_ml_1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/simple_real_audio_ml.html">streamlitfront.examples.simple_real_audio_ml</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/store_filtering.html">streamlitfront.examples.store_filtering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/tw_data_binding.html">streamlitfront.examples.tw_data_binding</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/tw_data_binding.html#streamlitfront.examples.tw_data_binding.bar"><code class="docutils literal notranslate"><span class="pre">bar()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/tw_data_binding.html#streamlitfront.examples.tw_data_binding.foo"><code class="docutils literal notranslate"><span class="pre">foo()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/util.html">streamlitfront.examples.util</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/util.html#streamlitfront.examples.util.Graph"><code class="docutils literal notranslate"><span class="pre">Graph</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/examples/various_input_kinds.html">streamlitfront.examples.various_input_kinds</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/examples/various_input_kinds.html#streamlitfront.examples.various_input_kinds.foo"><code class="docutils literal notranslate"><span class="pre">foo()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/page_funcs.html">streamlitfront.page_funcs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/pydantic_widgets.html">streamlitfront.pydantic_widgets</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/pydantic_widgets.html#streamlitfront.pydantic_widgets.pydantic_form"><code class="docutils literal notranslate"><span class="pre">pydantic_form()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/pydantic_widgets.html#streamlitfront.pydantic_widgets.pydantic_input"><code class="docutils literal notranslate"><span class="pre">pydantic_input()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/pydantic_widgets.html#streamlitfront.pydantic_widgets.pydantic_output"><code class="docutils literal notranslate"><span class="pre">pydantic_output()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/run_app.html">streamlitfront.run_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/scrap/alt_renderer.html">streamlitfront.scrap.alt_renderer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/scrap/alt_renderer.html#streamlitfront.scrap.alt_renderer.Renderer"><code class="docutils literal notranslate"><span class="pre">Renderer</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/scrap/alt_renderer.html#streamlitfront.scrap.alt_renderer.StreamlitRenderers"><code class="docutils literal notranslate"><span class="pre">StreamlitRenderers</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/scrap/front_routing_proposals.html">streamlitfront.scrap.front_routing_proposals</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/scrap/front_routing_proposals.html#streamlitfront.scrap.front_routing_proposals.Rules"><code class="docutils literal notranslate"><span class="pre">Rules</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/scrap/front_routing_proposals.html#streamlitfront.scrap.front_routing_proposals.alt_mk_render_keys"><code class="docutils literal notranslate"><span class="pre">alt_mk_render_keys()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/scrap/front_routing_proposals.html#streamlitfront.scrap.front_routing_proposals.first_element_matching_type"><code class="docutils literal notranslate"><span class="pre">first_element_matching_type()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/scrap/front_routing_proposals.html#streamlitfront.scrap.front_routing_proposals.if_then"><code class="docutils literal notranslate"><span class="pre">if_then()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/scrap/front_routing_proposals.html#streamlitfront.scrap.front_routing_proposals.mk_render_keys"><code class="docutils literal notranslate"><span class="pre">mk_render_keys()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/scrap/front_routing_proposals.html#streamlitfront.scrap.front_routing_proposals.mk_specs"><code class="docutils literal notranslate"><span class="pre">mk_specs()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/scrap/front_routing_proposals.html#streamlitfront.scrap.front_routing_proposals.mk_target_render_keys_func"><code class="docutils literal notranslate"><span class="pre">mk_target_render_keys_func()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/scrap/front_routing_proposals.html#streamlitfront.scrap.front_routing_proposals.rule_applier"><code class="docutils literal notranslate"><span class="pre">rule_applier()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/scrap/nested_select.html">streamlitfront.scrap.nested_select</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/scrap/nested_select.html#streamlitfront.scrap.nested_select.NestedSelect"><code class="docutils literal notranslate"><span class="pre">NestedSelect</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/session_state.html">streamlitfront.session_state</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/session_state.html#streamlitfront.session_state.PageState"><code class="docutils literal notranslate"><span class="pre">PageState</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/spec_maker.html">streamlitfront.spec_maker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/spec_maker.html#streamlitfront.spec_maker.SpecMaker"><code class="docutils literal notranslate"><span class="pre">SpecMaker</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/common.html">streamlitfront.tests.common</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/conftest.html">streamlitfront.tests.conftest</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/dispatch_funcs_test.html">streamlitfront.tests.dispatch_funcs_test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/dummy_app.html">streamlitfront.tests.dummy_app</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tests/dummy_app.html#streamlitfront.tests.dummy_app.Input"><code class="docutils literal notranslate"><span class="pre">Input</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/fake_app.html">streamlitfront.tests.fake_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/smoke_test.html">streamlitfront.tests.smoke_test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/test_app.html">streamlitfront.tests.test_app</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/test_base.html">streamlitfront.tests.test_base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/test_pydantic_widgets.html">streamlitfront.tests.test_pydantic_widgets</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tests/test_pydantic_widgets.html#streamlitfront.tests.test_pydantic_widgets.test_pydantic_form_returns_none_until_submitted"><code class="docutils literal notranslate"><span class="pre">test_pydantic_form_returns_none_until_submitted()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tests/test_pydantic_widgets.html#streamlitfront.tests.test_pydantic_widgets.test_pydantic_input_renders_and_builds_instance"><code class="docutils literal notranslate"><span class="pre">test_pydantic_input_renders_and_builds_instance()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tests/test_pydantic_widgets.html#streamlitfront.tests.test_pydantic_widgets.test_pydantic_output_renders_instance"><code class="docutils literal notranslate"><span class="pre">test_pydantic_output_renders_instance()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tests/use_case_test_old.html">streamlitfront.tests.use_case_test_old</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/tools.html">streamlitfront.tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tools.html#streamlitfront.tools.Rules"><code class="docutils literal notranslate"><span class="pre">Rules</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tools.html#streamlitfront.tools.alt_mk_render_keys"><code class="docutils literal notranslate"><span class="pre">alt_mk_render_keys()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tools.html#streamlitfront.tools.first_element_matching_type"><code class="docutils literal notranslate"><span class="pre">first_element_matching_type()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tools.html#streamlitfront.tools.if_then"><code class="docutils literal notranslate"><span class="pre">if_then()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tools.html#streamlitfront.tools.lines_to_html_paragraphs"><code class="docutils literal notranslate"><span class="pre">lines_to_html_paragraphs()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tools.html#streamlitfront.tools.mk_render_keys"><code class="docutils literal notranslate"><span class="pre">mk_render_keys()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tools.html#streamlitfront.tools.mk_specs"><code class="docutils literal notranslate"><span class="pre">mk_specs()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tools.html#streamlitfront.tools.mk_target_render_keys_func"><code class="docutils literal notranslate"><span class="pre">mk_target_render_keys_func()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tools.html#streamlitfront.tools.render_edits"><code class="docutils literal notranslate"><span class="pre">render_edits()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/tools.html#streamlitfront.tools.rule_applier"><code class="docutils literal notranslate"><span class="pre">rule_applier()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="module_docs/streamlitfront/util.html">streamlitfront.util</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/util.html#streamlitfront.util.Command"><code class="docutils literal notranslate"><span class="pre">Command</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/util.html#streamlitfront.util.NodeGetter"><code class="docutils literal notranslate"><span class="pre">NodeGetter</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/util.html#streamlitfront.util.Objdict"><code class="docutils literal notranslate"><span class="pre">Objdict</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/util.html#streamlitfront.util.attr_or_key"><code class="docutils literal notranslate"><span class="pre">attr_or_key()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/util.html#streamlitfront.util.attr_or_key_with_dotpaths"><code class="docutils literal notranslate"><span class="pre">attr_or_key_with_dotpaths()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/util.html#streamlitfront.util.build_element_commands"><code class="docutils literal notranslate"><span class="pre">build_element_commands()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/util.html#streamlitfront.util.build_element_factory"><code class="docutils literal notranslate"><span class="pre">build_element_factory()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/util.html#streamlitfront.util.build_element_factory_helper"><code class="docutils literal notranslate"><span class="pre">build_element_factory_helper()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/util.html#streamlitfront.util.build_factory"><code class="docutils literal notranslate"><span class="pre">build_factory()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/util.html#streamlitfront.util.func_name"><code class="docutils literal notranslate"><span class="pre">func_name()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="module_docs/streamlitfront/util.html#streamlitfront.util.incremental_str_maker"><code class="docutils literal notranslate"><span class="pre">incremental_str_maker()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</div>
-</section>
-<section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
-<p>Release: 0.1.37</p>
-<p>Last change: May 27, 2026</p>
-</section>
-
-
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="module_docs/streamlitfront.html" class="btn btn-neutral float-right" title="streamlitfront" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright NO COPYRIGHT.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
-        </div>
-      </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
-</body>
+      <script src="_static/copybutton.js?v=fd10adb8"></script>
+      <script src="_static/shibuya.js?v=50760d75"></script></body>
 </html>
