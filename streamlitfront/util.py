@@ -85,31 +85,35 @@ def func_name(func):
 
 
 def name_lambdas(objs, *, name_format="lambda_{:d}"):
-    """Gives every lambda of ``objs`` a name that is the same on every rerun of the app.
+    """Gives every lambda (and every callable whose name resolves to ``<lambda>``,
+    such as a ``functools.partial`` of one) a name that is the same on every rerun
+    of the app.
 
     Streamlit reruns the script at every interaction, building the lambdas anew each
     time. A counter-made name (front's ``UnnamedObjectNNN``) is then different on each
     run, so the widgets' state keys no longer match and a lambda's input and output
-    vanish. Here a lambda is named after its rank among the lambdas of ``objs``.
-    (A lambda is renamed in place, as front does.)
+    vanish. Here such an object is named after its rank among the lambdas of ``objs``.
+    (The object is renamed in place, as front does.)
 
+    >>> from functools import partial
     >>> def h(c): return c
     >>> def mk_objs():  # (what a rerun of the script does)
-    ...     return [lambda a: a, h, lambda b: b]
+    ...     return [lambda a: a, h, partial(lambda b, k=1: b, k=2)]
     >>> [o.__name__ for o in name_lambdas(mk_objs())]
     ['lambda_1', 'h', 'lambda_2']
     >>> [o.__name__ for o in name_lambdas(mk_objs())]
     ['lambda_1', 'h', 'lambda_2']
     """
-    taken = {getattr(o, "__name__", None) for o in objs}
+    names = [name_of_obj(o) for o in objs]
+    taken = {n for n in names if isinstance(n, str) and n != "<lambda>"}
     rank = 0
-    for obj in objs:
-        if getattr(obj, "__name__", None) == "<lambda>":
+    for obj, name in zip(objs, names):
+        if name is None or name == "<lambda>":
             rank += 1
-            while (name := name_format.format(rank)) in taken:
+            while (new_name := name_format.format(rank)) in taken:
                 rank += 1
-            obj.__name__ = name
-            taken.add(name)
+            obj.__name__ = new_name
+            taken.add(new_name)
     return objs
 
 
