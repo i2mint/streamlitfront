@@ -189,37 +189,16 @@ class ExecSection(ExecContainerBase):
                 self._submit(inputs)
             except ValidationError as e:
                 st.error(e)
-        else:
-            self._render_flash_output()
-
-    @property
-    def _output_component(self) -> OutputBase:
-        return next(c for c in self.children if isinstance(c, OutputBase))
-
-    @property
-    def _flash_output_key(self) -> str:
-        return f"{self.name}_flash_output"
 
     def _submit(self, inputs):
         super()._submit(inputs)
-        # Streamlit can only empty a file uploader by giving it a new key, which takes
-        # a rerun: keep the output we just rendered for that one rerun.
-        if not self.auto_submit and self._clear_file_uploaders():
-            st.session_state[self._flash_output_key] = self._output_component.output
-            _rerun()
+        if not self.auto_submit:
+            self._clear_file_uploaders()
 
-    def _render_flash_output(self):
-        if self._flash_output_key in st.session_state:
-            output_component = self._output_component
-            output_component.output = st.session_state.pop(self._flash_output_key)
-            output_component()
-
-    def _clear_file_uploaders(self) -> bool:
-        """Empty the file uploaders that asked for it; return whether there were any."""
-        uploaders = list(_file_uploaders(self.children))
-        for uploader in uploaders:
+    def _clear_file_uploaders(self):
+        """Empty the file uploaders that asked for it."""
+        for uploader in _file_uploaders(self.children):
             uploader.clear()
-        return bool(uploaders)
 
     def _noneable(self, input_instance: InputBase) -> InputBase:
         # input_render = input_instance.render
@@ -298,25 +277,40 @@ class FileUploader(FileUploaderBase):
         return self._build_key(f"{self.name}_upload_generation")
 
     def clear(self):
-        """Empty the uploader on the next run, by giving the widget a new key.
+        """Empty the uploader, now and on the following runs.
 
-        Streamlit keeps an uploader's files across reruns for as long as its key lives
-        and offers no way to empty it otherwise.
+        Streamlit keeps an uploader's files for as long as its widget key lives and
+        offers no other way to empty it. So: move to a new key, and draw a fresh
+        uploader in the slot of the old one right away, so that this run's output and
+        everything else drawn stay in place (no rerun).
         """
-        st.session_state[self._generation_key] = (
-            st.session_state.get(self._generation_key, 0) + 1
+        self._generation += 1
+        slot = getattr(self, "_slot", None)
+        if slot is not None:
+            with slot:
+                self._file_uploader()
+
+    @property
+    def _generation(self) -> int:
+        return st.session_state.get(self._generation_key, 0)
+
+    @_generation.setter
+    def _generation(self, value: int):
+        st.session_state[self._generation_key] = value
+
+    def _file_uploader(self):
+        return st.file_uploader(
+            label=self.name,
+            label_visibility="visible" if self.display_label else "collapsed",
+            type=self.type,
+            accept_multiple_files=self.accept_multiple_files,
+            key=f"{self.view_key}_{self.name}_{self._generation}",
         )
 
     def render(self):
-        label_visibility = "visible" if self.display_label else "collapsed"
-        generation = st.session_state.get(self._generation_key, 0)
-        return st.file_uploader(
-            label=self.name,
-            label_visibility=label_visibility,
-            type=self.type,
-            accept_multiple_files=self.accept_multiple_files,
-            key=f"{self.view_key}_{self.name}_{generation}",
-        )
+        self._slot = st.empty()
+        with self._slot:
+            return self._file_uploader()
 
 
 def _file_uploaders(components) -> Iterable[FileUploader]:
@@ -329,10 +323,6 @@ def _file_uploaders(components) -> Iterable[FileUploader]:
             component, "clear_after_submit", True
         ):
             yield component
-
-
-def _rerun():
-    (getattr(st, "rerun", None) or st.experimental_rerun)()
 
 
 class AudioRecorder(InputBase):

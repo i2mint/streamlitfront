@@ -8,6 +8,7 @@ pytest.importorskip("streamlit.testing.v1")
 from streamlit.testing.v1 import AppTest
 
 APP = """
+import streamlit as st
 from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY
 from streamlitfront import mk_app
 from streamlitfront.elements import FileUploader, MultiSourceInput, TextOutput
@@ -15,6 +16,7 @@ from streamlitfront.elements import FileUploader, MultiSourceInput, TextOutput
 def count_bytes(data: list) -> int:
     if not data:
         raise ValueError("no data")
+    st.info("drawn by the function")
     return sum(len(f.getvalue()) for f in data)
 
 class Files(FileUploader):
@@ -65,7 +67,11 @@ def test_uploader_is_emptied_after_submit_and_output_is_kept(multi):
     at.button[0].click().run()
     assert not at.exception
     assert _names(at) == []
+    assert len(at.file_uploader) == 1  # replaced, not added
     assert _output(at) == ["`5`"]
+    assert [i.value for i in at.info] == [
+        "drawn by the function"
+    ]  # nothing redrawn away
     # a new upload starts from a clean selection; the stale output goes away as before
     at.file_uploader[0].upload("b.txt", b"67").run()
     assert _names(at) == ["b.txt"]
