@@ -13,6 +13,7 @@ Utils
 | [`build_factory`](#streamlitfront.util.build_factory)(element_factory, kind, idx)        | Build the factory for user input for VP and VK inputs                             |
 | [`func_name`](#streamlitfront.util.func_name)(func)                                  | The func._\_name_\_ of a callable func, or makes and returns one if that fails.   |
 | [`incremental_str_maker`](#streamlitfront.util.incremental_str_maker)([str_format])              | Make a function that will produce a (incrementally) new string at every call.     |
+| [`name_lambdas`](#streamlitfront.util.name_lambdas)(objs, \*[, name_format])            | Gives every lambda of `objs` a name that is the same on every rerun of the app.   |
 | [`signature_defaults`](#streamlitfront.util.signature_defaults)(sig)                          | Return `sig.defaults` without the params whose default is `i2`'s `NotSet`.        |
 | `unnamed_page`()                                                                                  |                                                                                   |
 
@@ -172,6 +173,26 @@ To make one, it calls unamed_func_name which produces incremental names to reduc
 ### streamlitfront.util.incremental_str_maker(str_format='{:03.f}')
 
 Make a function that will produce a (incrementally) new string at every call.
+
+### streamlitfront.util.name_lambdas(objs, , name_format='lambda_{:d}')
+
+Gives every lambda of `objs` a name that is the same on every rerun of the app.
+
+Streamlit reruns the script at every interaction, building the lambdas anew each
+time. A counter-made name (front’s `UnnamedObjectNNN`) is then different on each
+run, so the widgets’ state keys no longer match and a lambda’s input and output
+vanish. Here a lambda is named after its rank among the lambdas of `objs`.
+(A lambda is renamed in place, as front does.)
+
+```pycon
+>>> def h(c): return c
+>>> def mk_objs():  # (what a rerun of the script does)
+...     return [lambda a: a, h, lambda b: b]
+>>> [o.__name__ for o in name_lambdas(mk_objs())]
+['lambda_1', 'h', 'lambda_2']
+>>> [o.__name__ for o in name_lambdas(mk_objs())]
+['lambda_1', 'h', 'lambda_2']
+```
 
 ### streamlitfront.util.signature_defaults(sig)
 

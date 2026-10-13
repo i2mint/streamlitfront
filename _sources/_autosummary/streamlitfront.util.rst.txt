@@ -16,6 +16,7 @@ streamlitfront.util
       build_factory
       func_name
       incremental_str_maker
+      name_lambdas
       signature_defaults
       unnamed_page
    

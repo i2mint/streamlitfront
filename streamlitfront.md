@@ -1,4 +1,4 @@
-> built 2026-10-13 06:02 UTC from 922d8b0 (master) · streamlitfront 0.1.39. Details: build_info.json
+> built 2026-10-13 15:53 UTC from c66d140 (master) · streamlitfront 0.1.40. Details: build_info.json
 
 # index.html.md
 
@@ -1049,6 +1049,7 @@ Utils
 | [`build_factory`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.build_factory)(element_factory, kind, idx)        | Build the factory for user input for VP and VK inputs                             |
 | [`func_name`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.func_name)(func)                                  | The func._\_name_\_ of a callable func, or makes and returns one if that fails.   |
 | [`incremental_str_maker`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.incremental_str_maker)([str_format])              | Make a function that will produce a (incrementally) new string at every call.     |
+| [`name_lambdas`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.name_lambdas)(objs, \*[, name_format])            | Gives every lambda of `objs` a name that is the same on every rerun of the app.   |
 | [`signature_defaults`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.signature_defaults)(sig)                          | Return `sig.defaults` without the params whose default is `i2`'s `NotSet`.        |
 | `unnamed_page`()                                                                                  |                                                                                   |
 
@@ -1209,6 +1210,26 @@ To make one, it calls unamed_func_name which produces incremental names to reduc
 
 Make a function that will produce a (incrementally) new string at every call.
 
+### streamlitfront.util.name_lambdas(objs, , name_format='lambda_{:d}')
+
+Gives every lambda of `objs` a name that is the same on every rerun of the app.
+
+Streamlit reruns the script at every interaction, building the lambdas anew each
+time. A counter-made name (front’s `UnnamedObjectNNN`) is then different on each
+run, so the widgets’ state keys no longer match and a lambda’s input and output
+vanish. Here a lambda is named after its rank among the lambdas of `objs`.
+(A lambda is renamed in place, as front does.)
+
+```pycon
+>>> def h(c): return c
+>>> def mk_objs():  # (what a rerun of the script does)
+...     return [lambda a: a, h, lambda b: b]
+>>> [o.__name__ for o in name_lambdas(mk_objs())]
+['lambda_1', 'h', 'lambda_2']
+>>> [o.__name__ for o in name_lambdas(mk_objs())]
+['lambda_1', 'h', 'lambda_2']
+```
+
 ### streamlitfront.util.signature_defaults(sig)
 
 Return `sig.defaults` without the params whose default is `i2`’s `NotSet`.
@@ -1233,18 +1254,18 @@ must not be prefilled with it, nor typed after it.
 
 # About this build
 
-This documentation was built on **2026-10-13 06:02 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/922d8b0a0e321192c5cdf600539458c0b3e82bc3"><code>922d8b0</code></a> on branch <code>master</code>, for **streamlitfront 0.1.39** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-10-13 15:53 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/c66d14043ea7251ac389b70b786ba4c92551d112"><code>c66d140</code></a> on branch <code>master</code>, for **streamlitfront 0.1.40** (from <code>pyproject.toml</code>).
 
 #### WARNING
 The documentation and the package may be misaligned:
 
-- The documented version (0.1.39) is behind the latest release on PyPI (0.1.40): `pip install streamlitfront` gives newer code than these docs describe.
+- The documented version (0.1.40) is behind the latest release on PyPI (0.1.41): `pip install streamlitfront` gives newer code than these docs describe.
 
 ## Source
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/922d8b0a0e321192c5cdf600539458c0b3e82bc3"><code>922d8b0a0e321192c5cdf600539458c0b3e82bc3</code></a> |
+| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/c66d14043ea7251ac389b70b786ba4c92551d112"><code>c66d14043ea7251ac389b70b786ba4c92551d112</code></a> |
 | Branch              | <code>master</code>                                                                                                                                          |
 | Tags at this commit | none                                                                                                                                                         |
 | Working tree        | clean                                                                                                                                                        |
@@ -1255,15 +1276,15 @@ The documentation and the package may be misaligned:
 |              |                                                                                             |
 |--------------|---------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/streamlitfront</code>                                                          |
-| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/38354314779">38354314779</a> |
+| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/38425561271">38425561271</a> |
 | Ref          | <code>refs/heads/master</code>                                                              |
-| Event commit | <code>922d8b0a0e321192c5cdf600539458c0b3e82bc3</code> (in the history of the built commit)  |
+| Event commit | <code>c66d14043ea7251ac389b70b786ba4c92551d112</code> (in the history of the built commit)  |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.14  |
+| epythet  | 0.2.16  |
 | Sphinx   | 9.1.0   |
 | docutils | 0.22.4  |
 | Python   | 3.12.15 |
@@ -1282,14 +1303,14 @@ The documentation and the package may be misaligned:
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.40/">0.1.40</a>, newer than the documented version (0.1.39).
+Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.41/">0.1.41</a>, newer than the documented version (0.1.40).
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/streamlitfront && cd streamlitfront
-git checkout 922d8b0a0e321192c5cdf600539458c0b3e82bc3
-pip install "epythet==0.2.14"
+git checkout c66d14043ea7251ac389b70b786ba4c92551d112
+pip install "epythet==0.2.16"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 
