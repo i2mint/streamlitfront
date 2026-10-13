@@ -319,10 +319,15 @@ class FileUploader(FileUploaderBase):
 
 def _file_uploaders(components) -> Iterable[FileUploader]:
     """The ``FileUploader`` inputs among ``components`` (looking inside multi-source
-    inputs)."""
+    inputs and the nested section of kwargs inputs)."""
     for component in components:
         if isinstance(component, MultiSourceInputBase):
             yield from _file_uploaders(component.input_components)
+        elif isinstance(component, KwargsInputBase):
+            # The nested section only exists once the kwargs input has been rendered.
+            section = getattr(component, "_exec_section", None)
+            if section is not None:
+                yield from _file_uploaders(section.children)
         elif isinstance(component, FileUploader):
             yield component
 
@@ -396,5 +401,6 @@ class KwargsInput(KwargsInputBase):
             on_submit=self._return_kwargs,
             use_expander=False,
         )
+        self._exec_section = exec_section
         exec_section()
         return self.value()
