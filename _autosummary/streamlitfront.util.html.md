@@ -4,18 +4,18 @@ Utils
 
 ### Functions
 
-| [`attr_or_key`](#streamlitfront.util.attr_or_key)(obj, k)                              | Get data for `k` by doing obj.k, or obj[k] if k not an attribute of obj           |
-|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| [`attr_or_key_with_dotpaths`](#streamlitfront.util.attr_or_key_with_dotpaths)(obj, k)                | Get k-data from obj hwere k is a path of keys and attributes leading to the data. |
-| [`build_element_commands`](#streamlitfront.util.build_element_commands)(name, inferred_type, ...) | Build the element factory for each argument to allow for user input               |
-| [`build_element_factory`](#streamlitfront.util.build_element_factory)(name, inferred_type, ...)  | Build the element factory for each argument to allow for user input               |
-| [`build_element_factory_helper`](#streamlitfront.util.build_element_factory_helper)(...)                | Helper to build the element factory for VP and VK arguments                       |
-| [`build_factory`](#streamlitfront.util.build_factory)(element_factory, kind, idx)        | Build the factory for user input for VP and VK inputs                             |
-| [`func_name`](#streamlitfront.util.func_name)(func)                                  | The func._\_name_\_ of a callable func, or makes and returns one if that fails.   |
-| [`incremental_str_maker`](#streamlitfront.util.incremental_str_maker)([str_format])              | Make a function that will produce a (incrementally) new string at every call.     |
-| [`name_lambdas`](#streamlitfront.util.name_lambdas)(objs, \*[, name_format])            | Gives every lambda of `objs` a name that is the same on every rerun of the app.   |
-| [`signature_defaults`](#streamlitfront.util.signature_defaults)(sig)                          | Return `sig.defaults` without the params whose default is `i2`'s `NotSet`.        |
-| `unnamed_page`()                                                                                  |                                                                                   |
+| [`attr_or_key`](#streamlitfront.util.attr_or_key)(obj, k)                              | Get data for `k` by doing obj.k, or obj[k] if k not an attribute of obj                                                                                            |
+|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [`attr_or_key_with_dotpaths`](#streamlitfront.util.attr_or_key_with_dotpaths)(obj, k)                | Get k-data from obj hwere k is a path of keys and attributes leading to the data.                                                                                  |
+| [`build_element_commands`](#streamlitfront.util.build_element_commands)(name, inferred_type, ...) | Build the element factory for each argument to allow for user input                                                                                                |
+| [`build_element_factory`](#streamlitfront.util.build_element_factory)(name, inferred_type, ...)  | Build the element factory for each argument to allow for user input                                                                                                |
+| [`build_element_factory_helper`](#streamlitfront.util.build_element_factory_helper)(...)                | Helper to build the element factory for VP and VK arguments                                                                                                        |
+| [`build_factory`](#streamlitfront.util.build_factory)(element_factory, kind, idx)        | Build the factory for user input for VP and VK inputs                                                                                                              |
+| [`func_name`](#streamlitfront.util.func_name)(func)                                  | The func._\_name_\_ of a callable func, or makes and returns one if that fails.                                                                                    |
+| [`incremental_str_maker`](#streamlitfront.util.incremental_str_maker)([str_format])              | Make a function that will produce a (incrementally) new string at every call.                                                                                      |
+| [`name_lambdas`](#streamlitfront.util.name_lambdas)(objs, \*[, name_format])            | Gives every lambda (and every callable whose name resolves to `<lambda>`, such as a `functools.partial` of one) a name that is the same on every rerun of the app. |
+| [`signature_defaults`](#streamlitfront.util.signature_defaults)(sig)                          | Return `sig.defaults` without the params whose default is `i2`'s `NotSet`.                                                                                         |
+| `unnamed_page`()                                                                                  |                                                                                                                                                                    |
 
 ### Classes
 
@@ -176,18 +176,21 @@ Make a function that will produce a (incrementally) new string at every call.
 
 ### streamlitfront.util.name_lambdas(objs, , name_format='lambda_{:d}')
 
-Gives every lambda of `objs` a name that is the same on every rerun of the app.
+Gives every lambda (and every callable whose name resolves to `<lambda>`,
+such as a `functools.partial` of one) a name that is the same on every rerun
+of the app.
 
 Streamlit reruns the script at every interaction, building the lambdas anew each
 time. A counter-made name (front’s `UnnamedObjectNNN`) is then different on each
 run, so the widgets’ state keys no longer match and a lambda’s input and output
-vanish. Here a lambda is named after its rank among the lambdas of `objs`.
-(A lambda is renamed in place, as front does.)
+vanish. Here such an object is named after its rank among the lambdas of `objs`.
+(The object is renamed in place, as front does.)
 
 ```pycon
+>>> from functools import partial
 >>> def h(c): return c
 >>> def mk_objs():  # (what a rerun of the script does)
-...     return [lambda a: a, h, lambda b: b]
+...     return [lambda a: a, h, partial(lambda b, k=1: b, k=2)]
 >>> [o.__name__ for o in name_lambdas(mk_objs())]
 ['lambda_1', 'h', 'lambda_2']
 >>> [o.__name__ for o in name_lambdas(mk_objs())]

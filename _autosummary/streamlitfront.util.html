@@ -178,7 +178,7 @@ data-aria-dark="Switch to auto color mode">
 <td><p>Make a function that will produce a (incrementally) new string at every call.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.util.name_lambdas" title="streamlitfront.util.name_lambdas"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name_lambdas</span></code></a>(objs, *[, name_format])</p></td>
-<td><p>Gives every lambda of <code class="docutils literal notranslate"><span class="pre">objs</span></code> a name that is the same on every rerun of the app.</p></td>
+<td><p>Gives every lambda (and every callable whose name resolves to <code class="docutils literal notranslate"><span class="pre">&lt;lambda&gt;</span></code>, such as a <code class="docutils literal notranslate"><span class="pre">functools.partial</span></code> of one) a name that is the same on every rerun of the app.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.util.signature_defaults" title="streamlitfront.util.signature_defaults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signature_defaults</span></code></a>(sig)</p></td>
 <td><p>Return <code class="docutils literal notranslate"><span class="pre">sig.defaults</span></code> without the params whose default is <code class="docutils literal notranslate"><span class="pre">i2</span></code>'s <code class="docutils literal notranslate"><span class="pre">NotSet</span></code>.</p></td>
@@ -367,19 +367,22 @@ To make one, it calls unamed_func_name which produces incremental names to reduc
 <dl class="py function">
 <dt class="sig sig-object py" id="streamlitfront.util.name_lambdas">
 <span class="sig-prename descclassname"><span class="pre">streamlitfront.util.</span></span><span class="sig-name descname"><span class="pre">name_lambdas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objs</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lambda_{:d}'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/util.html#name_lambdas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.util.name_lambdas" title="Link to this definition">#</a></dt>
-<dd><p>Gives every lambda of <code class="docutils literal notranslate"><span class="pre">objs</span></code> a name that is the same on every rerun of the app.</p>
+<dd><p>Gives every lambda (and every callable whose name resolves to <code class="docutils literal notranslate"><span class="pre">&lt;lambda&gt;</span></code>,
+such as a <code class="docutils literal notranslate"><span class="pre">functools.partial</span></code> of one) a name that is the same on every rerun
+of the app.</p>
 <p>Streamlit reruns the script at every interaction, building the lambdas anew each
 time. A counter-made name (front’s <code class="docutils literal notranslate"><span class="pre">UnnamedObjectNNN</span></code>) is then different on each
 run, so the widgets’ state keys no longer match and a lambda’s input and output
-vanish. Here a lambda is named after its rank among the lambdas of <code class="docutils literal notranslate"><span class="pre">objs</span></code>.
-(A lambda is renamed in place, as front does.)</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">h</span><span class="p">(</span><span class="n">c</span><span class="p">):</span> <span class="k">return</span> <span class="n">c</span>
-</span><span data-line="2"><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">mk_objs</span><span class="p">():</span>  <span class="c1"># (what a rerun of the script does)</span>
-</span><span data-line="3"><span class="gp">... </span>    <span class="k">return</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="n">a</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">b</span><span class="p">]</span>
-</span><span data-line="4"><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">name_lambdas</span><span class="p">(</span><span class="n">mk_objs</span><span class="p">())]</span>
-</span><span data-line="5"><span class="go">['lambda_1', 'h', 'lambda_2']</span>
-</span><span data-line="6"><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">name_lambdas</span><span class="p">(</span><span class="n">mk_objs</span><span class="p">())]</span>
-</span><span data-line="7"><span class="go">['lambda_1', 'h', 'lambda_2']</span>
+vanish. Here such an object is named after its rank among the lambdas of <code class="docutils literal notranslate"><span class="pre">objs</span></code>.
+(The object is renamed in place, as front does.)</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+</span><span data-line="2"><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">h</span><span class="p">(</span><span class="n">c</span><span class="p">):</span> <span class="k">return</span> <span class="n">c</span>
+</span><span data-line="3"><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">mk_objs</span><span class="p">():</span>  <span class="c1"># (what a rerun of the script does)</span>
+</span><span data-line="4"><span class="gp">... </span>    <span class="k">return</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="n">a</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">partial</span><span class="p">(</span><span class="k">lambda</span> <span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span> <span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)]</span>
+</span><span data-line="5"><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">name_lambdas</span><span class="p">(</span><span class="n">mk_objs</span><span class="p">())]</span>
+</span><span data-line="6"><span class="go">['lambda_1', 'h', 'lambda_2']</span>
+</span><span data-line="7"><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">name_lambdas</span><span class="p">(</span><span class="n">mk_objs</span><span class="p">())]</span>
+</span><span data-line="8"><span class="go">['lambda_1', 'h', 'lambda_2']</span>
 </span></pre></div>
 </div>
 </dd></dl>
@@ -437,7 +440,7 @@ must not be prefilled with it, nor typed after it.</p>
     </div>
   </div>
 </footer>
-      <script src="../_static/documentation_options.js?v=967b4925"></script>
+      <script src="../_static/documentation_options.js?v=3203cd3c"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>

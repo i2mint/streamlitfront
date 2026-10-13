@@ -1,4 +1,4 @@
-> built 2026-10-13 15:53 UTC from c66d140 (master) · streamlitfront 0.1.40. Details: build_info.json
+> built 2026-10-13 16:08 UTC from fb53aa3 (master) · streamlitfront 0.1.41. Details: build_info.json
 
 # index.html.md
 
@@ -1040,18 +1040,18 @@ Utils
 
 ### Functions
 
-| [`attr_or_key`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.attr_or_key)(obj, k)                              | Get data for `k` by doing obj.k, or obj[k] if k not an attribute of obj           |
-|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| [`attr_or_key_with_dotpaths`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.attr_or_key_with_dotpaths)(obj, k)                | Get k-data from obj hwere k is a path of keys and attributes leading to the data. |
-| [`build_element_commands`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.build_element_commands)(name, inferred_type, ...) | Build the element factory for each argument to allow for user input               |
-| [`build_element_factory`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.build_element_factory)(name, inferred_type, ...)  | Build the element factory for each argument to allow for user input               |
-| [`build_element_factory_helper`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.build_element_factory_helper)(...)                | Helper to build the element factory for VP and VK arguments                       |
-| [`build_factory`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.build_factory)(element_factory, kind, idx)        | Build the factory for user input for VP and VK inputs                             |
-| [`func_name`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.func_name)(func)                                  | The func._\_name_\_ of a callable func, or makes and returns one if that fails.   |
-| [`incremental_str_maker`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.incremental_str_maker)([str_format])              | Make a function that will produce a (incrementally) new string at every call.     |
-| [`name_lambdas`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.name_lambdas)(objs, \*[, name_format])            | Gives every lambda of `objs` a name that is the same on every rerun of the app.   |
-| [`signature_defaults`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.signature_defaults)(sig)                          | Return `sig.defaults` without the params whose default is `i2`'s `NotSet`.        |
-| `unnamed_page`()                                                                                  |                                                                                   |
+| [`attr_or_key`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.attr_or_key)(obj, k)                              | Get data for `k` by doing obj.k, or obj[k] if k not an attribute of obj                                                                                            |
+|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [`attr_or_key_with_dotpaths`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.attr_or_key_with_dotpaths)(obj, k)                | Get k-data from obj hwere k is a path of keys and attributes leading to the data.                                                                                  |
+| [`build_element_commands`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.build_element_commands)(name, inferred_type, ...) | Build the element factory for each argument to allow for user input                                                                                                |
+| [`build_element_factory`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.build_element_factory)(name, inferred_type, ...)  | Build the element factory for each argument to allow for user input                                                                                                |
+| [`build_element_factory_helper`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.build_element_factory_helper)(...)                | Helper to build the element factory for VP and VK arguments                                                                                                        |
+| [`build_factory`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.build_factory)(element_factory, kind, idx)        | Build the factory for user input for VP and VK inputs                                                                                                              |
+| [`func_name`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.func_name)(func)                                  | The func._\_name_\_ of a callable func, or makes and returns one if that fails.                                                                                    |
+| [`incremental_str_maker`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.incremental_str_maker)([str_format])              | Make a function that will produce a (incrementally) new string at every call.                                                                                      |
+| [`name_lambdas`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.name_lambdas)(objs, \*[, name_format])            | Gives every lambda (and every callable whose name resolves to `<lambda>`, such as a `functools.partial` of one) a name that is the same on every rerun of the app. |
+| [`signature_defaults`](_autosummary/streamlitfront.util.html.md#streamlitfront.util.signature_defaults)(sig)                          | Return `sig.defaults` without the params whose default is `i2`'s `NotSet`.                                                                                         |
+| `unnamed_page`()                                                                                  |                                                                                                                                                                    |
 
 ### Classes
 
@@ -1212,18 +1212,21 @@ Make a function that will produce a (incrementally) new string at every call.
 
 ### streamlitfront.util.name_lambdas(objs, , name_format='lambda_{:d}')
 
-Gives every lambda of `objs` a name that is the same on every rerun of the app.
+Gives every lambda (and every callable whose name resolves to `<lambda>`,
+such as a `functools.partial` of one) a name that is the same on every rerun
+of the app.
 
 Streamlit reruns the script at every interaction, building the lambdas anew each
 time. A counter-made name (front’s `UnnamedObjectNNN`) is then different on each
 run, so the widgets’ state keys no longer match and a lambda’s input and output
-vanish. Here a lambda is named after its rank among the lambdas of `objs`.
-(A lambda is renamed in place, as front does.)
+vanish. Here such an object is named after its rank among the lambdas of `objs`.
+(The object is renamed in place, as front does.)
 
 ```pycon
+>>> from functools import partial
 >>> def h(c): return c
 >>> def mk_objs():  # (what a rerun of the script does)
-...     return [lambda a: a, h, lambda b: b]
+...     return [lambda a: a, h, partial(lambda b, k=1: b, k=2)]
 >>> [o.__name__ for o in name_lambdas(mk_objs())]
 ['lambda_1', 'h', 'lambda_2']
 >>> [o.__name__ for o in name_lambdas(mk_objs())]
@@ -1254,18 +1257,16 @@ must not be prefilled with it, nor typed after it.
 
 # About this build
 
-This documentation was built on **2026-10-13 15:53 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/c66d14043ea7251ac389b70b786ba4c92551d112"><code>c66d140</code></a> on branch <code>master</code>, for **streamlitfront 0.1.40** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-10-13 16:08 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/fb53aa36161e8cb63ea670dd04251086047f475f"><code>fb53aa3</code></a> on branch <code>master</code>, for **streamlitfront 0.1.41** (from <code>pyproject.toml</code>).
 
-#### WARNING
-The documentation and the package may be misaligned:
-
-- The documented version (0.1.40) is behind the latest release on PyPI (0.1.41): `pip install streamlitfront` gives newer code than these docs describe.
+#### NOTE
+Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
 
 ## Source
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/c66d14043ea7251ac389b70b786ba4c92551d112"><code>c66d14043ea7251ac389b70b786ba4c92551d112</code></a> |
+| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/fb53aa36161e8cb63ea670dd04251086047f475f"><code>fb53aa36161e8cb63ea670dd04251086047f475f</code></a> |
 | Branch              | <code>master</code>                                                                                                                                          |
 | Tags at this commit | none                                                                                                                                                         |
 | Working tree        | clean                                                                                                                                                        |
@@ -1276,15 +1277,15 @@ The documentation and the package may be misaligned:
 |              |                                                                                             |
 |--------------|---------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/streamlitfront</code>                                                          |
-| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/38425561271">38425561271</a> |
+| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/38427766429">38427766429</a> |
 | Ref          | <code>refs/heads/master</code>                                                              |
-| Event commit | <code>c66d14043ea7251ac389b70b786ba4c92551d112</code> (in the history of the built commit)  |
+| Event commit | <code>fb53aa36161e8cb63ea670dd04251086047f475f</code> (in the history of the built commit)  |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.16  |
+| epythet  | 0.2.17  |
 | Sphinx   | 9.1.0   |
 | docutils | 0.22.4  |
 | Python   | 3.12.15 |
@@ -1303,14 +1304,14 @@ The documentation and the package may be misaligned:
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.41/">0.1.41</a>, newer than the documented version (0.1.40).
+Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.41/">0.1.41</a>, the same as the documented version.
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/streamlitfront && cd streamlitfront
-git checkout c66d14043ea7251ac389b70b786ba4c92551d112
-pip install "epythet==0.2.16"
+git checkout fb53aa36161e8cb63ea670dd04251086047f475f
+pip install "epythet==0.2.17"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 
