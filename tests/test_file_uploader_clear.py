@@ -14,7 +14,7 @@ from streamlitfront import mk_app
 from streamlitfront.elements import FileUploader, MultiSourceInput, TextOutput
 
 def count_bytes(data: list) -> int:
-    if not data:
+    if not data or not sum(len(f.getvalue()) for f in data):
         raise ValueError("no data")
     st.info("drawn by the function")
     return sum(len(f.getvalue()) for f in data)
@@ -87,9 +87,13 @@ def test_clear_after_submit_false_keeps_the_selection():
 
 
 def test_failed_submit_keeps_the_selection():
-    """The function raises on empty data; nothing was submitted, so nothing is cleared."""
+    """A submit whose function raises submitted nothing, so nothing is cleared."""
     at = _run_app()
     at.button[0].click().run()
     assert at.exception  # ValueError from the function propagates, as before
-    at.file_uploader[0].upload("a.txt", b"").run()
+    at = _run_app()
+    at.file_uploader[0].upload("a.txt", b"").run()  # selected, but empty: it raises
+    assert _names(at) == ["a.txt"]
+    at.button[0].click().run()
+    assert at.exception
     assert _names(at) == ["a.txt"]
