@@ -1,32 +1,32 @@
 {
   "schema_version": 1,
-  "built_at": "2026-10-13T16:26:16Z",
+  "built_at": "2026-10-13T23:55:54Z",
   "package": {
     "name": "streamlitfront",
-    "version": "0.1.42",
+    "version": "0.1.43",
     "display_name": "streamlitfront",
     "source": "pyproject.toml"
   },
   "git": {
     "available": true,
-    "commit": "0aedb7b486de8f1f36ec2dea05b25e1afdf26495",
-    "short_commit": "0aedb7b",
+    "commit": "ae3eecffe106f2a56be97188cff668abefc5ae56",
+    "short_commit": "ae3eecf",
     "branch": "master",
     "tags": [],
     "dirty": false,
     "remote_url": "https://github.com/i2mint/streamlitfront",
-    "commit_url": "https://github.com/i2mint/streamlitfront/commit/0aedb7b486de8f1f36ec2dea05b25e1afdf26495",
+    "commit_url": "https://github.com/i2mint/streamlitfront/commit/ae3eecffe106f2a56be97188cff668abefc5ae56",
     "error": null
   },
   "ci": {
     "provider": "github",
     "repository": "i2mint/streamlitfront",
-    "sha": "0aedb7b486de8f1f36ec2dea05b25e1afdf26495",
+    "sha": "ae3eecffe106f2a56be97188cff668abefc5ae56",
     "sha_in_history": true,
     "ref": "refs/heads/master",
     "ref_name": "master",
-    "run_id": "38430164866",
-    "run_url": "https://github.com/i2mint/streamlitfront/actions/runs/38430164866",
+    "run_id": "38486999038",
+    "run_url": "https://github.com/i2mint/streamlitfront/actions/runs/38486999038",
     "server_url": "https://github.com"
   },
   "tools": {
@@ -60,16 +60,16 @@
   },
   "pypi": {
     "checked": true,
-    "latest": "0.1.43",
+    "latest": "0.1.44",
     "relation": "behind",
     "error": null
   },
-  "reproduce": "git clone https://github.com/i2mint/streamlitfront && cd streamlitfront\ngit checkout 0aedb7b486de8f1f36ec2dea05b25e1afdf26495\npip install \"epythet==0.2.17\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "reproduce": "git clone https://github.com/i2mint/streamlitfront && cd streamlitfront\ngit checkout ae3eecffe106f2a56be97188cff668abefc5ae56\npip install \"epythet==0.2.17\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
   "warnings": [],
   "alignment": {
     "aligned": false,
     "notes": [
-      "The documented version (0.1.42) is behind the latest release on PyPI (0.1.43): `pip install streamlitfront` gives newer code than these docs describe."
+      "The documented version (0.1.43) is behind the latest release on PyPI (0.1.44): `pip install streamlitfront` gives newer code than these docs describe."
     ]
   }
 }
