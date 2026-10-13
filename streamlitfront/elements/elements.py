@@ -183,12 +183,26 @@ class ExecSection(ExecContainerBase):
             self._render_section_content()
 
     def _render_section_content(self):
+        # Only the uploaders drawn in *this* run have a slot to redraw into.
+        for uploader in _file_uploaders(self.children):
+            uploader._slot = None
         inputs = self._render_inputs()
         if self.auto_submit or st.button(self.submit_button_label):
             try:
                 self._submit(inputs)
             except ValidationError as e:
                 st.error(e)
+
+    def _submit(self, inputs):
+        super()._submit(inputs)
+        if not self.auto_submit:
+            self._clear_file_uploaders()
+
+    def _clear_file_uploaders(self):
+        """Empty the file uploaders that asked for it."""
+        for uploader in _file_uploaders(self.children):
+            if getattr(uploader, "clear_after_submit", True):
+                uploader.clear()
 
     def _noneable(self, input_instance: InputBase) -> InputBase:
         # input_render = input_instance.render
@@ -262,14 +276,55 @@ Radio = implement_input_component(SelectorBase, st.radio, options="_options")
 class FileUploader(FileUploaderBase):
     display_label: bool = True
 
-    def render(self):
-        label_visibility = "visible" if self.display_label else "collapsed"
+    @property
+    def _generation_key(self) -> str:
+        return self._build_key(f"{self.name}_upload_generation")
+
+    def clear(self):
+        """Empty the uploader, now and on the following runs.
+
+        Streamlit keeps an uploader's files for as long as its widget key lives and
+        offers no other way to empty it. So: move to a new key, and draw a fresh
+        uploader in the slot of the old one right away, so that this run's output and
+        everything else drawn stay in place (no rerun).
+        """
+        self._generation += 1
+        slot = getattr(self, "_slot", None)
+        if slot is not None:
+            with slot:
+                self._file_uploader()
+
+    @property
+    def _generation(self) -> int:
+        return st.session_state.get(self._generation_key, 0)
+
+    @_generation.setter
+    def _generation(self, value: int):
+        st.session_state[self._generation_key] = value
+
+    def _file_uploader(self):
         return st.file_uploader(
             label=self.name,
-            label_visibility=label_visibility,
+            label_visibility="visible" if self.display_label else "collapsed",
             type=self.type,
             accept_multiple_files=self.accept_multiple_files,
+            key=f"{self.view_key}_{self.name}_{self._generation}",
         )
+
+    def render(self):
+        self._slot = st.empty()
+        with self._slot:
+            return self._file_uploader()
+
+
+def _file_uploaders(components) -> Iterable[FileUploader]:
+    """The ``FileUploader`` inputs among ``components`` (looking inside multi-source
+    inputs)."""
+    for component in components:
+        if isinstance(component, MultiSourceInputBase):
+            yield from _file_uploaders(component.input_components)
+        elif isinstance(component, FileUploader):
+            yield component
 
 
 class AudioRecorder(InputBase):

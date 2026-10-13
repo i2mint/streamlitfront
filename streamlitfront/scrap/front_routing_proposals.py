@@ -1,6 +1,4 @@
-"""Tools made with streamlitfront
-
-"""
+"""Tools made with streamlitfront"""
 
 from typing import Tuple, KT, VT
 from collections.abc import Iterable, Callable
@@ -26,9 +24,9 @@ def first_element_matching_type(obj, types):
     # else return None
 
 
-OBJECT = 'OBJECT'
-NAME_OF_OBJ = 'NAME_OF_OBJ'
-SUBTYPE = 'SUBTYPE'
+OBJECT = "OBJECT"
+NAME_OF_OBJ = "NAME_OF_OBJ"
+SUBTYPE = "SUBTYPE"
 
 
 # TODO: Finish. Intened to be used with _find_render_keys function that handles a
@@ -57,6 +55,7 @@ SUBTYPE = 'SUBTYPE'
 #             raise ValueError(
 #                 f"Object couldn't be mapped to a render_keys key: {obj}"
 #             )
+
 
 # TODO: Extract routing logic (the if/elifs) and expose control to interface
 def _find_render_keys(objs, render_keys: dict):
@@ -147,8 +146,8 @@ def alt_mk_render_keys(objs, render_keys, resolver: Callable):
 from typing import TypeVar, Tuple
 from collections.abc import Iterable, Callable
 
-Obj = TypeVar('Obj')
-Output = TypeVar('Output')
+Obj = TypeVar("Obj")
+Output = TypeVar("Output")
 Cond = Callable[[Obj], bool]
 Then = Callable[[Obj], Output]
 Rule = tuple[Cond, Then]
@@ -167,6 +166,7 @@ find_render_keys = partial(map, singular_find_render_keys)  # apply to iterable
 
 # -----------------------------------------------------------------------------
 # Say we want to make a function like the following have a plugin architecture
+
 
 # TODO: Extract routing logic (the if/elifs) and expose control to interface
 def target_render_keys_func(obj, render_keys):
@@ -292,9 +292,7 @@ def if_feature_then_feature_and_obj(feature, cond, then, obj):
 
 
 def rule_applier(obj, rules, render_keys, sentinel=None):
-    """Applies rules to obj and returns the first non-sentinel value
-
-    """
+    """Applies rules to obj and returns the first non-sentinel value"""
     for rule in rules:
         if (result := rule(obj, render_keys)) is not sentinel:
             return result

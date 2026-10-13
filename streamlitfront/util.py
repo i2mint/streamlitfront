@@ -76,7 +76,8 @@ unnamed_page = incremental_str_maker(str_format="UnnamedPage{:03.0f}")
 
 def func_name(func):
     """The func.__name__ of a callable func, or makes and returns one if that fails.
-    To make one, it calls unamed_func_name which produces incremental names to reduce the chances of clashing"""
+    To make one, it calls unamed_func_name which produces incremental names to reduce the chances of clashing
+    """
     name = name_of_obj(func)
     if name is None or name == "<lambda>":
         return unnamed_page()

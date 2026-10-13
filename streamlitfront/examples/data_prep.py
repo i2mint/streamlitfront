@@ -36,23 +36,23 @@ if not b.mall():
     )
 mall = b.mall()
 if not b.selected_step_factory():
-    b.selected_step_factory = 'files_of_folder'
+    b.selected_step_factory = "files_of_folder"
 
 crudifier = partial(Crudifier, mall=mall)
 
 
-@crudifier(param_to_mall_map=dict(step_factory='step_factories'), output_store='steps')
+@crudifier(param_to_mall_map=dict(step_factory="step_factories"), output_store="steps")
 def mk_step(step_factory: Callable, kwargs: dict):
     return partial(step_factory, **kwargs)
 
 
-@crudifier(output_store='pipelines')
+@crudifier(output_store="pipelines")
 def mk_pipeline(steps: Iterable[Callable]):
     return Pipe(*steps)
 
 
 @crudifier(
-    param_to_mall_map=dict(pipeline='pipelines'),
+    param_to_mall_map=dict(pipeline="pipelines"),
     # output_store='exec_outputs'
 )
 def exec_pipeline(pipeline: Callable, kwargs):
@@ -60,68 +60,68 @@ def exec_pipeline(pipeline: Callable, kwargs):
 
 
 def get_step_name(step):
-    return [k for k, v in mall['steps'].items() if v == step][0]
+    return [k for k, v in mall["steps"].items() if v == step][0]
 
 
 def get_selected_pipeline_sig():
     if not b.selected_pipeline():
         return Sig()
-    return Sig(mall['pipelines'][b.selected_pipeline()])
+    return Sig(mall["pipelines"][b.selected_pipeline()])
 
 
 config = {
-    APP_KEY: {'title': 'Data Preparation'},
+    APP_KEY: {"title": "Data Preparation"},
     RENDERING_KEY: {
-        'mk_step': {
-            NAME_KEY: 'Pipeline Step Maker',
-            'execution': {
-                'inputs': {
-                    'step_factory': {
+        "mk_step": {
+            NAME_KEY: "Pipeline Step Maker",
+            "execution": {
+                "inputs": {
+                    "step_factory": {
                         ELEMENT_KEY: SelectBox,
-                        'options': mall['step_factories'],
-                        'value': b.selected_step_factory,
+                        "options": mall["step_factories"],
+                        "value": b.selected_step_factory,
                     },
-                    'kwargs': {
+                    "kwargs": {
                         ELEMENT_KEY: KwargsInput,
-                        'func_sig': Sig(
-                            mall['step_factories'][b.selected_step_factory()]
+                        "func_sig": Sig(
+                            mall["step_factories"][b.selected_step_factory()]
                         ),
                     },
                 },
-                'output': {
+                "output": {
                     ELEMENT_KEY: SuccessNotification,
-                    'message': 'The step has been created successfully.',
+                    "message": "The step has been created successfully.",
                 },
             },
         },
-        'mk_pipeline': {
-            NAME_KEY: 'Pipeline Maker',
-            'execution': {
-                'inputs': {
-                    'steps': {
+        "mk_pipeline": {
+            NAME_KEY: "Pipeline Maker",
+            "execution": {
+                "inputs": {
+                    "steps": {
                         ELEMENT_KEY: PipelineMaker,
-                        'items': list(mall['steps'].values()),
-                        'serializer': get_step_name,
+                        "items": list(mall["steps"].values()),
+                        "serializer": get_step_name,
                     },
                 },
-                'output': {
+                "output": {
                     ELEMENT_KEY: SuccessNotification,
-                    'message': 'The pipeline has been created successfully.',
+                    "message": "The pipeline has been created successfully.",
                 },
             },
         },
-        'exec_pipeline': {
-            NAME_KEY: 'Pipeline Executor',
-            'execution': {
-                'inputs': {
-                    'pipeline': {
+        "exec_pipeline": {
+            NAME_KEY: "Pipeline Executor",
+            "execution": {
+                "inputs": {
+                    "pipeline": {
                         ELEMENT_KEY: SelectBox,
-                        'options': mall['pipelines'],
-                        'value': b.selected_pipeline,
+                        "options": mall["pipelines"],
+                        "value": b.selected_pipeline,
                     },
-                    'kwargs': {
+                    "kwargs": {
                         ELEMENT_KEY: KwargsInput,
-                        'func_sig': get_selected_pipeline_sig(),
+                        "func_sig": get_selected_pipeline_sig(),
                     },
                 }
             },
@@ -129,7 +129,7 @@ config = {
     },
 }
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     funcs = [mk_step, mk_pipeline, exec_pipeline]
     app = mk_app(funcs, config=config)
     app()

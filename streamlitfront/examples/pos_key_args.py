@@ -13,29 +13,29 @@ def add_floats(*nums_to_add: Iterable[float]):
 
 
 def add_strs(*strs_to_add: Iterable[str]):
-    return ' '.join(strs_to_add)
+    return " ".join(strs_to_add)
 
 
 def add_bools(*bools_to_add: Iterable[bool]):
     return sum(list(map(int, bools_to_add)))
 
 
-def make_a_table_of_ints(col_name: str = 'integers', **keys_and_values: dict[str, int]):
+def make_a_table_of_ints(col_name: str = "integers", **keys_and_values: dict[str, int]):
     return pd.Series(data=keys_and_values, name=col_name)
 
 
 def make_a_table_of_floats(
-    col_name: str = 'floats', **keys_and_values: dict[str, float]
+    col_name: str = "floats", **keys_and_values: dict[str, float]
 ):
     return pd.Series(data=keys_and_values, name=col_name)
 
 
-def make_a_table_of_strs(col_name: str = 'strings', **keys_and_values: dict[str, str]):
+def make_a_table_of_strs(col_name: str = "strings", **keys_and_values: dict[str, str]):
     return pd.Series(data=keys_and_values, name=col_name)
 
 
 def make_a_table_of_bools(
-    col_name: str = 'booleans', **keys_and_values: dict[str, bool]
+    col_name: str = "booleans", **keys_and_values: dict[str, bool]
 ):
     return pd.Series(data=keys_and_values, name=col_name)
 
@@ -51,12 +51,12 @@ funcs = [
     make_a_table_of_bools,
 ]
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from streamlitfront.base import dispatch_funcs
     from streamlitfront.page_funcs import ArgsPageFunc
 
-    print(f'file: {os.path.realpath(__file__)}')
+    print(f"file: {os.path.realpath(__file__)}")
 
-    app = dispatch_funcs(funcs, configs={'page_factory': ArgsPageFunc})
+    app = dispatch_funcs(funcs, configs={"page_factory": ArgsPageFunc})
 
     app()
