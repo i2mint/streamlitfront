@@ -16,6 +16,7 @@ from streamlitfront.spec_maker import SpecMaker
 from streamlitfront.session_state import get_state, _SessionState
 from streamlitfront.util import (
     func_name,
+    name_lambdas,
     build_element_factory,
     signature_defaults,
 )
@@ -561,5 +562,7 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     configuration. See above for more details.
     :type objs: Map
     """
+    if not isinstance(objs, Mapping):
+        objs = name_lambdas(list(objs))  # stable names: the script reruns on every click
     app_maker = AppMaker(spec_maker_factory=SpecMaker)
     return app_maker.mk_app(objs, config, convention)
