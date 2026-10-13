@@ -85,14 +85,14 @@ def func_name(func):
 
 
 def name_lambdas(objs, *, name_format="lambda_{:d}"):
-    """Gives every lambda, and any other callable without a name, a name that is the
-    same on every rerun of the app.
+    """Gives every lambda (and every callable whose name resolves to ``<lambda>``,
+    such as a ``functools.partial`` of one) a name that is the same on every rerun
+    of the app.
 
     Streamlit reruns the script at every interaction, building the lambdas anew each
     time. A counter-made name (front's ``UnnamedObjectNNN``) is then different on each
     run, so the widgets' state keys no longer match and a lambda's input and output
-    vanish. Here such an object (a lambda, or for example a ``functools.partial`` of a
-    lambda) is named after its rank among the nameless objects of ``objs``.
+    vanish. Here such an object is named after its rank among the lambdas of ``objs``.
     (The object is renamed in place, as front does.)
 
     >>> from functools import partial
