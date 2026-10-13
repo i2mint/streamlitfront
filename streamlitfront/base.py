@@ -563,6 +563,8 @@ def mk_app(objs: Iterable, config: Map = None, convention: Map = None):
     :type objs: Map
     """
     if not isinstance(objs, Mapping):
-        objs = name_lambdas(list(objs))  # stable names: the script reruns on every click
+        objs = name_lambdas(
+            list(objs)
+        )  # stable names: the script reruns on every click
     app_maker = AppMaker(spec_maker_factory=SpecMaker)
     return app_maker.mk_app(objs, config, convention)
