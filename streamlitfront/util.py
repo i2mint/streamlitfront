@@ -84,6 +84,35 @@ def func_name(func):
     return name
 
 
+def name_lambdas(objs, *, name_format="lambda_{:d}"):
+    """Gives every lambda of ``objs`` a name that is the same on every rerun of the app.
+
+    Streamlit reruns the script at every interaction, building the lambdas anew each
+    time. A counter-made name (front's ``UnnamedObjectNNN``) is then different on each
+    run, so the widgets' state keys no longer match and a lambda's input and output
+    vanish. Here a lambda is named after its rank among the lambdas of ``objs``.
+    (A lambda is renamed in place, as front does.)
+
+    >>> def h(c): return c
+    >>> def mk_objs():  # (what a rerun of the script does)
+    ...     return [lambda a: a, h, lambda b: b]
+    >>> [o.__name__ for o in name_lambdas(mk_objs())]
+    ['lambda_1', 'h', 'lambda_2']
+    >>> [o.__name__ for o in name_lambdas(mk_objs())]
+    ['lambda_1', 'h', 'lambda_2']
+    """
+    taken = {getattr(o, "__name__", None) for o in objs}
+    rank = 0
+    for obj in objs:
+        if getattr(obj, "__name__", None) == "<lambda>":
+            rank += 1
+            while (name := name_format.format(rank)) in taken:
+                rank += 1
+            obj.__name__ = name
+            taken.add(name)
+    return objs
+
+
 class Objdict(dict):
     """A dict, whose keys can be access as if they were attributes.
 
