@@ -1,5 +1,6 @@
 """Utils"""
 
+import functools
 from functools import partial
 from typing import TypeVar, Dict
 from collections.abc import Iterable
@@ -93,7 +94,8 @@ def name_lambdas(objs, *, name_format="lambda_{:d}"):
     time. A counter-made name (front's ``UnnamedObjectNNN``) is then different on each
     run, so the widgets' state keys no longer match and a lambda's input and output
     vanish. Here such an object is named after its rank among the lambdas of ``objs``.
-    (The object is renamed in place, as front does.)
+    (The object is renamed in place, as front does, when it allows it; otherwise, e.g. a
+    bound method, it is replaced by a named wrapper. Use the returned list.)
 
     >>> from functools import partial
     >>> def h(c): return c
@@ -107,14 +109,43 @@ def name_lambdas(objs, *, name_format="lambda_{:d}"):
     names = [name_of_obj(o) for o in objs]
     taken = {n for n in names if isinstance(n, str) and n != "<lambda>"}
     rank = 0
+    result = []
     for obj, name in zip(objs, names):
         if name is None or name == "<lambda>":
             rank += 1
             while (new_name := name_format.format(rank)) in taken:
                 rank += 1
-            obj.__name__ = new_name
+            obj = _rename(obj, new_name)
             taken.add(new_name)
-    return objs
+        result.append(obj)
+    return result
+
+
+def _rename(obj, name):
+    """``obj`` named ``name``: renamed in place if it allows it, else a wrapper of it.
+
+    A bound method (``C().meth`` where ``meth`` is a class-level lambda) can't have its
+    ``__name__`` set, and setting it on ``__func__`` would rename the class's function for
+    every instance. So such an object is wrapped, keeping its signature and docs.
+
+    >>> class C:
+    ...     meth = lambda self, x: x
+    >>> c = C()
+    >>> m = _rename(c.meth, 'lambda_1')
+    >>> m.__name__, m(3), m is c.meth, C.meth.__name__
+    ('lambda_1', 3, False, '<lambda>')
+    """
+    try:
+        obj.__name__ = name
+        return obj
+    except (AttributeError, TypeError):
+
+        @functools.wraps(obj)
+        def named(*args, **kwargs):
+            return obj(*args, **kwargs)
+
+        named.__name__ = named.__qualname__ = name
+        return named
 
 
 class Objdict(dict):

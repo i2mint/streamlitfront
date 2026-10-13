@@ -41,3 +41,20 @@ def test_partial_of_a_lambda_has_a_stable_name_across_reruns():
         return [o.__name__ for o in name_lambdas(objs)]
 
     assert run() == run() == ["lambda_1", "lambda_2", "lambda_3"]
+
+
+def test_bound_method_of_a_class_level_lambda_gets_a_stable_name():
+    from streamlitfront.util import name_lambdas
+
+    class C:
+        meth = lambda self, x: x  # noqa: E731
+
+    def run():
+        c = C()
+        return name_lambdas([c.meth, lambda: 1])
+
+    named = run()
+    assert [o.__name__ for o in named] == ["lambda_1", "lambda_2"]
+    assert [o.__name__ for o in run()] == ["lambda_1", "lambda_2"]
+    assert named[0](5) == 5
+    assert C.meth.__name__ == "<lambda>"  # the class's function is left alone
