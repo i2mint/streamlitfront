@@ -11,7 +11,6 @@ from streamlit.testing.v1 import AppTest
 
 from streamlitfront.pydantic_widgets import _unwrap_optional
 
-
 # ----------------------------------------------------------------------------
 # Pure-helper unit tests
 

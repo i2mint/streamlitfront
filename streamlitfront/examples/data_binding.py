@@ -29,26 +29,25 @@ from front.data_binding import ValueNotSet
 from streamlitfront import mk_app, binder as b
 from streamlitfront.elements import SelectBox
 
-
 data = {
-    'Pink Floyd': {
-        'David Gilmour': 'Guitar',
-        'Roger Waters': 'Bass Guitar',
-        'Syd Barrett': 'Guitar',
-        'Richard Wright': 'Keyboards',
-        'Nick Mason': 'Drums',
+    "Pink Floyd": {
+        "David Gilmour": "Guitar",
+        "Roger Waters": "Bass Guitar",
+        "Syd Barrett": "Guitar",
+        "Richard Wright": "Keyboards",
+        "Nick Mason": "Drums",
     },
-    'The Doors': {
-        'Jim Morrison': 'Lead vocalist',
-        'Ray Manzarek': 'Keyboards',
-        'Robby Krieger': 'Guitar',
-        'John Densmore': 'Drums',
+    "The Doors": {
+        "Jim Morrison": "Lead vocalist",
+        "Ray Manzarek": "Keyboards",
+        "Robby Krieger": "Guitar",
+        "John Densmore": "Drums",
     },
-    'The Beatles': {
-        'John Lennon': 'Guitar',
-        'Paul McCartney': 'Bass Guitar',
-        'George Harrison': 'Guitar',
-        'Ringo Starr': 'Drums',
+    "The Beatles": {
+        "John Lennon": "Guitar",
+        "Paul McCartney": "Bass Guitar",
+        "George Harrison": "Guitar",
+        "Ringo Starr": "Drums",
     },
 }
 
@@ -69,7 +68,7 @@ def get_instrument_from_member_only(member: str):
 
 def get_members_from_instrument(instrument: str):
     return [
-        f'{m} ({band})'
+        f"{m} ({band})"
         for band, members in data.items()
         for m, i in members.items()
         if i == instrument
@@ -98,7 +97,7 @@ def init_selected():
         on_select_band(band)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     init_selected()
 
     app = mk_app(
@@ -108,42 +107,42 @@ if __name__ == '__main__':
             get_members_from_instrument,
         ],
         config={
-            APP_KEY: {'title': 'Data Binding'},
+            APP_KEY: {"title": "Data Binding"},
             # OBJ_KEY: {'trans': crudify},
             RENDERING_KEY: {
-                'get_instrument_from_band_and_member': {
-                    NAME_KEY: 'From an input to another',
-                    'description': {
-                        'content': 'Select a band and see how the list of members is updated.'
+                "get_instrument_from_band_and_member": {
+                    NAME_KEY: "From an input to another",
+                    "description": {
+                        "content": "Select a band and see how the list of members is updated."
                     },
-                    'execution': {'on_submit': set_output_instrument},
+                    "execution": {"on_submit": set_output_instrument},
                 },
-                'get_instrument_from_member_only': {
-                    NAME_KEY: 'From a screen to another',
-                    'description': {
-                        'content': 'Select a band from the previous page ("From an input to another") and see how the list of members (of this page) is updated.'
+                "get_instrument_from_member_only": {
+                    NAME_KEY: "From a screen to another",
+                    "description": {
+                        "content": 'Select a band from the previous page ("From an input to another") and see how the list of members (of this page) is updated.'
                     },
-                    'execution': {'on_submit': set_output_instrument},
+                    "execution": {"on_submit": set_output_instrument},
                 },
-                'get_members_from_instrument': {
-                    NAME_KEY: 'From an output to an input',
-                    'description': {
-                        'content': 'Submit any other screen and see that the output is automatically selected from the "Instrument" select box.'
+                "get_members_from_instrument": {
+                    NAME_KEY: "From an output to an input",
+                    "description": {
+                        "content": 'Submit any other screen and see that the output is automatically selected from the "Instrument" select box.'
                     },
                 },
                 Callable: {
-                    'execution': {
-                        'inputs': {
+                    "execution": {
+                        "inputs": {
                             str: {ELEMENT_KEY: SelectBox},
-                            'band': {
-                                'options': list(data),
-                                'value': b.selected_band,
-                                'on_value_change': on_select_band,
+                            "band": {
+                                "options": list(data),
+                                "value": b.selected_band,
+                                "on_value_change": on_select_band,
                             },
-                            'member': {'options': b.members_of_selected_band},
-                            'instrument': {
-                                'options': instruments,
-                                'value': b.output_instrument,
+                            "member": {"options": b.members_of_selected_band},
+                            "instrument": {
+                                "options": instruments,
+                                "value": b.output_instrument,
                             },
                         }
                     }

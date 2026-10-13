@@ -10,7 +10,6 @@ from streamlitfront.elements import (
     MultiSourceInput,
 )
 
-
 WaveForm = Iterable[int]
 
 
@@ -20,24 +19,30 @@ def learn_model(train_audio: WaveForm, raw_audio_learner):
 
 
 config_ = {
-    APP_KEY: {'title': 'Simple Real Audio ML'},
+    APP_KEY: {"title": "Simple Real Audio ML"},
     RENDERING_KEY: {
         DAG: {
-            'description': {'content': 'A very simple learn model example.'},
-            'execution': {
-                'inputs': {
-                    'train_audio': {
+            "description": {"content": "A very simple learn model example."},
+            "execution": {
+                "inputs": {
+                    "train_audio": {
                         ELEMENT_KEY: MultiSourceInput,
-                        'From a file': {ELEMENT_KEY: FileUploader, 'type': 'wav',},
-                        'From the microphone': {ELEMENT_KEY: AudioRecorder},
+                        "From a file": {
+                            ELEMENT_KEY: FileUploader,
+                            "type": "wav",
+                        },
+                        "From the microphone": {ELEMENT_KEY: AudioRecorder},
                     }
                 },
             },
-            'graph': {ELEMENT_KEY: Graph, NAME_KEY: 'Flow',},
+            "graph": {
+                ELEMENT_KEY: Graph,
+                NAME_KEY: "Flow",
+            },
         }
     },
 }
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = mk_app([learn_model], config=config_)
     app()

@@ -81,12 +81,11 @@ class StreamlitRenderers:
 import streamlit as st
 from importlib_resources import files  # importlib.resources once only 3.9+ maintained
 
-
-data_files = files('streamlitfront').joinpath('data')
+data_files = files("streamlitfront").joinpath("data")
 
 
 streamlit_element_func_names = list(
-    filter(None, data_files.joinpath('streamlit_elements.txt').read_text().split('\n'))
+    filter(None, data_files.joinpath("streamlit_elements.txt").read_text().split("\n"))
 )
 
 
@@ -97,7 +96,7 @@ for name in streamlit_element_func_names:
             StreamlitRenderers, name, staticmethod(mk_renderer_factory_for_func(func))
         )
     else:
-        print(f'Missing {name}')
+        print(f"Missing {name}")
     # TODO: Add warning if func missing?
 
 
@@ -126,20 +125,20 @@ def mk_component_base(
     name: str = None,
 ) -> type:
     # TODO: could "camelize" name_of_obj output.
-    name = name or name_of_obj(component_factory) or 'ComponentBase'
+    name = name or name_of_obj(component_factory) or "ComponentBase"
     component_sig = Sig(component_factory)
-    sig: Sig = 'self' + component_sig + Sig(base_cls)
+    sig: Sig = "self" + component_sig + Sig(base_cls)
 
     @sig
     def __init__(*args, **kwargs) -> None:
         kw = sig.map_arguments(args, kwargs, apply_defaults=True)
-        self = kw.pop('self')
+        self = kw.pop("self")
         call_forgivingly(base_cls.__init__, self, **kw)
         for name in component_sig:
             if not hasattr(self, name):
                 setattr(self, name, kw[name])
 
-    return type(name, (base_cls,), {'__init__': __init__, 'render': render})
+    return type(name, (base_cls,), {"__init__": __init__, "render": render})
 
 
 def implement_component_from_factory(
@@ -173,8 +172,8 @@ def test_mk_component_base():
     # InputBase:
     assert sorted(Sig(C).names) == sorted((Sig(st.audio) + Sig(InputBase)).names)
 
-    c = C(1, name='tag')
-    assert (c.data, c.name) == (1, 'tag')
+    c = C(1, name="tag")
+    assert (c.data, c.name) == (1, "tag")
 
 
 def test_implement_component_from_factory():

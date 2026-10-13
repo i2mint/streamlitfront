@@ -18,7 +18,7 @@ def bar(foo_output: float):
     return foo_output * 10
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # param_to_mall_map = dict(a='a', b='b_store')
 
     if not b.mall():
@@ -58,17 +58,19 @@ if __name__ == '__main__':
     app = mk_app(
         [foo, bar],
         config={
-            APP_KEY: {'title': 'Crude App'},
+            APP_KEY: {"title": "Crude App"},
             # OBJ_KEY: {'trans': crudify},
             RENDERING_KEY: {
                 Callable: {
-                    'execution': {
-                        'inputs': {
-                            'save_name': {
+                    "execution": {
+                        "inputs": {
+                            "save_name": {
                                 ELEMENT_KEY: TextInput,
-                                NAME_KEY: 'Save output as',
+                                NAME_KEY: "Save output as",
                             },
-                            str: {ELEMENT_KEY: SelectBox,},
+                            str: {
+                                ELEMENT_KEY: SelectBox,
+                            },
                         }
                     },
                     # 'code': {

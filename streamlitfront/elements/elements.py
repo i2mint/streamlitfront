@@ -183,6 +183,9 @@ class ExecSection(ExecContainerBase):
             self._render_section_content()
 
     def _render_section_content(self):
+        # Only the uploaders drawn in *this* run have a slot to redraw into.
+        for uploader in _file_uploaders(self.children):
+            uploader._slot = None
         inputs = self._render_inputs()
         if self.auto_submit or st.button(self.submit_button_label):
             try:
@@ -198,7 +201,8 @@ class ExecSection(ExecContainerBase):
     def _clear_file_uploaders(self):
         """Empty the file uploaders that asked for it."""
         for uploader in _file_uploaders(self.children):
-            uploader.clear()
+            if getattr(uploader, "clear_after_submit", True):
+                uploader.clear()
 
     def _noneable(self, input_instance: InputBase) -> InputBase:
         # input_render = input_instance.render
@@ -315,13 +319,11 @@ class FileUploader(FileUploaderBase):
 
 def _file_uploaders(components) -> Iterable[FileUploader]:
     """The ``FileUploader`` inputs among ``components`` (looking inside multi-source
-    inputs) that ask to be cleared after a submit."""
+    inputs)."""
     for component in components:
         if isinstance(component, MultiSourceInputBase):
             yield from _file_uploaders(component.input_components)
-        elif isinstance(component, FileUploader) and getattr(
-            component, "clear_after_submit", True
-        ):
+        elif isinstance(component, FileUploader):
             yield component
 
 

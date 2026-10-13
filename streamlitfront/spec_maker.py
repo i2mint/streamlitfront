@@ -27,7 +27,6 @@ from streamlitfront.elements import (
 )
 from streamlitfront.data_binding import BoundData
 
-
 DFLT_CONVENTION_DICT = deep_merge(
     BASE_DFLT_CONVENTION,
     {

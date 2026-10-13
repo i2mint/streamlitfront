@@ -17,7 +17,6 @@ from streamlitfront.util import (
     signature_defaults,
 )
 
-
 # TODO: Extract the page setup (view_title, etc.) and make it injectable.
 
 {int: st.number_input, float: st.number_input, str: st.text_input, bool: st.checkbox}
@@ -206,9 +205,9 @@ class DataBindingExploPageFunc(DataAccessPageFunc):
                     else:
                         if "options" in args_specs[argname]["element_factory"][1]:
                             options = func_inputs[int_args[idx - 1]].split(", ")
-                            args_specs[argname]["element_factory"][1]["options"] = (
-                                options
-                            )
+                            args_specs[argname]["element_factory"][1][
+                                "options"
+                            ] = options
                         element_factory, kwargs = args_specs[argname]["element_factory"]
                         func_inputs[argname] = element_factory(**kwargs)
         submit = st.button("Submit")
@@ -302,7 +301,9 @@ class SimplePageFuncPydanticWithOutput(BasePageFunc):
         mytype = self.func.__annotations__["return"]
         output_model = pydantic_model_from_type(mytype)
 
-        name = self.func.__name__  # check in sig, dag, lined a better way, i2, may be displayed name: name_of_obj
+        name = (
+            self.func.__name__
+        )  # check in sig, dag, lined a better way, i2, may be displayed name: name_of_obj
 
         data = sp.pydantic_input(key=f"my_form_{name}", model=mymodel)
 

@@ -27,8 +27,8 @@ def get_code_of_current_file():
 
 SourceCodeSection = partial(
     TextSection,
-    name='Source Code',
-    kind='code',
-    language='python',
+    name="Source Code",
+    kind="code",
+    language="python",
     content=get_code_of_current_file(),
 )

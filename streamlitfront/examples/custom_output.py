@@ -19,9 +19,9 @@ class HitTheOutputValue(OutputBase):
     margin: int = 20
 
     def render(self):
-        template = f'{self.name}: {self.output}. {{0}}'
+        template = f"{self.name}: {self.output}. {{0}}"
         if self.output == self.value_to_hit:
-            st.success(template.format('You hit it! Congratulations!'))
+            st.success(template.format("You hit it! Congratulations!"))
             st.balloons()
         elif abs(self.output - self.value_to_hit) <= self.margin:
             st.warning(template.format("You're warm..."))
@@ -30,28 +30,30 @@ class HitTheOutputValue(OutputBase):
             st.snow()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = mk_app(
         [foo],
         config={
-            APP_KEY: {'title': 'My Custom Output'},
+            APP_KEY: {"title": "My Custom Output"},
             RENDERING_KEY: {
-                'foo': {
-                    NAME_KEY: 'Hit the value',
-                    'description': {
-                        'content': '''
+                "foo": {
+                    NAME_KEY: "Hit the value",
+                    "description": {
+                        "content": """
                             Try to hit the secret output value by playing with the inputs. \n 
                             Hint: It is the answer to the ultimate question of life, the universe, and everything.
-                        ''',
+                        """,
                     },
-                    'execution': {
-                        'output': {
+                    "execution": {
+                        "output": {
                             ELEMENT_KEY: HitTheOutputValue,
-                            'value_to_hit': 42,
-                            'margin': 10,
+                            "value_to_hit": 42,
+                            "margin": 10,
                         },
                     },
-                    'code': {ELEMENT_KEY: SourceCodeSection,},
+                    "code": {
+                        ELEMENT_KEY: SourceCodeSection,
+                    },
                 }
             },
         },

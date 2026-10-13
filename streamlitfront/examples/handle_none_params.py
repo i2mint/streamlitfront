@@ -15,18 +15,23 @@ def foo(a: int = 1, b: int | None = 2, c: int | None = None, d: str = None):
     """This is foo. It computes something"""
     b = b if b is not None else 1
     c = c if c is not None else 0
-    d = d or ''
+    d = d or ""
     return str((a * b) + c) + d
 
 
-def bar(x: str = 'World!', greeting: str = 'Hello'):
+def bar(x: str = "World!", greeting: str = "Hello"):
     """bar greets its input"""
-    return f'{greeting} {x}'
+    return f"{greeting} {x}"
 
 
 # ======
 
 
-if __name__ == '__main__':
-    app = mk_app([foo, bar], config={APP_KEY: {'title': 'Handle None Parameters'},},)
+if __name__ == "__main__":
+    app = mk_app(
+        [foo, bar],
+        config={
+            APP_KEY: {"title": "Handle None Parameters"},
+        },
+    )
     app()
