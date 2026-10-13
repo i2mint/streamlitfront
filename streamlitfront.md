@@ -1,4 +1,4 @@
-> built 2026-10-13 16:08 UTC from fb53aa3 (master) · streamlitfront 0.1.41. Details: build_info.json
+> built 2026-10-13 16:26 UTC from 0aedb7b (master) · streamlitfront 0.1.42. Details: build_info.json
 
 # index.html.md
 
@@ -1220,7 +1220,8 @@ Streamlit reruns the script at every interaction, building the lambdas anew each
 time. A counter-made name (front’s `UnnamedObjectNNN`) is then different on each
 run, so the widgets’ state keys no longer match and a lambda’s input and output
 vanish. Here such an object is named after its rank among the lambdas of `objs`.
-(The object is renamed in place, as front does.)
+(The object is renamed in place, as front does, when it allows it; otherwise, e.g. a
+bound method, it is replaced by a named wrapper. Use the returned list.)
 
 ```pycon
 >>> from functools import partial
@@ -1257,16 +1258,18 @@ must not be prefilled with it, nor typed after it.
 
 # About this build
 
-This documentation was built on **2026-10-13 16:08 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/fb53aa36161e8cb63ea670dd04251086047f475f"><code>fb53aa3</code></a> on branch <code>master</code>, for **streamlitfront 0.1.41** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-10-13 16:26 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/0aedb7b486de8f1f36ec2dea05b25e1afdf26495"><code>0aedb7b</code></a> on branch <code>master</code>, for **streamlitfront 0.1.42** (from <code>pyproject.toml</code>).
 
-#### NOTE
-Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
+#### WARNING
+The documentation and the package may be misaligned:
+
+- The documented version (0.1.42) is behind the latest release on PyPI (0.1.43): `pip install streamlitfront` gives newer code than these docs describe.
 
 ## Source
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/fb53aa36161e8cb63ea670dd04251086047f475f"><code>fb53aa36161e8cb63ea670dd04251086047f475f</code></a> |
+| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/0aedb7b486de8f1f36ec2dea05b25e1afdf26495"><code>0aedb7b486de8f1f36ec2dea05b25e1afdf26495</code></a> |
 | Branch              | <code>master</code>                                                                                                                                          |
 | Tags at this commit | none                                                                                                                                                         |
 | Working tree        | clean                                                                                                                                                        |
@@ -1277,9 +1280,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |              |                                                                                             |
 |--------------|---------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/streamlitfront</code>                                                          |
-| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/38427766429">38427766429</a> |
+| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/38430164866">38430164866</a> |
 | Ref          | <code>refs/heads/master</code>                                                              |
-| Event commit | <code>fb53aa36161e8cb63ea670dd04251086047f475f</code> (in the history of the built commit)  |
+| Event commit | <code>0aedb7b486de8f1f36ec2dea05b25e1afdf26495</code> (in the history of the built commit)  |
 
 ## Tools
 
@@ -1304,13 +1307,13 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.41/">0.1.41</a>, the same as the documented version.
+Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.43/">0.1.43</a>, newer than the documented version (0.1.42).
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/streamlitfront && cd streamlitfront
-git checkout fb53aa36161e8cb63ea670dd04251086047f475f
+git checkout 0aedb7b486de8f1f36ec2dea05b25e1afdf26495
 pip install "epythet==0.2.17"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```

@@ -184,7 +184,8 @@ Streamlit reruns the script at every interaction, building the lambdas anew each
 time. A counter-made name (front’s `UnnamedObjectNNN`) is then different on each
 run, so the widgets’ state keys no longer match and a lambda’s input and output
 vanish. Here such an object is named after its rank among the lambdas of `objs`.
-(The object is renamed in place, as front does.)
+(The object is renamed in place, as front does, when it allows it; otherwise, e.g. a
+bound method, it is replaced by a named wrapper. Use the returned list.)
 
 ```pycon
 >>> from functools import partial

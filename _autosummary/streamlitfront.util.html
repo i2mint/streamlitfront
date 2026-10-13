@@ -374,7 +374,8 @@ of the app.</p>
 time. A counter-made name (front’s <code class="docutils literal notranslate"><span class="pre">UnnamedObjectNNN</span></code>) is then different on each
 run, so the widgets’ state keys no longer match and a lambda’s input and output
 vanish. Here such an object is named after its rank among the lambdas of <code class="docutils literal notranslate"><span class="pre">objs</span></code>.
-(The object is renamed in place, as front does.)</p>
+(The object is renamed in place, as front does, when it allows it; otherwise, e.g. a
+bound method, it is replaced by a named wrapper. Use the returned list.)</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
 </span><span data-line="2"><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">h</span><span class="p">(</span><span class="n">c</span><span class="p">):</span> <span class="k">return</span> <span class="n">c</span>
 </span><span data-line="3"><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">mk_objs</span><span class="p">():</span>  <span class="c1"># (what a rerun of the script does)</span>
@@ -440,7 +441,7 @@ must not be prefilled with it, nor typed after it.</p>
     </div>
   </div>
 </footer>
-      <script src="../_static/documentation_options.js?v=3203cd3c"></script>
+      <script src="../_static/documentation_options.js?v=05fb4756"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
