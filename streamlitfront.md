@@ -1,4 +1,4 @@
-> built 2026-09-22 15:31 UTC from 1122f26 (master) · streamlitfront 0.1.38. Details: build_info.json
+> built 2026-10-13 06:02 UTC from 922d8b0 (master) · streamlitfront 0.1.39. Details: build_info.json
 
 # index.html.md
 
@@ -26,7 +26,7 @@ def bar(x, greeting="hello"):
 
 
 def confuser(a: int, x: float = 3.14):
-    return (a ** 2) * x
+    return (a**2) * x
 
 
 funcs = [foo, bar, confuser]
@@ -37,7 +37,7 @@ Then add the following to the file (we will be modifying this part):
 ```python
 from streamlitfront import mk_app
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = mk_app(funcs)
     app()
 ```
@@ -63,12 +63,8 @@ The default configuration for the application is define by the convention object
   from streamlitfront import mk_app
 
 
-  if __name__ == '__main__':
-      config = {
-          'app': {
-              'title': 'Another application name'
-          }
-      }
+  if __name__ == "__main__":
+      config = {"app": {"title": "Another application name"}}
       app = mk_app(funcs, config=config)
       app()
   ```
@@ -90,12 +86,8 @@ The default configuration for the application is define by the convention object
       return list(reversed(objs))
 
 
-  if __name__ == '__main__':
-      config = {
-          'obj': {
-              'trans': trans
-          }
-      }
+  if __name__ == "__main__":
+      config = {"obj": {"trans": trans}}
       app = mk_app(funcs, config=config)
       app()
   ```
@@ -116,15 +108,12 @@ The default configuration for the application is define by the convention object
   from streamlitfront import mk_app
 
 
-  if __name__ == '__main__':
+  if __name__ == "__main__":
       config = {
-          'rendering': {
-              'Foo': {
-                  'inputs': {
-                      'a': {
-                          'component': INT_INPUT_SLIDER_COMPONENT,
-                          'max_value': 10
-                      }
+          "rendering": {
+              "Foo": {
+                  "inputs": {
+                      "a": {"component": INT_INPUT_SLIDER_COMPONENT, "max_value": 10}
                   }
               }
           }
@@ -145,30 +134,23 @@ Obviously, you can combine the three types of configuration:
 from typing import Iterable
 from front.elements import INT_INPUT_SLIDER_COMPONENT
 from streamlitfront import mk_app
-    
+
 
 def trans(objs: Iterable):
     return list(reversed(objs))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     config = {
-        'app': {
-            'title': 'Another application name'
-        },
-        'obj': {
-            'trans': trans
-        },
-        'rendering': {
-            'foo': {
-                'inputs': {
-                    'a': {
-                        'component': INT_INPUT_SLIDER_COMPONENT,
-                        'max_value': 10
-                    }
+        "app": {"title": "Another application name"},
+        "obj": {"trans": trans},
+        "rendering": {
+            "foo": {
+                "inputs": {
+                    "a": {"component": INT_INPUT_SLIDER_COMPONENT, "max_value": 10}
                 }
             }
-        }
+        },
     }
     app = mk_app(funcs, config=config)
     app()
@@ -184,34 +166,34 @@ You can also overwrite the whole configuration by setting the `convention` param
 
 ```python
 from typing import Any, Callable, Iterable
-from front.elements import VIEW_CONTAINER, FLOAT_INPUT_SLIDER_COMPONENT, TEXT_INPUT_COMPONENT
+from front.elements import (
+    VIEW_CONTAINER,
+    FLOAT_INPUT_SLIDER_COMPONENT,
+    TEXT_INPUT_COMPONENT,
+)
 from streamlitfront import mk_app
-    
+
 
 def trans(objs: Iterable):
     return list(reversed(objs))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     convention = {
-        'app': {
-            'title': 'Another application name'
-        },
-        'obj': {
-            'trans': trans
-        },
-        'rendering': {
+        "app": {"title": "Another application name"},
+        "obj": {"trans": trans},
+        "rendering": {
             Callable: {
-                'container': VIEW_CONTAINER,
-                'inputs': {
+                "container": VIEW_CONTAINER,
+                "inputs": {
                     float: {
-                        'component': FLOAT_INPUT_SLIDER_COMPONENT,
-                        'max_value': 10.0,
-                        'format': '%.2f',
-                        'step': 0.01,
+                        "component": FLOAT_INPUT_SLIDER_COMPONENT,
+                        "max_value": 10.0,
+                        "format": "%.2f",
+                        "step": 0.01,
                     },
                     Any: {
-                        'component': TEXT_INPUT_COMPONENT,
+                        "component": TEXT_INPUT_COMPONENT,
                     },
                 },
             },
@@ -234,26 +216,30 @@ Write a module like this:
 ```python
 # simple.py
 
+
 def foo(a: int = 0, b: int = 0, c=0):
     """This is foo. It computes something"""
     return (a * b) + c
 
-def bar(x, greeting='hello'):
+
+def bar(x, greeting="hello"):
     """bar greets its input"""
-    return f'{greeting} {x}'
+    return f"{greeting} {x}"
+
 
 def confuser(a: int = 0, x: float = 3.14):
-    return (a ** 2) * x
+    return (a**2) * x
+
 
 funcs = [foo, bar, confuser]
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from streamlitfront import dispatch_funcs
+
     app = dispatch_funcs(funcs)
     app()
-    
-    # ... and you get a browser based app that exposes foo, bar, and confuser
 
+    # ... and you get a browser based app that exposes foo, bar, and confuser
 ```
 
 Execute `streamlit run simple.py` in terminal and …
@@ -607,9 +593,18 @@ Bases: `ExecContainerBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.FileUploader(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, type=None, accept_multiple_files=False, display_label=True)
+### *class* streamlitfront.elements.elements.FileUploader(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, type=None, accept_multiple_files=False, clear_after_submit=True, display_label=True)
 
 Bases: `FileUploaderBase`
+
+#### clear()
+
+Empty the uploader, now and on the following runs.
+
+Streamlit keeps an uploader’s files for as long as its widget key lives and
+offers no other way to empty it. So: move to a new key, and draw a fresh
+uploader in the slot of the old one right away, so that this run’s output and
+everything else drawn stay in place (no rerun).
 
 #### render()
 
@@ -1238,18 +1233,18 @@ must not be prefilled with it, nor typed after it.
 
 # About this build
 
-This documentation was built on **2026-09-22 15:31 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/1122f2682b256e537bc9d96067f91cd22ed29601"><code>1122f26</code></a> on branch <code>master</code>, for **streamlitfront 0.1.38** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-10-13 06:02 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/922d8b0a0e321192c5cdf600539458c0b3e82bc3"><code>922d8b0</code></a> on branch <code>master</code>, for **streamlitfront 0.1.39** (from <code>pyproject.toml</code>).
 
 #### WARNING
 The documentation and the package may be misaligned:
 
-- The documented version (0.1.38) is behind the latest release on PyPI (0.1.39): `pip install streamlitfront` gives newer code than these docs describe.
+- The documented version (0.1.39) is behind the latest release on PyPI (0.1.40): `pip install streamlitfront` gives newer code than these docs describe.
 
 ## Source
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/1122f2682b256e537bc9d96067f91cd22ed29601"><code>1122f2682b256e537bc9d96067f91cd22ed29601</code></a> |
+| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/922d8b0a0e321192c5cdf600539458c0b3e82bc3"><code>922d8b0a0e321192c5cdf600539458c0b3e82bc3</code></a> |
 | Branch              | <code>master</code>                                                                                                                                          |
 | Tags at this commit | none                                                                                                                                                         |
 | Working tree        | clean                                                                                                                                                        |
@@ -1260,18 +1255,18 @@ The documentation and the package may be misaligned:
 |              |                                                                                             |
 |--------------|---------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/streamlitfront</code>                                                          |
-| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/35747664508">35747664508</a> |
+| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/38354314779">38354314779</a> |
 | Ref          | <code>refs/heads/master</code>                                                              |
-| Event commit | <code>1122f2682b256e537bc9d96067f91cd22ed29601</code> (in the history of the built commit)  |
+| Event commit | <code>922d8b0a0e321192c5cdf600539458c0b3e82bc3</code> (in the history of the built commit)  |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.12  |
+| epythet  | 0.2.14  |
 | Sphinx   | 9.1.0   |
 | docutils | 0.22.4  |
-| Python   | 3.12.14 |
+| Python   | 3.12.15 |
 
 ## Configuration as resolved
 
@@ -1287,14 +1282,14 @@ The documentation and the package may be misaligned:
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.39/">0.1.39</a>, newer than the documented version (0.1.38).
+Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.40/">0.1.40</a>, newer than the documented version (0.1.39).
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/streamlitfront && cd streamlitfront
-git checkout 1122f2682b256e537bc9d96067f91cd22ed29601
-pip install "epythet==0.2.12"
+git checkout 922d8b0a0e321192c5cdf600539458c0b3e82bc3
+pip install "epythet==0.2.14"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 

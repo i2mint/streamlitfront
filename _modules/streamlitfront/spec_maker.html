@@ -154,69 +154,68 @@ data-aria-dark="Switch to auto color mode">
 </span><span data-line="27"><span class="p">)</span>
 </span><span data-line="28"><span class="kn">from</span><span class="w"> </span><span class="nn">streamlitfront.data_binding</span><span class="w"> </span><span class="kn">import</span> <span class="n">BoundData</span>
 </span><span data-line="29">
-</span><span data-line="30">
-</span><span data-line="31"><span class="n">DFLT_CONVENTION_DICT</span> <span class="o">=</span> <span class="n">deep_merge</span><span class="p">(</span>
-</span><span data-line="32">    <span class="n">BASE_DFLT_CONVENTION</span><span class="p">,</span>
-</span><span data-line="33">    <span class="p">{</span>
-</span><span data-line="34">        <span class="n">APP_KEY</span><span class="p">:</span> <span class="p">{</span><span class="s2">"title"</span><span class="p">:</span> <span class="s2">"My Streamlit Front Application"</span><span class="p">},</span>
-</span><span data-line="35">        <span class="n">RENDERING_KEY</span><span class="p">:</span> <span class="p">{</span>
-</span><span data-line="36">            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">App</span><span class="p">,</span>
-</span><span data-line="37">            <span class="n">Callable</span><span class="p">:</span> <span class="p">{</span>
-</span><span data-line="38">                <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">View</span><span class="p">,</span>
-</span><span data-line="39">                <span class="s2">"description"</span><span class="p">:</span> <span class="p">{</span>
-</span><span data-line="40">                    <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TextSection</span><span class="p">,</span>
-</span><span data-line="41">                <span class="p">},</span>
-</span><span data-line="42">                <span class="s2">"execution"</span><span class="p">:</span> <span class="p">{</span>
-</span><span data-line="43">                    <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">ExecSection</span><span class="p">,</span>
-</span><span data-line="44">                    <span class="s2">"inputs"</span><span class="p">:</span> <span class="p">{</span>
-</span><span data-line="45">                        <span class="nb">bool</span><span class="p">:</span> <span class="p">{</span>
-</span><span data-line="46">                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">BooleanInput</span><span class="p">,</span>
-</span><span data-line="47">                        <span class="p">},</span>
-</span><span data-line="48">                        <span class="nb">int</span><span class="p">:</span> <span class="p">{</span>
-</span><span data-line="49">                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">IntInput</span><span class="p">,</span>
-</span><span data-line="50">                        <span class="p">},</span>
-</span><span data-line="51">                        <span class="nb">float</span><span class="p">:</span> <span class="p">{</span>
-</span><span data-line="52">                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">FloatInput</span><span class="p">,</span>
-</span><span data-line="53">                        <span class="p">},</span>
-</span><span data-line="54">                        <span class="n">Literal</span><span class="p">:</span> <span class="p">{</span>
-</span><span data-line="55">                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">SelectBox</span><span class="p">,</span>
-</span><span data-line="56">                        <span class="p">},</span>
-</span><span data-line="57">                        <span class="s2">"kwargs"</span><span class="p">:</span> <span class="p">{</span>
-</span><span data-line="58">                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">KwargsInput</span><span class="p">,</span>
-</span><span data-line="59">                        <span class="p">},</span>
-</span><span data-line="60">                        <span class="n">Any</span><span class="p">:</span> <span class="p">{</span>
-</span><span data-line="61">                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TextInput</span><span class="p">,</span>
-</span><span data-line="62">                        <span class="p">},</span>
-</span><span data-line="63">                        <span class="n">DEFAULT_INPUT_KEY</span><span class="p">:</span> <span class="p">{</span><span class="s2">"bound_data_factory"</span><span class="p">:</span> <span class="n">BoundData</span><span class="p">},</span>
-</span><span data-line="64">                    <span class="p">},</span>
-</span><span data-line="65">                    <span class="s2">"output"</span><span class="p">:</span> <span class="p">{</span>
-</span><span data-line="66">                        <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TextOutput</span><span class="p">,</span>
-</span><span data-line="67">                    <span class="p">},</span>
-</span><span data-line="68">                <span class="p">},</span>
-</span><span data-line="69">            <span class="p">},</span>
-</span><span data-line="70">        <span class="p">},</span>
-</span><span data-line="71">    <span class="p">},</span>
-</span><span data-line="72"><span class="p">)</span>
+</span><span data-line="30"><span class="n">DFLT_CONVENTION_DICT</span> <span class="o">=</span> <span class="n">deep_merge</span><span class="p">(</span>
+</span><span data-line="31">    <span class="n">BASE_DFLT_CONVENTION</span><span class="p">,</span>
+</span><span data-line="32">    <span class="p">{</span>
+</span><span data-line="33">        <span class="n">APP_KEY</span><span class="p">:</span> <span class="p">{</span><span class="s2">"title"</span><span class="p">:</span> <span class="s2">"My Streamlit Front Application"</span><span class="p">},</span>
+</span><span data-line="34">        <span class="n">RENDERING_KEY</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="35">            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">App</span><span class="p">,</span>
+</span><span data-line="36">            <span class="n">Callable</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="37">                <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">View</span><span class="p">,</span>
+</span><span data-line="38">                <span class="s2">"description"</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="39">                    <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TextSection</span><span class="p">,</span>
+</span><span data-line="40">                <span class="p">},</span>
+</span><span data-line="41">                <span class="s2">"execution"</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="42">                    <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">ExecSection</span><span class="p">,</span>
+</span><span data-line="43">                    <span class="s2">"inputs"</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="44">                        <span class="nb">bool</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="45">                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">BooleanInput</span><span class="p">,</span>
+</span><span data-line="46">                        <span class="p">},</span>
+</span><span data-line="47">                        <span class="nb">int</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="48">                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">IntInput</span><span class="p">,</span>
+</span><span data-line="49">                        <span class="p">},</span>
+</span><span data-line="50">                        <span class="nb">float</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="51">                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">FloatInput</span><span class="p">,</span>
+</span><span data-line="52">                        <span class="p">},</span>
+</span><span data-line="53">                        <span class="n">Literal</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="54">                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">SelectBox</span><span class="p">,</span>
+</span><span data-line="55">                        <span class="p">},</span>
+</span><span data-line="56">                        <span class="s2">"kwargs"</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="57">                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">KwargsInput</span><span class="p">,</span>
+</span><span data-line="58">                        <span class="p">},</span>
+</span><span data-line="59">                        <span class="n">Any</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="60">                            <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TextInput</span><span class="p">,</span>
+</span><span data-line="61">                        <span class="p">},</span>
+</span><span data-line="62">                        <span class="n">DEFAULT_INPUT_KEY</span><span class="p">:</span> <span class="p">{</span><span class="s2">"bound_data_factory"</span><span class="p">:</span> <span class="n">BoundData</span><span class="p">},</span>
+</span><span data-line="63">                    <span class="p">},</span>
+</span><span data-line="64">                    <span class="s2">"output"</span><span class="p">:</span> <span class="p">{</span>
+</span><span data-line="65">                        <span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">TextOutput</span><span class="p">,</span>
+</span><span data-line="66">                    <span class="p">},</span>
+</span><span data-line="67">                <span class="p">},</span>
+</span><span data-line="68">            <span class="p">},</span>
+</span><span data-line="69">        <span class="p">},</span>
+</span><span data-line="70">    <span class="p">},</span>
+</span><span data-line="71"><span class="p">)</span>
+</span><span data-line="72">
 </span><span data-line="73">
-</span><span data-line="74">
 <div class="viewcode-block" id="SpecMaker">
 <a class="viewcode-back" href="../../_autosummary/streamlitfront.spec_maker.html#streamlitfront.spec_maker.SpecMaker">[docs]</a>
-</span><span data-line="75"><span class="k">class</span><span class="w"> </span><span class="nc">SpecMaker</span><span class="p">(</span><span class="n">SpecMakerBase</span><span class="p">):</span>
-</span><span data-line="76"><span class="w">    </span><span class="sd">"""Concrete implementation of front.spec_maker_base.SpecMakerBase for</span>
-</span><span data-line="77"><span class="sd">    streamlitfront.</span>
-</span><span data-line="78">
-</span><span data-line="79"><span class="sd">    &gt;&gt;&gt; spec_maker = SpecMaker()</span>
-</span><span data-line="80"><span class="sd">    &gt;&gt;&gt; spec = spec_maker.mk_spec({})</span>
-</span><span data-line="81"><span class="sd">    &gt;&gt;&gt;</span>
-</span><span data-line="82"><span class="sd">    &gt;&gt;&gt; spec.app_spec</span>
-</span><span data-line="83"><span class="sd">    {'title': 'My Streamlit Front Application'}</span>
-</span><span data-line="84"><span class="sd">    &gt;&gt;&gt; assert spec.obj_spec</span>
-</span><span data-line="85"><span class="sd">    &gt;&gt;&gt; assert spec.rendering_spec</span>
-</span><span data-line="86"><span class="sd">    """</span>
-</span><span data-line="87">
-</span><span data-line="88">    <span class="nd">@property</span>
-</span><span data-line="89">    <span class="k">def</span><span class="w"> </span><span class="nf">_dflt_convention</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">:</span>
-</span><span data-line="90">        <span class="k">return</span> <span class="n">DFLT_CONVENTION_DICT</span></div>
+</span><span data-line="74"><span class="k">class</span><span class="w"> </span><span class="nc">SpecMaker</span><span class="p">(</span><span class="n">SpecMakerBase</span><span class="p">):</span>
+</span><span data-line="75"><span class="w">    </span><span class="sd">"""Concrete implementation of front.spec_maker_base.SpecMakerBase for</span>
+</span><span data-line="76"><span class="sd">    streamlitfront.</span>
+</span><span data-line="77">
+</span><span data-line="78"><span class="sd">    &gt;&gt;&gt; spec_maker = SpecMaker()</span>
+</span><span data-line="79"><span class="sd">    &gt;&gt;&gt; spec = spec_maker.mk_spec({})</span>
+</span><span data-line="80"><span class="sd">    &gt;&gt;&gt;</span>
+</span><span data-line="81"><span class="sd">    &gt;&gt;&gt; spec.app_spec</span>
+</span><span data-line="82"><span class="sd">    {'title': 'My Streamlit Front Application'}</span>
+</span><span data-line="83"><span class="sd">    &gt;&gt;&gt; assert spec.obj_spec</span>
+</span><span data-line="84"><span class="sd">    &gt;&gt;&gt; assert spec.rendering_spec</span>
+</span><span data-line="85"><span class="sd">    """</span>
+</span><span data-line="86">
+</span><span data-line="87">    <span class="nd">@property</span>
+</span><span data-line="88">    <span class="k">def</span><span class="w"> </span><span class="nf">_dflt_convention</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">:</span>
+</span><span data-line="89">        <span class="k">return</span> <span class="n">DFLT_CONVENTION_DICT</span></div>
 
 </span></pre></div>
         </article><button class="back-to-top" type="button">
@@ -245,7 +244,7 @@ data-aria-dark="Switch to auto color mode">
     </div>
   </div>
 </footer>
-      <script src="../../_static/documentation_options.js?v=50f64db7"></script>
+      <script src="../../_static/documentation_options.js?v=f48ec9ae"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>

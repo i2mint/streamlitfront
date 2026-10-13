@@ -22,7 +22,7 @@ def bar(x, greeting="hello"):
 
 
 def confuser(a: int, x: float = 3.14):
-    return (a ** 2) * x
+    return (a**2) * x
 
 
 funcs = [foo, bar, confuser]
@@ -33,7 +33,7 @@ Then add the following to the file (we will be modifying this part):
 ```python
 from streamlitfront import mk_app
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = mk_app(funcs)
     app()
 ```
@@ -59,12 +59,8 @@ The default configuration for the application is define by the convention object
   from streamlitfront import mk_app
 
 
-  if __name__ == '__main__':
-      config = {
-          'app': {
-              'title': 'Another application name'
-          }
-      }
+  if __name__ == "__main__":
+      config = {"app": {"title": "Another application name"}}
       app = mk_app(funcs, config=config)
       app()
   ```
@@ -86,12 +82,8 @@ The default configuration for the application is define by the convention object
       return list(reversed(objs))
 
 
-  if __name__ == '__main__':
-      config = {
-          'obj': {
-              'trans': trans
-          }
-      }
+  if __name__ == "__main__":
+      config = {"obj": {"trans": trans}}
       app = mk_app(funcs, config=config)
       app()
   ```
@@ -112,15 +104,12 @@ The default configuration for the application is define by the convention object
   from streamlitfront import mk_app
 
 
-  if __name__ == '__main__':
+  if __name__ == "__main__":
       config = {
-          'rendering': {
-              'Foo': {
-                  'inputs': {
-                      'a': {
-                          'component': INT_INPUT_SLIDER_COMPONENT,
-                          'max_value': 10
-                      }
+          "rendering": {
+              "Foo": {
+                  "inputs": {
+                      "a": {"component": INT_INPUT_SLIDER_COMPONENT, "max_value": 10}
                   }
               }
           }
@@ -141,30 +130,23 @@ Obviously, you can combine the three types of configuration:
 from typing import Iterable
 from front.elements import INT_INPUT_SLIDER_COMPONENT
 from streamlitfront import mk_app
-    
+
 
 def trans(objs: Iterable):
     return list(reversed(objs))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     config = {
-        'app': {
-            'title': 'Another application name'
-        },
-        'obj': {
-            'trans': trans
-        },
-        'rendering': {
-            'foo': {
-                'inputs': {
-                    'a': {
-                        'component': INT_INPUT_SLIDER_COMPONENT,
-                        'max_value': 10
-                    }
+        "app": {"title": "Another application name"},
+        "obj": {"trans": trans},
+        "rendering": {
+            "foo": {
+                "inputs": {
+                    "a": {"component": INT_INPUT_SLIDER_COMPONENT, "max_value": 10}
                 }
             }
-        }
+        },
     }
     app = mk_app(funcs, config=config)
     app()
@@ -180,34 +162,34 @@ You can also overwrite the whole configuration by setting the `convention` param
 
 ```python
 from typing import Any, Callable, Iterable
-from front.elements import VIEW_CONTAINER, FLOAT_INPUT_SLIDER_COMPONENT, TEXT_INPUT_COMPONENT
+from front.elements import (
+    VIEW_CONTAINER,
+    FLOAT_INPUT_SLIDER_COMPONENT,
+    TEXT_INPUT_COMPONENT,
+)
 from streamlitfront import mk_app
-    
+
 
 def trans(objs: Iterable):
     return list(reversed(objs))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     convention = {
-        'app': {
-            'title': 'Another application name'
-        },
-        'obj': {
-            'trans': trans
-        },
-        'rendering': {
+        "app": {"title": "Another application name"},
+        "obj": {"trans": trans},
+        "rendering": {
             Callable: {
-                'container': VIEW_CONTAINER,
-                'inputs': {
+                "container": VIEW_CONTAINER,
+                "inputs": {
                     float: {
-                        'component': FLOAT_INPUT_SLIDER_COMPONENT,
-                        'max_value': 10.0,
-                        'format': '%.2f',
-                        'step': 0.01,
+                        "component": FLOAT_INPUT_SLIDER_COMPONENT,
+                        "max_value": 10.0,
+                        "format": "%.2f",
+                        "step": 0.01,
                     },
                     Any: {
-                        'component': TEXT_INPUT_COMPONENT,
+                        "component": TEXT_INPUT_COMPONENT,
                     },
                 },
             },
@@ -230,26 +212,30 @@ Write a module like this:
 ```python
 # simple.py
 
+
 def foo(a: int = 0, b: int = 0, c=0):
     """This is foo. It computes something"""
     return (a * b) + c
 
-def bar(x, greeting='hello'):
+
+def bar(x, greeting="hello"):
     """bar greets its input"""
-    return f'{greeting} {x}'
+    return f"{greeting} {x}"
+
 
 def confuser(a: int = 0, x: float = 3.14):
-    return (a ** 2) * x
+    return (a**2) * x
+
 
 funcs = [foo, bar, confuser]
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from streamlitfront import dispatch_funcs
+
     app = dispatch_funcs(funcs)
     app()
-    
-    # ... and you get a browser based app that exposes foo, bar, and confuser
 
+    # ... and you get a browser based app that exposes foo, bar, and confuser
 ```
 
 Execute `streamlit run simple.py` in terminal and …

@@ -48,9 +48,18 @@ Bases: `ExecContainerBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.FileUploader(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, type=None, accept_multiple_files=False, display_label=True)
+### *class* streamlitfront.elements.elements.FileUploader(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, type=None, accept_multiple_files=False, clear_after_submit=True, display_label=True)
 
 Bases: `FileUploaderBase`
+
+#### clear()
+
+Empty the uploader, now and on the following runs.
+
+Streamlit keeps an uploader’s files for as long as its widget key lives and
+offers no other way to empty it. So: move to a new key, and draw a fresh
+uploader in the slot of the old one right away, so that this run’s output and
+everything else drawn stay in place (no rerun).
 
 #### render()
 
