@@ -29,3 +29,15 @@ def test_lambda_names_are_stable_and_distinct_across_reruns():
         return [o.__name__ for o in name_lambdas([lambda: 1, lambda: 2])]
 
     assert run() == run() == ["lambda_1", "lambda_2"]
+
+
+def test_partial_of_a_lambda_has_a_stable_name_across_reruns():
+    from functools import partial
+
+    from streamlitfront.util import name_lambdas
+
+    def run():
+        objs = [lambda: 1, partial(lambda res, k=1: res, k=2), partial(lambda: 3)]
+        return [o.__name__ for o in name_lambdas(objs)]
+
+    assert run() == run() == ["lambda_1", "lambda_2", "lambda_3"]
