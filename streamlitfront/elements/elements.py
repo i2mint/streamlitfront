@@ -5,7 +5,7 @@ specific abstract elements class defined in front.
 """
 
 from dataclasses import dataclass
-from functools import partial, cached_property
+from functools import cached_property
 from pathlib import Path
 from time import sleep
 from typing import Any, Union
@@ -249,13 +249,32 @@ class MultiSourceInput(MultiSourceInputBase):
 #     st.session_state[component.input_key] = input_value
 
 
-implement_input_component = partial(
-    implement_component,
-    # input_value_callback=store_input_value_in_state,
-    label="name",
-    key="view_key",
-    value="view_value",
-)
+def implement_input_component(base_cls, component_factory, **input_mapping):
+    """``implement_component`` for the input widgets, with ``on_change`` wired as a widget callback.
+
+    ``implement_component`` *calls* every callable attribute it forwards, and ``on_change`` is a
+    method: left alone, it would run during the render (before the widget even exists) and
+    streamlit would get ``None``. So an input's ``on_value_change`` would only take effect on the
+    *next* run, and a dependent input built from the state it sets needed a second interaction
+    (i2mint/streamlitfront#7). Here the widget gets ``on_change`` itself, so streamlit runs it
+    before the rerun the interaction triggers.
+    """
+
+    class WithWidgetCallback(base_cls):
+        @property
+        def _widget_on_change(self):
+            # a thunk: ``implement_component`` calls it and passes on what it returns
+            return lambda: self.on_change if self.on_value_change else None
+
+    return implement_component(
+        WithWidgetCallback,
+        component_factory,
+        label="name",
+        key="view_key",
+        value="view_value",
+        on_change="_widget_on_change",
+        **input_mapping,
+    )
 
 TextInput = implement_input_component(TextInputBase, st.text_input)
 BooleanInput = implement_input_component(BooleanInputBase, st.checkbox)
@@ -266,8 +285,21 @@ FloatSliderInput = implement_input_component(FloatInputBase, st.slider)
 SelectBox = implement_input_component(
     SelectorBase, st.selectbox, options="_options", index="_preselected_index"
 )
+class MultiSelectorBase(SelectorBase):
+    """A selector whose view value is a *list* of options.
+
+    ``SelectorBase.pre_render`` is single-choice logic: it looks the view value up among the
+    options, finds no list there, and "corrects" it to the first option -- calling
+    ``on_value_change`` with that one item on every render. Here the options are only resolved;
+    the value is the widget's (``on_value_change`` runs as its callback, with the list).
+    """
+
+    def pre_render(self):
+        self._options = list(self._ensure_options())
+
+
 MultiSelectBox = implement_input_component(
-    SelectorBase, st.multiselect, options="_options"
+    MultiSelectorBase, st.multiselect, options="_options"
 )
 Radio = implement_input_component(SelectorBase, st.radio, options="_options")
 
