@@ -448,209 +448,212 @@ data-aria-dark="Switch to auto color mode">
 </span><span data-line="277">    <span class="p">)</span></div>
 
 </span><span data-line="278">
-</span><span data-line="279"><span class="n">TextInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">TextInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">)</span>
-</span><span data-line="280"><span class="n">BooleanInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">BooleanInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">checkbox</span><span class="p">)</span>
-</span><span data-line="281"><span class="n">IntInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">IntInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">)</span>
-</span><span data-line="282"><span class="n">IntSliderInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">IntInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">)</span>
-</span><span data-line="283"><span class="n">FloatInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">FloatInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">)</span>
-</span><span data-line="284"><span class="n">FloatSliderInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">FloatInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">)</span>
-</span><span data-line="285"><span class="n">SelectBox</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span>
-</span><span data-line="286">    <span class="n">SelectorBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s2">"_options"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s2">"_preselected_index"</span>
-</span><span data-line="287"><span class="p">)</span>
+</span><span data-line="279">
+</span><span data-line="280"><span class="n">TextInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">TextInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">text_input</span><span class="p">)</span>
+</span><span data-line="281"><span class="n">BooleanInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">BooleanInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">checkbox</span><span class="p">)</span>
+</span><span data-line="282"><span class="n">IntInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">IntInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">)</span>
+</span><span data-line="283"><span class="n">IntSliderInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">IntInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">)</span>
+</span><span data-line="284"><span class="n">FloatInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">FloatInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">)</span>
+</span><span data-line="285"><span class="n">FloatSliderInput</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">FloatInputBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">)</span>
+</span><span data-line="286"><span class="n">SelectBox</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span>
+</span><span data-line="287">    <span class="n">SelectorBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s2">"_options"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s2">"_preselected_index"</span>
+</span><span data-line="288"><span class="p">)</span>
+</span><span data-line="289">
+</span><span data-line="290">
 <div class="viewcode-block" id="MultiSelectorBase">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.MultiSelectorBase">[docs]</a>
-</span><span data-line="288"><span class="k">class</span><span class="w"> </span><span class="nc">MultiSelectorBase</span><span class="p">(</span><span class="n">SelectorBase</span><span class="p">):</span>
-</span><span data-line="289"><span class="w">    </span><span class="sd">"""A selector whose view value is a *list* of options.</span>
-</span><span data-line="290">
-</span><span data-line="291"><span class="sd">    ``SelectorBase.pre_render`` is single-choice logic: it looks the view value up among the</span>
-</span><span data-line="292"><span class="sd">    options, finds no list there, and "corrects" it to the first option -- calling</span>
-</span><span data-line="293"><span class="sd">    ``on_value_change`` with that one item on every render. Here the options are only resolved;</span>
-</span><span data-line="294"><span class="sd">    the value is the widget's (``on_value_change`` runs as its callback, with the list).</span>
-</span><span data-line="295"><span class="sd">    """</span>
-</span><span data-line="296">
+</span><span data-line="291"><span class="k">class</span><span class="w"> </span><span class="nc">MultiSelectorBase</span><span class="p">(</span><span class="n">SelectorBase</span><span class="p">):</span>
+</span><span data-line="292"><span class="w">    </span><span class="sd">"""A selector whose view value is a *list* of options.</span>
+</span><span data-line="293">
+</span><span data-line="294"><span class="sd">    ``SelectorBase.pre_render`` is single-choice logic: it looks the view value up among the</span>
+</span><span data-line="295"><span class="sd">    options, finds no list there, and "corrects" it to the first option -- calling</span>
+</span><span data-line="296"><span class="sd">    ``on_value_change`` with that one item on every render. Here the options are only resolved;</span>
+</span><span data-line="297"><span class="sd">    the value is the widget's (``on_value_change`` runs as its callback, with the list).</span>
+</span><span data-line="298"><span class="sd">    """</span>
+</span><span data-line="299">
 <div class="viewcode-block" id="MultiSelectorBase.pre_render">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.MultiSelectorBase.pre_render">[docs]</a>
-</span><span data-line="297">    <span class="k">def</span><span class="w"> </span><span class="nf">pre_render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span data-line="298">        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ensure_options</span><span class="p">())</span></div>
+</span><span data-line="300">    <span class="k">def</span><span class="w"> </span><span class="nf">pre_render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="301">        <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ensure_options</span><span class="p">())</span></div>
 </div>
 
-</span><span data-line="299">
-</span><span data-line="300">
-</span><span data-line="301"><span class="n">MultiSelectBox</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span>
-</span><span data-line="302">    <span class="n">MultiSelectorBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">multiselect</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s2">"_options"</span>
-</span><span data-line="303"><span class="p">)</span>
-</span><span data-line="304"><span class="n">Radio</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">SelectorBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">radio</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s2">"_options"</span><span class="p">)</span>
-</span><span data-line="305">
-</span><span data-line="306">
+</span><span data-line="302">
+</span><span data-line="303">
+</span><span data-line="304"><span class="n">MultiSelectBox</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span>
+</span><span data-line="305">    <span class="n">MultiSelectorBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">multiselect</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s2">"_options"</span>
+</span><span data-line="306"><span class="p">)</span>
+</span><span data-line="307"><span class="n">Radio</span> <span class="o">=</span> <span class="n">implement_input_component</span><span class="p">(</span><span class="n">SelectorBase</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">radio</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="s2">"_options"</span><span class="p">)</span>
+</span><span data-line="308">
+</span><span data-line="309">
 <div class="viewcode-block" id="FileUploader">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.FileUploader">[docs]</a>
-</span><span data-line="307"><span class="nd">@dataclass</span>
-</span><span data-line="308"><span class="k">class</span><span class="w"> </span><span class="nc">FileUploader</span><span class="p">(</span><span class="n">FileUploaderBase</span><span class="p">):</span>
-</span><span data-line="309">    <span class="n">display_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-</span><span data-line="310">
-</span><span data-line="311">    <span class="nd">@property</span>
-</span><span data-line="312">    <span class="k">def</span><span class="w"> </span><span class="nf">_generation_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span data-line="313">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_key</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_upload_generation"</span><span class="p">)</span>
-</span><span data-line="314">
+</span><span data-line="310"><span class="nd">@dataclass</span>
+</span><span data-line="311"><span class="k">class</span><span class="w"> </span><span class="nc">FileUploader</span><span class="p">(</span><span class="n">FileUploaderBase</span><span class="p">):</span>
+</span><span data-line="312">    <span class="n">display_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span data-line="313">
+</span><span data-line="314">    <span class="nd">@property</span>
+</span><span data-line="315">    <span class="k">def</span><span class="w"> </span><span class="nf">_generation_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="316">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_key</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_upload_generation"</span><span class="p">)</span>
+</span><span data-line="317">
 <div class="viewcode-block" id="FileUploader.clear">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.FileUploader.clear">[docs]</a>
-</span><span data-line="315">    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span data-line="316"><span class="w">        </span><span class="sd">"""Empty the uploader, now and on the following runs.</span>
-</span><span data-line="317">
-</span><span data-line="318"><span class="sd">        Streamlit keeps an uploader's files for as long as its widget key lives and</span>
-</span><span data-line="319"><span class="sd">        offers no other way to empty it. So: move to a new key, and draw a fresh</span>
-</span><span data-line="320"><span class="sd">        uploader in the slot of the old one right away, so that this run's output and</span>
-</span><span data-line="321"><span class="sd">        everything else drawn stay in place (no rerun).</span>
-</span><span data-line="322"><span class="sd">        """</span>
-</span><span data-line="323">        <span class="bp">self</span><span class="o">.</span><span class="n">_generation</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span data-line="324">        <span class="n">slot</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_slot"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-</span><span data-line="325">        <span class="k">if</span> <span class="n">slot</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span data-line="326">            <span class="k">with</span> <span class="n">slot</span><span class="p">:</span>
-</span><span data-line="327">                <span class="bp">self</span><span class="o">.</span><span class="n">_file_uploader</span><span class="p">()</span></div>
+</span><span data-line="318">    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="319"><span class="w">        </span><span class="sd">"""Empty the uploader, now and on the following runs.</span>
+</span><span data-line="320">
+</span><span data-line="321"><span class="sd">        Streamlit keeps an uploader's files for as long as its widget key lives and</span>
+</span><span data-line="322"><span class="sd">        offers no other way to empty it. So: move to a new key, and draw a fresh</span>
+</span><span data-line="323"><span class="sd">        uploader in the slot of the old one right away, so that this run's output and</span>
+</span><span data-line="324"><span class="sd">        everything else drawn stay in place (no rerun).</span>
+</span><span data-line="325"><span class="sd">        """</span>
+</span><span data-line="326">        <span class="bp">self</span><span class="o">.</span><span class="n">_generation</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span data-line="327">        <span class="n">slot</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_slot"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</span><span data-line="328">        <span class="k">if</span> <span class="n">slot</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="329">            <span class="k">with</span> <span class="n">slot</span><span class="p">:</span>
+</span><span data-line="330">                <span class="bp">self</span><span class="o">.</span><span class="n">_file_uploader</span><span class="p">()</span></div>
 
-</span><span data-line="328">
-</span><span data-line="329">    <span class="nd">@property</span>
-</span><span data-line="330">    <span class="k">def</span><span class="w"> </span><span class="nf">_generation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-</span><span data-line="331">        <span class="k">return</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_generation_key</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</span><span data-line="332">
-</span><span data-line="333">    <span class="nd">@_generation</span><span class="o">.</span><span class="n">setter</span>
-</span><span data-line="334">    <span class="k">def</span><span class="w"> </span><span class="nf">_generation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span data-line="335">        <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_generation_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-</span><span data-line="336">
-</span><span data-line="337">    <span class="k">def</span><span class="w"> </span><span class="nf">_file_uploader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span data-line="338">        <span class="k">return</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">(</span>
-</span><span data-line="339">            <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-</span><span data-line="340">            <span class="n">label_visibility</span><span class="o">=</span><span class="s2">"visible"</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">display_label</span> <span class="k">else</span> <span class="s2">"collapsed"</span><span class="p">,</span>
-</span><span data-line="341">            <span class="nb">type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
-</span><span data-line="342">            <span class="n">accept_multiple_files</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">accept_multiple_files</span><span class="p">,</span>
-</span><span data-line="343">            <span class="n">key</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">view_key</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_generation</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
-</span><span data-line="344">        <span class="p">)</span>
-</span><span data-line="345">
+</span><span data-line="331">
+</span><span data-line="332">    <span class="nd">@property</span>
+</span><span data-line="333">    <span class="k">def</span><span class="w"> </span><span class="nf">_generation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span><span data-line="334">        <span class="k">return</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_generation_key</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span data-line="335">
+</span><span data-line="336">    <span class="nd">@_generation</span><span class="o">.</span><span class="n">setter</span>
+</span><span data-line="337">    <span class="k">def</span><span class="w"> </span><span class="nf">_generation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span data-line="338">        <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_generation_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</span><span data-line="339">
+</span><span data-line="340">    <span class="k">def</span><span class="w"> </span><span class="nf">_file_uploader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="341">        <span class="k">return</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">(</span>
+</span><span data-line="342">            <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+</span><span data-line="343">            <span class="n">label_visibility</span><span class="o">=</span><span class="s2">"visible"</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">display_label</span> <span class="k">else</span> <span class="s2">"collapsed"</span><span class="p">,</span>
+</span><span data-line="344">            <span class="nb">type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+</span><span data-line="345">            <span class="n">accept_multiple_files</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">accept_multiple_files</span><span class="p">,</span>
+</span><span data-line="346">            <span class="n">key</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">view_key</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_generation</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+</span><span data-line="347">        <span class="p">)</span>
+</span><span data-line="348">
 <div class="viewcode-block" id="FileUploader.render">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.FileUploader.render">[docs]</a>
-</span><span data-line="346">    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span data-line="347">        <span class="bp">self</span><span class="o">.</span><span class="n">_slot</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
-</span><span data-line="348">        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slot</span><span class="p">:</span>
-</span><span data-line="349">            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_uploader</span><span class="p">()</span></div>
+</span><span data-line="349">    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="350">        <span class="bp">self</span><span class="o">.</span><span class="n">_slot</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+</span><span data-line="351">        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slot</span><span class="p">:</span>
+</span><span data-line="352">            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_uploader</span><span class="p">()</span></div>
 </div>
 
-</span><span data-line="350">
-</span><span data-line="351">
-</span><span data-line="352"><span class="k">def</span><span class="w"> </span><span class="nf">_file_uploaders</span><span class="p">(</span><span class="n">components</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">FileUploader</span><span class="p">]:</span>
-</span><span data-line="353"><span class="w">    </span><span class="sd">"""The ``FileUploader`` inputs among ``components`` (looking inside multi-source</span>
-</span><span data-line="354"><span class="sd">    inputs and the nested section of kwargs inputs)."""</span>
-</span><span data-line="355">    <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">components</span><span class="p">:</span>
-</span><span data-line="356">        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">MultiSourceInputBase</span><span class="p">):</span>
-</span><span data-line="357">            <span class="k">yield from</span> <span class="n">_file_uploaders</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">input_components</span><span class="p">)</span>
-</span><span data-line="358">        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">KwargsInputBase</span><span class="p">):</span>
-</span><span data-line="359">            <span class="c1"># The nested section only exists once the kwargs input has been rendered.</span>
-</span><span data-line="360">            <span class="n">section</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="s2">"_exec_section"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-</span><span data-line="361">            <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span data-line="362">                <span class="k">yield from</span> <span class="n">_file_uploaders</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
-</span><span data-line="363">        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">FileUploader</span><span class="p">):</span>
-</span><span data-line="364">            <span class="k">yield</span> <span class="n">component</span>
-</span><span data-line="365">
-</span><span data-line="366">
+</span><span data-line="353">
+</span><span data-line="354">
+</span><span data-line="355"><span class="k">def</span><span class="w"> </span><span class="nf">_file_uploaders</span><span class="p">(</span><span class="n">components</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">FileUploader</span><span class="p">]:</span>
+</span><span data-line="356"><span class="w">    </span><span class="sd">"""The ``FileUploader`` inputs among ``components`` (looking inside multi-source</span>
+</span><span data-line="357"><span class="sd">    inputs and the nested section of kwargs inputs)."""</span>
+</span><span data-line="358">    <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">components</span><span class="p">:</span>
+</span><span data-line="359">        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">MultiSourceInputBase</span><span class="p">):</span>
+</span><span data-line="360">            <span class="k">yield from</span> <span class="n">_file_uploaders</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">input_components</span><span class="p">)</span>
+</span><span data-line="361">        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">KwargsInputBase</span><span class="p">):</span>
+</span><span data-line="362">            <span class="c1"># The nested section only exists once the kwargs input has been rendered.</span>
+</span><span data-line="363">            <span class="n">section</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="s2">"_exec_section"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</span><span data-line="364">            <span class="k">if</span> <span class="n">section</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="365">                <span class="k">yield from</span> <span class="n">_file_uploaders</span><span class="p">(</span><span class="n">section</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+</span><span data-line="366">        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">FileUploader</span><span class="p">):</span>
+</span><span data-line="367">            <span class="k">yield</span> <span class="n">component</span>
+</span><span data-line="368">
+</span><span data-line="369">
 <div class="viewcode-block" id="AudioRecorder">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.AudioRecorder">[docs]</a>
-</span><span data-line="367"><span class="k">class</span><span class="w"> </span><span class="nc">AudioRecorder</span><span class="p">(</span><span class="n">InputBase</span><span class="p">):</span>
+</span><span data-line="370"><span class="k">class</span><span class="w"> </span><span class="nc">AudioRecorder</span><span class="p">(</span><span class="n">InputBase</span><span class="p">):</span>
 <div class="viewcode-block" id="AudioRecorder.render">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.AudioRecorder.render">[docs]</a>
-</span><span data-line="368">    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span data-line="369">        <span class="c1"># # Design move app further up and remove top padding</span>
-</span><span data-line="370">        <span class="c1"># st.markdown('''&lt;style&gt;.css-1egvi7u {margin-top: -3rem;}&lt;/style&gt;''',</span>
-</span><span data-line="371">        <span class="c1">#     unsafe_allow_html=True)</span>
-</span><span data-line="372">        <span class="c1"># # Design change st.Audio to fixed height of 45 pixels</span>
-</span><span data-line="373">        <span class="c1"># st.markdown('''&lt;style&gt;.stAudio {height: 45px;}&lt;/style&gt;''',</span>
+</span><span data-line="371">    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="372">        <span class="c1"># # Design move app further up and remove top padding</span>
+</span><span data-line="373">        <span class="c1"># st.markdown('''&lt;style&gt;.css-1egvi7u {margin-top: -3rem;}&lt;/style&gt;''',</span>
 </span><span data-line="374">        <span class="c1">#     unsafe_allow_html=True)</span>
-</span><span data-line="375">        <span class="c1"># # Design change hyperlink href link color</span>
-</span><span data-line="376">        <span class="c1"># st.markdown('''&lt;style&gt;.css-v37k9u a {color: #ff4c4b;}&lt;/style&gt;''',</span>
-</span><span data-line="377">        <span class="c1">#     unsafe_allow_html=True)  # darkmode</span>
-</span><span data-line="378">        <span class="c1"># st.markdown('''&lt;style&gt;.css-nlntq9 a {color: #ff4c4b;}&lt;/style&gt;''',</span>
-</span><span data-line="379">        <span class="c1">#     unsafe_allow_html=True)  # lightmode</span>
-</span><span data-line="380">        <span class="c1"># st.caption(self.name)</span>
-</span><span data-line="381">
-</span><span data-line="382">        <span class="n">st_audiorec</span> <span class="o">=</span> <span class="n">mk_element_factory</span><span class="p">(</span><span class="s2">"st_audiorec"</span><span class="p">)</span>
-</span><span data-line="383">        <span class="n">audio_data</span> <span class="o">=</span> <span class="n">st_audiorec</span><span class="p">()</span>
-</span><span data-line="384">        <span class="c1"># print(audio_data)</span>
-</span><span data-line="385">        <span class="c1"># audio_data = bytes(audio_data, 'utf-8') if audio_data else None</span>
-</span><span data-line="386">        <span class="c1"># st.audio(audio_data)</span>
-</span><span data-line="387">        <span class="k">return</span> <span class="n">audio_data</span></div>
+</span><span data-line="375">        <span class="c1"># # Design change st.Audio to fixed height of 45 pixels</span>
+</span><span data-line="376">        <span class="c1"># st.markdown('''&lt;style&gt;.stAudio {height: 45px;}&lt;/style&gt;''',</span>
+</span><span data-line="377">        <span class="c1">#     unsafe_allow_html=True)</span>
+</span><span data-line="378">        <span class="c1"># # Design change hyperlink href link color</span>
+</span><span data-line="379">        <span class="c1"># st.markdown('''&lt;style&gt;.css-v37k9u a {color: #ff4c4b;}&lt;/style&gt;''',</span>
+</span><span data-line="380">        <span class="c1">#     unsafe_allow_html=True)  # darkmode</span>
+</span><span data-line="381">        <span class="c1"># st.markdown('''&lt;style&gt;.css-nlntq9 a {color: #ff4c4b;}&lt;/style&gt;''',</span>
+</span><span data-line="382">        <span class="c1">#     unsafe_allow_html=True)  # lightmode</span>
+</span><span data-line="383">        <span class="c1"># st.caption(self.name)</span>
+</span><span data-line="384">
+</span><span data-line="385">        <span class="n">st_audiorec</span> <span class="o">=</span> <span class="n">mk_element_factory</span><span class="p">(</span><span class="s2">"st_audiorec"</span><span class="p">)</span>
+</span><span data-line="386">        <span class="n">audio_data</span> <span class="o">=</span> <span class="n">st_audiorec</span><span class="p">()</span>
+</span><span data-line="387">        <span class="c1"># print(audio_data)</span>
+</span><span data-line="388">        <span class="c1"># audio_data = bytes(audio_data, 'utf-8') if audio_data else None</span>
+</span><span data-line="389">        <span class="c1"># st.audio(audio_data)</span>
+</span><span data-line="390">        <span class="k">return</span> <span class="n">audio_data</span></div>
 </div>
 
-</span><span data-line="388">
-</span><span data-line="389">
+</span><span data-line="391">
+</span><span data-line="392">
 <div class="viewcode-block" id="SuccessFailureNotification">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.SuccessFailureNotification">[docs]</a>
-</span><span data-line="390"><span class="nd">@dataclass</span>
-</span><span data-line="391"><span class="k">class</span><span class="w"> </span><span class="nc">SuccessFailureNotification</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
-</span><span data-line="392">    <span class="n">success</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"Success!"</span>
-</span><span data-line="393">    <span class="n">failure</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"Failure!"</span>
-</span><span data-line="394">    <span class="n">post_render_sleep</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span data-line="395">
-</span><span data-line="396">    <span class="nd">@property</span>
-</span><span data-line="397">    <span class="k">def</span><span class="w"> </span><span class="nf">is_success</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span data-line="398">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span>
-</span><span data-line="399">
+</span><span data-line="393"><span class="nd">@dataclass</span>
+</span><span data-line="394"><span class="k">class</span><span class="w"> </span><span class="nc">SuccessFailureNotification</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
+</span><span data-line="395">    <span class="n">success</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"Success!"</span>
+</span><span data-line="396">    <span class="n">failure</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"Failure!"</span>
+</span><span data-line="397">    <span class="n">post_render_sleep</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span data-line="398">
+</span><span data-line="399">    <span class="nd">@property</span>
+</span><span data-line="400">    <span class="k">def</span><span class="w"> </span><span class="nf">is_success</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="401">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span>
+</span><span data-line="402">
 <div class="viewcode-block" id="SuccessFailureNotification.render">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.SuccessFailureNotification.render">[docs]</a>
-</span><span data-line="400">    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span data-line="401">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_success</span><span class="p">:</span>
-</span><span data-line="402">            <span class="n">rv</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">success</span><span class="p">)</span>
-</span><span data-line="403">        <span class="k">else</span><span class="p">:</span>
-</span><span data-line="404">            <span class="n">rv</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">failure</span><span class="p">)</span>
-</span><span data-line="405">        <span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">post_render_sleep</span><span class="p">)</span>
-</span><span data-line="406">        <span class="k">return</span> <span class="n">rv</span></div>
+</span><span data-line="403">    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="404">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_success</span><span class="p">:</span>
+</span><span data-line="405">            <span class="n">rv</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">success</span><span class="p">)</span>
+</span><span data-line="406">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="407">            <span class="n">rv</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">failure</span><span class="p">)</span>
+</span><span data-line="408">        <span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">post_render_sleep</span><span class="p">)</span>
+</span><span data-line="409">        <span class="k">return</span> <span class="n">rv</span></div>
 </div>
 
-</span><span data-line="407">
-</span><span data-line="408">
+</span><span data-line="410">
+</span><span data-line="411">
 <div class="viewcode-block" id="SuccessNotification">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.SuccessNotification">[docs]</a>
-</span><span data-line="409"><span class="nd">@dataclass</span>
-</span><span data-line="410"><span class="k">class</span><span class="w"> </span><span class="nc">SuccessNotification</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
-</span><span data-line="411">    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"Success!"</span>
-</span><span data-line="412">
+</span><span data-line="412"><span class="nd">@dataclass</span>
+</span><span data-line="413"><span class="k">class</span><span class="w"> </span><span class="nc">SuccessNotification</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
+</span><span data-line="414">    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"Success!"</span>
+</span><span data-line="415">
 <div class="viewcode-block" id="SuccessNotification.render">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.SuccessNotification.render">[docs]</a>
-</span><span data-line="413">    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span data-line="414">        <span class="k">return</span> <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
+</span><span data-line="416">    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="417">        <span class="k">return</span> <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
 </div>
 
-</span><span data-line="415">
-</span><span data-line="416">
+</span><span data-line="418">
+</span><span data-line="419">
 <div class="viewcode-block" id="HiddenOutput">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.HiddenOutput">[docs]</a>
-</span><span data-line="417"><span class="k">class</span><span class="w"> </span><span class="nc">HiddenOutput</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
+</span><span data-line="420"><span class="k">class</span><span class="w"> </span><span class="nc">HiddenOutput</span><span class="p">(</span><span class="n">OutputBase</span><span class="p">):</span>
 <div class="viewcode-block" id="HiddenOutput.render">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.HiddenOutput.render">[docs]</a>
-</span><span data-line="418">    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span data-line="419">        <span class="k">pass</span></div>
+</span><span data-line="421">    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="422">        <span class="k">pass</span></div>
 </div>
 
-</span><span data-line="420">
-</span><span data-line="421">
+</span><span data-line="423">
+</span><span data-line="424">
 <div class="viewcode-block" id="KwargsInput">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.KwargsInput">[docs]</a>
-</span><span data-line="422"><span class="nd">@dataclass</span>
-</span><span data-line="423"><span class="k">class</span><span class="w"> </span><span class="nc">KwargsInput</span><span class="p">(</span><span class="n">KwargsInputBase</span><span class="p">):</span>
-</span><span data-line="424">    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span data-line="425">        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__post_init__</span><span class="p">()</span>
-</span><span data-line="426">
+</span><span data-line="425"><span class="nd">@dataclass</span>
+</span><span data-line="426"><span class="k">class</span><span class="w"> </span><span class="nc">KwargsInput</span><span class="p">(</span><span class="n">KwargsInputBase</span><span class="p">):</span>
+</span><span data-line="427">    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="428">        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__post_init__</span><span class="p">()</span>
+</span><span data-line="429">
 <div class="viewcode-block" id="KwargsInput.render">
 <a class="viewcode-back" href="../../../_autosummary/streamlitfront.elements.elements.html#streamlitfront.elements.elements.KwargsInput.render">[docs]</a>
-</span><span data-line="427">    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span data-line="428">        <span class="n">exec_section</span> <span class="o">=</span> <span class="n">ExecSection</span><span class="p">(</span>
-</span><span data-line="429">            <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_kwargs</span><span class="p">,</span>
-</span><span data-line="430">            <span class="n">inputs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span>
-</span><span data-line="431">            <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">HiddenOutput</span><span class="p">},</span>
-</span><span data-line="432">            <span class="n">auto_submit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-</span><span data-line="433">            <span class="n">on_submit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_return_kwargs</span><span class="p">,</span>
-</span><span data-line="434">            <span class="n">use_expander</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span data-line="435">        <span class="p">)</span>
-</span><span data-line="436">        <span class="bp">self</span><span class="o">.</span><span class="n">_exec_section</span> <span class="o">=</span> <span class="n">exec_section</span>
-</span><span data-line="437">        <span class="n">exec_section</span><span class="p">()</span>
-</span><span data-line="438">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">()</span></div>
+</span><span data-line="430">    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="431">        <span class="n">exec_section</span> <span class="o">=</span> <span class="n">ExecSection</span><span class="p">(</span>
+</span><span data-line="432">            <span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_kwargs</span><span class="p">,</span>
+</span><span data-line="433">            <span class="n">inputs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span>
+</span><span data-line="434">            <span class="n">output</span><span class="o">=</span><span class="p">{</span><span class="n">ELEMENT_KEY</span><span class="p">:</span> <span class="n">HiddenOutput</span><span class="p">},</span>
+</span><span data-line="435">            <span class="n">auto_submit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span data-line="436">            <span class="n">on_submit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_return_kwargs</span><span class="p">,</span>
+</span><span data-line="437">            <span class="n">use_expander</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span data-line="438">        <span class="p">)</span>
+</span><span data-line="439">        <span class="bp">self</span><span class="o">.</span><span class="n">_exec_section</span> <span class="o">=</span> <span class="n">exec_section</span>
+</span><span data-line="440">        <span class="n">exec_section</span><span class="p">()</span>
+</span><span data-line="441">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">()</span></div>
 </div>
 
 </span></pre></div>
@@ -680,7 +683,7 @@ data-aria-dark="Switch to auto color mode">
     </div>
   </div>
 </footer>
-      <script src="../../../_static/documentation_options.js?v=6a0a5382"></script>
+      <script src="../../../_static/documentation_options.js?v=ce72d79b"></script>
       <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
