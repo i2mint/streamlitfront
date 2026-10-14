@@ -80,3 +80,40 @@ def test_one_selection_updates_a_dependent_input():
     assert not at.exception
     assert _selects(at)["Band"].value == "B"
     assert list(_selects(at)["Member"].options) == ["b1", "b2", "b3"]
+
+
+MULTI_APP = """
+from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY
+from streamlitfront import mk_app, binder as b
+from streamlitfront.elements import MultiSelectBox
+
+def pick(members: list):
+    return members
+
+def on_pick(values):
+    b.picked.set(values)
+
+mk_app(
+    [pick],
+    config={
+        APP_KEY: {"title": "t"},
+        RENDERING_KEY: {"pick": {"execution": {"inputs": {"members": {
+            ELEMENT_KEY: MultiSelectBox,
+            "options": ["m1", "m2", "m3"],
+            "on_value_change": on_pick,
+        }}}}},
+    },
+)()
+"""
+
+
+def test_multiselect_on_value_change_receives_the_selected_list():
+    at = AppTest.from_string(MULTI_APP, default_timeout=30).run()
+    assert not at.exception
+    at.multiselect[0].select("m2").run()
+    assert not at.exception
+    selected = list(at.multiselect[0].value)
+    assert "m2" in selected
+    assert at.session_state["picked"] == selected
+    at.run()  # a plain rerun must not replace it with a single option
+    assert at.session_state["picked"] == selected

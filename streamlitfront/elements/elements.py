@@ -285,8 +285,21 @@ FloatSliderInput = implement_input_component(FloatInputBase, st.slider)
 SelectBox = implement_input_component(
     SelectorBase, st.selectbox, options="_options", index="_preselected_index"
 )
+class MultiSelectorBase(SelectorBase):
+    """A selector whose view value is a *list* of options.
+
+    ``SelectorBase.pre_render`` is single-choice logic: it looks the view value up among the
+    options, finds no list there, and "corrects" it to the first option -- calling
+    ``on_value_change`` with that one item on every render. Here the options are only resolved;
+    the value is the widget's (``on_value_change`` runs as its callback, with the list).
+    """
+
+    def pre_render(self):
+        self._options = list(self._ensure_options())
+
+
 MultiSelectBox = implement_input_component(
-    SelectorBase, st.multiselect, options="_options"
+    MultiSelectorBase, st.multiselect, options="_options"
 )
 Radio = implement_input_component(SelectorBase, st.radio, options="_options")
 
