@@ -276,6 +276,7 @@ def implement_input_component(base_cls, component_factory, **input_mapping):
         **input_mapping,
     )
 
+
 TextInput = implement_input_component(TextInputBase, st.text_input)
 BooleanInput = implement_input_component(BooleanInputBase, st.checkbox)
 IntInput = implement_input_component(IntInputBase, st.number_input)
@@ -285,6 +286,8 @@ FloatSliderInput = implement_input_component(FloatInputBase, st.slider)
 SelectBox = implement_input_component(
     SelectorBase, st.selectbox, options="_options", index="_preselected_index"
 )
+
+
 class MultiSelectorBase(SelectorBase):
     """A selector whose view value is a *list* of options.
 
