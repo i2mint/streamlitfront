@@ -1,4 +1,4 @@
-> built 2026-10-13 23:55 UTC from ae3eecf (master) · streamlitfront 0.1.43. Details: build_info.json
+> built 2026-10-14 00:14 UTC from b214fa3 (master) · streamlitfront 0.1.44. Details: build_info.json
 
 # index.html.md
 
@@ -550,6 +550,11 @@ Here are implemented the elements for streamlitfront.
 Not the use of the `implement_component` function to create a class that implements a
 specific abstract elements class defined in front.
 
+### Functions
+
+| [`implement_input_component`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.implement_input_component)(base_cls, ...)   | `implement_component` for the input widgets, with `on_change` wired as a widget callback.   |
+|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+
 ### Classes
 
 | [`App`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.App)([obj, name, display])                         | Implementation of the app root container for streamlitfront.   |
@@ -559,6 +564,7 @@ specific abstract elements class defined in front.
 | [`FileUploader`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.FileUploader)([obj, name, display, ...])           |                                                                |
 | [`HiddenOutput`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.HiddenOutput)([obj, name, display])                |                                                                |
 | [`KwargsInput`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.KwargsInput)([obj, name, display, input_key, ...]) |                                                                |
+| [`MultiSelectorBase`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.MultiSelectorBase)([obj, name, display, ...])      | A selector whose view value is a *list* of options.            |
 | [`MultiSourceInput`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.MultiSourceInput)([obj, name, display, ...])       |                                                                |
 | [`Section`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.Section)([obj, name, display])                     |                                                                |
 | [`SuccessFailureNotification`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.SuccessFailureNotification)([obj, name, ...])      |                                                                |
@@ -626,6 +632,21 @@ Bases: `KwargsInputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
+### *class* streamlitfront.elements.elements.MultiSelectorBase(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, options=None)
+
+Bases: `SelectorBase`
+
+A selector whose view value is a *list* of options.
+
+`SelectorBase.pre_render` is single-choice logic: it looks the view value up among the
+options, finds no list there, and “corrects” it to the first option – calling
+`on_value_change` with that one item on every render. Here the options are only resolved;
+the value is the widget’s (`on_value_change` runs as its callback, with the list).
+
+#### pre_render()
+
+Resolve the options and pre-select the current view value (or the first option).
+
 ### *class* streamlitfront.elements.elements.MultiSourceInput(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, \*\*kwargs)
 
 Bases: `MultiSourceInputBase`
@@ -681,6 +702,17 @@ Bases: `FrontContainerBase`
 #### render()
 
 Render the element with the concrete UI framework; must be overridden.
+
+### streamlitfront.elements.elements.implement_input_component(base_cls, component_factory, \*\*input_mapping)
+
+`implement_component` for the input widgets, with `on_change` wired as a widget callback.
+
+`implement_component` *calls* every callable attribute it forwards, and `on_change` is a
+method: left alone, it would run during the render (before the widget even exists) and
+streamlit would get `None`. So an input’s `on_value_change` would only take effect on the
+*next* run, and a dependent input built from the state it sets needed a second interaction
+(i2mint/streamlitfront#7). Here the widget gets `on_change` itself, so streamlit runs it
+before the rerun the interaction triggers.
 
 
 # _autosummary/streamlitfront.elements.html.md
@@ -1258,18 +1290,16 @@ must not be prefilled with it, nor typed after it.
 
 # About this build
 
-This documentation was built on **2026-10-13 23:55 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/ae3eecffe106f2a56be97188cff668abefc5ae56"><code>ae3eecf</code></a> on branch <code>master</code>, for **streamlitfront 0.1.43** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-10-14 00:14 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/b214fa39cd59a1f3538bf6d93afd62fb6bf61dc9"><code>b214fa3</code></a> on branch <code>master</code>, for **streamlitfront 0.1.44** (from <code>pyproject.toml</code>).
 
-#### WARNING
-The documentation and the package may be misaligned:
-
-- The documented version (0.1.43) is behind the latest release on PyPI (0.1.44): `pip install streamlitfront` gives newer code than these docs describe.
+#### NOTE
+Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
 
 ## Source
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/ae3eecffe106f2a56be97188cff668abefc5ae56"><code>ae3eecffe106f2a56be97188cff668abefc5ae56</code></a> |
+| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/b214fa39cd59a1f3538bf6d93afd62fb6bf61dc9"><code>b214fa39cd59a1f3538bf6d93afd62fb6bf61dc9</code></a> |
 | Branch              | <code>master</code>                                                                                                                                          |
 | Tags at this commit | none                                                                                                                                                         |
 | Working tree        | clean                                                                                                                                                        |
@@ -1280,9 +1310,9 @@ The documentation and the package may be misaligned:
 |              |                                                                                             |
 |--------------|---------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/streamlitfront</code>                                                          |
-| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/38486999038">38486999038</a> |
+| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/38488720307">38488720307</a> |
 | Ref          | <code>refs/heads/master</code>                                                              |
-| Event commit | <code>ae3eecffe106f2a56be97188cff668abefc5ae56</code> (in the history of the built commit)  |
+| Event commit | <code>b214fa39cd59a1f3538bf6d93afd62fb6bf61dc9</code> (in the history of the built commit)  |
 
 ## Tools
 
@@ -1307,13 +1337,13 @@ The documentation and the package may be misaligned:
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.44/">0.1.44</a>, newer than the documented version (0.1.43).
+Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.44/">0.1.44</a>, the same as the documented version.
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/streamlitfront && cd streamlitfront
-git checkout ae3eecffe106f2a56be97188cff668abefc5ae56
+git checkout b214fa39cd59a1f3538bf6d93afd62fb6bf61dc9
 pip install "epythet==0.2.17"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```

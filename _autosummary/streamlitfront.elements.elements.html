@@ -120,6 +120,10 @@ data-aria-dark="Switch to auto color mode">
 <li><a class="reference internal" href="#streamlitfront.elements.elements.KwargsInput.render"><code class="docutils literal notranslate"><span class="pre">KwargsInput.render()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#streamlitfront.elements.elements.MultiSelectorBase"><code class="docutils literal notranslate"><span class="pre">MultiSelectorBase</span></code></a><ul>
+<li><a class="reference internal" href="#streamlitfront.elements.elements.MultiSelectorBase.pre_render"><code class="docutils literal notranslate"><span class="pre">MultiSelectorBase.pre_render()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#streamlitfront.elements.elements.MultiSourceInput"><code class="docutils literal notranslate"><span class="pre">MultiSourceInput</span></code></a><ul>
 <li><a class="reference internal" href="#streamlitfront.elements.elements.MultiSourceInput.render"><code class="docutils literal notranslate"><span class="pre">MultiSourceInput.render()</span></code></a></li>
 </ul>
@@ -148,6 +152,7 @@ data-aria-dark="Switch to auto color mode">
 <li><a class="reference internal" href="#streamlitfront.elements.elements.View.render"><code class="docutils literal notranslate"><span class="pre">View.render()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#streamlitfront.elements.elements.implement_input_component"><code class="docutils literal notranslate"><span class="pre">implement_input_component()</span></code></a></li>
 </ul>
 </div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
   </aside>
@@ -195,6 +200,16 @@ data-aria-dark="Switch to auto color mode">
 <p>Here are implemented the elements for streamlitfront.</p>
 <p>Not the use of the <code class="docutils literal notranslate"><span class="pre">implement_component</span></code> function to create a class that implements a
 specific abstract elements class defined in front.</p>
+<p class="rubric">Functions</p>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.implement_input_component" title="streamlitfront.elements.elements.implement_input_component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">implement_input_component</span></code></a>(base_cls, ...)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">implement_component</span></code> for the input widgets, with <code class="docutils literal notranslate"><span class="pre">on_change</span></code> wired as a widget callback.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p class="rubric">Classes</p>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
@@ -217,25 +232,28 @@ specific abstract elements class defined in front.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.KwargsInput" title="streamlitfront.elements.elements.KwargsInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KwargsInput</span></code></a>([obj, name, display, input_key, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.MultiSourceInput" title="streamlitfront.elements.elements.MultiSourceInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiSourceInput</span></code></a>([obj, name, display, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.MultiSelectorBase" title="streamlitfront.elements.elements.MultiSelectorBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiSelectorBase</span></code></a>([obj, name, display, ...])</p></td>
+<td><p>A selector whose view value is a <em>list</em> of options.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.MultiSourceInput" title="streamlitfront.elements.elements.MultiSourceInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiSourceInput</span></code></a>([obj, name, display, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.Section" title="streamlitfront.elements.elements.Section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Section</span></code></a>([obj, name, display])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.Section" title="streamlitfront.elements.elements.Section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Section</span></code></a>([obj, name, display])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.SuccessFailureNotification" title="streamlitfront.elements.elements.SuccessFailureNotification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SuccessFailureNotification</span></code></a>([obj, name, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.SuccessFailureNotification" title="streamlitfront.elements.elements.SuccessFailureNotification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SuccessFailureNotification</span></code></a>([obj, name, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.SuccessNotification" title="streamlitfront.elements.elements.SuccessNotification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SuccessNotification</span></code></a>([obj, name, display, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.SuccessNotification" title="streamlitfront.elements.elements.SuccessNotification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SuccessNotification</span></code></a>([obj, name, display, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.TextOutput" title="streamlitfront.elements.elements.TextOutput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextOutput</span></code></a>([obj, name, display])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.TextOutput" title="streamlitfront.elements.elements.TextOutput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextOutput</span></code></a>([obj, name, display])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.TextSection" title="streamlitfront.elements.elements.TextSection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextSection</span></code></a>(content[, kind, obj, name])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.TextSection" title="streamlitfront.elements.elements.TextSection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextSection</span></code></a>(content[, kind, obj, name])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.View" title="streamlitfront.elements.elements.View"><code class="xref py py-obj docutils literal notranslate"><span class="pre">View</span></code></a>([obj, name, display])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#streamlitfront.elements.elements.View" title="streamlitfront.elements.elements.View"><code class="xref py py-obj docutils literal notranslate"><span class="pre">View</span></code></a>([obj, name, display])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -332,6 +350,25 @@ everything else drawn stay in place (no rerun).</p>
 <dt class="sig sig-object py" id="streamlitfront.elements.elements.KwargsInput.render">
 <span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/elements/elements.html#KwargsInput.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.elements.elements.KwargsInput.render" title="Link to this definition">#</a></dt>
 <dd><p>Render the element with the concrete UI framework; must be overridden.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="streamlitfront.elements.elements.MultiSelectorBase">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">streamlitfront.elements.elements.</span></span><span class="sig-name descname"><span class="pre">MultiSelectorBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">ValueNotSet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_value_change</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_data_factory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_noneable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disabled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/elements/elements.html#MultiSelectorBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.elements.elements.MultiSelectorBase" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">SelectorBase</span></code></p>
+<p>A selector whose view value is a <em>list</em> of options.</p>
+<p><code class="docutils literal notranslate"><span class="pre">SelectorBase.pre_render</span></code> is single-choice logic: it looks the view value up among the
+options, finds no list there, and “corrects” it to the first option – calling
+<code class="docutils literal notranslate"><span class="pre">on_value_change</span></code> with that one item on every render. Here the options are only resolved;
+the value is the widget’s (<code class="docutils literal notranslate"><span class="pre">on_value_change</span></code> runs as its callback, with the list).</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="streamlitfront.elements.elements.MultiSelectorBase.pre_render">
+<span class="sig-name descname"><span class="pre">pre_render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/elements/elements.html#MultiSelectorBase.pre_render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.elements.elements.MultiSelectorBase.pre_render" title="Link to this definition">#</a></dt>
+<dd><p>Resolve the options and pre-select the current view value (or the first option).</p>
 </dd></dl>
 
 </dd></dl>
@@ -434,6 +471,18 @@ everything else drawn stay in place (no rerun).</p>
 
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="streamlitfront.elements.elements.implement_input_component">
+<span class="sig-prename descclassname"><span class="pre">streamlitfront.elements.elements.</span></span><span class="sig-name descname"><span class="pre">implement_input_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_factory</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">input_mapping</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/elements/elements.html#implement_input_component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.elements.elements.implement_input_component" title="Link to this definition">#</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">implement_component</span></code> for the input widgets, with <code class="docutils literal notranslate"><span class="pre">on_change</span></code> wired as a widget callback.</p>
+<p><code class="docutils literal notranslate"><span class="pre">implement_component</span></code> <em>calls</em> every callable attribute it forwards, and <code class="docutils literal notranslate"><span class="pre">on_change</span></code> is a
+method: left alone, it would run during the render (before the widget even exists) and
+streamlit would get <code class="docutils literal notranslate"><span class="pre">None</span></code>. So an input’s <code class="docutils literal notranslate"><span class="pre">on_value_change</span></code> would only take effect on the
+<em>next</em> run, and a dependent input built from the state it sets needed a second interaction
+(i2mint/streamlitfront#7). Here the widget gets <code class="docutils literal notranslate"><span class="pre">on_change</span></code> itself, so streamlit runs it
+before the rerun the interaction triggers.</p>
+</dd></dl>
+
 </section>
 
         </article><button class="back-to-top" type="button">
@@ -476,7 +525,7 @@ everything else drawn stay in place (no rerun).</p>
     </div>
   </div>
 </footer>
-      <script src="../_static/documentation_options.js?v=a183c34f"></script>
+      <script src="../_static/documentation_options.js?v=6a0a5382"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
