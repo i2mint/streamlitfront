@@ -7,12 +7,21 @@ so they are left out of collection when those are missing instead of breaking it
 
 from importlib.util import find_spec
 
-_E2E_MODULES = ("selenium", "webdriver_manager", "strand", "dill", "front")
+
+def _importable(name: str) -> bool:
+    try:
+        return find_spec(name) is not None
+    except ImportError:  # a parent package is missing
+        return False
+
+
+_E2E_MODULES = ("selenium", "webdriver_manager", "strand")
 _E2E_FILES = ("common.py", "use_case_test_old.py")
 
 collect_ignore = (
     []
-    if all(find_spec(name) for name in _E2E_MODULES)
+    if all(map(_importable, _E2E_MODULES))
+    and _importable("front.tests.test_use_case")
     else list(_E2E_FILES)
 )
 
