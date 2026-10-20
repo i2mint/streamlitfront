@@ -4,7 +4,9 @@ Not the use of the ``implement_component`` function to create a class that imple
 specific abstract elements class defined in front.
 """
 
+import dataclasses
 from dataclasses import dataclass
+from inspect import Parameter
 from functools import cached_property
 from pathlib import Path
 from time import sleep
@@ -26,6 +28,7 @@ from front.elements import (
     OutputBase,
     SelectorBase,
     TextInputBase,
+    ValueNotSet,
     TextSectionBase,
     ELEMENT_KEY,
 )
@@ -194,6 +197,48 @@ class ExecSection(ExecContainerBase):
                 self._submit(inputs)
             except ValidationError as e:
                 st.error(e)
+
+    def _render_inputs(self):
+        """Render the inputs; a ``*args`` parameter gets a "+" button and one field per press."""
+        inputs = {}
+        for child in self.children:
+            if not isinstance(child, InputBase):
+                continue
+            if getattr(child.obj, "kind", None) is Parameter.VAR_POSITIONAL:
+                inputs[child.obj.name] = self._render_var_positional(child)
+            else:
+                if child.is_noneable:
+                    child = self._noneable(child)
+                inputs[child.obj.name] = child()
+        return inputs
+
+    def _render_var_positional(self, template: InputBase) -> tuple:
+        """The values of a ``*args`` parameter: the user asks for more fields with "＋", fewer with "－".
+
+        Each field is a copy of ``template`` (so ``Iterable[float]``-style annotations give
+        number fields) under its own key.
+        """
+        name = template.obj.name
+        count_key = f"{template.input_key}_count"
+        st.session_state.setdefault(count_key, 0)
+
+        def bump(by):
+            st.session_state[count_key] = max(0, st.session_state[count_key] + by)
+
+        st.markdown(name.replace("_", " ").title())
+        plus, minus, _ = st.columns([1, 1, 4])
+        plus.button("＋", key=f"{count_key}_plus", on_click=bump, args=(1,), help=f"Add another {name}")
+        minus.button(
+            "－", key=f"{count_key}_minus", on_click=bump, args=(-1,), disabled=not st.session_state[count_key],
+            help=f"Remove the last {name}",
+        )
+        values = []
+        for i in range(st.session_state[count_key]):
+            field = dataclasses.replace(
+                template, name=f"{name} {i + 1}", input_key=f"{template.input_key}_{i}", value=ValueNotSet
+            )
+            values.append(field())
+        return tuple(values)
 
     def _submit(self, inputs):
         super()._submit(inputs)
