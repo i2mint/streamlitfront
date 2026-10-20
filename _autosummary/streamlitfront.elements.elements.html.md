@@ -46,7 +46,7 @@ Bases: `InputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.ExecSection(obj, inputs, output, name=None, display=True, auto_submit=False, on_submit=None, use_expander=True, submit_button_label='Submit', authentification=False, tooltip=None)
+### *class* streamlitfront.elements.elements.ExecSection(obj, inputs, output, name=None, display=True, auto_submit=False, on_submit=None, use_expander=True, submit_button_label='Submit', clear_button_label=None, authentification=False, tooltip=None)
 
 Bases: `ExecContainerBase`
 

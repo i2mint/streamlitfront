@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "built_at": "2026-10-20T10:26:39Z",
+  "built_at": "2026-10-20T10:47:23Z",
   "package": {
     "name": "streamlitfront",
-    "version": "0.1.47",
+    "version": "0.1.48",
     "display_name": "streamlitfront",
     "source": "pyproject.toml"
   },
   "git": {
     "available": true,
-    "commit": "caf6020f0d537d1bd85dbb9a2c29560cee67ef36",
-    "short_commit": "caf6020",
+    "commit": "d189fc862cf0d0bb73b1e137cd0b4d2496da56d8",
+    "short_commit": "d189fc8",
     "branch": "master",
     "tags": [],
     "dirty": false,
     "remote_url": "https://github.com/i2mint/streamlitfront",
-    "commit_url": "https://github.com/i2mint/streamlitfront/commit/caf6020f0d537d1bd85dbb9a2c29560cee67ef36",
+    "commit_url": "https://github.com/i2mint/streamlitfront/commit/d189fc862cf0d0bb73b1e137cd0b4d2496da56d8",
     "error": null
   },
   "ci": {
     "provider": "github",
     "repository": "i2mint/streamlitfront",
-    "sha": "caf6020f0d537d1bd85dbb9a2c29560cee67ef36",
+    "sha": "d189fc862cf0d0bb73b1e137cd0b4d2496da56d8",
     "sha_in_history": true,
     "ref": "refs/heads/master",
     "ref_name": "master",
-    "run_id": "39407738287",
-    "run_url": "https://github.com/i2mint/streamlitfront/actions/runs/39407738287",
+    "run_id": "39410153012",
+    "run_url": "https://github.com/i2mint/streamlitfront/actions/runs/39410153012",
     "server_url": "https://github.com"
   },
   "tools": {
-    "epythet": "0.2.18",
+    "epythet": "0.2.19",
     "sphinx": "9.1.1",
     "docutils": "0.22.4",
     "python": "3.12.15"
@@ -60,16 +60,16 @@
   },
   "pypi": {
     "checked": true,
-    "latest": "0.1.48",
+    "latest": "0.1.49",
     "relation": "behind",
     "error": null
   },
-  "reproduce": "git clone https://github.com/i2mint/streamlitfront && cd streamlitfront\ngit checkout caf6020f0d537d1bd85dbb9a2c29560cee67ef36\npip install \"epythet==0.2.18\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "reproduce": "git clone https://github.com/i2mint/streamlitfront && cd streamlitfront\ngit checkout d189fc862cf0d0bb73b1e137cd0b4d2496da56d8\npip install \"epythet==0.2.19\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
   "warnings": [],
   "alignment": {
     "aligned": false,
     "notes": [
-      "The documented version (0.1.47) is behind the latest release on PyPI (0.1.48): `pip install streamlitfront` gives newer code than these docs describe."
+      "The documented version (0.1.48) is behind the latest release on PyPI (0.1.49): `pip install streamlitfront` gives newer code than these docs describe."
     ]
   }
 }
