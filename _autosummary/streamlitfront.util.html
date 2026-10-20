@@ -7,6 +7,7 @@
     setColorMode(localStorage._theme||"auto");
   </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d88b86f9" />
     <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=2ceb65ce" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_autodoc_typehints.css?v=057ac668" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -394,17 +395,17 @@ bound method, it is replaced by a named wrapper. Use the returned list.)</p>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">sig.defaults</span></code> without the params whose default is <code class="docutils literal notranslate"><span class="pre">i2</span></code>’s <code class="docutils literal notranslate"><span class="pre">NotSet</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">NotSet</span></code> in a signature means “no value given”, not a real default, so a widget
 must not be prefilled with it, nor typed after it.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></span></p>
-</dd>
-</dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">i2.deco</span><span class="w"> </span><span class="kn">import</span> <span class="n">NotSet</span>
 </span><span data-line="2"><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">NotSet</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span> <span class="o">...</span>
 </span><span data-line="3"><span class="gp">&gt;&gt;&gt; </span><span class="n">signature_defaults</span><span class="p">(</span><span class="n">Sig</span><span class="p">(</span><span class="n">foo</span><span class="p">))</span>
 </span><span data-line="4"><span class="go">{'c': 3}</span>
 </span></pre></div>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -441,7 +442,7 @@ must not be prefilled with it, nor typed after it.</p>
     </div>
   </div>
 </footer>
-      <script src="../_static/documentation_options.js?v=ce72d79b"></script>
+      <script src="../_static/documentation_options.js?v=f98a5df1"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>

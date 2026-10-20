@@ -12,23 +12,23 @@ specific abstract elements class defined in front.
 
 ### Classes
 
-| [`App`](#streamlitfront.elements.elements.App)([obj, name, display])                         | Implementation of the app root container for streamlitfront.   |
+| [`App`](#streamlitfront.elements.elements.App)([obj, name, display, tooltip])                | Implementation of the app root container for streamlitfront.   |
 |----------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
 | [`AudioRecorder`](#streamlitfront.elements.elements.AudioRecorder)([obj, name, display, ...])          |                                                                |
 | [`ExecSection`](#streamlitfront.elements.elements.ExecSection)(obj, inputs, output[, name, ...])     |                                                                |
 | [`FileUploader`](#streamlitfront.elements.elements.FileUploader)([obj, name, display, ...])           |                                                                |
-| [`HiddenOutput`](#streamlitfront.elements.elements.HiddenOutput)([obj, name, display])                |                                                                |
+| [`HiddenOutput`](#streamlitfront.elements.elements.HiddenOutput)([obj, name, display, tooltip])       |                                                                |
 | [`KwargsInput`](#streamlitfront.elements.elements.KwargsInput)([obj, name, display, input_key, ...]) |                                                                |
 | [`MultiSelectorBase`](#streamlitfront.elements.elements.MultiSelectorBase)([obj, name, display, ...])      | A selector whose view value is a *list* of options.            |
 | [`MultiSourceInput`](#streamlitfront.elements.elements.MultiSourceInput)([obj, name, display, ...])       |                                                                |
-| [`Section`](#streamlitfront.elements.elements.Section)([obj, name, display])                     |                                                                |
+| [`Section`](#streamlitfront.elements.elements.Section)([obj, name, display, tooltip])            |                                                                |
 | [`SuccessFailureNotification`](#streamlitfront.elements.elements.SuccessFailureNotification)([obj, name, ...])      |                                                                |
 | [`SuccessNotification`](#streamlitfront.elements.elements.SuccessNotification)([obj, name, display, ...])    |                                                                |
-| [`TextOutput`](#streamlitfront.elements.elements.TextOutput)([obj, name, display])                  |                                                                |
+| [`TextOutput`](#streamlitfront.elements.elements.TextOutput)([obj, name, display, tooltip])         |                                                                |
 | [`TextSection`](#streamlitfront.elements.elements.TextSection)(content[, kind, obj, name])           |                                                                |
-| [`View`](#streamlitfront.elements.elements.View)([obj, name, display])                        |                                                                |
+| [`View`](#streamlitfront.elements.elements.View)([obj, name, display, tooltip])               |                                                                |
 
-### *class* streamlitfront.elements.elements.App(obj=None, name=None, display=True, \*\*kwargs)
+### *class* streamlitfront.elements.elements.App(obj=None, name=None, display=True, tooltip=None, \*\*kwargs)
 
 Bases: `FrontContainerBase`
 
@@ -38,7 +38,7 @@ Implementation of the app root container for streamlitfront.
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.AudioRecorder(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False)
+### *class* streamlitfront.elements.elements.AudioRecorder(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, , tooltip=None)
 
 Bases: `InputBase`
 
@@ -46,7 +46,7 @@ Bases: `InputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.ExecSection(obj, inputs, output, name=None, display=True, auto_submit=False, on_submit=None, use_expander=True, submit_button_label='Submit', authentification=False)
+### *class* streamlitfront.elements.elements.ExecSection(obj, inputs, output, name=None, display=True, auto_submit=False, on_submit=None, use_expander=True, submit_button_label='Submit', authentification=False, tooltip=None)
 
 Bases: `ExecContainerBase`
 
@@ -54,7 +54,7 @@ Bases: `ExecContainerBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.FileUploader(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, type=None, accept_multiple_files=False, clear_after_submit=True, display_label=True)
+### *class* streamlitfront.elements.elements.FileUploader(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, type=None, accept_multiple_files=False, clear_after_submit=True, display_label=True, , tooltip=None)
 
 Bases: `FileUploaderBase`
 
@@ -71,7 +71,7 @@ everything else drawn stay in place (no rerun).
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.HiddenOutput(obj=None, name=None, display=True)
+### *class* streamlitfront.elements.elements.HiddenOutput(obj=None, name=None, display=True, , tooltip=None)
 
 Bases: `OutputBase`
 
@@ -79,7 +79,7 @@ Bases: `OutputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.KwargsInput(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, inputs=None, func_sig=None)
+### *class* streamlitfront.elements.elements.KwargsInput(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, inputs=None, func_sig=None, , tooltip=None)
 
 Bases: `KwargsInputBase`
 
@@ -87,7 +87,7 @@ Bases: `KwargsInputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.MultiSelectorBase(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, options=None)
+### *class* streamlitfront.elements.elements.MultiSelectorBase(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, options=None, , tooltip=None)
 
 Bases: `SelectorBase`
 
@@ -110,7 +110,7 @@ Bases: `MultiSourceInputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.Section(obj=None, name=None, display=True, \*\*kwargs)
+### *class* streamlitfront.elements.elements.Section(obj=None, name=None, display=True, tooltip=None, \*\*kwargs)
 
 Bases: `FrontContainerBase`
 
@@ -118,7 +118,7 @@ Bases: `FrontContainerBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.SuccessFailureNotification(obj=None, name=None, display=True, success='Success!', failure='Failure!', post_render_sleep=0)
+### *class* streamlitfront.elements.elements.SuccessFailureNotification(obj=None, name=None, display=True, success='Success!', failure='Failure!', post_render_sleep=0, , tooltip=None)
 
 Bases: `OutputBase`
 
@@ -126,7 +126,7 @@ Bases: `OutputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.SuccessNotification(obj=None, name=None, display=True, message='Success!')
+### *class* streamlitfront.elements.elements.SuccessNotification(obj=None, name=None, display=True, message='Success!', , tooltip=None)
 
 Bases: `OutputBase`
 
@@ -134,7 +134,7 @@ Bases: `OutputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.TextOutput(obj=None, name=None, display=True)
+### *class* streamlitfront.elements.elements.TextOutput(obj=None, name=None, display=True, , tooltip=None)
 
 Bases: `OutputBase`
 
@@ -150,7 +150,7 @@ Bases: `TextSectionBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.View(obj=None, name=None, display=True, \*\*kwargs)
+### *class* streamlitfront.elements.elements.View(obj=None, name=None, display=True, tooltip=None, \*\*kwargs)
 
 Bases: `FrontContainerBase`
 

@@ -205,12 +205,12 @@ Return `sig.defaults` without the params whose default is `i2`’s `NotSet`.
 `NotSet` in a signature means “no value given”, not a real default, so a widget
 must not be prefilled with it, nor typed after it.
 
-* **Return type:**
-  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)
-
 ```pycon
 >>> from i2.deco import NotSet
 >>> def foo(a, b=NotSet, c=3): ...
 >>> signature_defaults(Sig(foo))
 {'c': 3}
 ```
+
+* **Return type:**
+  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)

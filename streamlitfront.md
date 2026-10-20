@@ -1,4 +1,4 @@
-> built 2026-10-14 00:19 UTC from 776fb20 (master) · streamlitfront 0.1.45. Details: build_info.json
+> built 2026-10-20 06:23 UTC from ed71025 (master) · streamlitfront 0.1.46. Details: build_info.json
 
 # index.html.md
 
@@ -527,7 +527,7 @@ with the parameters to intantiate it.
 
 * **Parameters:**
   * **objs** (*Map*) – The target objects to crender in the streamlit application.
-  * **config** (`Union`[[`None`](https://docs.python.org/3/builtins/constants.html#None), [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping), [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[], [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)]]) – The configuration object for the application. Overwrites the
+  * **config** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`None`](https://docs.python.org/3/builtins/constants.html#None), [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping), [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[], [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)]]) – The configuration object for the application. Overwrites the
     convention for every value present in the configuration object. See above for more
     details.
   * **config** – The convention object for the application. Defines the default
@@ -557,23 +557,23 @@ specific abstract elements class defined in front.
 
 ### Classes
 
-| [`App`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.App)([obj, name, display])                         | Implementation of the app root container for streamlitfront.   |
+| [`App`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.App)([obj, name, display, tooltip])                | Implementation of the app root container for streamlitfront.   |
 |----------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
 | [`AudioRecorder`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.AudioRecorder)([obj, name, display, ...])          |                                                                |
 | [`ExecSection`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.ExecSection)(obj, inputs, output[, name, ...])     |                                                                |
 | [`FileUploader`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.FileUploader)([obj, name, display, ...])           |                                                                |
-| [`HiddenOutput`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.HiddenOutput)([obj, name, display])                |                                                                |
+| [`HiddenOutput`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.HiddenOutput)([obj, name, display, tooltip])       |                                                                |
 | [`KwargsInput`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.KwargsInput)([obj, name, display, input_key, ...]) |                                                                |
 | [`MultiSelectorBase`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.MultiSelectorBase)([obj, name, display, ...])      | A selector whose view value is a *list* of options.            |
 | [`MultiSourceInput`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.MultiSourceInput)([obj, name, display, ...])       |                                                                |
-| [`Section`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.Section)([obj, name, display])                     |                                                                |
+| [`Section`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.Section)([obj, name, display, tooltip])            |                                                                |
 | [`SuccessFailureNotification`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.SuccessFailureNotification)([obj, name, ...])      |                                                                |
 | [`SuccessNotification`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.SuccessNotification)([obj, name, display, ...])    |                                                                |
-| [`TextOutput`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.TextOutput)([obj, name, display])                  |                                                                |
+| [`TextOutput`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.TextOutput)([obj, name, display, tooltip])         |                                                                |
 | [`TextSection`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.TextSection)(content[, kind, obj, name])           |                                                                |
-| [`View`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.View)([obj, name, display])                        |                                                                |
+| [`View`](_autosummary/streamlitfront.elements.elements.html.md#streamlitfront.elements.elements.View)([obj, name, display, tooltip])               |                                                                |
 
-### *class* streamlitfront.elements.elements.App(obj=None, name=None, display=True, \*\*kwargs)
+### *class* streamlitfront.elements.elements.App(obj=None, name=None, display=True, tooltip=None, \*\*kwargs)
 
 Bases: `FrontContainerBase`
 
@@ -583,7 +583,7 @@ Implementation of the app root container for streamlitfront.
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.AudioRecorder(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False)
+### *class* streamlitfront.elements.elements.AudioRecorder(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, , tooltip=None)
 
 Bases: `InputBase`
 
@@ -591,7 +591,7 @@ Bases: `InputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.ExecSection(obj, inputs, output, name=None, display=True, auto_submit=False, on_submit=None, use_expander=True, submit_button_label='Submit', authentification=False)
+### *class* streamlitfront.elements.elements.ExecSection(obj, inputs, output, name=None, display=True, auto_submit=False, on_submit=None, use_expander=True, submit_button_label='Submit', authentification=False, tooltip=None)
 
 Bases: `ExecContainerBase`
 
@@ -599,7 +599,7 @@ Bases: `ExecContainerBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.FileUploader(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, type=None, accept_multiple_files=False, clear_after_submit=True, display_label=True)
+### *class* streamlitfront.elements.elements.FileUploader(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, type=None, accept_multiple_files=False, clear_after_submit=True, display_label=True, , tooltip=None)
 
 Bases: `FileUploaderBase`
 
@@ -616,7 +616,7 @@ everything else drawn stay in place (no rerun).
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.HiddenOutput(obj=None, name=None, display=True)
+### *class* streamlitfront.elements.elements.HiddenOutput(obj=None, name=None, display=True, , tooltip=None)
 
 Bases: `OutputBase`
 
@@ -624,7 +624,7 @@ Bases: `OutputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.KwargsInput(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, inputs=None, func_sig=None)
+### *class* streamlitfront.elements.elements.KwargsInput(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, inputs=None, func_sig=None, , tooltip=None)
 
 Bases: `KwargsInputBase`
 
@@ -632,7 +632,7 @@ Bases: `KwargsInputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.MultiSelectorBase(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, options=None)
+### *class* streamlitfront.elements.elements.MultiSelectorBase(obj=None, name=None, display=True, input_key=None, value=ValueNotSet, on_value_change=None, bound_data_factory=None, is_noneable=False, disabled=False, options=None, , tooltip=None)
 
 Bases: `SelectorBase`
 
@@ -655,7 +655,7 @@ Bases: `MultiSourceInputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.Section(obj=None, name=None, display=True, \*\*kwargs)
+### *class* streamlitfront.elements.elements.Section(obj=None, name=None, display=True, tooltip=None, \*\*kwargs)
 
 Bases: `FrontContainerBase`
 
@@ -663,7 +663,7 @@ Bases: `FrontContainerBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.SuccessFailureNotification(obj=None, name=None, display=True, success='Success!', failure='Failure!', post_render_sleep=0)
+### *class* streamlitfront.elements.elements.SuccessFailureNotification(obj=None, name=None, display=True, success='Success!', failure='Failure!', post_render_sleep=0, , tooltip=None)
 
 Bases: `OutputBase`
 
@@ -671,7 +671,7 @@ Bases: `OutputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.SuccessNotification(obj=None, name=None, display=True, message='Success!')
+### *class* streamlitfront.elements.elements.SuccessNotification(obj=None, name=None, display=True, message='Success!', , tooltip=None)
 
 Bases: `OutputBase`
 
@@ -679,7 +679,7 @@ Bases: `OutputBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.TextOutput(obj=None, name=None, display=True)
+### *class* streamlitfront.elements.elements.TextOutput(obj=None, name=None, display=True, , tooltip=None)
 
 Bases: `OutputBase`
 
@@ -695,7 +695,7 @@ Bases: `TextSectionBase`
 
 Render the element with the concrete UI framework; must be overridden.
 
-### *class* streamlitfront.elements.elements.View(obj=None, name=None, display=True, \*\*kwargs)
+### *class* streamlitfront.elements.elements.View(obj=None, name=None, display=True, tooltip=None, \*\*kwargs)
 
 Bases: `FrontContainerBase`
 
@@ -1273,15 +1273,15 @@ Return `sig.defaults` without the params whose default is `i2`’s `NotSet`.
 `NotSet` in a signature means “no value given”, not a real default, so a widget
 must not be prefilled with it, nor typed after it.
 
-* **Return type:**
-  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)
-
 ```pycon
 >>> from i2.deco import NotSet
 >>> def foo(a, b=NotSet, c=3): ...
 >>> signature_defaults(Sig(foo))
 {'c': 3}
 ```
+
+* **Return type:**
+  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)
 
 
 # about-this-build.html.md
@@ -1290,18 +1290,18 @@ must not be prefilled with it, nor typed after it.
 
 # About this build
 
-This documentation was built on **2026-10-14 00:19 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/776fb20e5d7ed0e3e3e112c22d1961ece227d872"><code>776fb20</code></a> on branch <code>master</code>, for **streamlitfront 0.1.45** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-10-20 06:23 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/ed7102511cd93ddc00c8fbb8e280b6c0deb778ba"><code>ed71025</code></a> on branch <code>master</code>, for **streamlitfront 0.1.46** (from <code>pyproject.toml</code>).
 
 #### WARNING
 The documentation and the package may be misaligned:
 
-- The documented version (0.1.45) is behind the latest release on PyPI (0.1.46): `pip install streamlitfront` gives newer code than these docs describe.
+- The documented version (0.1.46) is behind the latest release on PyPI (0.1.47): `pip install streamlitfront` gives newer code than these docs describe.
 
 ## Source
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/776fb20e5d7ed0e3e3e112c22d1961ece227d872"><code>776fb20e5d7ed0e3e3e112c22d1961ece227d872</code></a> |
+| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/ed7102511cd93ddc00c8fbb8e280b6c0deb778ba"><code>ed7102511cd93ddc00c8fbb8e280b6c0deb778ba</code></a> |
 | Branch              | <code>master</code>                                                                                                                                          |
 | Tags at this commit | none                                                                                                                                                         |
 | Working tree        | clean                                                                                                                                                        |
@@ -1312,16 +1312,16 @@ The documentation and the package may be misaligned:
 |              |                                                                                             |
 |--------------|---------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/streamlitfront</code>                                                          |
-| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/38489341268">38489341268</a> |
+| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/39379864127">39379864127</a> |
 | Ref          | <code>refs/heads/master</code>                                                              |
-| Event commit | <code>776fb20e5d7ed0e3e3e112c22d1961ece227d872</code> (in the history of the built commit)  |
+| Event commit | <code>ed7102511cd93ddc00c8fbb8e280b6c0deb778ba</code> (in the history of the built commit)  |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.17  |
-| Sphinx   | 9.1.0   |
+| epythet  | 0.2.18  |
+| Sphinx   | 9.1.1   |
 | docutils | 0.22.4  |
 | Python   | 3.12.15 |
 
@@ -1339,14 +1339,14 @@ The documentation and the package may be misaligned:
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.46/">0.1.46</a>, newer than the documented version (0.1.45).
+Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.47/">0.1.47</a>, newer than the documented version (0.1.46).
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/streamlitfront && cd streamlitfront
-git checkout 776fb20e5d7ed0e3e3e112c22d1961ece227d872
-pip install "epythet==0.2.17"
+git checkout ed7102511cd93ddc00c8fbb8e280b6c0deb778ba
+pip install "epythet==0.2.18"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 

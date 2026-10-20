@@ -272,7 +272,7 @@ with the parameters to intantiate it.
 
 * **Parameters:**
   * **objs** (*Map*) – The target objects to crender in the streamlit application.
-  * **config** (`Union`[[`None`](https://docs.python.org/3/builtins/constants.html#None), [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping), [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[], [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)]]) – The configuration object for the application. Overwrites the
+  * **config** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`None`](https://docs.python.org/3/builtins/constants.html#None), [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping), [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[], [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)]]) – The configuration object for the application. Overwrites the
     convention for every value present in the configuration object. See above for more
     details.
   * **config** – The convention object for the application. Defines the default
