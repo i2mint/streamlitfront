@@ -111,6 +111,18 @@ class App(FrontContainerBase):
         view_runner()  # runs the page with the state
 
 
+def _clear_inputs(input_keys):
+    """Forget the state of every widget under ``input_keys`` (the input itself, its view,
+    "None" toggle, ``*args`` count and fields), so each falls back to its default.
+
+    Meant as a button ``on_click``: Streamlit lets callbacks drop widget keys before the rerun.
+    """
+    prefixes = tuple(f"{k}_" for k in input_keys)
+    for key in list(st.session_state.keys()):
+        if key in input_keys or key.startswith(prefixes):
+            del st.session_state[key]
+
+
 class View(FrontContainerBase):
     def render(self):
         st.markdown(f"""## **{self.name}**""", help=self.tooltip)
@@ -152,6 +164,7 @@ class ExecSection(ExecContainerBase):
         on_submit: Callable[[Any], None] = None,
         use_expander: bool = True,
         submit_button_label: str = "Submit",
+        clear_button_label: str = None,
         authentification: bool = False,
         tooltip: str = None,
     ):
@@ -167,6 +180,7 @@ class ExecSection(ExecContainerBase):
         )
         self.use_expander = use_expander
         self.submit_button_label = submit_button_label
+        self.clear_button_label = clear_button_label
         self.authentification = authentification
         if authentification:
             if on_submit is None:
@@ -192,11 +206,26 @@ class ExecSection(ExecContainerBase):
         for uploader in _file_uploaders(self.children):
             uploader._slot = None
         inputs = self._render_inputs()
+        if self.clear_button_label:
+            st.button(
+                self.clear_button_label,
+                key=f"{self.name}_clear_all",
+                on_click=_clear_inputs,
+                args=(self._input_keys(),),
+                help="Reset every field to its default",
+            )
         if self.auto_submit or st.button(self.submit_button_label):
             try:
                 self._submit(inputs)
             except ValidationError as e:
                 st.error(e)
+
+    def _input_keys(self) -> list:
+        return [
+            child.input_key
+            for child in self.children
+            if isinstance(child, InputBase) and child.input_key
+        ]
 
     def _render_inputs(self):
         """Render the inputs; a ``*args`` parameter gets a "+" button and one field per press."""
