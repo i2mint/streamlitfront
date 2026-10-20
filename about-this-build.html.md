@@ -2,18 +2,18 @@
 
 # About this build
 
-This documentation was built on **2026-10-20 06:23 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/ed7102511cd93ddc00c8fbb8e280b6c0deb778ba"><code>ed71025</code></a> on branch <code>master</code>, for **streamlitfront 0.1.46** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-10-20 10:26 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/caf6020f0d537d1bd85dbb9a2c29560cee67ef36"><code>caf6020</code></a> on branch <code>master</code>, for **streamlitfront 0.1.47** (from <code>pyproject.toml</code>).
 
 #### WARNING
 The documentation and the package may be misaligned:
 
-- The documented version (0.1.46) is behind the latest release on PyPI (0.1.47): `pip install streamlitfront` gives newer code than these docs describe.
+- The documented version (0.1.47) is behind the latest release on PyPI (0.1.48): `pip install streamlitfront` gives newer code than these docs describe.
 
 ## Source
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/ed7102511cd93ddc00c8fbb8e280b6c0deb778ba"><code>ed7102511cd93ddc00c8fbb8e280b6c0deb778ba</code></a> |
+| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/caf6020f0d537d1bd85dbb9a2c29560cee67ef36"><code>caf6020f0d537d1bd85dbb9a2c29560cee67ef36</code></a> |
 | Branch              | <code>master</code>                                                                                                                                          |
 | Tags at this commit | none                                                                                                                                                         |
 | Working tree        | clean                                                                                                                                                        |
@@ -24,9 +24,9 @@ The documentation and the package may be misaligned:
 |              |                                                                                             |
 |--------------|---------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/streamlitfront</code>                                                          |
-| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/39379864127">39379864127</a> |
+| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/39407738287">39407738287</a> |
 | Ref          | <code>refs/heads/master</code>                                                              |
-| Event commit | <code>ed7102511cd93ddc00c8fbb8e280b6c0deb778ba</code> (in the history of the built commit)  |
+| Event commit | <code>caf6020f0d537d1bd85dbb9a2c29560cee67ef36</code> (in the history of the built commit)  |
 
 ## Tools
 
@@ -51,13 +51,13 @@ The documentation and the package may be misaligned:
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.47/">0.1.47</a>, newer than the documented version (0.1.46).
+Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.48/">0.1.48</a>, newer than the documented version (0.1.47).
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/streamlitfront && cd streamlitfront
-git checkout ed7102511cd93ddc00c8fbb8e280b6c0deb778ba
+git checkout caf6020f0d537d1bd85dbb9a2c29560cee67ef36
 pip install "epythet==0.2.18"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
