@@ -186,3 +186,76 @@ def test_clear_after_submit_false_keeps_a_kwargs_input_selection():
     at.button[0].click().run()
     assert _output(at) == ["`5`"]
     assert _names(at) == ["a.txt"]
+
+
+MULTI_KWARGS_APP = """
+from i2 import Sig
+from front import APP_KEY, RENDERING_KEY, ELEMENT_KEY
+from streamlitfront import mk_app
+from streamlitfront.elements import FileUploader, MultiSourceInput, TextOutput, KwargsInput
+
+def g(a: int = 1, b: str = "x"): ...
+def h(data: list): ...
+def f(data): return repr(data)
+
+class Files(FileUploader):
+    def render(self):
+        return super().render() or []
+
+def sizes(data):
+    return sum(len(f.getvalue()) for f in data["data"])
+
+FUNC = f
+PARAMS = {ELEMENT_KEY: KwargsInput, "func_sig": Sig(g)}
+if UPLOAD_PARAM:
+    FUNC = sizes
+    PARAMS = {
+        ELEMENT_KEY: KwargsInput,
+        "func_sig": Sig(h),
+        "inputs": {"data": {ELEMENT_KEY: Files, "accept_multiple_files": True}},
+    }
+
+mk_app([FUNC], config={
+    APP_KEY: {"title": "t"},
+    RENDERING_KEY: {FUNC.__name__: {"execution": {
+        "inputs": {"data": {
+            ELEMENT_KEY: MultiSourceInput,
+            "From files": {ELEMENT_KEY: FileUploader},
+            "From params": PARAMS,
+        }},
+        "output": {ELEMENT_KEY: TextOutput},
+    }}},
+})()
+"""
+
+
+def _run_multi_kwargs_app(*, upload_param):
+    script = MULTI_KWARGS_APP.replace("UPLOAD_PARAM", repr(upload_param))
+    at = AppTest.from_string(script, default_timeout=30).run()
+    assert not at.exception
+    at.selectbox[0].select("From params").run()
+    assert not at.exception
+    return at
+
+
+def test_kwargs_source_of_multi_source_input():
+    """i2mint/front#45: a KwargsInput is one of the sources of a MultiSourceInput."""
+    at = _run_multi_kwargs_app(upload_param=False)
+    at.number_input[0].set_value(5).run()
+    at.text_input[0].set_value("hi").run()
+    at.button[0].click().run()
+    assert not at.exception
+    assert "{'a': 5, 'b': 'hi'}" in [m.value for m in at.markdown]
+
+
+def test_uploader_in_a_kwargs_source_of_a_multi_source_input_is_emptied_after_submit():
+    """``_file_uploaders`` reaches a kwargs input nested in a multi-source input (streamlitfront#32)."""
+    at = _run_multi_kwargs_app(upload_param=True)
+    (uploader,) = at.file_uploader
+    uploader.upload("a.txt", b"12345").run()
+    assert _names(at) == ["a.txt"]
+    at.button[0].click().run()
+    assert not at.exception
+    assert _output(at) == ["`5`"]
+    assert _names(at) == []
+    assert len(at.file_uploader) == 1  # replaced, not added
