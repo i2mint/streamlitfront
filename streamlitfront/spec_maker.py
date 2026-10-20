@@ -35,6 +35,7 @@ DFLT_CONVENTION_DICT = deep_merge(
             ELEMENT_KEY: App,
             Callable: {
                 ELEMENT_KEY: View,
+                "tooltips": True,
                 "description": {
                     ELEMENT_KEY: TextSection,
                 },

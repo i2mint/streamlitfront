@@ -110,7 +110,7 @@ class App(FrontContainerBase):
 
 class View(FrontContainerBase):
     def render(self):
-        st.markdown(f"""## **{self.name}**""")
+        st.markdown(f"""## **{self.name}**""", help=self.tooltip)
         self._render_children()
 
 
@@ -150,6 +150,7 @@ class ExecSection(ExecContainerBase):
         use_expander: bool = True,
         submit_button_label: str = "Submit",
         authentification: bool = False,
+        tooltip: str = None,
     ):
         super().__init__(
             obj=obj,
@@ -159,6 +160,7 @@ class ExecSection(ExecContainerBase):
             display=display,
             auto_submit=auto_submit,
             on_submit=on_submit,
+            tooltip=tooltip,
         )
         self.use_expander = use_expander
         self.submit_button_label = submit_button_label
@@ -272,6 +274,7 @@ def implement_input_component(base_cls, component_factory, **input_mapping):
         label="name",
         key="view_key",
         value="view_value",
+        help="tooltip",
         on_change="_widget_on_change",
         **input_mapping,
     )
