@@ -227,15 +227,28 @@ class ExecSection(ExecContainerBase):
 
         st.markdown(name.replace("_", " ").title())
         plus, minus, _ = st.columns([1, 1, 4])
-        plus.button("＋", key=f"{count_key}_plus", on_click=bump, args=(1,), help=f"Add another {name}")
+        plus.button(
+            "＋",
+            key=f"{count_key}_plus",
+            on_click=bump,
+            args=(1,),
+            help=f"Add another {name}",
+        )
         minus.button(
-            "－", key=f"{count_key}_minus", on_click=bump, args=(-1,), disabled=not st.session_state[count_key],
+            "－",
+            key=f"{count_key}_minus",
+            on_click=bump,
+            args=(-1,),
+            disabled=not st.session_state[count_key],
             help=f"Remove the last {name}",
         )
         values = []
         for i in range(st.session_state[count_key]):
             field = dataclasses.replace(
-                template, name=f"{name} {i + 1}", input_key=f"{template.input_key}_{i}", value=ValueNotSet
+                template,
+                name=f"{name} {i + 1}",
+                input_key=f"{template.input_key}_{i}",
+                value=ValueNotSet,
             )
             values.append(field())
         return tuple(values)
