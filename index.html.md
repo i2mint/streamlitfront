@@ -4,7 +4,11 @@
 
 Generate streamlit frontends from python functions
 
-To install:	`pip install streamlitfront`
+To install:
+
+```default
+pip install streamlitfront
+```
 
 # Example
 
