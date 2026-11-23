@@ -335,9 +335,12 @@ def _map_render_keys(objs, render_keys: Iterable[KV]):
 def mk_render_keys(objs, render_keys, find_render_keys: Callable = _find_render_keys):
     """Make a static render_keys that has a one-to-one relationship with objects
 
-    # >>> find_render_keys = lambda objs, render_keys:
-    # >>> dict(mk_render_keys([1, 2, 3], {1: 'a', 2: 'b', 3: 'c'}))
-    # {1: 'a', 2: 'b', 3: 'c'}
+    Example (sketch, not run as a doctest):
+
+    .. code-block:: python
+
+        dict(mk_render_keys([1, 2, 3], {1: 'a', 2: 'b', 3: 'c'}))
+        # {1: 'a', 2: 'b', 3: 'c'}
 
     """
     render_keys = find_render_keys(objs, render_keys)
@@ -370,9 +373,12 @@ def app_maker(
 def alt_mk_render_keys(objs, render_keys, resolver: Callable):
     """Make a static render_keys that has a one-to-one relationship with objects
 
-    # >>> find_render_keys = lambda objs, render_keys:
-    # >>> dict(mk_render_keys([1, 2, 3], {1: 'a', 2: 'b', 3: 'c'}))
-    # {1: 'a', 2: 'b', 3: 'c'}
+    Example (sketch, not run as a doctest):
+
+    .. code-block:: python
+
+        dict(mk_render_keys([1, 2, 3], {1: 'a', 2: 'b', 3: 'c'}))
+        # {1: 'a', 2: 'b', 3: 'c'}
 
     """
     render_keys = resolver(objs, render_keys)
