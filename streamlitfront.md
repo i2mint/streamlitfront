@@ -1,4 +1,4 @@
-> built 2026-11-22 22:47 UTC from 9d4c521 (master) · streamlitfront 0.1.50. Details: build_info.json
+> built 2026-11-23 07:33 UTC from a1cd529 (master) · streamlitfront 0.1.50. Details: build_info.json
 
 # index.html.md
 
@@ -1010,9 +1010,12 @@ alias of [`Iterable`](https://docs.python.org/3/library/collections.abc.html#col
 
 Make a static render_keys that has a one-to-one relationship with objects
 
-# >>> find_render_keys = lambda objs, render_keys:
-# >>> dict(mk_render_keys([1, 2, 3], {1: ‘a’, 2: ‘b’, 3: ‘c’}))
-# {1: ‘a’, 2: ‘b’, 3: ‘c’}
+Example (sketch, not run as a doctest):
+
+```python
+dict(mk_render_keys([1, 2, 3], {1: 'a', 2: 'b', 3: 'c'}))
+# {1: 'a', 2: 'b', 3: 'c'}
+```
 
 ### streamlitfront.tools.first_element_matching_type(obj, types)
 
@@ -1046,9 +1049,12 @@ Converts a string with newlines to a string with html paragraphs
 
 Make a static render_keys that has a one-to-one relationship with objects
 
-# >>> find_render_keys = lambda objs, render_keys:
-# >>> dict(mk_render_keys([1, 2, 3], {1: ‘a’, 2: ‘b’, 3: ‘c’}))
-# {1: ‘a’, 2: ‘b’, 3: ‘c’}
+Example (sketch, not run as a doctest):
+
+```python
+dict(mk_render_keys([1, 2, 3], {1: 'a', 2: 'b', 3: 'c'}))
+# {1: 'a', 2: 'b', 3: 'c'}
+```
 
 ### streamlitfront.tools.mk_specs(objs, configs)
 
@@ -1294,16 +1300,18 @@ must not be prefilled with it, nor typed after it.
 
 # About this build
 
-This documentation was built on **2026-11-22 22:47 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/9d4c5217c958075d66115e5bb33a08607452f98c"><code>9d4c521</code></a> on branch <code>master</code>, for **streamlitfront 0.1.50** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-23 07:33 UTC** from commit <a href="https://github.com/i2mint/streamlitfront/commit/a1cd529f7a602c9ce8b708f1b835b40d9c715b08"><code>a1cd529</code></a> on branch <code>master</code>, for **streamlitfront 0.1.50** (from <code>pyproject.toml</code>).
 
-#### NOTE
-Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
+#### WARNING
+The documentation and the package may be misaligned:
+
+- The documented version (0.1.50) is behind the latest release on PyPI (0.1.51): `pip install streamlitfront` gives newer code than these docs describe.
 
 ## Source
 
 |                     |                                                                                                                                                              |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/9d4c5217c958075d66115e5bb33a08607452f98c"><code>9d4c5217c958075d66115e5bb33a08607452f98c</code></a> |
+| Commit              | <a href="https://github.com/i2mint/streamlitfront/commit/a1cd529f7a602c9ce8b708f1b835b40d9c715b08"><code>a1cd529f7a602c9ce8b708f1b835b40d9c715b08</code></a> |
 | Branch              | <code>master</code>                                                                                                                                          |
 | Tags at this commit | none                                                                                                                                                         |
 | Working tree        | clean                                                                                                                                                        |
@@ -1314,15 +1322,15 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |              |                                                                                             |
 |--------------|---------------------------------------------------------------------------------------------|
 | Repository   | <code>i2mint/streamlitfront</code>                                                          |
-| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/45079466058">45079466058</a> |
+| Run          | <a href="https://github.com/i2mint/streamlitfront/actions/runs/45131688426">45131688426</a> |
 | Ref          | <code>refs/heads/master</code>                                                              |
-| Event commit | <code>9d4c5217c958075d66115e5bb33a08607452f98c</code> (in the history of the built commit)  |
+| Event commit | <code>a1cd529f7a602c9ce8b708f1b835b40d9c715b08</code> (in the history of the built commit)  |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.23  |
+| epythet  | 0.2.24  |
 | Sphinx   | 9.1.1   |
 | docutils | 0.22.4  |
 | Python   | 3.12.16 |
@@ -1341,14 +1349,14 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.50/">0.1.50</a>, the same as the documented version.
+Latest release: <a href="https://pypi.org/project/streamlitfront/0.1.51/">0.1.51</a>, newer than the documented version (0.1.50).
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/i2mint/streamlitfront && cd streamlitfront
-git checkout 9d4c5217c958075d66115e5bb33a08607452f98c
-pip install "epythet==0.2.23"
+git checkout a1cd529f7a602c9ce8b708f1b835b40d9c715b08
+pip install "epythet==0.2.24"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 

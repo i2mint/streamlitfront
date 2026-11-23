@@ -271,9 +271,11 @@ data-aria-dark="Switch to auto color mode">
 <dt class="sig sig-object py" id="streamlitfront.tools.alt_mk_render_keys">
 <span class="sig-prename descclassname"><span class="pre">streamlitfront.tools.</span></span><span class="sig-name descname"><span class="pre">alt_mk_render_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolver</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/tools.html#alt_mk_render_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.tools.alt_mk_render_keys" title="Link to this definition">#</a></dt>
 <dd><p>Make a static render_keys that has a one-to-one relationship with objects</p>
-<p># &gt;&gt;&gt; find_render_keys = lambda objs, render_keys:
-# &gt;&gt;&gt; dict(mk_render_keys([1, 2, 3], {1: ‘a’, 2: ‘b’, 3: ‘c’}))
-# {1: ‘a’, 2: ‘b’, 3: ‘c’}</p>
+<p>Example (sketch, not run as a doctest):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">dict</span><span class="p">(</span><span class="n">mk_render_keys</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">'a'</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">'b'</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">'c'</span><span class="p">}))</span>
+</span><span data-line="2"><span class="c1"># {1: 'a', 2: 'b', 3: 'c'}</span>
+</span></pre></div>
+</div>
 <dl class="field-list simple">
 </dl>
 </dd></dl>
@@ -314,9 +316,11 @@ data-aria-dark="Switch to auto color mode">
 <dt class="sig sig-object py" id="streamlitfront.tools.mk_render_keys">
 <span class="sig-prename descclassname"><span class="pre">streamlitfront.tools.</span></span><span class="sig-name descname"><span class="pre">mk_render_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">find_render_keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">_find_render_keys&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/streamlitfront/tools.html#mk_render_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#streamlitfront.tools.mk_render_keys" title="Link to this definition">#</a></dt>
 <dd><p>Make a static render_keys that has a one-to-one relationship with objects</p>
-<p># &gt;&gt;&gt; find_render_keys = lambda objs, render_keys:
-# &gt;&gt;&gt; dict(mk_render_keys([1, 2, 3], {1: ‘a’, 2: ‘b’, 3: ‘c’}))
-# {1: ‘a’, 2: ‘b’, 3: ‘c’}</p>
+<p>Example (sketch, not run as a doctest):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">dict</span><span class="p">(</span><span class="n">mk_render_keys</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">'a'</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">'b'</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">'c'</span><span class="p">}))</span>
+</span><span data-line="2"><span class="c1"># {1: 'a', 2: 'b', 3: 'c'}</span>
+</span></pre></div>
+</div>
 <dl class="field-list simple">
 </dl>
 </dd></dl>

@@ -59,9 +59,12 @@ alias of [`Iterable`](https://docs.python.org/3/library/collections.abc.html#col
 
 Make a static render_keys that has a one-to-one relationship with objects
 
-# >>> find_render_keys = lambda objs, render_keys:
-# >>> dict(mk_render_keys([1, 2, 3], {1: ‘a’, 2: ‘b’, 3: ‘c’}))
-# {1: ‘a’, 2: ‘b’, 3: ‘c’}
+Example (sketch, not run as a doctest):
+
+```python
+dict(mk_render_keys([1, 2, 3], {1: 'a', 2: 'b', 3: 'c'}))
+# {1: 'a', 2: 'b', 3: 'c'}
+```
 
 ### streamlitfront.tools.first_element_matching_type(obj, types)
 
@@ -95,9 +98,12 @@ Converts a string with newlines to a string with html paragraphs
 
 Make a static render_keys that has a one-to-one relationship with objects
 
-# >>> find_render_keys = lambda objs, render_keys:
-# >>> dict(mk_render_keys([1, 2, 3], {1: ‘a’, 2: ‘b’, 3: ‘c’}))
-# {1: ‘a’, 2: ‘b’, 3: ‘c’}
+Example (sketch, not run as a doctest):
+
+```python
+dict(mk_render_keys([1, 2, 3], {1: 'a', 2: 'b', 3: 'c'}))
+# {1: 'a', 2: 'b', 3: 'c'}
+```
 
 ### streamlitfront.tools.mk_specs(objs, configs)
 
